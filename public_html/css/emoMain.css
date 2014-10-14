@@ -1,0 +1,654 @@
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Main CSS -------------------------------------------------
+// ----------------------------------------------------------------------------------------*/
+
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Font CSS -------------------------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+@font-face
+{
+    font-family: Raleway_200;
+    src: url(font/Raleway-Thin.ttf);
+}
+
+@font-face
+{
+    font-family: Raleway_300;
+    src: url(font/Raleway-Light.ttf);
+}
+
+@font-face
+{
+    font-family: Raleway_400;
+    src: url(font/Raleway-Regular.ttf);
+}
+
+@font-face
+{
+    font-family: Raleway_500;
+    src: url(font/Raleway-Medium.ttf);
+}
+
+body
+{
+    font-family: 'Raleway_200', sans-serif;
+    color: #000;
+    background-color: #FFFFFF;
+}
+
+
+h1, h2, h3, h4
+{
+    font-family: 'Raleway_200', sans-serif;
+    /* padding-top: 5px; */
+    color: #000;
+}
+
+p, a
+{
+    font-family: 'Raleway_300', sans-serif;
+}
+
+li a 
+{
+    font-family: 'Raleway_300', sans-serif !important;
+}
+
+
+/* mainPage no overflow */
+
+#mainPage
+{
+    max-height: 560px;
+    overflow: hidden;
+}
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Login Form CSS -------------------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+#loginForm {
+    padding-top: 64px;
+}
+
+/* Sets the password input and title input fields */
+#password-clear 
+{
+    display: none;
+}
+
+/* Set the form inputs CSS */
+input[type='text']
+{
+    font-family: 'Raleway_300', sans-serif !important;
+}
+
+#loginType .ui-controlgroup, fieldset.ui-controlgroup
+{
+    margin: 0 74px;
+    width: 100%;
+}
+
+#formErrorMsg
+{
+    color: RGBA(255, 119, 0, 1);
+    background-color: RGBA(247, 205, 7, .5);
+    opacity: .9;
+}
+
+#loginUnder p 
+{
+    padding: 10px;
+}
+
+.orangeBackground
+{
+    color: RGBA(255, 119, 0, 1) !important;
+    background-color: RGBA(247, 205, 7, .5) !important;
+}
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Splash Screen CSS ----------------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+
+
+.img100
+{
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------------------------------  Old Splash ----------------------------*/ 
+
+
+.splashOver{
+
+}
+
+#loginUnder
+{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 320px;
+    height: 70%;
+    padding-top: 30%;
+}
+
+.splashButton
+{
+    position: absolute;
+    z-index: 6;
+    top: 0;  
+}
+
+#splashTop
+{
+    position: absolute;
+    z-index: 3;
+    top: 0%;
+}
+
+#splashBottom
+{
+    position: absolute;
+    z-index: 3;
+    top: 0;
+}
+
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Map Div CSS ----------------------------------------------
+// ----------------------------------------------------------------------------------------*/  
+
+#mapPage
+{
+    /*    height: 568px;
+        width: 320px;*/
+    overflow: hidden;
+}
+
+.maps {
+    position: relative;
+    top: 0;
+    /* z-index: 400; */
+    min-height: 700px;
+    width: 100%;
+    height: 120%;
+}
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Popup Bg  ------------------------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+.popUpBg
+{
+    background-image: url("../images/emojiEnter.png");
+    background-repeat: no-repeat;
+    background-color: #fff;
+    opacity: .8;
+    width: 280px;
+    height: 330px;
+    margin: 0;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Emoji Slection  ------------------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+#emojiSearchBar {
+    position: absolute;
+    background-color: rgba(255,255,255,.9);
+    top: calc(50%-50px);
+    height: 50px;
+    width: 100%;
+    left: -100%;
+    text-align: center;
+}
+
+#emojiSearchBar img {
+    width: 10%;
+}
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Profile Page  ------------------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+.profileNavImg 
+{
+    width: 33%;
+    height: 44px;
+    float: left;
+}
+
+.profileTab {
+    position: relative;
+    top: 108px;
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#honeyProfileTab {
+    position: absolute;
+    top: 108px;
+    height: 460px;
+    width: 100%;
+    overflow:auto;
+}
+
+#myPins {
+    height: 600px;
+    overflow:scroll;
+}
+
+
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Panel Menu  ------------------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+.left-panel 
+{
+    margin-top: 0px;
+    background-color: #b2b2b2;
+    padding-top: 15px;
+}
+
+.left-panel-btn
+{
+    width: 46px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.hexMenuBtn a
+{
+    display: block;
+    width: 50px;
+    height: 44px;
+    overflow:hidden;
+}
+
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Panel Menu  ------------------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+.panelHeader
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#layerSwitch li a
+{
+    background-color: #ffffff;
+}
+
+#layerSwitch li a.active
+{
+    background-color: #7478f0;
+}
+
+/* ----   Width Overrides  ---*/ 
+
+.ui-panel {
+    width: 10em;
+}
+
+.ui-panel.ui-panel-position-right {
+    width: 35em;
+}
+
+.ui-panel.ui-panel-closed {
+    width: 0;
+}
+
+.ui-panel-position-left {
+    left: -10em;
+}
+
+.ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
+    -webkit-transform: translate3d(-10em, 0, 0);
+    -moz-transform: translate3d(-10em, 0, 0);
+    transform: translate3d(-10em, 0, 0);
+}
+
+.ui-panel-position-right {
+    right: -35em;
+}
+
+.ui-panel-animate.ui-panel-position-right.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-right.ui-panel-display-push {
+    -webkit-transform: translate3d(35em, 0, 0);
+    -moz-transform: translate3d(35em, 0, 0);
+    transform: translate3d(35em, 0, 0);
+}
+
+.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open, .ui-panel-content-wrap-position-left.ui-panel-content-wrap-open, .ui-panel-dismiss-position-left.ui-panel-dismiss-open {
+    left: 10em;
+    right: -35em;
+}
+
+.ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push, .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
+    -webkit-transform: translate3d(10em, 0, 0);
+    -moz-transform: translate3d(10em, 0, 0);
+    transform: translate3d(10em, 0, 0);
+}
+
+.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open, .ui-panel-content-wrap-position-right.ui-panel-content-wrap-open, .ui-panel-dismiss-position-right.ui-panel-dismiss-open {
+    left: -10em;
+    right: 35em;
+}
+
+.ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push, .ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, .ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
+    -webkit-transform: translate3d(-35em, 0, 0);
+    -moz-transform: translate3d(-35em, 0, 0);
+    transform: translate3d(-35em, 0, 0);
+}
+
+@media (min-width:55em) {
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-left, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-left, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-left, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-left {
+        margin-right: 35em;
+    }
+
+    .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-right, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-right, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-right, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-right {
+        margin-left: 10em;
+    }
+}
+
+
+.ui-panel-animate.ui-panel-page-content-position-left {
+    left: 0;
+    right: 0;
+    -webkit-transform: translate3d(10em,0,0);
+    -moz-transform: translate3d(10em,0,0);
+    transform: translate3d(10em,0,0);
+}
+
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  SVG Mask  ------------------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+#mask
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+#maskLogo
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+#splashOver
+{
+    background-color: #ffffff;
+    z-index: 2;
+    width: 320px;
+    height: 568px;
+}
+
+#loginUnder
+{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 320px;
+    height: 70%;
+    padding-top: 30%;
+}
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Emoji Selection #emojiSelectPage ---------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+
+.emojiParent {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.emojiParent img {
+    width: 20%;
+}
+
+/*****************************************************
+ * generic styling for ALS elements: outer container
+ ******************************************************/
+
+#emojiPostSelectParent {
+    position: absolute;
+    background-color: rgba(255,255,255,.9);
+    top: 200px;
+    left: -100%;
+    width: 100%;
+}
+
+#my-als-list {
+    
+    position: relative;
+    height: 150px;
+    width: 100%;
+    text-align: center;
+        
+}
+
+/****************************************
+ * viewport styling
+ ***************************************/
+
+.als-viewport {
+	position: relative;
+	overflow: hidden;
+	margin: 0px auto;
+        
+	height: 100px;       
+	width: 250px;
+}
+
+/***************************************************
+ * wrapper styling
+ **************************************************/
+
+.als-wrapper {
+	position: relative;
+	/* if you are using a list with <ul> <li> */
+	list-style: none;
+        
+}
+
+/*************************************
+ * item: single list element
+ ************************************/
+
+.als-item {
+	position: absolute;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+        margin: 0px 5px;
+	padding: 4px 0px;
+	min-height: 120px;
+	min-width: 100px;
+	text-align: center;
+}
+
+.als-item img {
+	display: block;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+
+/***********************************************
+ * prev, next: buttons styling
+ **********************************************/
+ 
+.als-prev, .als-next {
+    	top: 40px;
+	position: absolute;
+	cursor: pointer;
+	clear: both;
+}
+
+/*************************************
+ * specific styling for #demo4
+ ************************************/
+
+#emojiPostSelectParent {
+	margin: 40px auto;
+}
+
+#emojiPostSelectParent .als-item {
+	margin: 0px 5px;
+	padding: 4px 0px;
+	min-height: 120px;
+	min-width: 100px;
+	text-align: center;
+}
+
+#emojiPostSelectParent .als-item img {
+	display: block;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+
+#emojiPostSelectParent .als-prev, #emojiPostSelectParent .als-next {
+	top: 40px;
+}
+
+#emojiPostSelectParent .als-prev {
+	left: 5px;
+}
+
+#emojiPostSelectParent .als-next {
+	right: 5px;
+}
+
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Emotion Post Page / #emotionInsertPage ---------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+.cameraMode
+{
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.imageMode
+{
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+#cameraSelect {
+    width: 100%;
+    text-align: center;
+    margin-top: 64px;
+}
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  emoji panel ---------------------------------
+// ----------------------------------------------------------------------------------------*/ 
+
+
+#insertButtons
+{
+    position: absolute;
+    top: 300px;
+    left: 0; 
+    width: 320px;
+    background-color: #ffffff;
+    z-index: 15;
+}
+
+#lower 
+{
+    position: relative;
+    padding-top: 0px;
+}
+
+#upper
+{
+    background-color: #B54C8A;
+
+}
+
+#bar 
+{
+    padding: 0px;
+    background-color: #B54C8A;
+    color: #ffffff;
+}
+
+#panel 
+{
+    display: none;
+    background-color: #ffffff;
+    padding: 0px;
+}
+
+#tabs.ui-tabs 
+{
+    padding: 0;
+}
+
+.tabEmoji
+{
+    background-color: #cccccc;    
+}
+
+.addEmoji
+{
+    height: 30px;
+    width: 30px;
+    padding: 7.5px 0 7.5px 14px;
+}
+
+.emojiRender
+{
+    padding: 5px;
+}
+
+#layerBtn
+{
+    float: left;
+    margin-left: 100px;
+}
+
+.hexMenuBtn
+{
+    float: left;
+}
+
+.settingsTab {
+    margin-top: 90px;
+}
+
+.pad50
+{
+    margin-top: 50px;
+}

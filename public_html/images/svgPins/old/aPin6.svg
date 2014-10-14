@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="38" height="50" viewBox="0 0 38 50">
+    <g>
+        <path  class="svgPulse" fill="#EADF0F" d="M28.53 32.345l-17.508-.137-8.635-15.23L11.26 1.885l17.51.137 8.63 15.23zM10.895 32.04l9.002 17.545 8.76-17.405z"/>
+        <path  class="svgPulse" fill="#FCE74F" d="M25.825 25.48l-12.023-.09-5.93-10.46 6.093-10.363 12.02.09 5.93 10.462z"/>
+        <animateTransform
+            attributeName="transform"
+                      type="scale"
+                      from="0.7 0.2" to="1 1"
+                      begin="0s" dur="0.5s"
+                      repeatCount="indefinite"
+        />
+    </g>
+</svg>

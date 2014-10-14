@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25.32px"
+	 height="25.686px" viewBox="0 0 25.32 25.686" enable-background="new 0 0 25.32 25.686" xml:space="preserve">
+<g id="Layer_3">
+	<rect x="-9.006" y="-5.657" fill="#FFFFFF" width="42.583" height="38.25"/>
+</g>
+<g id="Layer_2">
+	<radialGradient id="SVGID_1_" cx="12.4968" cy="12.4973" r="10.4968" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#000000"/>
+		<stop  offset="0.01" style="stop-color:#070707"/>
+		<stop  offset="0.0875" style="stop-color:#3B3B3B"/>
+		<stop  offset="0.1706" style="stop-color:#696969"/>
+		<stop  offset="0.257" style="stop-color:#929292"/>
+		<stop  offset="0.3478" style="stop-color:#B3B3B3"/>
+		<stop  offset="0.444" style="stop-color:#CFCFCF"/>
+		<stop  offset="0.5477" style="stop-color:#E4E4E4"/>
+		<stop  offset="0.6625" style="stop-color:#F3F3F3"/>
+		<stop  offset="0.7972" style="stop-color:#FCFCFC"/>
+		<stop  offset="1" style="stop-color:#FFFFFF"/>
+	</radialGradient>
+	<circle display="none" fill="url(#SVGID_1_)" stroke="#FFFFFF" stroke-miterlimit="10" cx="12.497" cy="12.497" r="10.497"/>
+</g>
+<g id="Layer_1">
+	<g id="animation">
+		<g display="none">
+			<g display="inline">
+				<polygon opacity="0.5" fill="#848484" enable-background="new    " points="10.75,17.905 10.383,17.742 10.75,17.581 
+					11.483,17.581 11.85,17.742 11.483,17.905 				"/>
+				<polyline opacity="0.5" fill="#848484" enable-background="new    " points="10.598,17.648 10.593,17.65 10.383,17.742 
+					10.746,17.905 				"/>
+			</g>
+			<g display="inline">
+				<polygon opacity="0.5" fill="#848484" enable-background="new    " points="13.982,17.905 13.616,17.742 13.982,17.581 
+					14.716,17.581 15.083,17.742 14.716,17.905 				"/>
+				<polyline opacity="0.5" fill="#848484" enable-background="new    " points="13.83,17.648 13.825,17.65 13.616,17.742 
+					13.978,17.905 				"/>
+			</g>
+			
+				<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="353.2708" y1="-268.4822" x2="358.2288" y2="-268.4822" gradientTransform="matrix(1 0 0 -1 -343 -257.314)">
+				<stop  offset="0" style="stop-color:#F9ED32;stop-opacity:0.8"/>
+				<stop  offset="1" style="stop-color:#FBB040;stop-opacity:0.8"/>
+			</linearGradient>
+			<polygon display="inline" fill="url(#SVGID_2_)" points="11.511,11.938 10.271,11.169 11.511,10.399 13.99,10.399 15.229,11.169 
+				13.99,11.938 			"/>
+			<polygon display="inline" fill="#ED3794" points="11.23,17.192 9.701,14.545 11.23,11.897 14.286,11.897 15.815,14.545 
+				14.286,17.192 			"/>
+			<polygon display="inline" fill="#79CDCB" points="14.001,11.934 15.224,11.165 16.501,11.84 16.554,13.282 15.331,14.051 
+				14.055,13.376 			"/>
+			<polygon display="inline" fill="#F6851F" points="10.276,11.169 11.517,11.937 10.856,10.806 			"/>
+			<polygon display="inline" fill="#65BC46" points="14.646,10.806 15.224,11.165 14.001,11.934 			"/>
+			<polygon display="inline" opacity="0.05" enable-background="new    " points="11.23,11.897 9.701,14.545 11.23,17.192 
+				14.286,17.192 12.136,11.897 			"/>
+			<polygon display="inline" fill="#EE3255" points="11.517,11.937 10.276,11.169 8.991,11.859 8.947,13.318 10.188,14.086 
+				11.472,13.395 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="8.991,11.859 8.947,13.318 10.188,14.086 
+				11.472,13.395 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="14.646,10.806 14.88,10.952 14.001,11.934 			"/>
+			<polygon display="inline" fill="#FBEE29" points="11.511,11.939 10.271,9.793 11.511,7.646 13.99,7.646 15.229,9.793 
+				13.99,11.939 			"/>
+			<polygon display="inline" opacity="0.05" enable-background="new    " points="11.511,7.646 10.271,9.793 11.517,11.937 
+				14.001,11.934 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="10.025,13.984 9.701,14.545 11.472,13.395 
+				10.188,14.086 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="15.815,14.545 15.481,13.97 15.331,14.051 
+				14.055,13.376 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="8.947,13.318 8.964,12.749 10.586,13.871 
+				10.188,14.086 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="16.501,11.84 14.055,13.376 15.331,14.051 
+				16.554,13.282 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="16.554,13.282 16.534,12.749 15.007,13.879 
+				15.331,14.051 			"/>
+			<polygon display="inline" opacity="0.05" fill="#FFFFFF" enable-background="new    " points="14.055,13.376 12.996,14.014 
+				14.286,17.192 14.638,16.583 15.815,14.545 			"/>
+			<polygon display="inline" opacity="0.05" enable-background="new    " points="12.996,14.014 10.898,16.617 11.23,17.192 
+				14.294,17.192 			"/>
+			<polygon display="inline" fill="#A25BA4" points="10.74,17.905 10.358,17.244 10.74,16.583 11.501,16.583 11.883,17.244 
+				11.501,17.905 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="10.74,16.583 11.501,17.905 10.74,17.905 
+				10.358,17.244 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="10.383,17.244 10.751,17.881 10.898,17.881 			"/>
+			<polygon display="inline" fill="#5296D0" points="13.967,17.905 13.585,17.244 13.967,16.583 14.729,16.583 15.11,17.244 
+				14.729,17.905 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="13.967,16.583 14.729,17.905 13.967,17.905 
+				13.585,17.244 			"/>
+			<polygon display="inline" opacity="0.05" enable-background="new    " points="12.75,9.78 11.517,11.937 14.001,11.934 			"/>
+			<polygon display="inline" opacity="0.05" enable-background="new    " points="11.511,7.646 12.75,9.78 13.99,7.646 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="13.643,17.244 14.011,17.881 14.157,17.881 			"/>
+			<polygon display="inline" opacity="0.1" enable-background="new    " points="10.855,10.807 10.674,10.92 11.503,11.928 			"/>
+		</g>
+		<g>
+			<polygon fill="#ED3794" points="11.219,4.787 9.837,2.394 11.219,0 13.982,0 15.365,2.394 13.982,4.787 			"/>
+			<polygon fill="#65BC46" points="11.219,25.685 9.836,23.291 11.219,20.898 13.982,20.898 15.365,23.291 13.982,25.685 			"/>
+			<polygon fill="#79CDCB" points="18.409,21.523 17.028,19.128 18.409,16.736 21.175,16.736 22.556,19.128 21.175,21.523 			"/>
+			<polygon fill="#A25BA4" points="18.409,8.347 17.028,5.953 18.409,3.559 21.175,3.559 22.556,5.953 21.175,8.347 			"/>
+			<polygon fill="#5296D0" points="21.175,15.171 19.792,12.777 21.175,10.384 23.938,10.384 25.321,12.777 23.938,15.171 			"/>
+			<polygon fill="#F6851F" points="6.911,21.523 8.293,19.128 6.911,16.736 4.147,16.736 2.764,19.128 4.147,21.523 			"/>
+			<polygon fill="#EE3255" points="6.872,8.347 8.254,5.953 6.872,3.559 4.108,3.559 2.726,5.953 4.108,8.347 			"/>
+			<polygon fill="#FBEE29" points="4.146,15.171 5.528,12.777 4.146,10.384 1.383,10.384 0,12.777 1.383,15.171 			"/>
+			<polygon opacity="0.1" enable-background="new    " points="21.173,16.736 18.41,21.523 21.173,21.523 22.556,19.129 			"/>
+			<polygon opacity="0.1" enable-background="new    " points="4.109,16.736 6.872,21.523 4.109,21.523 2.726,19.129 			"/>
+			<polygon opacity="0.1" enable-background="new    " points="18.409,3.559 21.175,8.347 22.556,5.953 21.175,3.559 			"/>
+			<polygon opacity="0.1" enable-background="new    " points="6.872,3.559 4.106,8.347 2.726,5.953 4.106,3.559 			"/>
+			<polygon opacity="0.1" enable-background="new    " points="22.556,10.399 22.557,15.171 23.938,15.171 25.321,12.777 
+				23.938,10.384 			"/>
+			<polygon opacity="0.05" enable-background="new    " points="2.766,10.371 2.765,15.143 1.383,15.143 0,12.749 1.383,10.355 			
+				"/>
+			<polygon opacity="0.1" enable-background="new    " points="9.836,23.291 11.219,25.685 13.982,25.685 15.365,23.291 			"/>
+			<polygon opacity="0.1" enable-background="new    " points="9.837,2.394 11.219,0 13.982,0 15.365,2.394 			"/>
+		</g>
+		
+			<animateTransform  type="rotate" fill="remove" restart="always" calcMode="linear" additive="replace" accumulate="none" repeatCount="indefinite" dur="3s" to="360 12.5 12.5" from="0 12.5 12.5" attributeType="XML" attributeName="transform">
+			</animateTransform>
+	</g>
+</g>
+</svg>

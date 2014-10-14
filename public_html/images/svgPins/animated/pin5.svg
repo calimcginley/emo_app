@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="76.128px" height="80px" viewBox="0 0 76.128 80" enable-background="new 0 0 76.128 80" xml:space="preserve">
+<g>
+	<g>
+		<polygon fill="#EA99C2" points="25.226,57.197 14.958,39.414 25.226,21.629 45.761,21.629 56.029,39.414 45.761,57.197 		"/>
+		<polygon fill="#EA99C2" points="14.958,39.414 35.494,80 56.029,39.414 		"/>
+	</g>
+	<polygon opacity="0.05" fill="#010101" enable-background="new    " points="14.958,39.414 35.494,80 37.769,75.504 21.257,40.916 
+			"/>
+	<polyline opacity="0.1" fill="#FFFFFF" enable-background="new    " points="28.423,26.25 25.226,21.629 14.958,39.414 
+		21.257,40.916 	"/>
+                <!-- Start animation - bounce up -->
+<animateTransform id="one"
+    attributeName="transform"
+    attributeType="XML" 
+    type="translate" 
+    from="0,0" 
+    to="0,-20"
+    begin="0s;two.end+0.1s"
+    dur="0.3s"
+    fill="freeze"/>
+<!-- Bounce down -->
+<animateTransform id="two"
+    attributeName="transform"
+    attributeType="XML" 
+    type="translate" 
+    from="0,-20" 
+    to="0,0"  
+    begin="one.end+0.1s"
+    dur="0.3s"
+    fill="freeze"/>
+</g>
+</svg>
