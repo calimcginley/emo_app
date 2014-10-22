@@ -211,14 +211,19 @@ ul, menu, dir {
     position: absolute;
     background-color: rgba(255,255,255,.9);
     top: calc(50%-50px);
-    height: 50px;
+    height: 200px;
     width: 100%;
     left: -100%;
     text-align: center;
 }
 
 #emojiSearchBar img {
-    width: 10%;
+    width: 20%;
+}
+
+
+.filterOff {
+    opacity: .25;
 }
 
 /* ------------------------------------------------------------------------------------------

@@ -7,6 +7,8 @@ var markers;
 var setViewLat;
 var setViewLong;
 window.localStorage.setItem('hex-are', 'on');
+var emoFilterArray = ['1', '2', '3', '4', '5', '6', '7', '8'];
+var filterOpen = false;
 
 var onSuccess = function(position)
 {
@@ -27,6 +29,7 @@ function onError(error)
     setMapInAction();
 }
 ;
+
 navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 function setMapInAction()
@@ -37,8 +40,8 @@ function setMapInAction()
     console.log('At mapbox stage the lat is ' + setViewLat + ' and long is ' + setViewLong);
     map = L.mapbox.map('map', 'emomcginley.jmmf7jce', {zoomControl: false, detectRetina: true, maxZoom: 17})
             .setView([setViewLat, setViewLong], 14);
-    
-    
+
+
     //**********************************************************************************
     //********  LEAFLET HEXBIN LAYER CLASS *********************************************
     //**********************************************************************************
@@ -160,55 +163,91 @@ function setMapInAction()
         return new L.HexbinLayer(data, styleFunction);
     };
 
-    
+
 
     //**********************************************************************************
     //********  IMPORT DATA AND REFORMAT ***********************************************
     //**********************************************************************************
-    d3.json('http://www.emoapp.info/php/mysql_points_geojson_sensus.php', function(geoData) {
-        //**********************************************************************************
-        //********  ADD HEXBIN LAYER TO MAP AND DEFINE HEXBIN STYLE FUNCTION ***************
-        //**********************************************************************************
-        conosole.log('geoData - - - - -  - ');
-        console.log(geoData);
-        hexLayer = L.hexbinLayer(geoData, {style: hexbinStyle}).addTo(map);
-        function hexbinStyle(hexagons)
-        {
-            console.log('hexbin style start - - - - - - -');
-            hexagons
-                    .attr("stroke", "black")
-                    .attr("fill", function(d) {
-                        //********  Set Hexbin colour using count array  ***************
-                        var emoArray = {'0': '#7AC57A', '1': '#5089C6', '2': '#A03CB5', '3': '#F92028', '4': '#FD9B27', '5': '#F1E835'};
-                        var countArray = [0, 0, 0, 0, 0, 0];
+    window.getD3json = function() {
 
-                        $.each(d, function(key, value)
-                        {
-                            var emoNumber = value[2].emoType - 1;
-                            //var hexCode = emoArray[value[2].emoType];
-                            //console.log('1st '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
-                            countArray[emoNumber]++;
-                            //console.log('2nd '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
+        var whereSQLString = '';
+        var emoTypes = '';
+        $.each(emoFilterArray, function(index, value) {
+            if (index === (emoFilterArray.length - 1))
+            {
+                emoTypes = emoTypes + value;
+            }
+            else
+            {
+                emoTypes = emoTypes + value + '|';
+            }
+        });
+        console.log('The REGEXP string is now:');
+        console.log(emoTypes);
+        var jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27';
+        console.log('The PHP url is now:');
+        console.log(jsonStringHex);
+
+
+        d3.json(jsonStringHex, function(geoData) {
+            //**********************************************************************************
+            //********  ADD HEXBIN LAYER TO MAP AND DEFINE HEXBIN STYLE FUNCTION ***************
+            //**********************************************************************************
+            console.log('geoData - - - - -  - ');
+            console.log(geoData);
+            hexLayer = L.hexbinLayer(geoData, {style: hexbinStyle}).addTo(map);
+            function hexbinStyle(hexagons)
+            {
+                console.log('hexbin style start - - - - - - -');
+                hexagons
+                        .attr("stroke", "black")
+                        .attr("fill", function(d) {
+                            //********  Set Hexbin colour using count array  ***************
+                            var emoArray = {'0': '#7AC57A', '1': '#5089C6', '2': '#A03CB5', '3': '#F92028', '4': '#FD9B27', '5': '#F1E835'};
+                            var countArray = [0, 0, 0, 0, 0, 0];
+
+                            $.each(d, function(key, value)
+                            {
+                                var emoNumber = value[2].emoType - 1;
+                                console.log('Hex in array');
+                                //var hexCode = emoArray[value[2].emoType];
+                                //console.log('1st '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
+                                countArray[emoNumber]++;
+                                //console.log('2nd '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
+                            });
+                            // Get the max value from the array    
+                            var maxValue = Math.max.apply(null, countArray);
+
+                            // Get the index of the max value, through the built in function inArray
+                            var hexCode = $.inArray(maxValue, countArray);
+                            if (hexCode === -1)
+                            {
+                                //console.log('-1 Max val = '+maxValue+' and index is '+hexCode +' '+emoArray[hexCode]+' '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
+                                return emoArray[0];
+                            }
+                            else
+                            {
+                                //console.log('Max val = '+maxValue+' and index is '+hexCode +' '+emoArray[hexCode]+' '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
+                                return emoArray[hexCode];
+                            }
                         });
-                        // Get the max value from the array    
-                        var maxValue = Math.max.apply(null, countArray);
+            }
+            ;
+        });
+    }
 
-                        // Get the index of the max value, through the built in function inArray
-                        var hexCode = $.inArray(maxValue, countArray);
-                        if (hexCode === -1)
-                        {
-                            //console.log('-1 Max val = '+maxValue+' and index is '+hexCode +' '+emoArray[hexCode]+' '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
-                            return emoArray[0];
-                        }
-                        else
-                        {
-                            //console.log('Max val = '+maxValue+' and index is '+hexCode +' '+emoArray[hexCode]+' '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
-                            return emoArray[hexCode];
-                        }
-                    });
+    getD3json();
+    // Call the function every 5 seconds thereafter to refresh page
+    window.setInterval(function() {
+        if ($.mobile.activePage.attr('id') === 'mapPage')
+        {
+            /// call your function here
+            $('#hex-svg').remove();
+            getD3json();
         }
-        ;
-    });
+    }, 30000);
+
+
 
     //*******************************************************
     //********  Zoom Switcher for the Layers  ***************
@@ -218,7 +257,7 @@ function setMapInAction()
     {
         var zoomNow = map.getZoom();
         console.log("Map zoom is " + zoomNow);
-        if (zoomNow > 12)
+        if (zoomNow >= 14)
         {
             // Hide the hex layer
             $(".emotionHexbin").hide();
@@ -277,6 +316,8 @@ function setMapInAction()
             markerClicked(postID);
         });
     });
+    
+
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -289,142 +330,162 @@ function setMapInAction()
         map.invalidateSize();   // fixes the issue with map size   
 //        $('.leaflet-control-attribution').attr(' display', 'none');
     });
-    //  End of setMapInAction()
+            //  End of setMapInAction()
 }
 
 
 //********  Marker Click Event Code  ***************
 
-function markerClicked(postID)
-{
-    $.ajax({url: 'http://emoapp.info/php/getMarkerInfo.php',
-        data: {action: 'markerPost', postID: postID},
-        type: 'post',
-        async: 'true',
-        //dataType: 'json',
-        beforeSend: function() {
-            // This callback function will trigger before data is sent
-            $.mobile.loading("show", {
-                text: 'Fetching Emotion Data',
-                textVisible: true
-            });
-        },
-        complete: function() {
-            // This callback function will trigger on data sent/received complete
-            $.mobile.loading("hide");
-        },
-        success: function(result) {
-            // Map marker was success        
-            console.log('Map Marker Fetch Succesfull');
-            console.log($.trim(result));
-            console.log(result.status);
-            var imgSrc = 'http://emoapp.info/uploads/' + $.trim(result) + '.jpg';
-            console.log('The image src is : ' + imgSrc);
-            $('#emoPostPopup').attr('src', imgSrc);
-            // Open the Map Marker
-            $('#mapPage').addClass('show-popup');
-            $("#emojiSearchBar").velocity({left: "-100%", easing: "easein"}, 500);
-            $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
-        },
-        error: function(request, error) {
-            // This callback function will trigger on unsuccessful action               
-            console.log('error = ' + error);
-            console.log("XMLHttpRequest", XMLHttpRequest);
-        }
-    });
-}
-;
+    function markerClicked(postID)
+    {
+        $.ajax({url: 'http://emoapp.info/php/getMarkerInfo.php',
+            data: {action: 'markerPost', postID: postID},
+            type: 'post',
+            async: 'true',
+            //dataType: 'json',
+            beforeSend: function() {
+                // This callback function will trigger before data is sent
+                $.mobile.loading("show", {
+                    text: 'Fetching Emotion Data',
+                    textVisible: true
+                });
+            },
+            complete: function() {
+                // This callback function will trigger on data sent/received complete
+                $.mobile.loading("hide");
+            },
+            success: function(result) {
+                // Map marker was success        
+                console.log('Map Marker Fetch Succesfull');
+                console.log($.trim(result));
+                console.log(result.status);
+                var imgSrc = 'http://emoapp.info/uploads/' + $.trim(result) + '.jpg';
+                console.log('The image src is : ' + imgSrc);
+                $('#emoPostPopup').attr('src', imgSrc);
+                // Open the Map Marker
+                $('#mapPage').addClass('show-popup');
+                $("#emojiSearchBar").velocity({left: "-100%", easing: "easein"}, 500);
+                $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
+            },
+            error: function(request, error) {
+                // This callback function will trigger on unsuccessful action               
+                console.log('error = ' + error);
+                console.log("XMLHttpRequest", XMLHttpRequest);
+            }
+        });
+    };
 
-//********  Add Marker  ***************
-function addMarkerToMap(emoType, postID, pinLat, pinLong)
-{
-    console.log('The values passed to addMarkerToMap: EmoType-' + emoType + ' PostID-' + postID + ' LatLong-' + pinLat + pinLong);
-    var addMarker;
-    var myIcon = L.icon({
-        iconUrl: 'images/svgPins/animated/pin' + emoType + '.svg',
-        iconRetinaUrl: 'images/svgPins/animated/pin' + emoType + '.svg',
-        iconSize: [76, 80],
-        iconAnchor: [36, 80],
-        popupAnchor: [-3, -31],
-        shadowUrl: 'images/svgPins/animated/Pin_shadow.svg',
-        shadowRetinaUrl: 'images/svgPins/animated/Pin_shadow.svg',
-        shadowSize: [73, 46],
-        shadowAnchor: [41, 46]
-    });
-    var addMarker = L.marker([pinLat, pinLong]
-            , {title: postID, icon: myIcon});
+    //********  Add Marker  ***************
+    function addMarkerToMap(emoType, postID, pinLat, pinLong)
+    {
+        console.log('The values passed to addMarkerToMap: EmoType-' + emoType + ' PostID-' + postID + ' LatLong-' + pinLat + pinLong);
+        var addMarker;
+        var myIcon = L.icon({
+            iconUrl: 'images/svgPins/animated/pin' + emoType + '.svg',
+            iconRetinaUrl: 'images/svgPins/animated/pin' + emoType + '.svg',
+            iconSize: [76, 80],
+            iconAnchor: [36, 80],
+            popupAnchor: [-3, -31],
+            shadowUrl: 'images/svgPins/animated/Pin_shadow.svg',
+            shadowRetinaUrl: 'images/svgPins/animated/Pin_shadow.svg',
+            shadowSize: [73, 46],
+            shadowAnchor: [41, 46]
+        });
+        var addMarker = L.marker([pinLat, pinLong]
+                , {title: postID, icon: myIcon});
 
-    addMarker.on('click', function() {
-        console.log('New Marker Clicked');
-        console.log('New Marker Clicked: Function');
-        // Get the title for map and pass into php file with AJAX and post result
-        console.log('Post ID is: ' + postID);
-        console.log('New Marker was clicked - postID: ' + postID);
-        markerClicked(postID);
-    });
-    //addMarker.addTo(map);
-    markers.addLayer(addMarker);
+        addMarker.on('click', function() {
+            console.log('New Marker Clicked');
+            console.log('New Marker Clicked: Function');
+            // Get the title for map and pass into php file with AJAX and post result
+            console.log('Post ID is: ' + postID);
+            console.log('New Marker was clicked - postID: ' + postID);
+            markerClicked(postID);
+        });
+        //addMarker.addTo(map);
+        markers.addLayer(addMarker);
 
-}
-;
+    };
+    
+
 
 //********  Center Map on marker click  ***************
-function centerMap(mapLat, mapLong)
-{
-    console.log('centered map view');
-    map.setView([mapLat, mapLong]);
-}
-;
+    function centerMap(mapLat, mapLong)
+    {
+        console.log('centered map view');
+        map.setView([mapLat, mapLong]);
+    }
 
 
-function mapSetView(mLat, mLong)
-{
-    console.log('setting mao view');
-    map.setView([mLat, mLong], 15);
-}
+    function mapSetView(mLat, mLong)
+    {
+        console.log('setting mao view');
+        map.setView([mLat, mLong], 15);
+    }
 
 
 // Map Emoji Filter
-$(document).ready(function() {
+    $(document).ready(function() {
 
-var filterOpen = false;
+        $(".emoFilterBtn").click(function()
+        {
+            console.log('Filter Clicked');
+            var pageID = $.mobile.activePage.attr('id');
+            console.log('pageID: ' + pageID);
+            if (pageID === 'mapPage')
+            {
+                $('#' + pageID).removeClass('show-menu');
+                isOpen = !isOpen;
+                console.log('close menu');
+                openFilterBar();
+            }
+            else
+            {
+                console.log('Change to map page and open filter');
+                $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
+                openFilterBar();
+            }
 
-$(".emoFilterBtn").click(function()
-{
-    
-    console.log('Filter Clicked');
-    var pageID = $.mobile.activePage.attr('id');
-    console.log('pageID: '+pageID);
-    if(pageID === 'mapPage')
-    {
-        $('#' + pageID).removeClass('show-menu');
-        isOpen = !isOpen;
-        console.log('close menu');
-        openFilterBar();
-    }
-    else
-    {
-        console.log('Change to map page and open filter');
-        $( ":mobile-pagecontainer" ).pagecontainer( "change", "#mapPage", { transition: "slide" } );
-        openFilterBar();
-    }    
-    
-    function openFilterBar()
-    {
-        console.log('Open Filter bar');
-        $("#emojiSearchBar").velocity({top: "200px", easing: "easein"}, 10);
-        $("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
+            function openFilterBar()
+            {
+                console.log('Open Filter bar');
+                $("#emojiSearchBar").velocity({top: "200px", easing: "easein"}, 10);
+                $("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
+
+                $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
+                filterOpen = !filterOpen;
+            }
+        });
+
+        $('.emojiFilter').on('click', function() {
+            // Parent Emoji Clicked
+            console.log('Filter clicked');
+            var emoType = $(this).attr('data-name');
+            
+            if ($(this).hasClass('filterOff'))
+            {
+                emoFilterArray.push(emoType);
+                $(this).removeClass('filterOff');
+            }
+            else
+            {
+                $(this).addClass('filterOff');
+                emoFilterArray = jQuery.grep(emoFilterArray, function(value) {
+                    return value !== emoType;
+                });
+            }
+            console.log('The emoType Array is now:');
+            console.log(emoFilterArray);
+        });
         
-        $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
-        filterOpen = !filterOpen;
-    }
-});
-
-$(".emojiFilters").click(function()
-{
-    console.log('search bar clicked');
-    $("#emojiSearchBar").velocity({left: "-100%", easing: "easein"}, 500);
-    filterOpen = !filterOpen;
-});
-
-});
+            // Filter Button closes the filter bar and initates new hex-svg elements.
+    $("#filterButton").bind("click", function(event, ui) {
+            console.log('Filter Button Clicked');
+            $("#emojiSearchBar").velocity({left: "-100%", easing: "easein"}, 500);
+            filterOpen = !filterOpen;
+            $('#hex-svg').remove();
+            getD3json();
+        });
+        
+        
+    });
