@@ -160,16 +160,6 @@ $(document).ready(function() {
 
     });
 
-    $("#my-als-list").als({
-        visible_items: 3,
-        scrolling_items: 2,
-        orientation: "horizontal",
-        circular: "yes",
-        easing: "linear",
-        start_from: 4
-    }
-    );
-
     $("#cameraBtn").click(function(e) {
         console.log('Camera CLicked');
         camera();
