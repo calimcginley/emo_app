@@ -1,4 +1,4 @@
-/*  Sensus | Hexbin and Map Markers | Mapbox.js */
+/*  EMO Emotion Mapping App | Hexbin and Map Markers | Mapbox.js */
 
 // Declare map variables here
 var map;
@@ -19,6 +19,7 @@ var onSuccess = function(position)
     console.log('geo local success lat is ' + setViewLat + ' and long is ' + setViewLong);
     setMapInAction();
 };
+
 function onError(error)
 {
     setViewLat = '52.341';
@@ -28,23 +29,20 @@ function onError(error)
     console.log('Geo local fail lat is ' + setViewLat + ' and long is ' + setViewLong);
     setMapInAction();
 }
-;
 
 navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 function setMapInAction()
 {
-    //**********************************************************************************
-    //********  CREATE LEAFLET MAP *****************************************************
-    //**********************************************************************************
+    //**********************  Create Leaflet/Mapbox Map ************************
+    //**************************************************************************
+
     console.log('At mapbox stage the lat is ' + setViewLat + ' and long is ' + setViewLong);
     map = L.mapbox.map('map', 'emomcginley.jmmf7jce', {zoomControl: false, detectRetina: true, maxZoom: 17})
             .setView([setViewLat, setViewLong], 14);
 
-
-    //**********************************************************************************
-    //********  LEAFLET HEXBIN LAYER CLASS *********************************************
-    //**********************************************************************************
+    //**********************  Leaflet Hexbin Layer Class ***********************
+    //**************************************************************************
     L.HexbinLayer = L.Class.extend({
         includes: L.Mixin.Events,
         initialize: function(rawData, options) {
@@ -163,16 +161,16 @@ function setMapInAction()
         return new L.HexbinLayer(data, styleFunction);
     };
 
+    //*******************  Get JSON data from php url***************************
+    //**************************************************************************
+    window.setJsonLayers = function() {
 
-
-    //**********************************************************************************
-    //********  IMPORT DATA AND REFORMAT ***********************************************
-    //**********************************************************************************
-    window.getD3json = function() {
-
+        $('#hex-svg').remove();
+        console.log('getJSONMarkerData() is running ...');
         var whereSQLString = '';
         var emoTypes = '';
-        $.each(emoFilterArray, function(index, value) {
+        $.each(emoFilterArray, function(index, value)
+        {
             if (index === (emoFilterArray.length - 1))
             {
                 emoTypes = emoTypes + value;
@@ -182,173 +180,165 @@ function setMapInAction()
                 emoTypes = emoTypes + value + '|';
             }
         });
+
         console.log('The REGEXP string is now:');
         console.log(emoTypes);
         var jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27';
-        window.localStorage.setItem('phpString', jsonStringHex);
         console.log('The PHP url is now:');
         console.log(jsonStringHex);
 
-
         d3.json(jsonStringHex, function(geoData) {
-            //**********************************************************************************
-            //********  ADD HEXBIN LAYER TO MAP AND DEFINE HEXBIN STYLE FUNCTION ***************
-            //**********************************************************************************
+
+            //**********  Hexbin Layer to Map and Style Function ***************
+            //******************************************************************
             console.log('geoData - - - - -  - ');
             console.log(geoData);
             hexLayer = L.hexbinLayer(geoData, {style: hexbinStyle}).addTo(map);
             function hexbinStyle(hexagons)
             {
                 console.log('hexbin style start - - - - - - -');
-                hexagons
-                        .attr("stroke", "black")
-                        .attr("fill", function(d) {
-                            //********  Set Hexbin colour using count array  ***************
-                            var emoArray = {'0': '#7AC57A', '1': '#5089C6', '2': '#A03CB5', '3': '#F92028', '4': '#FD9B27', '5': '#F1E835'};
-                            var countArray = [0, 0, 0, 0, 0, 0];
+                hexagons.attr("stroke", "black").attr("fill", function(d)
+                {
+                    //********  Set Hexbin colour using count array  ***************
+                    var emoArray = {'0': '#FBED28', '1': '#69CBE1', '2': '#A554A0', '3': '#64BC45', '4': '#E10686', '5': '#69CBE1', '6': '#C32026', '7': '#F5851F'};
+                    var countArray = [0, 0, 0, 0, 0, 0, 0, 0];                                    
 
-                            $.each(d, function(key, value)
-                            {
-                                var emoNumber = value[2].emoType - 1;
-                                console.log('Hex in array');
-                                //var hexCode = emoArray[value[2].emoType];
-                                //console.log('1st '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
-                                countArray[emoNumber]++;
-                                //console.log('2nd '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
-                            });
-                            // Get the max value from the array    
-                            var maxValue = Math.max.apply(null, countArray);
+                    $.each(d, function(key, value)
+                    {
+                        var emoNumber = value[2].emoType - 1;
+                        countArray[emoNumber]++;
+                        //console.log('2nd '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
+                    });
+                    // Get the max value from the array    
+                    var maxValue = Math.max.apply(null, countArray);
 
-                            // Get the index of the max value, through the built in function inArray
-                            var hexCode = $.inArray(maxValue, countArray);
-                            if (hexCode === -1)
-                            {
-                                //console.log('-1 Max val = '+maxValue+' and index is '+hexCode +' '+emoArray[hexCode]+' '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
-                                return emoArray[0];
-                            }
-                            else
-                            {
-                                //console.log('Max val = '+maxValue+' and index is '+hexCode +' '+emoArray[hexCode]+' '+countArray[0]+' '+countArray[1]+' '+countArray[2]+' '+countArray[3]+' '+countArray[4]+' '+countArray[5]);
-                                return emoArray[hexCode];
-                            }
-                        });
+                    // Get the index of the max value, through the built in function inArray
+                    var hexCode = $.inArray(maxValue, countArray);
+                    if (hexCode === -1)
+                    {
+                        return emoArray[0];
+                    }
+                    else
+                    {
+                        return emoArray[hexCode];
+                    }
+                });
             }
-            ;
         });
-    };
 
-    getD3json();
-    // Call the function every 5 seconds thereafter to refresh page
-    window.setInterval(function() {
-        if ($.mobile.activePage.attr('id') === 'mapPage')
-        {
-            /// call your function here
-            $('#hex-svg').remove();
-            getD3json();
-            markers.clearLayers();
-            markerLayerAdd();
-        }
-    }, 30000);
+        //*******************  Marker Cluster Layer  *******************************
+        //**************************************************************************
+        markers = new L.MarkerClusterGroup({
+            spiderfyDistanceMultiplier: 3,
+            removeOutsideVisibleBounds: true,
+            spiderfyOnMaxZoom: true
+        });
 
-
-
-    //*******************************************************
-    //********  Zoom Switcher for the Layers  ***************
-    //*******************************************************
-    map.on('zoomend', zoom);
-    function zoom()
-    {
-        var zoomNow = map.getZoom();
-        console.log("Map zoom is " + zoomNow);
-        if (zoomNow >= 14)
-        {
-            // Hide the hex layer
-            $(".emotionHexbin").hide();
-            // Set hex layer to off
-            window.localStorage.setItem('hex-are', 'off');
-            console.log('hex hidden?, show markers');
-            // Show the marker layer
-            map.addLayer(markers);
-        }
-        else
-        {
-            // Hide the Marker layer
-            map.removeLayer(markers);
-            // Show the layers
-            $(".emotionHexbin").show();
-            // Set hex layers to visable
-            window.localStorage.setItem('hex-are', 'on');
-            // Get zoom level to display current layer
-            var zoom = map.getZoom();
-            console.log('zoom is' + zoom);
-            console.log('SHow Hex, hide Pins');
-            $(".zoom-" + zoom).show();
-        }
-    }
-    //***********************************************
-    //********  Marker Cluster Layer  ***************
-    //***********************************************
-    var phpString = window.localStorage.getItem('phpString');
-    markers = new L.MarkerClusterGroup({spiderfyDistanceMultiplier: 3, removeOutsideVisibleBounds: true, spiderfyOnMaxZoom: true});
-    window.markerLayerAdd = function() {
         //$.getJSON('http://emoapp.info/php/jsonPosts.php', function(data) {
-        $.getJSON(phpString, function(data) {
-            //$.each(data.posts, function(index, value) {
+        $.getJSON(jsonStringHex, function(data) {
             $.each(data.features, function(index, value) {
+            //$.each(data.posts, function(index, value) {
+                console.log('emoType in marker functio');
+                //console.log(value.properties.emoType);
+
                 var myIcon = L.icon({
                     //iconUrl: 'images/svgPins/pin' + value.emoType + '.svg',
-                    //iconRetinaUrl: 'images/svgPins/pin' + value.emoType + '.svg',                    
                     iconUrl: 'images/svgPins/pin' + value.properties.emoType + '.svg',
-                    iconRetinaUrl: 'images/svgPins/pin' + value.properties.emoType + '.svg',
                     iconSize: [45, 60],
                     iconAnchor: [22, 60],
-                    popupAnchor: [-3, -31],
                     shadowUrl: 'images/svgPins/Pin_shadow.svg',
-                    shadowRetinaUrl: 'images/svgPins/Pin_shadow.svg',
                     shadowSize: [73, 46],
                     shadowAnchor: [41, 46]
                 });
                 //var marker = L.marker([value.lat, value.long]
-                var marker = L.marker(value.geometry.coordinates
+                console.log(value.geometry.coordinates);
+                var latLongStr =  value.geometry.coordinates.toString();
+                var latLongArr =  latLongStr.split(',');
+                console.log(latLongArr[1]);
+                var marker = L.marker([latLongArr[1], latLongArr[0]]
+                //var marker = L.marker(value.geometry.coordinates
                         //, {title: value.postID, icon: myIcon});
                         , {title: value.properties.postID, icon: myIcon});
+                //console.log(JSON.stringify(marker));
                 markers.addLayer(marker);
             });
-
-            //********  Marker Click Event  ***************
-            markers.on('click', function(e) {
-                console.log('Existing Marker Clicked');
-                console.log('Exisitng Marker Clicked: Function');
-                // Get the title for map and pass into php file with AJAX and post result
-                console.log(e.layer.options.title);
-                var postID = e.layer.options.title;
-                console.log('Exisitng Marker was clicked - postID: ' + postID);
-                map.setView(e.layer.getLatLng());
-                markerClicked(postID);
-            });
         });
+
+        //********  Marker Click Event  ***************
+        //*********************************************
+        markers.on('click', function(e) {
+            console.log('Existing Marker Clicked');
+            console.log('Exisitng Marker Clicked: Function');
+            // Get the title for map and pass into php file with AJAX and post result
+            console.log(e.layer.options.title);
+            var postID = e.layer.options.title;
+            console.log('Exisitng Marker was clicked - postID: ' + postID);
+            map.setView(e.layer.getLatLng());
+            markerClicked(postID);
+        });
+
+        //*******************************************************
+        //********  Zoom Switcher for the Layers  ***************
+        //*******************************************************
+        map.on('zoomend', zoom);
+        function zoom()
+        {
+            var zoomNow = map.getZoom();
+            console.log("Map zoom is " + zoomNow);
+            if (zoomNow >= 14)
+            {
+                // Hide the hex layer
+                $(".emotionHexbin").hide();
+                // Set hex layer to off
+                window.localStorage.setItem('hex-are', 'off');
+                console.log('hex hidden?, show markers');
+                // Show the marker layer
+                map.addLayer(markers);
+            }
+            else
+            {
+                // Hide the Marker layer
+                map.removeLayer(markers);
+                // Show the layers
+                $(".emotionHexbin").show();
+                // Set hex layers to visable
+                window.localStorage.setItem('hex-are', 'on');
+                // Get zoom level to display current layer
+                var zoom = map.getZoom();
+                console.log('zoom is' + zoom);
+                console.log('SHow Hex, hide Pins');
+                $(".zoom-" + zoom).show();
+            }
+        }
     };
-    markerLayerAdd();
 
+    //********  Call the inital Function  *********
+    //*********************************************
+    // 
+    setJsonLayers();
+    // Call the function every 5 seconds thereafter to refresh page
+    window.setInterval(function() {
+        if ($.mobile.activePage.attr('id') === 'mapPage')
+        {
+            /// Clear Layers and add new
+            // Call the JSON Data function
+            setJsonLayers();
+        }
+    }, 60000);
 
-
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // - - -  When the mapPage is shown This code will trigger - - -
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   
-
     $(document).on("pageshow", "#mapPage", function() {
         // - -  Leaflet / MapBox Map - - 
         console.log('Invalidate the map size');
         map.invalidateSize();   // fixes the issue with map size   
-//        $('.leaflet-control-attribution').attr(' display', 'none');
+        //        $('.leaflet-control-attribution').attr(' display', 'none');
     });
-    //  End of setMapInAction()
 }
+//  End of setMapInAction()
 
 
 //********  Marker Click Event Code  ***************
-
 function markerClicked(postID)
 {
     $.ajax({url: 'http://emoapp.info/php/getMarkerInfo.php',
@@ -387,7 +377,6 @@ function markerClicked(postID)
         }
     });
 }
-;
 
 //********  Add Marker  ***************
 function addMarkerToMap(emoType, postID, pinLat, pinLong)
@@ -420,9 +409,6 @@ function addMarkerToMap(emoType, postID, pinLat, pinLong)
     markers.addLayer(addMarker);
 
 }
-;
-
-
 
 //********  Center Map on marker click  ***************
 function centerMap(mapLat, mapLong)
@@ -498,9 +484,6 @@ $(document).ready(function() {
         console.log('Filter Button Clicked');
         $("#emojiSearchBar").velocity({left: "-100%", easing: "easein"}, 500);
         filterOpen = !filterOpen;
-        $('#hex-svg').remove();
-        getD3json();
-        markers.clearLayers();
-        markerLayerAdd();
+        setJsonLayers();
     });
 });

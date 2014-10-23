@@ -1,34 +1,26 @@
-// This piece code is to buffer the status bar from header in iOS 7
-// Source = http://coenraets.org/blog/2013/09/phonegap-and-cordova-with-ios-7/
-function onDeviceReady() {
-    if (parseFloat(window.device.version) === 7.0) {
-        document.body.style.marginTop = "20px";
-    }
-}
+/*  EMO Emotion Mapping App | Main Code for App  */
 
-// Disbale Scolling of menu
-//$(document).ready(function() {
-//  $('').addEventListener('touchmove', function(e) {       
-//      e.preventDefault(); 
-//  }, false);
-//});
+// ------------------------------------------------------------------------------------------
+// Init Code
+// ------------------------------------------------------------------------------------------
+
+$(document).on("mobileinit", function() {
+    var imageArray = [];
+    window.localStorage.setItem('profileArray', JSON.stringify(imageArray));
+    console.log(window.localStorage.getItem('profileArray'));
+});
 
 // ------------------------------------------------------------------------------------------
 // Show splash and the show mapPage
 // ------------------------------------------------------------------------------------------
-
 $(document).on("pageshow", "#splashPage", function() {
     setTimeout(function() {
-        var imageArray = [];
-        window.localStorage.setItem('profileArray', JSON.stringify(imageArray));
-        console.log(window.localStorage.getItem('profileArray'));
         endOfSplash();
     }, 4000);
 
     $('#splashImage').click(function() {
         endOfSplash();
     });
-
 });
 
 var endOfSplash = function()
@@ -96,9 +88,7 @@ $(document).ready(function() {
     $('.floatlabel_1').floatlabel();
 });
 
-
 $(document).ready(function() {
-
     $("#loginType").change(function() {
         var value = $('input[name=radio-loginSignUp]:checked').val();
         if (value === "signUp")
@@ -114,7 +104,6 @@ $(document).ready(function() {
             $("#fbText").text(' Log in with Facebook');
         }
     });
-
 });
 
 // ------------------------------------------------------------------------------------------
@@ -124,9 +113,7 @@ $(document).ready(function() {
 
 // A click event for each emoji which creates a token in local storage to aid empji post
 $(document).ready(function() {
-
     parentOpen = false;
-
     $('.emoPostBtn').click(function(e) {
 
         console.log('Post Btn Clicked');
@@ -156,15 +143,12 @@ $(document).ready(function() {
 
             parentOpen = !parentOpen;
         }
-
-
     });
 
     $("#cameraBtn").click(function(e) {
         console.log('Camera CLicked');
         camera();
     });
-
 
     $('.emojiParent').on('click', function() {
         // Parent Emoji Clicked
@@ -175,11 +159,7 @@ $(document).ready(function() {
         // Change Page
         $(":mobile-pagecontainer").pagecontainer("change", "#emotionPostPage", {transition: "slidedown"});
     });
-
 });
-
-
-
 
 function camera()
 {
@@ -207,20 +187,11 @@ function camera()
         console.log('Image placed into DIV, page change now');
         console.log(imageURI);
         window.localStorage.setItem('imageURI', imageURI);
-        // Changes the Overlay for parent emojis
-        //var imageOverlayType = window.localStorage.getItem('parentEmoji');
-        //console.log('The parent emoji is = ' + imageOverlayType);
-        //var imageOverlay = document.getElementById('hexOverlay');
-        //imageOverlay.src = 'images/insert/insertBg_' + imageOverlayType + '.png';
-        //console.log('images/insert/insertBg_' + imageOverlayType + '.png');
-        //console.log('page set lets change');
-        //$(":mobile-pagecontainer").pagecontainer("change", "#emotionPostPage", {transition: "slidedown"});
     }
 
     function onFail(message)
     {
         console.log('Camera Failed to load' + message);
-        //alert('Failed because: ' + message);
     }
 }
 
@@ -258,7 +229,7 @@ $(document).on('click', '#postToMapBtn', function() {
         var userID = window.localStorage.getItem('userID');
         var userEmail = window.localStorage.getItem('email');
         console.log('User Email: ' + userEmail);
-        var parentEmoji = window.localStorage.getItem('parentPostEmoji')
+        var parentEmoji = window.localStorage.getItem('parentPostEmoji');
         console.log('Parent Emoji: ' + parentEmoji);
         var emojiSentence = $('#emojiSentDiv').html();
         console.log('emoji sentence: ' + emojiSentence);
@@ -361,7 +332,6 @@ $(document).on('click', '#postToMapBtn', function() {
 // -------------------------------------------------------------------------------------------
 // ----------------------------------  emoji Keypad ---------------------------- 
 // ------------------------------------------------------------------------------------------- 
-
 $(document).ready(function()
 {
     $('.emojiRender').each(function(i, d) {
