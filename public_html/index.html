@@ -80,11 +80,11 @@
                 <div class="menu-wrap">
                     <nav class="menu-top">
                         <div class="profile">
-                            <img src="images/emo.png" alt="emo">
+                            <h4>emo.</h4>
                         </div>
                     </nav>
                     <nav class="menu-side">
-                        <a href="#mapPage" data-transition="slide"><img src="images/menu/mapBtn.svg" class="left-panel-btn" alt="" /></a><br>
+                        <a href="#mapPage" class="mapLink" data-transition="slide"><img src="images/menu/mapBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#" data-transition="slide" class="emoFilterBtn"><img src="images/menu/searchBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#" data-transition="slide" class="emoPostBtn"><img src="images/menu/postBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#profilePage" data-transition="slide"><img src="images/menu/profileBtn.svg" class="left-panel-btn" alt="" /></a><br>
@@ -99,7 +99,6 @@
                         <img src="" id="emoPostPopup" alt=" "/>
                         <div id="popUpInfo">
                             <strong>Emoji Sentence</strong><br>
-                            <strong>Music Clip</strong><br>
                             <strong>Time: How long ago</strong><br>
                         </div>
                     </nav>              
@@ -112,20 +111,34 @@
 
                         <!-- Emoji Filter Bar -->
                         <div id="emojiSearchBar">
-                                <a href='#' class="emojiFilter" data-name="1"><img src='images/emojiSelect/emoji-1.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="2"><img src='images/emojiSelect/emoji-2.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="3"><img src='images/emojiSelect/emoji-3.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="4"><img src='images/emojiSelect/emoji-4.png'/></a><br>
-                                <a href='#' class="emojiFilter" data-name="5"><img src='images/emojiSelect/emoji-5.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="6"><img src='images/emojiSelect/emoji-6.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="7"><img src='images/emojiSelect/emoji-7.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="8"><img src='images/emojiSelect/emoji-8.png'/></a><br>
-                                 <input id="filterButton" type="button" value="Filter" data-icon="search">
+                            <h3>Filter Map</h3>
+                            <form id="filterForm">
+                                <input type="text" data-role="date">
+                                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="timeSpan">
+                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6a" value="hour" checked="checked">
+                                    <label for="radio-choice-h-6a">Hour</label>
+                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6b" value="day">
+                                    <label for="radio-choice-h-6b">Day</label>
+                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6c" value="week">
+                                    <label for="radio-choice-h-6c">Week</label>
+                                    <input type="range" name="slider-1" data-highlight="true" id="timeSlider" min="1" max="23" value="8" data-show-value="true">
+                                </fieldset>
+                            </form>
+                            <a href='#' class="emojiFilter" data-name="1"><img src='images/emojiSelect/emoji-1.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="2"><img src='images/emojiSelect/emoji-2.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="3"><img src='images/emojiSelect/emoji-3.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="4"><img src='images/emojiSelect/emoji-4.png'/></a><br>
+                            <a href='#' class="emojiFilter" data-name="5"><img src='images/emojiSelect/emoji-5.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="6"><img src='images/emojiSelect/emoji-6.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="7"><img src='images/emojiSelect/emoji-7.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="8"><img src='images/emojiSelect/emoji-8.png'/></a><br>
+                            <input id="filterButton" type="button" value="Filter" data-icon="search">
                         </div>
 
                         <!-- Emo Select Div -->
                         <div id="emojiPostSelectParent">
                             <div id="parentEmojiSelect">
+                                <h3>What is your Vibe?</h3>
                                 <a href='#' class="emojiParent" data-name="1"><img src='images/emojiSelect/emoji-1.png'/></a>
                                 <a href='#' class="emojiParent" data-name="2"><img src='images/emojiSelect/emoji-2.png'/></a>
                                 <a href='#' class="emojiParent" data-name="3"><img src='images/emojiSelect/emoji-3.png'/></a>
@@ -151,7 +164,7 @@
                         </div>
                     </nav>
                     <nav class="menu-side">
-                        <a href="#mapPage" data-transition="slide"><img src="images/menu/mapBtn.svg" class="left-panel-btn" alt="" /></a><br>
+                        <a href="#mapPage" class="mapLink" data-transition="slide"><img src="images/menu/mapBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#" data-transition="slide" class="emoFilterBtn"><img src="images/menu/searchBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#" data-transition="slide" class="emoPostBtn"><img src="images/menu/postBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#profilePage" data-transition="slide"><img src="images/menu/profileBtn.svg" class="left-panel-btn" alt="" /></a><br>
@@ -166,9 +179,6 @@
                             <div class="profileNav">
                                 <a href="#profilePage" data-transition="fade">
                                     <img src="images/profile/pins.svg" class="profileNavImg"/>
-                                </a>
-                                <a href="#musicPage" data-transition="fade">
-                                    <img src="images/profile/music.svg" class="profileNavImg"/>
                                 </a>
                                 <a href="#settingsPage" data-transition="fade">
                                     <img src="images/profile/settings.svg" class="profileNavImg"/>
@@ -186,52 +196,6 @@
         </div>
         <!--   End of   --><!--  Profile Page   - -->
 
-        <div data-role="page" id="musicPage" data-theme="a">
-            <div class="container">
-                <div class="menu-wrap">
-                    <nav class="menu-top">
-                        <div class="profile">
-                            <h3>Emotion Mapping</h3>
-                        </div>
-                    </nav>
-                    <nav class="menu-side">
-                        <a href="#mapPage" data-transition="slide"><img src="images/menu/mapBtn.svg" class="left-panel-btn" alt="" /></a><br>
-                        <a href="#" data-transition="slide" class="emoFilterBtn"><img src="images/menu/searchBtn.svg" class="left-panel-btn" alt="" /></a><br>
-                        <a href="#" data-transition="slide" class="emoPostBtn"><img src="images/menu/postBtn.svg" class="left-panel-btn" alt="" /></a><br>
-                        <a href="#profilePage" data-transition="slide"><img src="images/menu/profileBtn.svg" class="left-panel-btn" alt="" /></a><br>
-                    </nav>
-                </div>
-                <button class="menu-button"> </button>
-                <div data-role="content" class="content-wrap">
-                    <div class="profileHeader">
-                        <h3>My Music</h3>
-
-                        <div class="profileNavWrap">
-                            <div class="profileNav">
-                                <a href="#profilePage" data-transition="fade">
-                                    <img src="images/profile/pins.svg" class="profileNavImg"/>
-                                </a>
-                                <a href="#musicPage" data-transition="fade">
-                                    <img src="images/profile/music.svg" class="profileNavImg"/>
-                                </a>
-                                <a href="#settingsPage" data-transition="fade">
-                                    <img src="images/profile/settings.svg" class="profileNavImg"/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Settings Tab -->  
-                    <div>
-                        <div class="profileTab">
-                            <h3>Music Goes here...</h3>
-                        </div>
-                    </div>
-
-                </div><!-- /content-wrap -->
-            </div><!-- /container -->
-        </div>
-        <!--   End of   --><!--  Music Page   - -->
-
         <div data-role="page" id="settingsPage" data-theme="a">
             <div class="container">
                 <div class="menu-wrap">
@@ -241,7 +205,7 @@
                         </div>
                     </nav>
                     <nav class="menu-side">
-                        <a href="#mapPage" data-transition="slide"><img src="images/menu/mapBtn.svg" class="left-panel-btn" alt="" /></a><br>
+                        <a href="#mapPage" class="mapLink" data-transition="slide"><img src="images/menu/mapBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#" data-transition="slide" class="emoFilterBtn"><img src="images/menu/searchBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#" data-transition="slide" class="emoPostBtn"><img src="images/menu/postBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#profilePage" data-transition="slide"><img src="images/menu/profileBtn.svg" class="left-panel-btn" alt="" /></a><br>
@@ -256,9 +220,6 @@
                             <div class="profileNav">
                                 <a href="#profilePage" data-transition="fade">
                                     <img src="images/profile/pins.svg" class="profileNavImg"/>
-                                </a>
-                                <a href="#musicPage" data-transition="fade">
-                                    <img src="images/profile/music.svg" class="profileNavImg"/>
                                 </a>
                                 <a href="#settingsPage" data-transition="fade">
                                     <img src="images/profile/settings.svg" class="profileNavImg"/>
@@ -284,12 +245,6 @@
         </div>
         <!--   End of   --><!--  Settings Page   - -->  
 
-
-
-
-
-
-
         <!--    Start of  --><!--    Emotion Post Page   -->
         <div data-role="page" id="emotionPostPage" data-theme="a" >
             <div class="container">
@@ -300,7 +255,7 @@
                         </div>
                     </nav>
                     <nav class="menu-side">
-                        <a href="#mapPage" data-transition="slide"><img src="images/menu/mapBtn.svg" class="left-panel-btn" alt="" /></a><br>
+                        <a href="#mapPage" class="mapLink" data-transition="slide"><img src="images/menu/mapBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#" data-transition="slide" class="emoFilterBtn"><img src="images/menu/searchBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#" data-transition="slide" class="emoPostBtn"><img src="images/menu/postBtn.svg" class="left-panel-btn" alt="" /></a><br>
                         <a href="#profilePage" data-transition="slide"><img src="images/menu/profileBtn.svg" class="left-panel-btn" alt="" /></a><br>
@@ -341,7 +296,6 @@
                         </div>
                         <div id="bar"  data-theme="a"><a data-role='button' href="#" id="toggle">emoji Description</a></div>
                         <div id="lower">
-                            <a data-role='button' href="javascript:void(0)" data-transition="slide">Add Music</a>
                             <a data-role='button' href="javascript:void(0)" data-transition="slide" id="postToMapBtn">Post to Map</a>
                         </div>
                     </div>

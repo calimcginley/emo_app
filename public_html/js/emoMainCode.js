@@ -139,7 +139,7 @@ $(document).ready(function() {
             $("#emojiPostSelectParent").velocity({top: "200px", easing: "easein"}, 10);
             $("#emojiPostSelectParent").velocity({left: "0", easing: "easein"}, 500);
             // Close Other
-            $("#emojiSearchBar").velocity({left: "-100%", easing: "easein"}, 500);
+            $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
 
             parentOpen = !parentOpen;
         }

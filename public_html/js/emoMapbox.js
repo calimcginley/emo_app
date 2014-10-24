@@ -201,7 +201,7 @@ function setMapInAction()
                 {
                     //********  Set Hexbin colour using count array  ***************
                     var emoArray = {'0': '#FBED28', '1': '#69CBE1', '2': '#A554A0', '3': '#64BC45', '4': '#E10686', '5': '#69CBE1', '6': '#C32026', '7': '#F5851F'};
-                    var countArray = [0, 0, 0, 0, 0, 0, 0, 0];                                    
+                    var countArray = [0, 0, 0, 0, 0, 0, 0, 0];
 
                     $.each(d, function(key, value)
                     {
@@ -237,7 +237,7 @@ function setMapInAction()
         //$.getJSON('http://emoapp.info/php/jsonPosts.php', function(data) {
         $.getJSON(jsonStringHex, function(data) {
             $.each(data.features, function(index, value) {
-            //$.each(data.posts, function(index, value) {
+                //$.each(data.posts, function(index, value) {
                 console.log('emoType in marker functio');
                 //console.log(value.properties.emoType);
 
@@ -252,11 +252,11 @@ function setMapInAction()
                 });
                 //var marker = L.marker([value.lat, value.long]
                 console.log(value.geometry.coordinates);
-                var latLongStr =  value.geometry.coordinates.toString();
-                var latLongArr =  latLongStr.split(',');
+                var latLongStr = value.geometry.coordinates.toString();
+                var latLongArr = latLongStr.split(',');
                 console.log(latLongArr[1]);
                 var marker = L.marker([latLongArr[1], latLongArr[0]]
-                //var marker = L.marker(value.geometry.coordinates
+                        //var marker = L.marker(value.geometry.coordinates
                         //, {title: value.postID, icon: myIcon});
                         , {title: value.properties.postID, icon: myIcon});
                 //console.log(JSON.stringify(marker));
@@ -367,7 +367,7 @@ function markerClicked(postID)
             $('#emoPostPopup').attr('src', imgSrc);
             // Open the Map Marker
             $('#mapPage').addClass('show-popup');
-            $("#emojiSearchBar").velocity({left: "-100%", easing: "easein"}, 500);
+            $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
             $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
         },
         error: function(request, error) {
@@ -450,8 +450,8 @@ $(document).ready(function() {
         function openFilterBar()
         {
             console.log('Open Filter bar');
-            $("#emojiSearchBar").velocity({top: "200px", easing: "easein"}, 10);
-            $("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
+            $("#emojiSearchBar").velocity({top: "100px", easing: "easein"}, 500);
+            //$("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
 
             $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
             filterOpen = !filterOpen;
@@ -482,8 +482,39 @@ $(document).ready(function() {
     // Filter Button closes the filter bar and initates new hex-svg elements.
     $("#filterButton").bind("click", function(event, ui) {
         console.log('Filter Button Clicked');
-        $("#emojiSearchBar").velocity({left: "-100%", easing: "easein"}, 500);
+        $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
         filterOpen = !filterOpen;
         setJsonLayers();
+    });
+
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------ Filter form inputs  -------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+    $('#timeSpan input[type=radio]').change(function() {
+        var radioType = $(this).val();
+        //<input type="range" name="slider-1" id="timeSlider" min="1" max="23" value="8" data-popup-enabled="true">
+        var slider = $('#timeSlider');
+        if (radioType === 'hour')
+        {
+            slider.attr('max', 23);
+            slider.attr('value', 8);
+            $( "#timeSlider" ).slider();      
+        }
+        else if (radioType === 'day')
+        {
+            slider.attr('max', 6);
+            slider.attr('value', 3);
+            $( "#timeSlider" ).slider();  
+        }
+        else
+        {
+            slider.attr('max', 4);
+            slider.attr('value', 2);
+            $( "#timeSlider" ).slider();         
+        }
     });
 });

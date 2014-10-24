@@ -22,13 +22,22 @@ $(".menu-button").click(function() {
     else
     {
         $('#' + pageID).addClass('show-menu');
-        $("#emojiSearchBar").velocity({left: "-100%", easing: "easein"}, 500);
+        $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
         $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
         $('#mapPage').removeClass('show-popup');
         console.log('Open Menu on map page');
     }
     // Toggles the true flase value of isOpen
     isOpen = !isOpen;
+});
+
+$(".mapLink").click(function(){
+    if (isOpen && 'mapPage' === $.mobile.activePage.attr('id'))
+    {
+        $('#mapPage').removeClass('show-menu');
+        console.log('Close Menu on map page - clicked on mapPage Button');
+        isOpen = !isOpen;           
+    }   
 });
 
 // Content closeing event
@@ -62,7 +71,7 @@ $(document).on("pagecontainerbeforehide", function(event, ui) {
     var pageID = $.mobile.activePage.attr('id');
     $('#' + pageID).removeClass('show-menu');
     $('#' + pageID).removeClass('show-popup');
-    $("#emojiSearchBar").velocity({left: "-100%", easing: "easein"}, 500);
+    $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
     $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
     isOpen = false;
     isPopUpOpen = false;
