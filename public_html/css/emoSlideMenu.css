@@ -157,6 +157,7 @@ body,
 .menu-top {
     line-height: 45px;
     background-color: #FFFFFF;
+    padding-left: 2em;
 }
 
 .menu-top .profile {
@@ -203,7 +204,7 @@ body,
 }
 
 .menu-side a:first-child {
-    border-top: 1px solid rgba(0,0,0,0.1);
+     
 }
 
 /* Shown menu */
