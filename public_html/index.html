@@ -282,7 +282,7 @@
         <!--    Start of  --><!--    Emotion Post Page   -->
         <div data-role="page" id="emotionPostPage" data-theme="a" >
             <div class="container">
-               <div class="menu-wrap">
+                <div class="menu-wrap">
                     <nav class="menu-top">
                         <div class="profile">
                             <img src="images/vibesHeader.png" alt="vibe">
@@ -303,11 +303,13 @@
                 <button class="menu-button"> </button>
                 <div data-role="content" class="content-wrap">               
                     <div class="mapHeader"><h2>emo.</h2></div>
-                    <div id="cameraSelect">
+                    <div id="canvasBuffer"></div>
+                    <canvas id="imageCanvas" width="320" height="350"></canvas>
+<!--                    <div id="cameraSelect">
                         <a href="#" id="cameraBtn" data-transition="slide">
                             <img id="imageHolder" class="cameraMode" src="images/menu/cameraBtn.svg" alt=""/>
                         </a>
-                    </div>
+                    </div>-->
                     <div id="insertButtons">
                         <div id='emojiSentDiv' class="emojiRender">
                         </div>
@@ -334,7 +336,8 @@
                             </div>
                         </div>
                         <div id="bar"  data-theme="a"><a data-role='button' href="#" id="toggle">emoji Description</a></div>
-                        <div id="lower">
+                        <div id="lower"> // 
+                            <a data-role='button' href="javascript:void(0)" data-transition="slide" id="testArray">Test Array</a>
                             <a data-role='button' href="javascript:void(0)" data-transition="slide" id="postToMapBtn">Post to Map</a>
                         </div>
                     </div>
