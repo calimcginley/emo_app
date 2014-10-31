@@ -31,7 +31,7 @@ var endOfSplash = function ()
     if (window.localStorage.getItem('logged') === 'Yes')
     {
         console.log('localStorage logged value = Yes');
-        $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "flow"});
+        $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
     }
     else
     {
@@ -145,7 +145,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#cameraBtn").click(function (e) {
+    $("#imageCanvas").click(function (e) {
         console.log('Camera CLicked');
         camera();
     });
@@ -179,15 +179,6 @@ function camera()
     function onSuccess(imageURI)
     {
         console.log('Camera opened and image was captured');
-//        // Remove camera mode on image
-//        $('#imageHolder').removeClass('cameraMode');
-//        $('#imageHolder').addClass('imageMode');
-//        var image = document.getElementById('imageHolder');
-//        image.src = imageURI;
-//        console.log('Image placed into DIV, page change now');
-//        console.log(imageURI);
-//        window.localStorage.setItem('imageURI', imageURI);
-
         // Canvas Mood on image
         var canvas = document.getElementById('imageCanvas');
         var context = canvas.getContext('2d');
@@ -216,34 +207,19 @@ $(document).on('click', '#postToMapBtn', function () {
 
     var postLat;
     var postLong;
-
-    var onSuccess = function (position)
-    {
-        postLat = position.coords.latitude;
-        postLong = position.coords.longitude;
-        console.log('postLat is ' + postLat + ' and postLong is ' + postLong);
-        sendPost();
-    };
-    function onError(error)
-    {
-        postLat = window.localStorage.getItem('setViewLat');
-        postLong = window.localStorage.setItem('setViewLong');
-        console.log('Geo local fail postLat is ' + postLat + ' and postLong is ' + postLong);
-        sendPost();
-    }
-    ;
-
-
+    
+    function renderImage() {
+        
     var imgEmoji = $(".emojiRender").children('.removeEmoji');
     var emojiImgArr = jQuery.makeArray(imgEmoji);
     console.log(emojiImgArr);
     var padLeft = 20;
     var canvas = document.getElementById('imageCanvas');
     var context = canvas.getContext('2d');
+    var lastLoop = emojiImgArr.length -1;
 
     $.each(emojiImgArr, function (index, value)
     {
-
         console.log(index);
         console.log(value.title);
         var imgEmo = new Image();
@@ -255,7 +231,30 @@ $(document).on('click', '#postToMapBtn', function () {
         })(padLeft);
         padLeft = padLeft + 50;
         console.log(padLeft);
+        if(index === lastLoop)
+        {
+            // On last loop when image is loaded
+            // Send the post to server
+            imgEmo.addEventListener('load', sendPost);            
+        }
     });
+    }
+
+    var onSuccess = function (position)
+    {
+        postLat = position.coords.latitude;
+        postLong = position.coords.longitude;
+        console.log('postLat is ' + postLat + ' and postLong is ' + postLong);
+        renderImage();
+    };
+    function onError(error)
+    {
+        postLat = window.localStorage.getItem('setViewLat');
+        postLong = window.localStorage.setItem('setViewLong');
+        console.log('Geo local fail postLat is ' + postLat + ' and postLong is ' + postLong);
+        renderImage();
+    }
+    ;
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
