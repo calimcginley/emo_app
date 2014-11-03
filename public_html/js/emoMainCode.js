@@ -207,37 +207,37 @@ $(document).on('click', '#postToMapBtn', function () {
 
     var postLat;
     var postLong;
-    
-    function renderImage() {
-        
-    var imgEmoji = $(".emojiRender").children('.removeEmoji');
-    var emojiImgArr = jQuery.makeArray(imgEmoji);
-    console.log(emojiImgArr);
-    var padLeft = 20;
-    var canvas = document.getElementById('imageCanvas');
-    var context = canvas.getContext('2d');
-    var lastLoop = emojiImgArr.length -1;
 
-    $.each(emojiImgArr, function (index, value)
-    {
-        console.log(index);
-        console.log(value.title);
-        var imgEmo = new Image();
-        (function (pad) {
-            imgEmo.onload = function () {
-                context.drawImage(imgEmo, pad, 200, 30, 30);
-            };
-            imgEmo.src = 'images/emojis/' + value.title + '.png';
-        })(padLeft);
-        padLeft = padLeft + 50;
-        console.log(padLeft);
-        if(index === lastLoop)
+    function renderImage() {
+
+        var imgEmoji = $(".emojiRender").children('.removeEmoji');
+        var emojiImgArr = jQuery.makeArray(imgEmoji);
+        console.log(emojiImgArr);
+        var padLeft = 20;
+        var canvas = document.getElementById('imageCanvas');
+        var context = canvas.getContext('2d');
+        var lastLoop = emojiImgArr.length - 1;
+
+        $.each(emojiImgArr, function (index, value)
         {
-            // On last loop when image is loaded
-            // Send the post to server
-            imgEmo.addEventListener('load', sendPost);            
-        }
-    });
+            console.log(index);
+            console.log(value.title);
+            var imgEmo = new Image();
+            (function (pad) {
+                imgEmo.onload = function () {
+                    context.drawImage(imgEmo, pad, 200, 30, 30);
+                };
+                imgEmo.src = 'images/emojis/' + value.title + '.png';
+            })(padLeft);
+            padLeft = padLeft + 50;
+            console.log(padLeft);
+            if (index === lastLoop)
+            {
+                // On last loop when image is loaded
+                // Send the post to server
+                imgEmo.addEventListener('load', sendPost);
+            }
+        });
     }
 
     var onSuccess = function (position)
@@ -286,9 +286,16 @@ $(document).on('click', '#postToMapBtn', function () {
                 textVisible: true
             });
 
-            //var imageURI = window.localStorage.getItem('imageURI');
-            var imageURI = document.getElementById('imageCanvas').src;
+            console.log('File Path');
 
+            //var imageURI = window.localStorage.getItem('imageURI');
+            var imageURI = canvas.toDataURL();
+
+            // set canvasImg image src to dataURL
+            // so it can be saved as an image
+            document.getElementById('imageCanvas').src = imageURI;
+            //var imageURI = document.getElementById('imageCanvas').src;
+            console.log(imageURI);
 
             var options = new FileUploadOptions();
             options.fileKey = "file";
