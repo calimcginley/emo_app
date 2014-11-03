@@ -4,11 +4,36 @@
 // Init Code
 // ------------------------------------------------------------------------------------------
 
-$(document).on("mobileinit", function () {
+$(document).ready(function () {
+    
     var imageArray = [];
     window.localStorage.setItem('profileArray', JSON.stringify(imageArray));
     console.log(window.localStorage.getItem('profileArray'));
+    
+    // Load Menu 
+//    console.log('load menu');
+//    $( ".menu-wrap" ).load( "menu.html #menu" );
+    
+    // float label
+    $('.floatlabel_1').floatlabel();
+
+    $("#loginType").change(function () {
+        var value = $('input[name=radio-loginSignUp]:checked').val();
+        if (value === "signUp")
+        {
+            $('input[name=submitBtn]').val('Sign Up').button("refresh");
+            $("#forgotPass").css("visibility", "hidden");
+            $("#fbText").text(' Sign up with Facebook');
+        }
+        else
+        {
+            $('input[name=submitBtn]').val('Login').button("refresh");
+            $("#forgotPass").css("visibility", "visible");
+            $("#fbText").text(' Log in with Facebook');
+        }
+    });
 });
+
 
 // ------------------------------------------------------------------------------------------
 // Show splash and the show mapPage
@@ -79,32 +104,6 @@ function setPasswordInputs()
         }
     });
 }
-
-// ------------------------------------------------------------------------------------------
-// ------------------------------ Floatlabel for form inputs  -------------------------------
-// ------------------------------------------------------------------------------------------
-
-$(document).ready(function () {
-    $('.floatlabel_1').floatlabel();
-});
-
-$(document).ready(function () {
-    $("#loginType").change(function () {
-        var value = $('input[name=radio-loginSignUp]:checked').val();
-        if (value === "signUp")
-        {
-            $('input[name=submitBtn]').val('Sign Up').button("refresh");
-            $("#forgotPass").css("visibility", "hidden");
-            $("#fbText").text(' Sign up with Facebook');
-        }
-        else
-        {
-            $('input[name=submitBtn]').val('Login').button("refresh");
-            $("#forgotPass").css("visibility", "visible");
-            $("#fbText").text(' Log in with Facebook');
-        }
-    });
-});
 
 // ------------------------------------------------------------------------------------------
 // ------------------------------ Camera Function  -------------------------------
@@ -289,24 +288,45 @@ $(document).on('click', '#postToMapBtn', function () {
             console.log('File Path');
 
             //var imageURI = window.localStorage.getItem('imageURI');
-            var imageURI = canvas.toDataURL();
+            //var canvas = document.getElementById('imageCanvas');
+            document.getElementById('imageHolder').value = document.getElementById('imageCanvas').toDataURL('image/png');
+
+            //var imageData = canvas.toDataURL();
+            console.log('File Path-2');
+            //console.log(imageData);
 
             // set canvasImg image src to dataURL
             // so it can be saved as an image
-            document.getElementById('imageCanvas').src = imageURI;
+            //document.getElementById('imageCanvas').src = imageURI;
             //var imageURI = document.getElementById('imageCanvas').src;
-            console.log(imageURI);
+            //console.log(imageURI);
+            
+            // http://stackoverflow.com/questions/13198131/how-to-save-a-html5-canvas-as-image-on-a-server
+            $.ajax({
+                type: "POST",
+                url: "http://emoapp.info/php/saveDataImage.php",
+                data: {
+                    imgBase64: imageData, name: fileNameStr
+                }
+            }).done(function (o) {
+                console.log('Image Uploaded: saved');
+                win(o);
+                // If you want the file to be visible in the browser 
+                // - please modify the callback in javascript. All you
+                // need is to return the url to the file, you just saved 
+                // and than put the image in your browser.
+            });
 
-            var options = new FileUploadOptions();
-            options.fileKey = "file";
-            options.fileName = fileNameStr;
-            options.mimeType = "image/jpeg";
-
-            var params = {};
-            options.params = params;
-
-            var ft = new FileTransfer();
-            ft.upload(imageURI, encodeURI("http://emoapp.info/php/uploadImage.php"), win, fail, options);
+//            var options = new FileUploadOptions();
+//            options.fileKey = "file";
+//            options.fileName = fileNameStr;
+//            options.mimeType = "image/jpeg";
+//
+//            var params = {};
+//            options.params = params;
+//
+//            var ft = new FileTransfer();
+//            ft.upload(imageURI, encodeURI("http://emoapp.info/php/uploadImage.php"), win, fail, options);
         }
 
         function win(r) {
