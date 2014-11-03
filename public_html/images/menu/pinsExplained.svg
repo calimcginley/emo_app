@@ -4,44 +4,63 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="199.975px" height="442.945px" viewBox="0 0 199.975 442.945" enable-background="new 0 0 199.975 442.945"
 	 xml:space="preserve">
+    
 <rect fill="#FFFFFF" width="199.975" height="442.945"/>
-<g id="Happy_Vibe">
-	<text transform="matrix(1 0 0 1 26.8877 74.9722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Happy</tspan><tspan x="6.193" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
-	<g>
-		<polygon fill="#F5EB30" points="32.362,60.103 16.987,33.472 32.362,6.842 63.112,6.842 78.487,33.472 63.112,60.103 		"/>
-		<g>
-			<ellipse fill="#FFFFFF" cx="41.671" cy="22.687" rx="5.888" ry="6.862"/>
-			<ellipse fill="#FFFFFF" cx="54.759" cy="22.687" rx="5.888" ry="6.862"/>
-			<path opacity="0.1" d="M38.058,14.5c0,0,2.918-4.572,5.609-1.945"/>
-			<path opacity="0.1" d="M58.279,13.421c0,0-3.597-4.339-6.07-1.806"/>
-			<path fill="#565656" d="M35.673,20.959c0,0,0.737-5.134,5.759-5.134c5.022,0,6.236,4.757,6.236,4.757s-1.912-4.071-6.236-4.071
-				C37.109,16.511,35.673,20.959,35.673,20.959z"/>
-			<path fill="#565656" d="M48.761,20.959c0,0,0.737-5.134,5.759-5.134s6.236,4.757,6.236,4.757s-1.912-4.071-6.236-4.071
-				C50.197,16.511,48.761,20.959,48.761,20.959z"/>
-			<ellipse fill="#F6EC13" cx="41.304" cy="24.57" rx="4.775" ry="5.133"/>
-			<ellipse fill="#F6EC13" cx="55.236" cy="24.57" rx="4.775" ry="5.133"/>
-			<circle fill="#565656" cx="41.431" cy="23.605" r="3.063"/>
-			<circle fill="#565656" cx="54.758" cy="23.605" r="3.035"/>
-			<ellipse fill="#FFFFFF" cx="39.589" cy="21.823" rx="0.597" ry="0.864"/>
-			<ellipse fill="#FFFFFF" cx="56.772" cy="21.435" rx="0.597" ry="0.864"/>
-			<path opacity="0.4" fill="none" stroke="#000000" stroke-miterlimit="10" d="M31.076,26.49c0,0,8.13,14.605,18.009,14.605
-				c9.878,0,18.387-14.605,18.387-14.605"/>
-			<path opacity="0.4" fill="none" stroke="#000000" stroke-miterlimit="10" d="M33.065,24.999c0,0-3.44,2.311-3.44,4.073"/>
-			<path opacity="0.4" fill="none" stroke="#000000" stroke-miterlimit="10" d="M66.021,24.999c0,0,3.44,2.311,3.44,4.073"/>
-			<path fill="#FBEE29" d="M51.885,28.676c0,0,8.761-1.602,8.761-4.645s1.739,3.805,0.899,4.645c-0.84,0.84-3.998,2.993-5.37,2.993
-				C54.804,31.668,51.885,28.676,51.885,28.676z"/>
-			<path fill="#EEE935" d="M44.668,28.655c0,0-8.761-1.602-8.761-4.645c0-3.043-1.74,3.805-0.899,4.645
-				c0.84,0.84,3.998,2.992,5.37,2.992C41.75,31.647,44.668,28.655,44.668,28.655z"/>
-		</g>
-	</g>
+<g>
+	<polygon id="Yellow" fill="#F5EB30" points="32.362,60.103 16.987,33.472 32.362,6.842 63.112,6.842 78.487,33.472 63.112,60.103 	
+		"/>
+	<text id="Text_4_" transform="matrix(1 0 0 1 26.8877 74.9722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Happy</tspan><tspan x="6.193" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
+	<path class="Expression_2"> 
+		<ellipse fill="#FFFFFF" cx="41.671" cy="22.687" rx="5.888" ry="6.862"/>
+		<ellipse fill="#FFFFFF" cx="54.759" cy="22.687" rx="5.888" ry="6.862"/>
+		<path opacity="0.1" d="M38.058,14.5c0,0,2.918-4.572,5.609-1.945"/>
+		<path opacity="0.1" d="M58.279,13.421c0,0-3.597-4.339-6.07-1.806"/>
+		<path fill="#565656" d="M35.673,20.959c0,0,0.737-5.134,5.759-5.134c5.022,0,6.236,4.757,6.236,4.757s-1.912-4.071-6.236-4.071
+			C37.109,16.511,35.673,20.959,35.673,20.959z"/>
+		<path fill="#565656" d="M48.761,20.959c0,0,0.737-5.134,5.759-5.134s6.236,4.757,6.236,4.757s-1.912-4.071-6.236-4.071
+			C50.197,16.511,48.761,20.959,48.761,20.959z"/>
+		<ellipse fill="#F6EC13" cx="41.304" cy="24.57" rx="4.775" ry="5.133"/>
+		<ellipse fill="#F6EC13" cx="55.236" cy="24.57" rx="4.775" ry="5.133"/>
+		<circle fill="#565656" cx="41.431" cy="23.605" r="3.063"/>
+		<circle fill="#565656" cx="54.758" cy="23.605" r="3.035"/>
+		<ellipse fill="#FFFFFF" cx="39.589" cy="21.823" rx="0.597" ry="0.864"/>
+		<ellipse fill="#FFFFFF" cx="56.772" cy="21.435" rx="0.597" ry="0.864"/>
+		<path opacity="0.4" fill="none" stroke="#000000" stroke-miterlimit="10" d="M31.076,26.49c0,0,8.13,14.605,18.009,14.605
+			c9.878,0,18.387-14.605,18.387-14.605"/>
+		<path opacity="0.4" fill="none" stroke="#000000" stroke-miterlimit="10" d="M33.065,24.999c0,0-3.44,2.311-3.44,4.073"/>
+		<path opacity="0.4" fill="none" stroke="#000000" stroke-miterlimit="10" d="M66.021,24.999c0,0,3.44,2.311,3.44,4.073"/>
+		<path fill="#FBEE29" d="M51.885,28.676c0,0,8.761-1.602,8.761-4.645s1.739,3.805,0.899,4.645c-0.84,0.84-3.998,2.993-5.37,2.993
+			C54.804,31.668,51.885,28.676,51.885,28.676z"/>
+		<path fill="#EEE935" d="M44.668,28.655c0,0-8.761-1.602-8.761-4.645c0-3.043-1.74,3.805-0.899,4.645
+			c0.84,0.84,3.998,2.992,5.37,2.992C41.75,31.647,44.668,28.655,44.668,28.655z"/>
+                 <animate
+            attributeName="Expression_2"
+            from="1sec"
+            to="3sec"
+            dur="2sec"
+            repeatCount="3"
+        ></animate>
+	
+       
+        </path>
 </g>
 <g id="Relaxed_Vibe">
-	<polygon fill="#F68521" points="136.862,60.103 121.487,33.472 136.862,6.842 167.612,6.842 182.987,33.472 167.612,60.103 	"/>
-	<text transform="matrix(1 0 0 1 129.7568 74.9722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Relaxed</tspan><tspan x="10.324" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
-	<g>
+	<polygon id="Orange" fill="#F68521" points="136.862,60.103 121.487,33.472 136.862,6.842 167.612,6.842 182.987,33.472 
+		167.612,60.103 	"/>
+	<text id="Text_3_" transform="matrix(1 0 0 1 129.7568 74.9722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Relaxed</tspan><tspan x="10.324" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
+	<g id="Expression_1_">
 		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M159.069,39.828c0,0,5.58,1.064,5.58-5.922"/>
 		<path d="M137.191,12.312c0,0,1.72-3.871,3.978-3.871"/>
 		<path d="M166.954,12.312c0,0-1.72-3.871-3.978-3.871"/>
+          <animateTransform
+            attributeName="transform"
+            begin="0s"
+            dur="3s"
+            type="opacity"  
+            from="0"
+            to="100%"
+            repeatCount="indefinite" 
+        />
 		<g>
 			<circle fill="#FFFFFF" cx="140.922" cy="18.84" r="5.5"/>
 			<g>
@@ -80,9 +99,10 @@
 	</g>
 </g>
 <g id="Love_Vibe">
-	<polygon fill="#E30E89" points="32.362,177.472 16.987,150.842 32.362,124.211 63.112,124.211 78.487,150.842 63.112,177.472 	"/>
-	<text transform="matrix(1 0 0 1 32.5625 195.4722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Love</tspan><tspan x="0.519" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
-	<g>
+	<polygon id="Pink" fill="#E30E89" points="32.362,177.472 16.987,150.842 32.362,124.211 63.112,124.211 78.487,150.842 
+		63.112,177.472 	"/>
+	<text id="Text_2_" transform="matrix(1 0 0 1 32.5625 195.4722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Love</tspan><tspan x="0.519" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
+	<g id="Expression">
 		
 			<ellipse transform="matrix(0.9999 -0.0121 0.0121 0.9999 -1.6729 0.504)" fill="#FFFFFF" cx="40.938" cy="138.913" rx="5.909" ry="6.011"/>
 		
@@ -126,10 +146,10 @@
 	</g>
 </g>
 <g id="Bored_Vibe">
-	<polygon fill="#A555A1" points="136.862,177.472 121.487,150.842 136.862,124.211 167.612,124.211 182.987,150.842 
+	<polygon id="Purple" fill="#A555A1" points="136.862,177.472 121.487,150.842 136.862,124.211 167.612,124.211 182.987,150.842 
 		167.612,177.472 	"/>
-	<text transform="matrix(1 0 0 1 135.0488 195.4722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Bored</tspan><tspan x="3.782" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
-	<g>
+	<text id="Text_1_" transform="matrix(1 0 0 1 135.0488 195.4722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Bored</tspan><tspan x="3.782" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
+	<g id="Expresssion">
 		<ellipse opacity="0.3" fill="#010101" cx="142.998" cy="142.382" rx="8.166" ry="9.238"/>
 		<ellipse opacity="0.3" fill="#010101" cx="161.625" cy="142.382" rx="8.167" ry="9.238"/>
 		<g>
@@ -165,9 +185,10 @@
 	</g>
 </g>
 <g id="Angry_Vibes">
-	<polygon fill="#C72128" points="32.362,288.103 16.987,261.472 32.362,234.842 63.112,234.842 78.487,261.472 63.112,288.103 	"/>
-	<text transform="matrix(1 0 0 1 29.3311 306.9722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Angry</tspan><tspan x="3.75" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
-	<g>
+	<polygon id="Red" fill="#C72128" points="32.362,288.103 16.987,261.472 32.362,234.842 63.112,234.842 78.487,261.472 
+		63.112,288.103 	"/>
+	<text id="Text" transform="matrix(1 0 0 1 29.3311 306.9722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Angry</tspan><tspan x="3.75" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
+	<g id="expression">
 		<path d="M40.376,272.203c0,0,3.981-3.931,7.374-3.931c3.393,0,7.374,3.655,7.374,3.655s-3.635-4.509-7.374-4.509
 			s-7.374,4.509-7.374,4.509"/>
 		<g>
@@ -199,10 +220,10 @@
 	</g>
 </g>
 <g id="Embarrassed_Vibe">
-	<polygon fill="#DB6081" points="136.862,288.103 121.487,261.472 136.862,234.842 167.612,234.842 182.987,261.472 
+	<polygon id="Blush" fill="#DB6081" points="136.862,288.103 121.487,261.472 136.862,234.842 167.612,234.842 182.987,261.472 
 		167.612,288.103 	"/>
-	<text transform="matrix(1 0 0 1 114.8252 306.9722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Embarrassed</tspan><tspan x="24.006" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
-	<g>
+	<text id="Text_7_" transform="matrix(1 0 0 1 114.8252 306.9722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Embarrassed</tspan><tspan x="24.006" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
+	<g id="Expression_5_">
 		<path fill="#565656" d="M137.98,241.094c0,0,2.152-4.353,9.293-4.353"/>
 		<path fill="#565656" d="M165.12,240.534c0,0-2.152-4.353-9.293-4.353"/>
 		<circle opacity="0.3" fill="#D81E41" cx="136.163" cy="264.36" r="9.819"/>
@@ -230,9 +251,10 @@
 	</g>
 </g>
 <g id="Sad_vibe">
-	<polygon fill="#6BCCE3" points="32.362,397.603 16.987,370.972 32.362,344.342 63.112,344.342 78.487,370.972 63.112,397.603 	"/>
-	<text transform="matrix(1 0 0 1 35.29 415.4722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Sad</tspan><tspan x="-2.209" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
-	<g>
+	<polygon id="Blue" fill="#6BCCE3" points="32.362,397.603 16.987,370.972 32.362,344.342 63.112,344.342 78.487,370.972 
+		63.112,397.603 	"/>
+	<text id="Text_6_" transform="matrix(1 0 0 1 35.29 415.4722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Sad</tspan><tspan x="-2.209" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
+	<g id="Expression_4_">
 		<circle fill="#FFFFFF" cx="61.296" cy="366.974" r="0.825"/>
 		<path fill="#565656" d="M67.099,359.301c0,0-0.652,5.217-6.196,5.217c-5.544,0-7.663-5.217-7.663-5.217s3.75,2.608,7.336,2.608
 			S67.099,359.301,67.099,359.301z"/>
@@ -262,10 +284,10 @@
 	</g>
 </g>
 <g id="Fear_Vibe">
-	<polygon fill="#6DBA45" points="136.862,397.603 121.487,370.972 136.862,344.342 167.612,344.342 182.987,370.972 
+	<polygon id="Green" fill="#6DBA45" points="136.862,397.603 121.487,370.972 136.862,344.342 167.612,344.342 182.987,370.972 
 		167.612,397.603 	"/>
-	<text transform="matrix(1 0 0 1 139.5254 414.9722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Fear</tspan><tspan x="-0.694" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
-	<g>
+	<text id="Text_5_" transform="matrix(1 0 0 1 139.5254 414.9722)"><tspan x="0" y="0" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Fear</tspan><tspan x="-0.694" y="14.4" fill="#B5B6B6" font-family="'CenturyGothic'" font-size="12">Vibe</tspan></text>
+	<g id="Expression_3_">
 		<path fill="#565656" d="M136.364,347.536c0,0,9.242,0.178,9.242-2.721"/>
 		<path fill="#565656" d="M169.109,347.536c0,0-9.241,0.178-9.241-2.721"/>
 		<g>
