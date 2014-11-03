@@ -10,6 +10,7 @@ $(document).on('click', '#submitBtn', function() {
     // get the login values
     var inputEmail = $('#email').val();
     var inputPassword = $('#password').val();
+    var hashPassword = $.sha256(inputPassword);
     var formType = $('input[name=submitBtn]').val();
 
     // Check the both inputs have values
@@ -22,7 +23,7 @@ $(document).on('click', '#submitBtn', function() {
             // Send data to server through the ajax call
             // action is functionality we want to call and outputJSON is our data
             $.ajax({url: 'http://icandraw.me/sensus/php/sensusLogin.php',
-            data: {action : 'login', userEmail : inputEmail, userPass : inputPassword },
+            data: {action : 'login', userEmail : inputEmail, userPass : hashPassword },
             type: 'post',
             async: 'true',
             dataType: 'json',
@@ -72,7 +73,7 @@ $(document).on('click', '#submitBtn', function() {
             // Send data to server through the ajax call
             // action is functionality we want to call and outputJSON is our data
             $.ajax({url: 'http://icandraw.me/sensus/php/sensusSignUp.php',
-            data: {action : 'signUp', userEmail : inputEmail, userPass : inputPassword },
+            data: {action : 'signUp', userEmail : inputEmail, userPass : hashPassword },
             type: 'post',
             async: 'true',
             dataType: 'json',

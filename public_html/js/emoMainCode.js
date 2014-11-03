@@ -4,7 +4,7 @@
 // Init Code
 // ------------------------------------------------------------------------------------------
 
-$(document).on("mobileinit", function() {
+$(document).on("mobileinit", function () {
     var imageArray = [];
     window.localStorage.setItem('profileArray', JSON.stringify(imageArray));
     console.log(window.localStorage.getItem('profileArray'));
@@ -13,17 +13,17 @@ $(document).on("mobileinit", function() {
 // ------------------------------------------------------------------------------------------
 // Show splash and the show mapPage
 // ------------------------------------------------------------------------------------------
-$(document).on("pageshow", "#splashPage", function() {
-    setTimeout(function() {
+$(document).on("pageshow", "#splashPage", function () {
+    setTimeout(function () {
         endOfSplash();
     }, 4000);
 
-    $('#splashImage').click(function() {
+    $('#splashImage').click(function () {
         endOfSplash();
     });
 });
 
-var endOfSplash = function()
+var endOfSplash = function ()
 {
     // In the redirect we check the local storage for the logged in status
     // If the value is returned 'Yes' the app redirects direct to #mapPage
@@ -31,7 +31,7 @@ var endOfSplash = function()
     if (window.localStorage.getItem('logged') === 'Yes')
     {
         console.log('localStorage logged value = Yes');
-        $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "flow"});
+        $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
     }
     else
     {
@@ -57,13 +57,13 @@ function setPasswordInputs()
 {
     $('#password-clear').show();
     $('#password-password').hide();
-    $('#password-clear').focus(function() {
+    $('#password-clear').focus(function () {
         $('#password-clear').hide();
         $('#password-password').show();
         $('#password-password').focus();
     });
 
-    $('#password-password').blur(function() {
+    $('#password-password').blur(function () {
         if ($('#password-password').val() === '')
         {
             $('#password-clear').show();
@@ -72,7 +72,7 @@ function setPasswordInputs()
     });
 
 // Change the username title back in still blank
-    $('#username').blur(function() {
+    $('#username').blur(function () {
         if ($('#username').val() === '')
         {
             document.getElementById('username').setAttribute('value', "Username");
@@ -84,12 +84,12 @@ function setPasswordInputs()
 // ------------------------------ Floatlabel for form inputs  -------------------------------
 // ------------------------------------------------------------------------------------------
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('.floatlabel_1').floatlabel();
 });
 
-$(document).ready(function() {
-    $("#loginType").change(function() {
+$(document).ready(function () {
+    $("#loginType").change(function () {
         var value = $('input[name=radio-loginSignUp]:checked').val();
         if (value === "signUp")
         {
@@ -112,9 +112,9 @@ $(document).ready(function() {
 
 
 // A click event for each emoji which creates a token in local storage to aid empji post
-$(document).ready(function() {
+$(document).ready(function () {
     parentOpen = false;
-    $('.emoPostBtn').click(function(e) {
+    $('.emoPostBtn').click(function (e) {
 
         console.log('Post Btn Clicked');
         var pageID = $.mobile.activePage.attr('id');
@@ -145,12 +145,12 @@ $(document).ready(function() {
         }
     });
 
-    $("#cameraBtn").click(function(e) {
+    $("#imageCanvas").click(function (e) {
         console.log('Camera CLicked');
         camera();
     });
 
-    $('.emojiParent').on('click', function() {
+    $('.emojiParent').on('click', function () {
         // Parent Emoji Clicked
 
         var pEmoji = $(this).attr('data-name');
@@ -179,14 +179,16 @@ function camera()
     function onSuccess(imageURI)
     {
         console.log('Camera opened and image was captured');
-        // Remove camera mode on image
-        $('#imageHolder').removeClass('cameraMode');
-        $('#imageHolder').addClass('imageMode');
-        var image = document.getElementById('imageHolder');
-        image.src = imageURI;
-        console.log('Image placed into DIV, page change now');
-        console.log(imageURI);
-        window.localStorage.setItem('imageURI', imageURI);
+        // Canvas Mood on image
+        var canvas = document.getElementById('imageCanvas');
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        var imageObj = new Image();
+
+        imageObj.onload = function () {
+            context.drawImage(imageObj, 10, 10, 300, 300);
+        };
+        imageObj.src = imageURI;
     }
 
     function onFail(message)
@@ -198,27 +200,59 @@ function camera()
 // -------------------------------------------------------------------------------------------
 // ----------------------------------  Post to map  ---------------------------- 
 // ------------------------------------------------------------------------------------------- 
-$(document).on('click', '#postToMapBtn', function() {
+$(document).on('click', '#postToMapBtn', function () {
 
     console.log('Post to map clicked:');
     // userID, emoType, emoji, imageName, songID, public, lat, long, timeLocal
 
     var postLat;
     var postLong;
+    
+    function renderImage() {
+        
+    var imgEmoji = $(".emojiRender").children('.removeEmoji');
+    var emojiImgArr = jQuery.makeArray(imgEmoji);
+    console.log(emojiImgArr);
+    var padLeft = 20;
+    var canvas = document.getElementById('imageCanvas');
+    var context = canvas.getContext('2d');
+    var lastLoop = emojiImgArr.length -1;
 
-    var onSuccess = function(position)
+    $.each(emojiImgArr, function (index, value)
+    {
+        console.log(index);
+        console.log(value.title);
+        var imgEmo = new Image();
+        (function (pad) {
+            imgEmo.onload = function () {
+                context.drawImage(imgEmo, pad, 200, 30, 30);
+            };
+            imgEmo.src = 'images/emojis/' + value.title + '.png';
+        })(padLeft);
+        padLeft = padLeft + 50;
+        console.log(padLeft);
+        if(index === lastLoop)
+        {
+            // On last loop when image is loaded
+            // Send the post to server
+            imgEmo.addEventListener('load', sendPost);            
+        }
+    });
+    }
+
+    var onSuccess = function (position)
     {
         postLat = position.coords.latitude;
         postLong = position.coords.longitude;
         console.log('postLat is ' + postLat + ' and postLong is ' + postLong);
-        sendPost();
+        renderImage();
     };
     function onError(error)
     {
         postLat = window.localStorage.getItem('setViewLat');
         postLong = window.localStorage.setItem('setViewLong');
         console.log('Geo local fail postLat is ' + postLat + ' and postLong is ' + postLong);
-        sendPost();
+        renderImage();
     }
     ;
 
@@ -252,7 +286,9 @@ $(document).on('click', '#postToMapBtn', function() {
                 textVisible: true
             });
 
-            var imageURI = window.localStorage.getItem('imageURI');
+            //var imageURI = window.localStorage.getItem('imageURI');
+            var imageURI = document.getElementById('imageCanvas').src;
+
 
             var options = new FileUploadOptions();
             options.fileKey = "file";
@@ -300,17 +336,17 @@ $(document).on('click', '#postToMapBtn', function() {
             type: 'post',
             datatype: 'text',
             async: 'true',
-            beforeSend: function() {
+            beforeSend: function () {
                 // This callback function will trigger before data is sent
                 console.log('Before send ');
                 //$.mobile.showPageLoadingMsg(true); // This will show ajax spinner
             },
-            complete: function() {
+            complete: function () {
                 // This callback function will trigger on data sent/received complete
                 console.log('Complete ');
                 //$.mobile.hidePageLoadingMsg(); // This will hide ajax spinner
             },
-            success: function(result) {
+            success: function (result) {
                 console.log('Database call was : ' + result);
                 console.log('Post was inserted to database ' + result);
                 console.log('Variables are - Post ID: ' + result + ' ' + postLat + ' ' + postLong + ' - Parent: ' + parentEmoji);
@@ -318,7 +354,7 @@ $(document).on('click', '#postToMapBtn', function() {
                 centerMap(postLat, postLong);
                 //$('')
             },
-            error: function(results, error) {
+            error: function (results, error) {
                 // This callback function will trigger on unsuccessful action               
                 $('#postToMapBtn').html('Post Failed' + error + ' ' + results.postID + ' ' + results.status);
                 console.log('Post Failed ' + error + ' ' + results.postID + ' ' + results.status);
@@ -332,16 +368,16 @@ $(document).on('click', '#postToMapBtn', function() {
 // -------------------------------------------------------------------------------------------
 // ----------------------------------  emoji Keypad ---------------------------- 
 // ------------------------------------------------------------------------------------------- 
-$(document).ready(function()
+$(document).ready(function ()
 {
-    $('.emojiRender').each(function(i, d) {
+    $('.emojiRender').each(function (i, d) {
         console.log('emoji img code set');
         $(d).emoji();
     });
 
     // Set local storage value for keypad
     window.localStorage.setItem('emojiKeypad', 'off');
-    $("#toggle").click(function() {
+    $("#toggle").click(function () {
 
         $("#panel").slideToggle("fast");
         // Get keypad on/off value
@@ -366,8 +402,20 @@ $(document).ready(function()
 
 
 // load the emoji keypad
-$(document).on("pagecreate", "#emotionPostPage", function() {
+$(document).on("pagecreate", "#emotionPostPage", function () {
 
+    // Set the image in place for camera
+    var canvas = document.getElementById('imageCanvas');
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    var imageObj = new Image();
+
+    imageObj.onload = function () {
+        context.drawImage(imageObj, 80, 0);
+    };
+    imageObj.src = 'images/menu/cameraBtn.svg';
+
+    // Set up emoji Keypad
     console.log('set tab selection of emoji');
     var tabIcons = [
         {
@@ -440,15 +488,15 @@ $(document).on("pagecreate", "#emotionPostPage", function() {
         }];
 
     // sample to build off 
-    console.log('run thru array and add emoji');
+    //console.log('run thru array and add emoji');
 
     for (var i = 0; i < 4; i++)
     {
-        console.log('This is loop' + i);
-        $.each(tabIcons[i], function(title, png)
+        //console.log('This is loop' + i);
+        $.each(tabIcons[i], function (title, png)
         {
             var tabKey = '#tab' + i;
-            console.log('added' + title + ' emoji' + tabKey);
+            //console.log('added' + title + ' emoji' + tabKey);
             $(tabKey).append('<img class="addEmoji" src="images/emojis/' + png + '" title="' + title + '">');
         });
     }
@@ -457,7 +505,7 @@ $(document).on("pagecreate", "#emotionPostPage", function() {
 
 // click to add emoji function
 
-$(document).on('click', '.addEmoji', function() {
+$(document).on('click', '.addEmoji', function () {
     var emojiName = $(this).attr('title');
     console.log('emoji clicked- Title is = ' + emojiName);
     console.log('emoji img added - now refresh p');
@@ -467,9 +515,35 @@ $(document).on('click', '.addEmoji', function() {
 });
 
 // click removes emojis
-$(document).on('click', '.removeEmoji', function() {
+$(document).on('click', '.removeEmoji', function () {
     console.log('emoji img removed');
     $(this).remove();
+});
+
+$(document).on('click', '#testArray', function () {
+    var imgEmoji = $(".emojiRender").children('.removeEmoji');
+    var emojiImgArr = jQuery.makeArray(imgEmoji);
+    console.log(emojiImgArr);
+    var padLeft = 20;
+    var canvas = document.getElementById('imageCanvas');
+    var context = canvas.getContext('2d');
+
+    $.each(emojiImgArr, function (index, value)
+    {
+
+        console.log(index);
+        console.log(value.title);
+        var imgEmo = new Image();
+        (function (pad) {
+            imgEmo.onload = function () {
+                context.drawImage(imgEmo, pad, 200, 30, 30);
+            };
+            imgEmo.src = 'images/emojis/' + value.title + '.png';
+        })(padLeft);
+        padLeft = padLeft + 50;
+        console.log(padLeft);
+    });
+
 });
 
 // -------------------------------------------------------------------------------------------
@@ -480,7 +554,7 @@ $(document).on('click', '.removeEmoji', function() {
 
 
 
-$(document).on("pageshow", "#profilePage", function(e, data) {
+$(document).on("pageshow", "#profilePage", function (e, data) {
 // -------------------------------------------------------------------------------------------
 // ------------  Profile Page Images ---------------------------- 
 // ------------------------------------------------------------------------------------------- 
@@ -496,22 +570,22 @@ $(document).on("pageshow", "#profilePage", function(e, data) {
             type: 'post',
             async: 'true',
             dataType: 'json',
-            beforeSend: function() {
+            beforeSend: function () {
                 // This callback function will trigger before data is sent
                 $.mobile.loading("show", {
                     text: 'Fetching user Data',
                     textVisible: true
                 });
             },
-            complete: function() {
+            complete: function () {
                 // This callback function will trigger on data sent/received complete
                 $.mobile.loading("hide");
             },
-            success: function(result) {
+            success: function (result) {
 
                 // Get user posts and place them into assoc Array
                 console.log('User Posts Fetch successfull');
-                $.each(result.posts, function(index, value) {
+                $.each(result.posts, function (index, value) {
                     console.log(index + ' : ' + value.postID);
                     array_push = [index, value.postID, value.imageName, value.timeServer];
                     console.log(array_push);
@@ -522,7 +596,7 @@ $(document).on("pageshow", "#profilePage", function(e, data) {
                 insertImageArray(window.localStorage.getItem('imageCount'));
 
             },
-            error: function(error) {
+            error: function (error) {
                 // This callback function will trigger on unsuccessful action               
                 $('#updateBtn').html('There was an error = ' + error);
                 console.log('error = ' + error);
@@ -546,7 +620,7 @@ function insertImageArray(imageCount)
     console.log('profileImageArray:');
     console.log(profileImageArray);
     console.log(profileImageArray.length);
-    $.each(profileImageArray, function(index, value) {
+    $.each(profileImageArray, function (index, value) {
         if (index <= imageCount && index >= imageCount - 7)
         {
             $('.honeycombs').append('<div class="comb animated fadeIn">'
@@ -565,9 +639,9 @@ function insertImageArray(imageCount)
     console.log(isPopUpOpen);
 }
 
-$(document).ready(function()
+$(document).ready(function ()
 {
-    $("#addHoneyImg").click(function() {
+    $("#addHoneyImg").click(function () {
         // Honey Add Button Clicked
         console.log('Honey Add Button Clicked');
         var imgCount = window.localStorage.getItem('imageCount');
@@ -575,7 +649,7 @@ $(document).ready(function()
     });
 });
 
-$(document).on("pageshow", "#settingsPage", function() {
+$(document).on("pageshow", "#settingsPage", function () {
 
     $('#updateBtn').html('Update Info');
     console.log('Settings page opened');
@@ -587,7 +661,7 @@ $(document).on("pageshow", "#settingsPage", function() {
         type: 'post',
         async: 'true',
         dataType: 'json',
-        beforeSend: function() {
+        beforeSend: function () {
             // This callback function will trigger before data is sent
 
             $.mobile.loading("show", {
@@ -595,17 +669,17 @@ $(document).on("pageshow", "#settingsPage", function() {
                 textVisible: true
             });
         },
-        complete: function() {
+        complete: function () {
             // This callback function will trigger on data sent/received complete
             $.mobile.loading("hide");
         },
-        success: function(result) {
+        success: function (result) {
             console.log('Info Fetch Succesfull');
             $('#firstName').val(result['firstName']);
             $('#lastName').val(result['lastName']);
             $('#selectGender').val(result['userGender']).selectmenu('refresh');
         },
-        error: function(request, error) {
+        error: function (request, error) {
             // This callback function will trigger on unsuccessful action               
             $('#updateBtn').html('There was an error');
             console.log('error = ' + error);
@@ -616,7 +690,7 @@ $(document).on("pageshow", "#settingsPage", function() {
 // ------------  When the update button on settingPage os clicked ---------------------------- 
 // ------------------------------  This code will trigger ------------------------------------
 // ------------------------------------------------------------------------------------------- 
-    $("#updateBtn").click(function()
+    $("#updateBtn").click(function ()
     {
         console.log('Update Button Clicked');
         var firstName = $('#firstName').val();
@@ -630,22 +704,22 @@ $(document).on("pageshow", "#settingsPage", function() {
             type: 'post',
             async: 'true',
             dataType: 'json',
-            beforeSend: function() {
+            beforeSend: function () {
                 // This callback function will trigger before data is sent
                 $.mobile.loading("show", {
                     text: '',
                     textVisible: true
                 });
             },
-            complete: function() {
+            complete: function () {
                 // This callback function will trigger on data sent/received complete
                 $.mobile.loading("hide");
             },
-            success: function() {
+            success: function () {
                 console.log('Update Succesfull');
                 $('#updateBtn').html('Info Updated');
             },
-            error: function(error) {
+            error: function (error) {
                 // This callback function will trigger on unsuccessful action               
                 $('#updateBtn').html('There was an error = ' + error);
                 console.log('error = ' + error);

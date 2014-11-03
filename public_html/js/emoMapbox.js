@@ -200,7 +200,11 @@ function setMapInAction()
                 hexagons.attr("stroke", "black").attr("fill", function(d)
                 {
                     //********  Set Hexbin colour using count array  ***************
-                    var emoArray = {'0': '#FBED28', '1': '#69CBE1', '2': '#A554A0', '3': '#64BC45', '4': '#E10686', '5': '#69CBE1', '6': '#C32026', '7': '#F5851F'};
+                    var emoArray = {
+                        '0': 'rgba(251, 237, 40, 0.9)', '1': '#69CBE1',
+                        '2': '#A554A0', '3': '#64BC45',
+                        '4': '#E10686', '5': '#69CBE1',
+                        '6': '#C32026', '7': '#F5851F'};
                     var countArray = [0, 0, 0, 0, 0, 0, 0, 0];
 
                     $.each(d, function(key, value)
@@ -238,7 +242,7 @@ function setMapInAction()
         $.getJSON(jsonStringHex, function(data) {
             $.each(data.features, function(index, value) {
                 //$.each(data.posts, function(index, value) {
-                console.log('emoType in marker functio');
+                //console.log('emoType in marker functio');
                 //console.log(value.properties.emoType);
 
                 var myIcon = L.icon({
@@ -251,10 +255,10 @@ function setMapInAction()
                     shadowAnchor: [41, 46]
                 });
                 //var marker = L.marker([value.lat, value.long]
-                console.log(value.geometry.coordinates);
+                //console.log(value.geometry.coordinates);
                 var latLongStr = value.geometry.coordinates.toString();
                 var latLongArr = latLongStr.split(',');
-                console.log(latLongArr[1]);
+                //console.log(latLongArr[1]);
                 var marker = L.marker([latLongArr[1], latLongArr[0]]
                         //var marker = L.marker(value.geometry.coordinates
                         //, {title: value.postID, icon: myIcon});
@@ -426,10 +430,13 @@ function mapSetView(mLat, mLong)
 
 
 // Map Emoji Filter
-$(document).ready(function() {
+$(document).on("pageshow", "#mapPage", function() {
 
+    // Filter Menu Button
     $(".emoFilterBtn").click(function()
     {
+        // Check if mapPage is active
+        // If not naviagte to mapPage and then open the filter bar
         console.log('Filter Clicked');
         var pageID = $.mobile.activePage.attr('id');
         console.log('pageID: ' + pageID);
@@ -447,6 +454,8 @@ $(document).ready(function() {
             openFilterBar();
         }
 
+
+        // Open the filet menu bar
         function openFilterBar()
         {
             console.log('Open Filter bar');
@@ -458,6 +467,8 @@ $(document).ready(function() {
         }
     });
 
+    // Filter Buttons click event, add/remove opacity class and 
+    // Append and remove emoType from array
     $('.emojiFilter').on('click', function() {
         // Parent Emoji Clicked
         console.log('Filter clicked');
@@ -471,12 +482,29 @@ $(document).ready(function() {
         else
         {
             $(this).addClass('filterOff');
+            $('#checkboxSelectAll').prop("checked", false).checkboxradio("refresh");
             emoFilterArray = jQuery.grep(emoFilterArray, function(value) {
                 return value !== emoType;
             });
         }
         console.log('The emoType Array is now:');
         console.log(emoFilterArray);
+    });
+
+    // Checkbox Select All/None function on filter
+    $('#checkboxSelectAll').on('click', function() {
+        if ($('#checkboxSelectAll').prop('checked'))
+        {
+            // Remove all classes for opacity and fill array
+            $('.emojiFilter').removeClass('filterOff');
+            emoFilterArray = ['1', '2', '3', '4', '5', '6', '7', '8'];
+        }
+        else
+        {
+            // Opacity drop all buttons and clear array
+            $('.emojiFilter').addClass('filterOff');
+            emoFilterArray = [];
+        }
     });
 
     // Filter Button closes the filter bar and initates new hex-svg elements.
@@ -487,34 +515,80 @@ $(document).ready(function() {
         setJsonLayers();
     });
 
-
-
 // ------------------------------------------------------------------------------------------
 // ------------------------------ Filter form inputs  -------------------------------
 // ------------------------------------------------------------------------------------------
 
+    // Get Current Time
+    var now = new Date();
+    var month = now.getMonth() + 1;
+    var monthsFull = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    $('#timeSpan input[type=radio]').change(function() {
-        var radioType = $(this).val();
-        //<input type="range" name="slider-1" id="timeSlider" min="1" max="23" value="8" data-popup-enabled="true">
-        var slider = $('#timeSlider');
-        if (radioType === 'hour')
-        {
-            slider.attr('max', 23);
-            slider.attr('value', 8);
-            $( "#timeSlider" ).slider();      
-        }
-        else if (radioType === 'day')
-        {
-            slider.attr('max', 6);
-            slider.attr('value', 3);
-            $( "#timeSlider" ).slider();  
-        }
-        else
-        {
-            slider.attr('max', 4);
-            slider.attr('value', 2);
-            $( "#timeSlider" ).slider();         
-        }
+    //var timeNow = now.getFullYear() + '-' + month + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':00';
+    var timeNow = now.getDate() +' ' +monthsFull[now.getMonth()] +', ' +now.getFullYear();
+    // yyyy-MM-dd HH:mm:ss
+    console.log(timeNow);
+    
+    $('#datepicker').val(timeNow);
+
+    $('#datepicker').pickadate({
+        min: new Date(2013, 0, 1),
+        max: new Date(now.getFullYear(), now.getMonth(), now.getDate()),
+        //selectYears: true,
+        selectMonths: true
     });
+
+    // Date time picker
+//    $("#dtBox").DateTimePicker({
+//        defaultDate: timeNow,
+//        titleContentDateTime: 'Set Date & Time',
+//        dateTimeFormat: 'dd-MM-yyyy HH:mm:ss',
+//        maxDate: timeNow
+//    });
+
+    // Activate Range Slider
+//    $("#sliderDate").dateRangeSlider({
+//        formatter: function(val) {
+//            var days = val.getDate(),
+//                    month = val.getMonth(),
+//                    year = val.getFullYear(),
+//                    hour = val.getHours();
+//            return days + "/" + month + "/" + year + ", " + hour + ":00";
+//        },
+//        step: {
+//            hours: 8
+//        },
+//        bounds: {
+//            min: new Date(1, 1, 2013),
+//            max: timeNow
+//        }
+//
+//    });
+
+
+
+//
+//    $('#timeSpan input[type=radio]').change(function() {
+//        var radioType = $(this).val();
+//        //<input type="range" name="slider-1" id="timeSlider" min="1" max="23" value="8" data-popup-enabled="true">
+//        var slider = $('#timeSlider');
+//        if (radioType === 'hour')
+//        {
+//            slider.attr('max', 23);
+//            slider.attr('value', 8);
+//            $("#timeSlider").slider("refresh");
+//        }
+//        else if (radioType === 'day')
+//        {
+//            slider.attr('max', 6);
+//            slider.attr('value', 3);
+//            $("#timeSlider").slider("refresh");
+//        }
+//        else
+//        {
+//            slider.attr('max', 4);
+//            slider.attr('value', 2);
+//            $("#timeSlider").slider("refresh");
+//        }
+//    });
 });
