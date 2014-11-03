@@ -9,9 +9,9 @@
         <!--  Theme Roller Can go here  -->
         <link href="css/emoTheme.css" rel="stylesheet" type="text/css"/>
         <link href="css/jquery.mobile.icons.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/jquery.mobile.structure-1.4.2.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery-1.10.2.min.js"></script> 
-        <script src="js/jquery.mobile-1.4.2.min.js"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js"></script>
         <!-- Code goes here -->
         <script src="js/emoMainCode.js" type="text/javascript"></script>
         <script src="js/emoLoginSignUp.js" type="text/javascript"></script>
@@ -27,9 +27,16 @@
         <link href="css/emoSlideMenu.css" rel="stylesheet" type="text/css"/>
         <link href="css/emoMenu_cornermorph.css" rel="stylesheet" type="text/css"/>        
         <link href="css/topcoat-mobile-light.css" rel="stylesheet" type="text/css"/>        
+<<<<<<< HEAD
+
+=======
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link href="css/default.date.css" rel="stylesheet" type="text/css"/>
         
+<<<<<<< Updated upstream
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> Stashed changes
         <!--   JS Plugins go here   -->
         <script src="js/cordova.js" type="text/javascript"></script>
         <script src='js/mapbox.js'  type="text/javascript"></script>
@@ -42,8 +49,8 @@
         <script src="js/floatlabels.min.js"  type="text/javascript"></script>    
         <script src="js/jquery.emoji.js" type="text/javascript"></script>
         <script src="js/jquery.sha256.min.js" type="text/javascript"></script>
-        <script src="js/picker.js" type="text/javascript"></script>
-        <script src="js/picker.date.js" type="text/javascript"></script>
+        <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
+        <link href="css/datepicker3.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <!--    Start of   -->
@@ -121,41 +128,40 @@
 
                         <!-- Emoji Filter Bar -->
                         <div id="emojiSearchBar">
-                           <h3>Pick your Vibe</h3>
+                            <h2>Pick your Vibe</h2>
+                            <a href='#' class="emojiFilter" data-name="1"><img src='images/emojiSelect/emoji-1.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="2"><img src='images/emojiSelect/emoji-2.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="3"><img src='images/emojiSelect/emoji-3.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="4"><img src='images/emojiSelect/emoji-4.png'/></a><br>
+                            <a href='#' class="emojiFilter" data-name="5"><img src='images/emojiSelect/emoji-5.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="6"><img src='images/emojiSelect/emoji-6.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="7"><img src='images/emojiSelect/emoji-7.png'/></a>
+                            <a href='#' class="emojiFilter" data-name="8"><img src='images/emojiSelect/emoji-8.png'/></a><br>
+                            <input type="checkbox" name="checkbox-mini-0" id="checkboxSelectAll" data-wrapper-class="ui-mini" checked="checked" data-mini="true" data-enhance="false">
+                            <label for="checkboxSelectAll">Select All</label>
                             <hr>
                             <form id="filterForm">
-                                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="timeSpan">
-                                    <h4>Set Duration:</h4>
-                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6a" value="hour" data-mini="true" checked="checked">
-                                    <label for="radio-choice-h-6a">Last 8hrs</label>
-                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6b" value="day" data-mini="true">
-                                    <label for="radio-choice-h-6b">Last Day</label>
-                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6c" value="week" data-mini="true">
-                                    <label for="radio-choice-h-6c">Last Week</label>
-                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6d" value="month" data-mini="true">
-                                    <label for="radio-choice-h-6d">Last Month</label>
-                                    <input type="range" name="slider-1" data-highlight="true" id="timeSlider" min="1" max="23" value="8" data-show-value="true">
+                                <h4>From Previous:</h4>
 
+                                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="timeSpan">
+                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6a" value="hour" data-mini="true" checked="checked">
+                                    <label for="radio-choice-h-6a">8hrs</label>
+                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6b" value="day" data-mini="true">
+                                    <label for="radio-choice-h-6b">Day</label>
+                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6c" value="week" data-mini="true">
+                                    <label for="radio-choice-h-6c">Week</label>
+                                    <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6d" value="month" data-mini="true">
+                                    <label for="radio-choice-h-6d">Month</label>
                                 </fieldset>
-                                <div data-role="collapsible">
-                                    <h4>Advanced</h4>
-                                    <label for="datepicker">Date:</label>
-                                    <input type="text" id="datepicker"/>
-                                    <label for="duration">Duration:</label>
+
+                                <h4>OR</h4>
+                                <h4>Date Range</h4>
+                                <div class="input-daterange ui-grid-a" id="datepicker">
+                                    <div class="ui-block-a">From:<input type="text" class="input-small" name="start" data-mini="true"/></div>
+                                    <div class="ui-block-b">To:<input type="text" class="input-small" name="end" data-mini="true"/></div>
                                 </div>
-                                <div id="sliderDate"></div>
                                 <hr>
-                                <h4>Select Emotions/Moods</h4>
-                                <a href='#' class="emojiFilter" data-name="1"><img src='images/emojiSelect/emoji-1.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="2"><img src='images/emojiSelect/emoji-2.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="3"><img src='images/emojiSelect/emoji-3.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="4"><img src='images/emojiSelect/emoji-4.png'/></a><br>
-                                <a href='#' class="emojiFilter" data-name="5"><img src='images/emojiSelect/emoji-5.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="6"><img src='images/emojiSelect/emoji-6.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="7"><img src='images/emojiSelect/emoji-7.png'/></a>
-                                <a href='#' class="emojiFilter" data-name="8"><img src='images/emojiSelect/emoji-8.png'/></a><br>
-                                <input type="checkbox" name="checkbox-mini-0" id="checkboxSelectAll" data-wrapper-class="ui-mini" checked="checked" data-mini="true" data-enhance="false">
-                                <label for="checkboxSelectAll">Select All</label>
+
                                 <input id="filterButton" type="button" value="Search Map" data-icon="search">
                             </form>
                         </div>
@@ -163,7 +169,7 @@
                         <!-- Emo Select Div -->
                         <div id="emojiPostSelectParent">
                             <div id="parentEmojiSelect">
-                                <h3>What is your Vibe?</h3>
+                                <h2>What is your Vibe?</h2>
                                 <a href='#' class="emojiParent" data-name="1"><img src='images/emojiSelect/emoji-1.png'/></a>
                                 <a href='#' class="emojiParent" data-name="2"><img src='images/emojiSelect/emoji-2.png'/></a>
                                 <a href='#' class="emojiParent" data-name="3"><img src='images/emojiSelect/emoji-3.png'/></a>
@@ -306,11 +312,11 @@
                     <div class="mapHeader"><h2>emo.</h2></div>
                     <div id="canvasBuffer"></div>
                     <canvas id="imageCanvas" width="320" height="350"></canvas>
-<!--                    <div id="cameraSelect">
-                        <a href="#" id="cameraBtn" data-transition="slide">
-                            <img id="imageHolder" class="cameraMode" src="images/menu/cameraBtn.svg" alt=""/>
-                        </a>
-                    </div>-->
+                    <!--                    <div id="cameraSelect">
+                                            <a href="#" id="cameraBtn" data-transition="slide">
+                                                <img id="imageHolder" class="cameraMode" src="images/menu/cameraBtn.svg" alt=""/>
+                                            </a>
+                                        </div>-->
                     <div id="insertButtons">
                         <div id='emojiSentDiv' class="emojiRender">
                         </div>
@@ -338,7 +344,7 @@
                         </div>
                         <div id="bar"  data-theme="a"><a data-role='button' href="#" id="toggle">emoji Description</a></div>
                         <div id="lower"> // 
-<!--                            <a data-role='button' href="javascript:void(0)" data-transition="slide" id="testArray">Test Array</a>-->
+                            <!--                            <a data-role='button' href="javascript:void(0)" data-transition="slide" id="testArray">Test Array</a>-->
                             <a data-role='button' href="javascript:void(0)" data-transition="slide" id="postToMapBtn">Post to Map</a>
                             <img id="imageHolder" src="" alt=""/>
                         </div>

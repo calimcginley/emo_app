@@ -217,14 +217,6 @@ ul, menu, dir {
     margin: 0;
 }
 
-/* Hide the number input */
-#timeSlider input {
-    display: none;
-}
-#timeSlider .ui-slider-track {
-    margin-left: 0px;
-}
-
 /* ------------------------------------------------------------------------------------------
 // ------------------------------  Emoji Selection  ------------------------------------------
 // ----------------------------------------------------------------------------------------*/ 
@@ -233,7 +225,6 @@ ul, menu, dir {
     position: absolute;
     background-color: rgba(255,255,255,.9);
     top: -100%;
-    height: 200px;
     width: 100%;
     left: 0;
     text-align: center;

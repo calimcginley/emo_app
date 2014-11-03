@@ -10,7 +10,7 @@ window.localStorage.setItem('hex-are', 'on');
 var emoFilterArray = ['1', '2', '3', '4', '5', '6', '7', '8'];
 var filterOpen = false;
 
-var onSuccess = function(position)
+var onSuccess = function (position)
 {
     setViewLat = position.coords.latitude;
     window.localStorage.setItem('postLat', setViewLat);
@@ -22,9 +22,9 @@ var onSuccess = function(position)
 
 function onError(error)
 {
-    setViewLat = '52.341';
+    setViewLat = '-5.27';
     window.localStorage.setItem('postLat', setViewLat);
-    setViewLong = '-5.27';
+    setViewLong = '52.341';
     window.localStorage.setItem('postLong', setViewLong);
     console.log('Geo local fail lat is ' + setViewLat + ' and long is ' + setViewLong);
     setMapInAction();
@@ -45,22 +45,22 @@ function setMapInAction()
     //**************************************************************************
     L.HexbinLayer = L.Class.extend({
         includes: L.Mixin.Events,
-        initialize: function(rawData, options) {
+        initialize: function (rawData, options) {
             this.levels = {};
             this.layout = d3.hexbin().radius(22);
             this.rscale = d3.scale.sqrt().range([0, 22]).clamp(true);
             this.rwData = rawData;
             this.config = options;
         },
-        project: function(x) {
+        project: function (x) {
             var point = this.map.latLngToLayerPoint([x[1], x[0]]);
             return [point.x, point.y];
         },
-        getBounds: function(d) {
+        getBounds: function (d) {
             var b = d3.geo.bounds(d);
             return L.bounds(this.project([b[0][0], b[1][1]]), this.project([b[1][0], b[0][1]]));
         },
-        update: function() {
+        update: function () {
             var pad = 10, xy = this.getBounds(this.rwData), zoom = this.map.getZoom();
             this.container
                     .attr("width", xy.getSize().x + (2 * pad))
@@ -97,8 +97,8 @@ function setMapInAction()
                 this.curLevel.style("display", "none");
             }
         },
-        genHexagons: function(container) {
-            var data = this.rwData.features.map(function(d) {
+        genHexagons: function (container) {
+            var data = this.rwData.features.map(function (d) {
                 var coords = this.project(d.geometry.coordinates);
                 return [coords[0], coords[1], d.properties];
             }, this);
@@ -107,7 +107,7 @@ function setMapInAction()
             var hexagons = container.selectAll(".hexagon").data(bins);
 
             var counts = [];
-            bins.map(function(elem) {
+            bins.map(function (elem) {
                 counts.push(elem.length);
             });
             this.rscale.domain([0, (ss.mean(counts) + (ss.standard_deviation(counts) * 3))]);
@@ -118,14 +118,14 @@ function setMapInAction()
             that = this;
 
             hexagons
-                    .attr("d", function(d) {
+                    .attr("d", function (d) {
                         return that.layout.hexagon(that.rscale(d.length));
                     })
-                    .attr("transform", function(d) {
+                    .attr("transform", function (d) {
                         return "translate(" + d.x + "," + d.y + ")";
                     })
-                    .on('click', function(d) {
-                        map.on('click', function(e) {
+                    .on('click', function (d) {
+                        map.on('click', function (e) {
                             if (map.getZoom() <= 16)
                             {
                                 map.setView([e.latlng.lat, e.latlng.lng], map.getZoom() + 2);
@@ -138,11 +138,11 @@ function setMapInAction()
                         });
                     });
         },
-        addTo: function(map) {
+        addTo: function (map) {
             map.addLayer(this);
             return this;
         },
-        onAdd: function(map) {
+        onAdd: function (map) {
             this.map = map;
             var overlayPane = this.map.getPanes().overlayPane;
 
@@ -157,19 +157,19 @@ function setMapInAction()
         }
     });
 
-    L.hexbinLayer = function(data, styleFunction) {
+    L.hexbinLayer = function (data, styleFunction) {
         return new L.HexbinLayer(data, styleFunction);
     };
 
     //*******************  Get JSON data from php url***************************
     //**************************************************************************
-    window.setJsonLayers = function() {
+    window.setJsonLayers = function () {
 
         $('#hex-svg').remove();
         console.log('getJSONMarkerData() is running ...');
         var whereSQLString = '';
         var emoTypes = '';
-        $.each(emoFilterArray, function(index, value)
+        $.each(emoFilterArray, function (index, value)
         {
             if (index === (emoFilterArray.length - 1))
             {
@@ -187,7 +187,7 @@ function setMapInAction()
         console.log('The PHP url is now:');
         console.log(jsonStringHex);
 
-        d3.json(jsonStringHex, function(geoData) {
+        d3.json(jsonStringHex, function (geoData) {
 
             //**********  Hexbin Layer to Map and Style Function ***************
             //******************************************************************
@@ -197,7 +197,7 @@ function setMapInAction()
             function hexbinStyle(hexagons)
             {
                 console.log('hexbin style start - - - - - - -');
-                hexagons.attr("stroke", "black").attr("fill", function(d)
+                hexagons.attr("stroke", "black").attr("fill", function (d)
                 {
                     //********  Set Hexbin colour using count array  ***************
                     var emoArray = {
@@ -207,7 +207,7 @@ function setMapInAction()
                         '6': '#C32026', '7': '#F5851F'};
                     var countArray = [0, 0, 0, 0, 0, 0, 0, 0];
 
-                    $.each(d, function(key, value)
+                    $.each(d, function (key, value)
                     {
                         var emoNumber = value[2].emoType - 1;
                         countArray[emoNumber]++;
@@ -239,8 +239,8 @@ function setMapInAction()
         });
 
         //$.getJSON('http://emoapp.info/php/jsonPosts.php', function(data) {
-        $.getJSON(jsonStringHex, function(data) {
-            $.each(data.features, function(index, value) {
+        $.getJSON(jsonStringHex, function (data) {
+            $.each(data.features, function (index, value) {
                 //$.each(data.posts, function(index, value) {
                 //console.log('emoType in marker functio');
                 //console.log(value.properties.emoType);
@@ -270,7 +270,7 @@ function setMapInAction()
 
         //********  Marker Click Event  ***************
         //*********************************************
-        markers.on('click', function(e) {
+        markers.on('click', function (e) {
             console.log('Existing Marker Clicked');
             console.log('Exisitng Marker Clicked: Function');
             // Get the title for map and pass into php file with AJAX and post result
@@ -321,7 +321,7 @@ function setMapInAction()
     // 
     setJsonLayers();
     // Call the function every 5 seconds thereafter to refresh page
-    window.setInterval(function() {
+    window.setInterval(function () {
         if ($.mobile.activePage.attr('id') === 'mapPage')
         {
             /// Clear Layers and add new
@@ -332,7 +332,7 @@ function setMapInAction()
 
     // - - -  When the mapPage is shown This code will trigger - - -
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   
-    $(document).on("pageshow", "#mapPage", function() {
+    $(document).on("pageshow", "#mapPage", function () {
         // - -  Leaflet / MapBox Map - - 
         console.log('Invalidate the map size');
         map.invalidateSize();   // fixes the issue with map size   
@@ -350,18 +350,18 @@ function markerClicked(postID)
         type: 'post',
         async: 'true',
         //dataType: 'json',
-        beforeSend: function() {
+        beforeSend: function () {
             // This callback function will trigger before data is sent
             $.mobile.loading("show", {
                 text: 'Fetching Emotion Data',
                 textVisible: true
             });
         },
-        complete: function() {
+        complete: function () {
             // This callback function will trigger on data sent/received complete
             $.mobile.loading("hide");
         },
-        success: function(result) {
+        success: function (result) {
             // Map marker was success        
             console.log('Map Marker Fetch Succesfull');
             console.log($.trim(result));
@@ -374,7 +374,7 @@ function markerClicked(postID)
             $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
             $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
         },
-        error: function(request, error) {
+        error: function (request, error) {
             // This callback function will trigger on unsuccessful action               
             console.log('error = ' + error);
             console.log("XMLHttpRequest", XMLHttpRequest);
@@ -401,7 +401,7 @@ function addMarkerToMap(emoType, postID, pinLat, pinLong)
     var addMarker = L.marker([pinLat, pinLong]
             , {title: postID, icon: myIcon});
 
-    addMarker.on('click', function() {
+    addMarker.on('click', function () {
         console.log('New Marker Clicked');
         console.log('New Marker Clicked: Function');
         // Get the title for map and pass into php file with AJAX and post result
@@ -430,10 +430,10 @@ function mapSetView(mLat, mLong)
 
 
 // Map Emoji Filter
-$(document).on("pageshow", "#mapPage", function() {
+$(document).on("pageshow", "#mapPage", function () {
 
     // Filter Menu Button
-    $(".emoFilterBtn").click(function()
+    $(".emoFilterBtn").click(function ()
     {
         // Check if mapPage is active
         // If not naviagte to mapPage and then open the filter bar
@@ -469,7 +469,7 @@ $(document).on("pageshow", "#mapPage", function() {
 
     // Filter Buttons click event, add/remove opacity class and 
     // Append and remove emoType from array
-    $('.emojiFilter').on('click', function() {
+    $('.emojiFilter').on('click', function () {
         // Parent Emoji Clicked
         console.log('Filter clicked');
         var emoType = $(this).attr('data-name');
@@ -483,7 +483,7 @@ $(document).on("pageshow", "#mapPage", function() {
         {
             $(this).addClass('filterOff');
             $('#checkboxSelectAll').prop("checked", false).checkboxradio("refresh");
-            emoFilterArray = jQuery.grep(emoFilterArray, function(value) {
+            emoFilterArray = jQuery.grep(emoFilterArray, function (value) {
                 return value !== emoType;
             });
         }
@@ -492,7 +492,7 @@ $(document).on("pageshow", "#mapPage", function() {
     });
 
     // Checkbox Select All/None function on filter
-    $('#checkboxSelectAll').on('click', function() {
+    $('#checkboxSelectAll').on('click', function () {
         if ($('#checkboxSelectAll').prop('checked'))
         {
             // Remove all classes for opacity and fill array
@@ -508,7 +508,7 @@ $(document).on("pageshow", "#mapPage", function() {
     });
 
     // Filter Button closes the filter bar and initates new hex-svg elements.
-    $("#filterButton").bind("click", function(event, ui) {
+    $("#filterButton").bind("click", function (event, ui) {
         console.log('Filter Button Clicked');
         $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
         filterOpen = !filterOpen;
@@ -525,17 +525,13 @@ $(document).on("pageshow", "#mapPage", function() {
     var monthsFull = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     //var timeNow = now.getFullYear() + '-' + month + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':00';
-    var timeNow = now.getDate() +' ' +monthsFull[now.getMonth()] +', ' +now.getFullYear();
+    var timeNow = now.getDate() + ' ' + monthsFull[now.getMonth()] + ', ' + now.getFullYear();
     // yyyy-MM-dd HH:mm:ss
     console.log(timeNow);
-    
-    $('#datepicker').val(timeNow);
 
-    $('#datepicker').pickadate({
-        min: new Date(2013, 0, 1),
-        max: new Date(now.getFullYear(), now.getMonth(), now.getDate()),
-        //selectYears: true,
-        selectMonths: true
+    $('.input-daterange').datepicker({
+        autoclose: true,
+        todayHighlight: true
     });
 
     // Date time picker
