@@ -58,17 +58,6 @@ body,
     left: 0;    
 }
 
-.profileHeader
-{
-    position: fixed;    
-    z-index: 1000;
-    width: 100%;
-    padding-top: 20px;
-    height: 88px; 
-    background-color: #79CCCA;
-    top: 0;
-    left: 0;    
-}
 
 .mapHeader h1, h2, h3, h4
 {
@@ -77,15 +66,7 @@ body,
     text-align: center;
 }
 
-.profileNavWrap {
-    position: fixed; 
-    z-index: 1000;
-    top: 64px;
-    left: 0;
-    width: 100%;
-    margin-top: 10px;
-    background-color: #79CCCA;
-}
+
 
 
 /* Overlay */

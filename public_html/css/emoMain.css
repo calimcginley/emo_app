@@ -242,12 +242,28 @@ ul, menu, dir {
 /* ------------------------------------------------------------------------------------------
 // ------------------------------  Profile Page  ------------------------------------------
 // ----------------------------------------------------------------------------------------*/ 
-
-.profileNavImg 
+.profileHeader
 {
+    position: fixed;    
+    z-index: 1000;
+    width: 100%;
+    padding-top: 20px;
+    height: 88px; 
+  background-image: url(../images/profile/profileBack.svg);
+    top: 0;
+    left: 0;    
+}
+
+.profileHeader a {
+    float: right;
+  
+   
+}
+
+.profileHeader img {
     width: 33%;
-    height: 44px;
-    float: left;
+    height: 44px; 
+    
 }
 
 .profileTab {
