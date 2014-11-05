@@ -2,13 +2,13 @@
 <!-- This is Prototype of the Emotion App designed by Sona Harrison and Keith McGinley This is a hybrid app which will be deployed on PhoneGap -->
 <html>
     <head>
-        <title>emo | emotion mapping</title>
+        <title>VIBES | emotion mapping</title>
         <meta charset="UTF-8">
         <meta charset="UTF-8">
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
         <!--  Theme Roller Can go here  -->
         <link href="css/emoTheme.css" rel="stylesheet" type="text/css"/>
-        <link href="css/jquery.mobile.icons.min.css" rel="stylesheet" type="text/css"/>
+        <!--        <link href="css/jquery.mobile.icons.min.css" rel="stylesheet" type="text/css"/>-->
         <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery-1.10.2.min.js"></script> 
         <script src="js/jquery.mobile-1.4.5.min.js"></script>
@@ -26,8 +26,8 @@
         <link href="css/normalize.css" rel="stylesheet" type="text/css"/>
         <link href="css/emoSlideMenu.css" rel="stylesheet" type="text/css"/>
         <link href="css/emoMenu_cornermorph.css" rel="stylesheet" type="text/css"/>        
-        <link href="css/topcoat-mobile-light.css" rel="stylesheet" type="text/css"/>        
-
+        <link href="css/topcoat-mobile-light.css" rel="stylesheet" type="text/css"/>         
+        <link href="css/datepicker3.css" rel="stylesheet" type="text/css"/>
         <!--   JS Plugins go here   -->
         <script src="js/cordova.js" type="text/javascript"></script>
         <script src='js/mapbox.js'  type="text/javascript"></script>
@@ -40,8 +40,8 @@
         <script src="js/floatlabels.min.js"  type="text/javascript"></script>    
         <script src="js/jquery.emoji.js" type="text/javascript"></script>
         <script src="js/jquery.sha256.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
-        <link href="css/datepicker3.css" rel="stylesheet" type="text/css"/>
+        <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>       
+        <script src="js/moment.js" type="text/javascript"></script>
     </head>
     <body>
         <!--    Start of   -->
@@ -106,8 +106,7 @@
                         </div>                       
                         <img src="" id="emoPostPopup" alt=" "/>
                         <div id="popUpInfo">
-                            <strong>Emoji Sentence</strong><br>
-                            <strong>Time: How long ago</strong><br>
+                            <i class="fa fa-clock-o fa-2x"></i>
                         </div>
                     </nav>              
                 </div>
@@ -203,12 +202,18 @@
                 <button class="menu-button"> </button>
                 <div data-role="content" class="content-wrap">
                     <div class="profileHeader">
-                        <a href="#settingsPage" data-transition="fade">
-                            <img src="images/profile/settings.svg" alt=''/>
-                        </a>   
-                        <a href="#profilePage" data-transition="fade">
-                            <img src="images/profile/pins.svg" alt='' />
-                        </a>
+                        <h3>My Vibes</h3>
+
+                        <div class="profileNavWrap">
+                            <div class="profileNav">
+                                <a href="#profilePage" data-transition="fade">
+                                    <img src="images/profile/pins.svg" class="profileNavImg"/>
+                                </a>
+                                <a href="#settingsPage" data-transition="fade">
+                                    <img src="images/profile/settings.svg" class="profileNavImg" style="padding-left: 10em;"/>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div id="honeyProfileTab">
                         <div class="honeycombs">
@@ -225,7 +230,7 @@
                 <div class="menu-wrap">
                     <nav class="menu-top">
                         <div class="profile">
-                            <img src="images/vibesHeader.svg" alt="vibe">
+                            <img src="images/vibesHeader.png" alt="vibe">
                         </div>
 
                     </nav>
@@ -244,7 +249,7 @@
                 <button class="menu-button"> </button>
                 <div data-role="content" class="content-wrap">
                     <div class="profileHeader">
-                        <h3 style='color: white;'>My Settings</h3>
+                        <h3>My Settings</h3>
 
                         <div class="profileNavWrap">
                             <div class="profileNav">
@@ -269,8 +274,8 @@
                             <option value="2">Female</option>
                             <option value="3">Other</option>
                         </select>
-                        <button id="updateBtn" data-theme="a">Update User Info</button>
-                        <button id="logoutBtn" data-theme="a">Logout</button>
+                        <button id="updateBtn" >Update User Info</button>
+                        <button id="logoutBtn" >Logout</button>
                     </div>
                 </div><!-- /content-wrap -->
             </div><!-- /container -->
