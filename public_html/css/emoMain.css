@@ -259,6 +259,10 @@ ul, menu, dir {
   
    
 }
+.profileNavImg {
+    
+    float: right;
+}
 
 .profileHeader img {
     width: 33%;
