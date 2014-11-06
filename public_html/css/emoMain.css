@@ -249,7 +249,7 @@ ul, menu, dir {
     width: 100%;
     padding-top: 20px;
     height: 88px; 
-  background-image: url(../images/profile/profileBack_2.svg);
+  background-image: url(../images/profile/profileBack_3.svg);
     top: 0;
     left: 0;    
 }
@@ -274,7 +274,7 @@ ul, menu, dir {
     position: relative;
     top: 108px;
     width: 100%;
-    height: 100%;
+   
     margin-top: 20px;
     margin-bottom: 10px;
 }
