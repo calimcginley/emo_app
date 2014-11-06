@@ -167,7 +167,7 @@ function setMapInAction()
 
         $('#hex-svg').remove();
         console.log('getJSONMarkerData() is running ...');
-        var whereSQLString = '';
+        var whereTimeString = window.localStorage.getItem('sqlTimeStr');
         var emoTypes = '';
         $.each(emoFilterArray, function (index, value)
         {
@@ -183,7 +183,7 @@ function setMapInAction()
 
         console.log('The REGEXP string is now:');
         console.log(emoTypes);
-        var jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27';
+        var jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&whereString=' + whereTimeString;
         console.log('The PHP url is now:');
         console.log(jsonStringHex);
 
@@ -348,6 +348,7 @@ function markerClicked(postID)
     $.ajax({url: 'http://emoapp.info/php/getMarkerInfo.php',
         data: {action: 'markerPost', postID: postID},
         type: 'post',
+        dataType: "json",
         async: 'true',
         //dataType: 'json',
         beforeSend: function () {
@@ -362,13 +363,25 @@ function markerClicked(postID)
             $.mobile.loading("hide");
         },
         success: function (result) {
-            // Map marker was success        
-            console.log('Map Marker Fetch Succesfull');
-            console.log($.trim(result));
-            console.log(result.status);
-            var imgSrc = 'http://emoapp.info/uploads/' + $.trim(result) + '.jpg';
-            console.log('The image src is : ' + imgSrc);
-            $('#emoPostPopup').attr('src', imgSrc);
+            $.each(result.marker, function (key, val) {
+                // Map marker was success  
+                $('#emoPostPopup').attr('src', ' ');
+                console.log('Map Marker Fetch Succesfull');
+                console.log(val);
+                console.log(val.imageName);
+                console.log(val.timerSever);
+                var imgSrc = 'http://emoapp.info/uploads/' + val.imageName + '.jpg';
+                console.log('The image src is : ' + imgSrc);
+                $('#emoPostPopup').attr('src', imgSrc);
+                // Time 2014-09-26 14:40:36
+                var a = moment(val.timeNow);              
+                var b = moment(val.timeServer);
+                var timeOffset = a.from(b);
+                console.log(timeOffset);
+
+                $('#popUpInfo').html('<i class="fa fa-clock-o fa-2x"></i> ' +timeOffset);
+            });
+
             // Open the Map Marker
             $('#mapPage').addClass('show-popup');
             $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
@@ -515,6 +528,18 @@ $(document).on("pageshow", "#mapPage", function () {
         setJsonLayers();
     });
 
+    // Filter Button closes the filter bar and initates new hex-svg elements.
+    $(".quickSearch").bind("click", function (event, ui) {
+        console.log('Quick Search Clicked');
+        // Set the variables
+        var timeInterval = $(this).attr('data-name');
+        window.localStorage.setItem('sqlTimeStr', 'SUBDATE(CURDATE(),%27INTERVAL%27' + timeInterval + ')%27AND%27NOW()');
+        console.log('Time Interval set as: ' + timeInterval);
+        $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
+        filterOpen = !filterOpen;
+        setJsonLayers();
+    });
+
 // ------------------------------------------------------------------------------------------
 // ------------------------------ Filter form inputs  -------------------------------
 // ------------------------------------------------------------------------------------------
@@ -533,58 +558,4 @@ $(document).on("pageshow", "#mapPage", function () {
         autoclose: true,
         todayHighlight: true
     });
-
-    // Date time picker
-//    $("#dtBox").DateTimePicker({
-//        defaultDate: timeNow,
-//        titleContentDateTime: 'Set Date & Time',
-//        dateTimeFormat: 'dd-MM-yyyy HH:mm:ss',
-//        maxDate: timeNow
-//    });
-
-    // Activate Range Slider
-//    $("#sliderDate").dateRangeSlider({
-//        formatter: function(val) {
-//            var days = val.getDate(),
-//                    month = val.getMonth(),
-//                    year = val.getFullYear(),
-//                    hour = val.getHours();
-//            return days + "/" + month + "/" + year + ", " + hour + ":00";
-//        },
-//        step: {
-//            hours: 8
-//        },
-//        bounds: {
-//            min: new Date(1, 1, 2013),
-//            max: timeNow
-//        }
-//
-//    });
-
-
-
-//
-//    $('#timeSpan input[type=radio]').change(function() {
-//        var radioType = $(this).val();
-//        //<input type="range" name="slider-1" id="timeSlider" min="1" max="23" value="8" data-popup-enabled="true">
-//        var slider = $('#timeSlider');
-//        if (radioType === 'hour')
-//        {
-//            slider.attr('max', 23);
-//            slider.attr('value', 8);
-//            $("#timeSlider").slider("refresh");
-//        }
-//        else if (radioType === 'day')
-//        {
-//            slider.attr('max', 6);
-//            slider.attr('value', 3);
-//            $("#timeSlider").slider("refresh");
-//        }
-//        else
-//        {
-//            slider.attr('max', 4);
-//            slider.attr('value', 2);
-//            $("#timeSlider").slider("refresh");
-//        }
-//    });
 });
