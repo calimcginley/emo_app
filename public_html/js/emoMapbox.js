@@ -8,6 +8,8 @@ var setViewLat;
 var setViewLong;
 window.localStorage.setItem('hex-are', 'on');
 var emoFilterArray = ['1', '2', '3', '4', '5', '6', '7', '8'];
+// ' %27 comma is %2C space is +
+window.localStorage.setItem('timeType', 'default');
 var filterOpen = false;
 
 var onSuccess = function (position)
@@ -167,7 +169,8 @@ function setMapInAction()
 
         $('#hex-svg').remove();
         console.log('getJSONMarkerData() is running ...');
-        var whereTimeString = window.localStorage.getItem('sqlTimeStr');
+        var timeType = window.localStorage.getItem('timeType');
+        var interval = window.localStorage.getItem('interval');
         var emoTypes = '';
         $.each(emoFilterArray, function (index, value)
         {
@@ -183,7 +186,7 @@ function setMapInAction()
 
         console.log('The REGEXP string is now:');
         console.log(emoTypes);
-        var jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&whereString=' + whereTimeString;
+        var jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType +'&interval=' +interval;
         console.log('The PHP url is now:');
         console.log(jsonStringHex);
 
@@ -535,7 +538,8 @@ $(document).on("pageshow", "#mapPage", function () {
         console.log('Quick Search Clicked');
         // Set the variables
         var timeInterval = $(this).attr('data-name');
-        window.localStorage.setItem('sqlTimeStr', 'SUBDATE(CURDATE(),%27INTERVAL%27' + timeInterval + ')%27AND%27NOW()');
+        window.localStorage.setItem('timeType', 'fastButtons');
+        window.localStorage.setItem('interval', timeInterval);
         console.log('Time Interval set as: ' + timeInterval);
         $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
         filterOpen = !filterOpen;
