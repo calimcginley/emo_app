@@ -110,6 +110,7 @@
 	left: 10px;
 	-webkit-transform-origin: 0% 100%;
 	transform-origin: 0% 100%;
+      
 }
 
 @media screen and (max-width: 50em) {
@@ -124,7 +125,7 @@
 	height: 0%;
 	opacity: 1;
 	font-size: 0.50em;	
-        color: #64697d;	
+        color: #9e9e9e;	
         text-align: left;
         background-color: #FFFFFF;
 }
