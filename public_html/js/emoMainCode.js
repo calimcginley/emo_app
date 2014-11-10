@@ -193,15 +193,9 @@ function camera()
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
         // Add the emoji Colour
-        context.rect(0, 0, 960, 990);
+        context.rect(0, 0, 960, 970);
         context.fillStyle = emojiColours[parentEmoji];
         context.fill();
-        // Add the emoji Icon
-        var emojiIconObj = new Image();
-        emojiIconObj.onload = function () {
-            context.drawImage(emojiIconObj, 20, 900);
-        };
-        emojiIconObj.src = 'images/emojiSelect/emoji-'+parentEmoji+'.png';
 
         // Camera Image Loaded
         var imageObj = new Image();
@@ -245,7 +239,7 @@ $(document).on('click', '#postToMapBtn', function () {
             var imgEmo = new Image();
             (function (pad) {
                 imgEmo.onload = function () {
-                    context.drawImage(imgEmo, pad, 990, 60, 60);
+                    context.drawImage(imgEmo, pad, 980, 60, 60);
                 };
                 imgEmo.src = 'images/emojis/' + value.title + '.png';
             })(padLeft);
@@ -258,6 +252,12 @@ $(document).on('click', '#postToMapBtn', function () {
                 imgEmo.addEventListener('load', sendPost);
             }
         });
+           // Add the emoji Icon
+        var emojiIconObj = new Image();
+        emojiIconObj.onload = function () {
+            context.drawImage(emojiIconObj, 20, 900);
+        };
+        emojiIconObj.src = 'images/emojiSelect/emoji-' +window.localStorage.getItem('parentPostEmoji') +'.png';
     }
 
     var onSuccess = function (position)
@@ -573,31 +573,31 @@ $(document).on('click', '.removeEmoji', function () {
     $(this).remove();
 });
 
-$(document).on('click', '#testArray', function () {
-    var imgEmoji = $(".emojiRender").children('.removeEmoji');
-    var emojiImgArr = jQuery.makeArray(imgEmoji);
-    console.log(emojiImgArr);
-    var padLeft = 20;
-    var canvas = document.getElementById('imageCanvas');
-    var context = canvas.getContext('2d');
-
-    $.each(emojiImgArr, function (index, value)
-    {
-
-        console.log(index);
-        console.log(value.title);
-        var imgEmo = new Image();
-        (function (pad) {
-            imgEmo.onload = function () {
-                context.drawImage(imgEmo, pad, 200, 30, 30);
-            };
-            imgEmo.src = 'images/emojis/' + value.title + '.png';
-        })(padLeft);
-        padLeft = padLeft + 50;
-        console.log(padLeft);
-    });
-
-});
+//$(document).on('click', '#testArray', function () {
+//    var imgEmoji = $(".emojiRender").children('.removeEmoji');
+//    var emojiImgArr = jQuery.makeArray(imgEmoji);
+//    console.log(emojiImgArr);
+//    var padLeft = 20;
+//    var canvas = document.getElementById('imageCanvas');
+//    var context = canvas.getContext('2d');
+//
+//    $.each(emojiImgArr, function (index, value)
+//    {
+//
+//        console.log(index);
+//        console.log(value.title);
+//        var imgEmo = new Image();
+//        (function (pad) {
+//            imgEmo.onload = function () {
+//                context.drawImage(imgEmo, pad, 200, 30, 30);
+//            };
+//            imgEmo.src = 'images/emojis/' + value.title + '.png';
+//        })(padLeft);
+//        padLeft = padLeft + 50;
+//        console.log(padLeft);
+//    });
+//
+//});
 
 // -------------------------------------------------------------------------------------------
 // ------------------------------  When the Profile is showen ---------------------------- 
