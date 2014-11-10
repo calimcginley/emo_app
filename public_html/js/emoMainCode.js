@@ -193,20 +193,20 @@ function camera()
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
         // Add the emoji Colour
-        context.rect(0, 0, 320, 330);
+        context.rect(0, 0, 960, 990);
         context.fillStyle = emojiColours[parentEmoji];
         context.fill();
         // Add the emoji Icon
         var emojiIconObj = new Image();
         emojiIconObj.onload = function () {
-            context.drawImage(emojiIconObj, 10, 280);
+            context.drawImage(emojiIconObj, 20, 900);
         };
         emojiIconObj.src = 'images/emojiSelect/emoji-'+parentEmoji+'.png';
 
         // Camera Image Loaded
         var imageObj = new Image();
         imageObj.onload = function () {
-            context.drawImage(imageObj, 10, 10, 300, 300);
+            context.drawImage(imageObj, 0, 0, 960, 960);
         };
         imageObj.src = imageURI;
     }
@@ -245,11 +245,11 @@ $(document).on('click', '#postToMapBtn', function () {
             var imgEmo = new Image();
             (function (pad) {
                 imgEmo.onload = function () {
-                    context.drawImage(imgEmo, pad, 330, 30, 30);
+                    context.drawImage(imgEmo, pad, 990, 60, 60);
                 };
                 imgEmo.src = 'images/emojis/' + value.title + '.png';
             })(padLeft);
-            padLeft = padLeft + 15;
+            padLeft = padLeft + 75;
             console.log(padLeft);
             if (index === lastLoop)
             {
@@ -435,14 +435,14 @@ $(document).ready(function ()
         {
             console.log('emoji keypad opened');
             $('#toggle').html('close');
-            $("#insertButtons").velocity({top: "-=100", easing: "easein"}, 400).delay(800);
+            $("#insertButtons").velocity({top: "-=250", easing: "easein"}, 400).delay(800);
             window.localStorage.setItem('emojiKeypad', 'on');
         }
         else
         {
             console.log('emoji keypad closed');
             $('#toggle').html('emoji Description');
-            $("#insertButtons").velocity({top: "+=100", easing: "easein"}, 400).delay(800);
+            $("#insertButtons").velocity({top: "+=250", easing: "easein"}, 400).delay(800);
             window.localStorage.setItem('emojiKeypad', 'off');
         }
     });
