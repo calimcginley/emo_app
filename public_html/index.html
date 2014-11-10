@@ -54,7 +54,7 @@
 
         <!--    Start of   --><!--    Login Page   -->
         <div data-role="page" id="loginPage" data-theme="a">
-            <div class="mapHeader"><h2>vibes</h2></div>
+            <div class="mapHeader"><img src="images/vibesHeader.svg" alt="" style="padding-left: 8em;"></div>
             <div data-role="content">
                 <form id="loginForm" data-ajax="false">
                     <input type="email" name="email" id="email" placeholder="Email" class="floatlabel_1"/>
@@ -73,6 +73,7 @@
                     <a href="#" onclick="forgotPassword()" id="forgotPass" >Forgot Password?</a><br>
                 </p>                
             </div>
+            <img src="images/vibesLoginBorder.svg" alt="" style="padding-bottom: 0;">
         </div>
         <!--   End of   --><!--  Login Page  -->
 
@@ -242,7 +243,9 @@
                             <option value="3">Other</option>
                         </select>
                         <button id="updateBtn" >Update User Info</button>
+                        <button id="aboutButton" data-transition="slide">About Vibes</button>
                         <button id="logoutBtn" >Logout</button>
+                        
                          <img src='images/vibesHeader_2.svg' alt='' style="padding-left: 7em; padding-top: 3em;" >
                     </div>
                    
