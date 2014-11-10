@@ -73,6 +73,7 @@ $(document).ready(function () {
 // Close the Popup using #close-button
     $('#btnClose').click(function () {
         $('#mapPage').removeClass('show-popup');
+        $('#settingsPage').removeClass('show-about');
         console.log('Close popup on map page');
         console.log('The current page is ' + $.mobile.activePage.attr('id'));
     });

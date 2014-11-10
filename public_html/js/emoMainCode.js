@@ -5,15 +5,15 @@
 // ------------------------------------------------------------------------------------------
 
 $(document).ready(function () {
-    
+
     var imageArray = [];
     window.localStorage.setItem('profileArray', JSON.stringify(imageArray));
     console.log(window.localStorage.getItem('profileArray'));
-    
+
     // Load Menu 
 //    console.log('load menu');
 //    $( ".menu-wrap" ).load( "menu.html #menu" );
-    
+
     // float label
     $('.floatlabel_1').floatlabel();
 
@@ -32,6 +32,14 @@ $(document).ready(function () {
             $("#fbText").text(' Log in with Facebook');
         }
     });
+
+    $('.mapLink').click(function () {
+        var pageID = $.mobile.activePage.attr('id');
+        $('#' + pageID).removeClass('show-menu');
+        $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
+    });
+
+
 });
 
 
@@ -300,7 +308,7 @@ $(document).on('click', '#postToMapBtn', function () {
             //document.getElementById('imageCanvas').src = imageURI;
             //var imageURI = document.getElementById('imageCanvas').src;
             //console.log(imageURI);
-            
+
             // http://stackoverflow.com/questions/13198131/how-to-save-a-html5-canvas-as-image-on-a-server
             $.ajax({
                 type: "POST",
@@ -753,5 +761,14 @@ $(document).on("pageshow", "#settingsPage", function () {
                 console.log("XMLHttpRequest", XMLHttpRequest);
             }
         });
+    });
+
+    $("#aboutButton").click(function ()
+    {
+        $('#settingsPage').addClass('show-about');
+    });
+
+    $('#btnCloseAbout').click(function () {
+        $('#settingsPage').removeClass('show-about');
     });
 });
