@@ -272,8 +272,8 @@ $(document).on('click', '#postToMapBtn', function () {
         console.log('User Email: ' + userEmail);
         var parentEmoji = window.localStorage.getItem('parentPostEmoji');
         console.log('Parent Emoji: ' + parentEmoji);
-        var emojiSentence = $('#emojiSentDiv').html();
-        console.log('emoji sentence: ' + emojiSentence);
+        //var emojiSentence = $('#emojiSentDiv').html();
+        //console.log('emoji sentence: ' + emojiSentence);
         var timeStmp = $.now();
         var imageNameStr = timeStmp + '_' + userID;
         console.log('Image Name: ' + imageNameStr);
@@ -296,12 +296,12 @@ $(document).on('click', '#postToMapBtn', function () {
             console.log('File Path');
 
             //var imageURI = window.localStorage.getItem('imageURI');
-            //var canvas = document.getElementById('imageCanvas');
-            document.getElementById('imageHolder').value = document.getElementById('imageCanvas').toDataURL('image/png');
+            var imageData = document.getElementById('imageCanvas').toDataURL('image/png');
+            //document.getElementById('imageHolder').value = document.getElementById('imageCanvas').toDataURL('image/png');
 
             //var imageData = canvas.toDataURL();
             console.log('File Path-2');
-            //console.log(imageData);
+            console.log(imageData);
 
             // set canvasImg image src to dataURL
             // so it can be saved as an image
