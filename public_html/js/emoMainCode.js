@@ -185,13 +185,26 @@ function camera()
 
     function onSuccess(imageURI)
     {
+        var emojiColours = ['rgba(251, 237, 40, 0.9)', '#69CBE1', '#A554A0', '#64BC45', '#E10686', '#69CBE1', '#C32026', '#F5851F'];
+        var parentEmoji = window.localStorage.getItem('parentPostEmoji');
         console.log('Camera opened and image was captured');
         // Canvas Mood on image
         var canvas = document.getElementById('imageCanvas');
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
-        var imageObj = new Image();
+        // Add the emoji Colour
+        context.rect(0, 0, 320, 330);
+        context.fillStyle = emojiColours[parentEmoji];
+        context.fill();
+        // Add the emoji Icon
+        var emojiIconObj = new Image();
+        emojiIconObj.onload = function () {
+            context.drawImage(emojiIconObj, 10, 280);
+        };
+        emojiIconObj.src = 'images/emojiSelect/emoji-'+parentEmoji+'.png';
 
+        // Camera Image Loaded
+        var imageObj = new Image();
         imageObj.onload = function () {
             context.drawImage(imageObj, 10, 10, 300, 300);
         };
@@ -220,7 +233,7 @@ $(document).on('click', '#postToMapBtn', function () {
         var imgEmoji = $(".emojiRender").children('.removeEmoji');
         var emojiImgArr = jQuery.makeArray(imgEmoji);
         console.log(emojiImgArr);
-        var padLeft = 20;
+        var padLeft = 15;
         var canvas = document.getElementById('imageCanvas');
         var context = canvas.getContext('2d');
         var lastLoop = emojiImgArr.length - 1;
@@ -232,11 +245,11 @@ $(document).on('click', '#postToMapBtn', function () {
             var imgEmo = new Image();
             (function (pad) {
                 imgEmo.onload = function () {
-                    context.drawImage(imgEmo, pad, 200, 30, 30);
+                    context.drawImage(imgEmo, pad, 330, 30, 30);
                 };
                 imgEmo.src = 'images/emojis/' + value.title + '.png';
             })(padLeft);
-            padLeft = padLeft + 50;
+            padLeft = padLeft + 15;
             console.log(padLeft);
             if (index === lastLoop)
             {
@@ -441,14 +454,19 @@ $(document).on("pagecreate", "#emotionPostPage", function () {
 
     // Set the image in place for camera
     var canvas = document.getElementById('imageCanvas');
+    canvas.width = 960;
+    canvas.height = 1040;
+    canvas.style.width = '320px';
+    canvas.style.height = '360px';
     var context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
-    var imageObj = new Image();
 
-    imageObj.onload = function () {
-        context.drawImage(imageObj, 80, 0);
+    var canvasBtnObj = new Image();
+
+    canvasBtnObj.onload = function () {
+        context.drawImage(canvasBtnObj, 80, 0);
     };
-    imageObj.src = 'images/menu/cameraBtn.svg';
+    canvasBtnObj.src = 'images/menu/canvasBtn.svg';
 
     // Set up emoji Keypad
     console.log('set tab selection of emoji');

@@ -473,6 +473,11 @@ ul, menu, dir {
     width: 20%;
 }
 
+#canvasBuffer {
+    width: 100%;
+    height: 44px;
+}
+
 /*****************************************************
  * generic styling for ALS elements: outer container
  ******************************************************/
