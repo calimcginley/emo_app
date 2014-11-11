@@ -9,8 +9,6 @@ var setViewLong;
 window.localStorage.setItem('hex-are', 'on');
 var emoFilterArray = ['1', '2', '3', '4', '5', '6', '7', '8'];
 window.localStorage.setItem('timeType', 'default');
-$('#dateStart').val("undefined");
-$('#dateEnd').val("undefined");
 var filterOpen = false;
 
 var onSuccess = function (position)
@@ -177,7 +175,7 @@ function setMapInAction()
         var interval = window.localStorage.getItem('interval');
         var startDate = $('#dateStart').val();
         var endDate = $('#dateEnd').val();
-        if (typeof startDate !== "undefined" || typeof endDate !== "undefined") {timeType = 'dateRange';}
+
         var emoTypes = '';
         $.each(emoFilterArray, function (index, value)
         {
@@ -540,8 +538,31 @@ $(document).on("pageshow", "#mapPage", function () {
         }
     });
 
+    // Advanced Filter
+    $("#advancedFilter").on("collapsibleexpand", function (event, ui) {
+        // The Advanced Tab is opened
+        $("#filterButton").val('Filter by Date').button("refresh");
+    });
+
+    $("#advancedFilter").on("collapsiblecollapse", function (event, ui) {
+        // The Advanced Tab is closed
+        $("#filterButton").val('Filter emoji').button("refresh");
+    });
+
+
     // Filter Button closes the filter bar and initates new hex-svg elements.
     $("#filterButton").bind("click", function (event, ui) {
+        // Check the button type and decide which timeType to declare
+        var btnType = $("#filterButton").val();
+        if(btnType === 'Filter by Date')
+        {
+            window.localStorage.setItem('timeType', 'dateRange');
+        }
+        else
+        {
+            window.localStorage.setItem('timeType', 'default');            
+        }
+
         console.log('Filter Button Clicked');
         $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
         filterOpen = !filterOpen;
