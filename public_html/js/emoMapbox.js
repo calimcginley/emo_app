@@ -171,6 +171,12 @@ function setMapInAction()
         console.log('getJSONMarkerData() is running ...');
         var timeType = window.localStorage.getItem('timeType');
         var interval = window.localStorage.getItem('interval');
+        var startDate = $('#dateStart').val();
+        var endDate = $('#dateEnd').val();
+        if(typeof startDate !== "undefined" && typeof endDate !== "undefined")
+        {
+            timeType = 'dateRange';            
+        }            
         var emoTypes = '';
         $.each(emoFilterArray, function (index, value)
         {
@@ -185,8 +191,8 @@ function setMapInAction()
         });
 
         console.log('The REGEXP string is now:');
-        console.log(emoTypes);
-        var jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType +'&interval=' +interval;
+        console.log(emoTypes +'Dates: '+moment(startDate, "YYYY-MM-DD HH:mm:ss").format());
+        var jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType +'&interval=' +interval+'&startDate=' +moment(startDate, "YYYY-MM-DD").format()+'&endDate=' +moment(endDate, "YYYY-MM-DD").format();
         console.log('The PHP url is now:');
         console.log(jsonStringHex);
 
@@ -551,14 +557,14 @@ $(document).on("pageshow", "#mapPage", function () {
 // ------------------------------------------------------------------------------------------
 
     // Get Current Time
-    var now = new Date();
-    var month = now.getMonth() + 1;
-    var monthsFull = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-    //var timeNow = now.getFullYear() + '-' + month + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':00';
-    var timeNow = now.getDate() + ' ' + monthsFull[now.getMonth()] + ', ' + now.getFullYear();
-    // yyyy-MM-dd HH:mm:ss
-    console.log(timeNow);
+//    var now = new Date();
+//    var month = now.getMonth() + 1;
+//    var monthsFull = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+//
+//    //var timeNow = now.getFullYear() + '-' + month + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':00';
+//    var timeNow = now.getDate() + ' ' + monthsFull[now.getMonth()] + ', ' + now.getFullYear();
+//    // yyyy-MM-dd HH:mm:ss
+//    console.log(timeNow);
 
     $('.input-daterange').datepicker({
         autoclose: true,

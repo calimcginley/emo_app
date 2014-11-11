@@ -193,13 +193,14 @@ function camera()
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
         // Add the emoji Colour
-        context.rect(0, 0, 960, 970);
+        context.rect(0, 0, 960, 975);
         context.fillStyle = emojiColours[parentEmoji];
         context.fill();
 
         // Camera Image Loaded
         var imageObj = new Image();
         imageObj.onload = function () {
+            context.globalAlpha = 1;
             context.drawImage(imageObj, 0, 0, 960, 960);
         };
         imageObj.src = imageURI;
@@ -230,33 +231,27 @@ $(document).on('click', '#postToMapBtn', function () {
         var padLeft = 15;
         var canvas = document.getElementById('imageCanvas');
         var context = canvas.getContext('2d');
-//        var lastLoop = emojiImgArr.length - 1;
 
         $.each(emojiImgArr, function (index, value)
         {
+            // Emoji Input Canvas
             console.log(index);
             console.log(value.title);
             var imgEmo = new Image();
             (function (pad) {
                 imgEmo.onload = function () {
-                    context.drawImage(imgEmo, pad, 980, 60, 60);
+                    context.drawImage(imgEmo, pad, 980, 90, 90);
                 };
                 imgEmo.src = 'images/emojis/' + value.title + '.png';
             })(padLeft);
-            padLeft = padLeft + 75;
+            padLeft = padLeft + 105;
             console.log(padLeft);
-//            if (index === lastLoop)
-//            {
-//                // On last loop when image is loaded
-//                // Send the post to server
-//                imgEmo.addEventListener('load', sendPost);
-//            }
         });
-        // Add the emoji Icon
+        // Add the emoji Icon Canvas
         var emojiIconObj = new Image();
         emojiIconObj.onload = function () {
             context.globalAlpha = 0.58;
-            context.drawImage(emojiIconObj, 20, 20, 100, 88);
+            context.drawImage(emojiIconObj, 20, 20, 200, 176);
         };
         emojiIconObj.src = 'images/emojiSelect/emoji-' + window.localStorage.getItem('parentPostEmoji') + '.png';
         emojiIconObj.addEventListener('load', sendPost);
@@ -316,6 +311,8 @@ $(document).on('click', '#postToMapBtn', function () {
                 }
             }).done(function (o) {
                 console.log('Image Uploaded: saved');
+                $.mobile.loading("hide");
+                $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
             });
         }
 
@@ -341,7 +338,6 @@ $(document).on('click', '#postToMapBtn', function () {
             complete: function () {
                 // This callback function will trigger on data sent/received complete
                 console.log('Complete ');
-                //$.mobile.hidePageLoadingMsg(); // This will hide ajax spinner
             },
             success: function (result) {
                 console.log('Database call was : ' + result);
@@ -404,7 +400,7 @@ $(document).on("pagecreate", "#emotionPostPage", function () {
     // Set the image in place for camera
     var canvas = document.getElementById('imageCanvas');
     canvas.width = 960;
-    canvas.height = 1040;
+    canvas.height = 1080;
     canvas.style.width = '320px';
     canvas.style.height = '360px';
     var context = canvas.getContext('2d');
@@ -413,6 +409,7 @@ $(document).on("pagecreate", "#emotionPostPage", function () {
     var canvasBtnObj = new Image();
 
     canvasBtnObj.onload = function () {
+        context.globalAlpha = 1;
         context.drawImage(canvasBtnObj, 80, 0);
     };
     canvasBtnObj.src = 'images/menu/canvasBtn.svg';

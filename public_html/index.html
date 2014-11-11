@@ -131,19 +131,23 @@
                             <label for="checkboxSelectAll">Select All</label>
                             <hr>
                             <form id="filterForm">
-                                <div class="ui-grid-c">
-                                    <a href='#' data-role="button" class="quickSearch ui-block-a" data-name="HOUR" >Last<br>8hrs</a>
-                                    <a href='#' data-role="button" class="quickSearch ui-block-b" data-name="DAY" >Last<br>Day</a>
-                                    <a href='#' data-role="button" class="quickSearch ui-block-c" data-name="WEEK" >Last<br>Week</a>
-                                    <a href='#' data-role="button" class="quickSearch ui-block-d" data-name="MONTH" >Last<br>Month</a>
-                                </div>
-                                <hr>
-                                <h4>Date Range</h4>
-                                <div class="input-daterange ui-grid-a" id="datepicker">
-                                    <div class="ui-block-a">From:<input type="text" class="input-small" name="start" data-mini="true"/></div>
-                                    <div class="ui-block-b">To:<input type="text" class="input-small" name="end" data-mini="true"/></div>
-                                </div>
-                                <input id="filterButton" type="button" value="Search Map" data-icon="search">
+                            <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u"  data-iconpos="right">
+                                <h3>Advanced</h3>
+                                
+                                    <div class="ui-grid-c">
+                                        <a href='#' data-role="button" class="quickSearch ui-block-a" data-name="HOUR" >Last<br>8hrs</a>
+                                        <a href='#' data-role="button" class="quickSearch ui-block-b" data-name="DAY" >Last<br>Day</a>
+                                        <a href='#' data-role="button" class="quickSearch ui-block-c" data-name="WEEK" >Last<br>Week</a>
+                                        <a href='#' data-role="button" class="quickSearch ui-block-d" data-name="MONTH" >Last<br>Month</a>
+                                    </div>
+                                    <hr>
+                                    <h4>Date Range</h4>
+                                    <div class="input-daterange ui-grid-a" id="datepicker">
+                                        <div class="ui-block-a">From:<input id="dateStart" type="text" class="input-small" name="start" data-mini="true"/></div>
+                                        <div class="ui-block-b">To:<input id="dateEnd" type="text" class="input-small" name="end" data-mini="true"/></div>
+                                    </div>
+                            </div>
+                            <input id="filterButton" type="button" value="Search Map" data-icon="search">
                             </form>
                         </div>
 
