@@ -275,9 +275,9 @@ ul, menu, dir {
     top: 108px;
     width: 100%;
     color: #9e9e9e;
-   
     margin-top: 20px;
     margin-bottom: 10px;
+    letter-spacing: 0.3em;
 }
 
 
@@ -699,3 +699,9 @@ ul, menu, dir {
     margin-top: 50px;
 }
 
+
+.settingsButtons {
+   color: #9e9e9e; 
+   letter-spacing: 0.3em;
+
+}
