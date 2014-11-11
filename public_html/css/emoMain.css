@@ -210,11 +210,15 @@ ul, menu, dir {
 #filterForm {
     margin: 0 auto;
     padding: 0;
+    color: #9e9e9e;
+    letter-spacing: 0.1em; 
+    font-weight: lighter;
 }
 
 #filterForm .ui-controlgroup, fieldset.ui-controlgroup {
     padding: 0;
     margin: 0;
+    
 }
 
 /* ------------------------------------------------------------------------------------------
@@ -639,14 +643,14 @@ ul, menu, dir {
 
 #upper
 {
-    background-color: #B54C8A;
+    background-color: #ffffff;
 
 }
 
 #bar 
 {
     padding: 0px;
-    background-color: #B54C8A;
+    background-color: #ffffff;
     color: #ffffff;
 }
 
@@ -703,5 +707,12 @@ ul, menu, dir {
 .settingsButtons {
    color: #9e9e9e; 
    letter-spacing: 0.3em;
+
+}
+
+
+.advBtn {
+    
+    color: #9e9e9e;
 
 }
