@@ -410,7 +410,7 @@ $(document).on("pagecreate", "#emotionPostPage", function () {
 
     canvasBtnObj.onload = function () {
         context.globalAlpha = 1;
-        context.drawImage(canvasBtnObj, 80, 0);
+        context.drawImage(canvasBtnObj, 0, 0);
     };
     canvasBtnObj.src = 'images/menu/canvasBtn.svg';
 
