@@ -259,8 +259,8 @@ body,
     position:absolute;
     z-index: 1950;
     top: 40px;
-    right: 15px;
-    width: 90%;
+    right: 0;
+    width: 100%;
     /* transform: rotate(90deg); */
 }
 
@@ -268,8 +268,8 @@ body,
 {
     position:absolute;
     z-index: 1950;
-    top: 350px;
-    right: 15px;
+    bottom: 5px;
+    left: 5px;
     width: 270px;
     text-align: left;
 }

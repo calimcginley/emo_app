@@ -303,7 +303,7 @@ $(document).on('click', '#postToMapBtn', function () {
                 textVisible: true
             });
             console.log('File Path');
-            var imageData = document.getElementById('imageCanvas').toDataURL('image/png');
+            var imageData = document.getElementById('imageCanvas').toDataURL('image/jpg');
             console.log('Image DATA: ');
             console.log(imageData);
 
