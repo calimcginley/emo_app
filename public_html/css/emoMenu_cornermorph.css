@@ -99,7 +99,7 @@
 /* About */
 .about-wrap {
 	position: fixed;
-	z-index: 999;
+	z-index: 1050;
 	background: #ebedf4;
 	-webkit-transition: width 0.3s, height 0.3s;
 	transition: width 0.3s, height 0.3s;
@@ -107,7 +107,7 @@
 	height: 0;
 	font-size: 1.5em;
 	bottom: 0px;
-	left: 10px;
+	left: 0px;
 	-webkit-transform-origin: 0% 100%;
 	transform-origin: 0% 100%;
       
@@ -116,7 +116,7 @@
 @media screen and (max-width: 50em) {
 	.about-wrap {
 		bottom: 0.25em;
-		left: 0.25em;
+		left: 0em;
 	}
 }
 
@@ -242,8 +242,8 @@
 }
 
 .show-about .about-wrap {
-	width: 300px;
-	height: 450px;
+	width: 100%;
+	height: 490px;
 	-webkit-animation: anim-jelly 0.8s linear forwards;
 	animation: anim-jelly 0.8s linear forwards;
 }
