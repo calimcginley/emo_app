@@ -490,7 +490,7 @@ $(document).on("pageshow", "#mapPage", function () {
         function openFilterBar()
         {
             console.log('Open Filter bar');
-            $("#emojiSearchBar").velocity({top: "100px", easing: "easein"}, 500);
+            $("#emojiSearchBar").velocity({top: "70px", easing: "easein"}, 500);
             //$("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
 
             $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);

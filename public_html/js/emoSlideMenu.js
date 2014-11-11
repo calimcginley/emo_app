@@ -33,6 +33,7 @@ $(document).ready(function () {
             $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
             $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
             $('#mapPage').removeClass('show-popup');
+            $('#settingsPage').removeClass('show-about');
             console.log('Open Menu on map page');
         }
         // Toggles the true flase value of isOpen
@@ -43,6 +44,8 @@ $(document).ready(function () {
         if (isOpen && 'mapPage' === $.mobile.activePage.attr('id'))
         {
             $('#mapPage').removeClass('show-menu');
+            $('#settingsPage').removeClass('show-about');
+
             console.log('Close Menu on map page - clicked on mapPage Button');
             isOpen = !isOpen;
         }
@@ -107,6 +110,7 @@ $(document).on("pagecontainerbeforehide", function (event, ui) {
     var pageID = $.mobile.activePage.attr('id');
     $('#' + pageID).removeClass('show-menu');
     $('#' + pageID).removeClass('show-popup');
+    $('#settingsPage').removeClass('show-about');
     $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
     $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
     if (isInfoMenuOpen)
