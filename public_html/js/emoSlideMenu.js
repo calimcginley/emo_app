@@ -99,7 +99,7 @@ $(document).ready(function () {
     function closeInfoMenu()
     {
         $(".menu-top-buttons a").velocity({height: 51, padding: 19}, 500);
-        $(".left-panel-btn").velocity({width: '46px', easing: "easein"}, 500);
+        $(".left-panel-btn").velocity({width: '144px', easing: "easein"}, 500);
         isInfoMenuOpen = !isInfoMenuOpen;
     }
 });

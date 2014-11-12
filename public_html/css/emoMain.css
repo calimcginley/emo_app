@@ -248,10 +248,15 @@ ul, menu, dir {
 
 .left-panel-btn
 {
-    width: 120px;
     height: auto;
     margin: 0 auto;
     padding-left: 1.5em;
+}
+
+.infoMenuButtonImg {
+    padding-left: 1.5em;
+    width: 144px;
+    max-width: 144px;
 }
 
 /* ------------------------------------------------------------------------------------------
