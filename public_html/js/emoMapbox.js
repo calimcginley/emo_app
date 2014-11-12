@@ -217,10 +217,10 @@ function setMapInAction()
                 {
                     //********  Set Hexbin colour using count array  ***************
                     var emoArray = {
-                        '0': 'rgba(251, 237, 40, 0.9)', '1': '#69CBE1',
-                        '2': '#A554A0', '3': '#64BC45',
-                        '4': '#E10686', '5': '#69CBE1',
-                        '6': '#C32026', '7': '#F5851F'};
+                        '0': '#F7ED43', '1': '#66BA4D',
+                        '2': '#6CCCE1', '3': '#F48530',
+                        '4': '#A4579F', '5': '#C3242D',
+                        '6': '#E01888', '7': '#DD5F84'};
                     var countArray = [0, 0, 0, 0, 0, 0, 0, 0];
 
                     $.each(d, function (key, value)

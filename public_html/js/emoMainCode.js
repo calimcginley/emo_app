@@ -185,7 +185,7 @@ function camera()
 
     function onSuccess(imageURI)
     {
-        var emojiColours = ['rgba(251, 237, 40, 0.9)', '#69CBE1', '#A554A0', '#64BC45', '#E10686', '#69CBE1', '#C32026', '#F5851F'];
+        var emojiColours = ['#F7ED43', '#66BA4D', '#6CCCE1', '#F48530', '#A4579F', '#C3242D', '#E01888', '#DD5F84'];
         var parentEmoji = window.localStorage.getItem('parentPostEmoji');
         console.log('Camera opened and image was captured');
         // Canvas Mood on image
