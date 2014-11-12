@@ -256,12 +256,29 @@ ul, menu, dir {
 // ------------------------------  Emoji Selection #emojiSelectPage ---------------------------------
 // ----------------------------------------------------------------------------------------*/ 
 
+#emojiSearchBar h3 {
+    padding-bottom: 10px;
+    color: #9e9e9e; 
+}
+
 #emojiPostSelectParent {
     position: absolute;
     background-color: rgba(255,255,255,.9);
     top: 200px;
     left: -100%;
     width: 100%;
+}
+
+#parentEmojiSelect {
+    color: #9e9e9e; 
+    letter-spacing: 0.3em; 
+    font-weight: lighter;
+    text-align: center;
+}
+
+#parentEmojiSelect h2 {
+    padding-bottom: 10px;
+    color: #9e9e9e; 
 }
 
 .emojiParent {
