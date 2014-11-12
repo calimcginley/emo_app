@@ -208,6 +208,7 @@ ul, menu, dir {
 .profileNavImg {
 
     float: right;
+    padding-right: 1em;
 }
 
 .profileHeader img {
