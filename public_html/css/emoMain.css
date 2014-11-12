@@ -175,7 +175,6 @@ ul, menu, dir {
     width: 100%;
     left: 0;
     text-align: center;
-    padding-top: 1em;
 }
 
 #emojiSearchBar img {
@@ -203,11 +202,8 @@ ul, menu, dir {
 
 .profileHeader a {
     float: right;
-
-
 }
 .profileNavImg {
-
     float: right;
     padding-right: 1em;
 }
@@ -215,7 +211,6 @@ ul, menu, dir {
 .profileHeader img {
     width: 33%;
     height: 44px; 
-
 }
 
 .profileTab {
@@ -228,12 +223,65 @@ ul, menu, dir {
     letter-spacing: 0.3em;
 }
 
-#honeyProfileTab {
+#profilePostsWrap {
     position: absolute;
+    //z-index: 2000;
     top: 108px;
-    height: 460px;
     width: 100%;
-    overflow:auto;
+    //height: 100%;
+    height: 460px;
+    overflow:scroll;
+    margin-bottom: 30px;
+}
+
+#profilePosts {
+    min-height: 400px;
+    width: 100%;
+}
+
+#profilePosts p {
+    font-size: .5em;
+    color: #9e9e9e;
+    margin-top: 0;
+}
+
+.profilePostDiv {
+    width: 45%;
+    float: left;
+    margin-left: 3.33%;
+}
+
+#profilePostsWrap #profilePosts .largeImg {
+    width: 100%;
+    margin-left: 0;
+    font-size: 2em;
+}
+
+.giantImg {
+    position: absolute;
+    padding: 40px 0;
+    background-color: rgba(255,255,255, .9);
+    top: 110px;
+    left: 0;
+    z-index: 11000;
+    width: 100%;
+}
+.giantImg img {
+    width: 100%;
+}
+
+.giantImg p {
+    font-size: 1em;
+    color: #9e9e9e;
+}
+
+.profilePostDiv img {
+    width: 100%;
+}
+
+#addProfilePost {
+    height: 44px !important;
+    margin-bottom: 30px;
 }
 
 /* ------------------------------------------------------------------------------------------
@@ -252,14 +300,12 @@ ul, menu, dir {
     height: auto;
     margin: 0 auto;
     padding-left: 1.5em;
-    width: 110px;
-    max-width: 110px;
 }
 
 .infoMenuButtonImg {
     padding-left: 1.5em;
-    width: 110px;
-    max-width: 110px;
+    width: 144px;
+    max-width: 144px;
 }
 
 /* ------------------------------------------------------------------------------------------
@@ -284,11 +330,9 @@ ul, menu, dir {
     letter-spacing: 0.3em; 
     font-weight: lighter;
     text-align: center;
-    padding-bottom: 1em;
-    padding-top: .4em;
 }
 
-#parentEmojiSelect h4 {
+#parentEmojiSelect h2 {
     padding-bottom: 10px;
     color: #9e9e9e; 
 }

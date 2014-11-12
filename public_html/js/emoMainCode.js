@@ -519,32 +519,6 @@ $(document).on('click', '.removeEmoji', function () {
     $(this).remove();
 });
 
-//$(document).on('click', '#testArray', function () {
-//    var imgEmoji = $(".emojiRender").children('.removeEmoji');
-//    var emojiImgArr = jQuery.makeArray(imgEmoji);
-//    console.log(emojiImgArr);
-//    var padLeft = 20;
-//    var canvas = document.getElementById('imageCanvas');
-//    var context = canvas.getContext('2d');
-//
-//    $.each(emojiImgArr, function (index, value)
-//    {
-//
-//        console.log(index);
-//        console.log(value.title);
-//        var imgEmo = new Image();
-//        (function (pad) {
-//            imgEmo.onload = function () {
-//                context.drawImage(imgEmo, pad, 200, 30, 30);
-//            };
-//            imgEmo.src = 'images/emojis/' + value.title + '.png';
-//        })(padLeft);
-//        padLeft = padLeft + 50;
-//        console.log(padLeft);
-//    });
-//
-//});
-
 // -------------------------------------------------------------------------------------------
 // ------------------------------  When the Profile is showen ---------------------------- 
 // ------------------------------  This code will trigger ------------------------------------
@@ -556,7 +530,7 @@ $(document).on('click', '.removeEmoji', function () {
 $(document).on("pageshow", "#profilePage", function (e, data) {
 // -------------------------------------------------------------------------------------------
 // ------------  Profile Page Images ---------------------------- 
-// ------------------------------------------------------------------------------------------- 
+
     // Page show prevent default
     e.preventDefault();
     var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
@@ -586,7 +560,7 @@ $(document).on("pageshow", "#profilePage", function (e, data) {
                 console.log('User Posts Fetch successfull');
                 $.each(result.posts, function (index, value) {
                     console.log(index + ' : ' + value.postID);
-                    array_push = [index, value.postID, value.imageName, value.timeServer];
+                    array_push = [index, value.postID, value.imageName, value.timeServer, value.timeNow];
                     console.log(array_push);
                     profileImageArray.push(array_push);
                     window.localStorage.setItem('profileArray', JSON.stringify(profileImageArray));
@@ -613,7 +587,7 @@ function insertImageArray(imageCount)
 {
     var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
     // Remove the add button and append more images
-    $('#addHoneyBtn').remove();
+    //$('#addProfilePost').remove();
     console.log('start loop imageCount is ' + imageCount);
     // Loop through the array to the imageCount number
     console.log('profileImageArray:');
@@ -622,30 +596,46 @@ function insertImageArray(imageCount)
     $.each(profileImageArray, function (index, value) {
         if (index <= imageCount && index >= imageCount - 7)
         {
-            $('.honeycombs').append('<div class="comb animated fadeIn">'
-                    + '<img src="http://www.emoapp.info/uploads/' + value[2] + '.jpg"/>'
-                    + '<span><b>This is</b><br> a test</span>'
+            // Time since Tag
+            var a = moment(value[3]);
+            console.log(a);
+            var b = moment(value[4]);
+            console.log(b);
+            var timeOffset = a.from(b);
+            $('#profilePosts').append('<div class="profilePostDiv">'
+                    + '<img class="postDivImg" alt="'+timeOffset +'" src="http://www.emoapp.info/uploads/' + value[2] + '.jpg"/>'
+                    + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
                     + '</div>');
         }
     });
     // Append the add Button
-    $('.honeycombs').append('');
+    //$('#addProfilePost').append('<button id="addProfilePost" data-theme="a">Load More</button>');
     imageCount = parseInt(imageCount) + 7;
     window.localStorage.setItem('imageCount', imageCount);
     console.log('AfterInsert: imageCount is now ' + imageCount);
-    $('.honeycombs').honeycombs();
-    console.log(isPopUpOpen);
-    console.log(isPopUpOpen);
+
+    $(".postDivImg").click(function () {
+        console.log('Image Clicked');
+        var imgSrc = $(this).attr('src');
+        var offSet = $(this).attr('alt');
+        $('#profilePopup').append('<div class="giantImg"><img src="'+imgSrc+'" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
+        // Remove Click Event
+        $(".giantImg").click(function () {
+            $(".giantImg").remove();
+        });
+    });  
 }
 
 $(document).ready(function ()
 {
-    $("#addHoneyImg").click(function () {
+    $("#addProfilePost").click(function () {
         // Honey Add Button Clicked
         console.log('Honey Add Button Clicked');
         var imgCount = window.localStorage.getItem('imageCount');
         insertImageArray(imgCount);
     });
+
+    // profilePostDiv
 });
 
 $(document).on("pageshow", "#settingsPage", function () {
