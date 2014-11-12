@@ -5,8 +5,8 @@
 	 width="45px" height="60px" viewBox="0 0 45 60" enable-background="new 0 0 45 60" xml:space="preserve">
 <g>
 	<g>
-		<polygon fill="#F2BD55" points="11.879,37.197 1.612,19.414 11.879,1.63 32.416,1.63 42.682,19.414 32.416,37.197 		"/>
-		<polygon fill="#F2BD55" points="1.612,19.414 22.147,60 42.682,19.414 		"/>
+		<polygon fill="#F48530" points="11.879,37.197 1.612,19.414 11.879,1.63 32.416,1.63 42.682,19.414 32.416,37.197 		"/>
+		<polygon fill="#F48530" points="1.612,19.414 22.147,60 42.682,19.414 		"/>
 	</g>
 	<polygon opacity="0.05" fill="#010101" enable-background="new    " points="1.612,19.414 22.147,60 24.422,55.504 7.911,20.916 	
 		"/>

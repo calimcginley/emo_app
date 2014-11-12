@@ -5,12 +5,12 @@
 	 width="45px" height="60px" viewBox="0 0 45 60" enable-background="new 0 0 45 60" xml:space="preserve">
 <g>
 	<g>
-		<polygon fill="#BB85BB" points="11.588,37.197 1.321,19.414 11.588,1.63 32.125,1.63 42.391,19.414 32.125,37.197 		"/>
-		<polygon fill="#BB85BB" points="1.321,19.414 21.856,60 42.391,19.414 		"/>
+		<polygon fill="#84C881" points="11.642,37.198 1.375,19.415 11.642,1.63 32.179,1.63 42.445,19.415 32.179,37.198 		"/>
+		<polygon fill="#84C881" points="1.375,19.415 21.91,60 42.445,19.415 		"/>
 	</g>
-	<polygon opacity="0.05" fill="#010101" enable-background="new    " points="1.321,19.414 21.856,60 24.131,55.504 7.62,20.916 	
+	<polygon opacity="0.05" fill="#010101" enable-background="new    " points="1.375,19.415 21.91,60 24.185,55.504 7.674,20.916 	
 		"/>
-	<polyline opacity="0.1" fill="#FFFFFF" enable-background="new    " points="14.786,6.251 11.588,1.63 1.321,19.414 7.62,20.916 	
+	<polyline opacity="0.1" fill="#FFFFFF" enable-background="new    " points="14.84,6.251 11.642,1.63 1.375,19.415 7.674,20.916 	
 		"/>
 </g>
 </svg>
