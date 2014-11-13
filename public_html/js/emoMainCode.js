@@ -298,7 +298,7 @@ $(document).on('click', '#postToMapBtn', function () {
                 textVisible: true
             });
             console.log('File Path');
-            var imageData = document.getElementById('imageCanvas').toDataURL('image/jpg');
+            var imageData = document.getElementById('imageCanvas').toDataURL('image/jpg', 0.6);
             console.log('Image DATA: ');
             console.log(imageData);
 

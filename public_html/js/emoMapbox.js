@@ -291,12 +291,6 @@ function setMapInAction()
                         , {title: value.properties.postID, icon: myIcon});
                 markers.addLayer(marker);
             });
-            var zoomIn = map.getZoom() + 1;
-            if (zoomIn >= 15)
-            {
-                console.log('zooming!!');
-                map.setZoom(zoomIn);
-            }
         });
 
         //********  Marker Click Event  ***************
@@ -356,7 +350,7 @@ function setMapInAction()
             if (!$('#mapPage').hasClass('show-popup'))
                 setJsonLayers();
         }
-    }, 10000);
+    }, 30000);
 
     // - - -  When the mapPage is shown This code will trigger - - -
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   
