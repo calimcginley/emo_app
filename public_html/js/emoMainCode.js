@@ -186,7 +186,7 @@ function camera()
     function onSuccess(imageURI)
     {
         var emojiColours = ['#F7ED43', '#66BA4D', '#6CCCE1', '#F48530', '#A4579F', '#C3242D', '#E01888', '#DD5F84'];
-        var parentEmoji = window.localStorage.getItem('parentPostEmoji');
+        var parentEmoji = window.localStorage.getItem('parentPostEmoji') - 1;
         console.log('Camera opened and image was captured');
         // Canvas Mood on image
         var canvas = document.getElementById('imageCanvas');
@@ -386,7 +386,7 @@ $(document).ready(function ()
         else
         {
             console.log('emoji keypad closed');
-            $('#toggle').html('emoji Description');
+            $('#toggle').html('Describe');
             $("#insertButtons").velocity({top: "+=250", easing: "easein"}, 400).delay(800);
             window.localStorage.setItem('emojiKeypad', 'off');
         }
@@ -418,78 +418,188 @@ $(document).on("pagecreate", "#emotionPostPage", function () {
     console.log('set tab selection of emoji');
     var tabIcons = [
         {
-            ':smile:': 'smile.png',
-            ':blush:': 'blush.png',
-            ':smiley:': 'smiley.png',
-            ':relaxed:': 'relaxed.png',
-            ':smirk:': 'smirk.png',
-            ':heart_eyes:': 'heart_eyes.png',
-            ':kissing_heart:': 'kissing_heart.png',
-            ':kissing_face:': 'kissing_face.png',
-            ':flushed:': 'flushed.png',
-            ':relieved:': 'relieved.png',
-            ':satisfied:': 'satisfied.png',
-            ':grin:': 'grin.png',
-            ':wink:': 'wink.png',
-            ':wink2:': 'wink2.png',
-            ':tongue:': 'tongue.png',
-            ':expressionless:': 'expressionless.png',
-            ':unamused:': 'unamused.png',
-            ':sweat:': 'sweat.png',
-            ':pensive:': 'pensive.png',
-            ':anguished:': 'anguished.png',
-            ':disappointed:': 'disappointed.png'
-        }, {
-            ':confounded:': 'confounded.png',
-            ':fearful:': 'fearful.png',
-            ':cold_sweat:': 'cold_sweat.png',
-            ':grimacing:': 'grimacing.png',
-            ':persevere:': 'persevere.png',
-            ':cry:': 'cry.png',
-            ':sob:': 'sob.png',
-            ':joy:': 'joy.png',
-            ':astonished:': 'astonished.png',
-            ':scream:': 'scream.png',
-            ':angry:': 'angry.png',
-            ':rage:': 'rage.png',
-            ':sleepy:': 'sleepy.png',
-            ':sleeping:': 'sleeping.png',
-            ':eyes:': 'eyes.png',
-            ':mask:': 'mask.png',
-            ':imp:': 'imp.png',
-            ':alien:': 'alien.png',
-            ':yellow_heart:': 'yellow_heart.png',
-            ':blue_heart:': 'blue_heart.png',
-            ':purple_heart:': 'purple_heart.png'
-        }, {
-            ':heart:': 'heart.png',
-            ':green_heart:': 'green_heart.png',
-            ':broken_heart:': 'broken_heart.png',
-            ':cupid:': 'cupid.png',
-            ':sparkles:': 'sparkles.png',
-            ':star:': 'star.png',
-            ':star2:': 'star2.png',
-            ':anger:': 'anger.png',
-            ':exclamation:': 'exclamation.png',
-            ':question:': 'question.png',
-            ':grey_exclamation:': 'grey_exclamation.png',
-            ':grey_question:': 'grey_question.png',
-            ':zzz:': 'zzz.png',
-            ':dash:': 'dash.png',
-            ':sweat_drops:': 'sweat_drops.png',
-            ':notes:': 'notes.png',
-            ':musical_note:': 'musical_note.png',
-            ':fire:': 'fire.png',
-            ':poop:': 'poop.png',
-            ':thumbUp:': 'thumbUp.png',
-            ':thumbDown:': 'thumbDown.png'
-        }, {
-        }];
+            ':joy:': 'tab1/joy.png',
+            ':angry:': 'tab1/angry.png',
+            ':sunglasses:': 'tab1/sunglasses.png',
+            ':relaxed:': 'tab1/relaxed.png',
+            ':smirk:': 'tab1/smirk.png',
+            ':heart_eyes:': 'tab1/heart_eyes.png',
+            ':kissing_heart:': 'tab1/kissing_heart.png',
+            ':confused:': 'tab1/confused.png',
+            ':flushed:': 'tab1/flushed.png',
+            ':stuck_out_tongue_winking_eye:': 'tab1/stuck_out_tongue_winking_eye.png',
+            ':grinning:': 'tab1/grinning.png',
+            ':wink:': 'tab1/wink.png',
+            ':expressionless:': 'tab1/expressionless.png',
+            ':unamused:': 'tab1/unamused.png',
+            ':pensive:': 'tab1/pensive.png',
+            ':anguished:': 'tab1/anguished.png',
+            ':disappointed:': 'tab1/disappointed.png',
+            ':fearful:': 'tab1/fearful.png',
+            ':grimacing:': 'tab1/grimacing.png',
+            ':weary:': 'tab1/weary.png',
+            ':cry:': 'tab1/cry.png',
+            ':yum:': 'tab1/yum.png',
+            ':eyes:': 'tab1/eyes.png',
+            ':cop:': 'tab1/cop.png',
+            ':older_man:': 'tab1/older_man.png',
+            ':older_woman:': 'tab1/older_woman.png',
+            ':bride_with_veil:': 'tab1/bride_with_veil.png',
+            ':baby:': 'tab1/baby.png'
+        }, // Tab 1 Similes
+        {
+            ':bear:': 'tab2/bear.png',
+            ':cat:': 'tab2/cat.png',
+            ':dog:': 'tab2/dog.png',
+            ':chicken:': 'tab2/chicken.png',
+            ':cow:': 'tab2/cow.png',
+            ':frog:': 'tab2/frog.png',
+            ':ghost:': 'tab2/ghost.png',
+            ':hatched_chick:': 'tab2/hatched_chick.png',
+            ':hear_no_evil:': 'tab2/hear_no_evil.png',
+            ':see_no_evil:': 'tab2/see_no_evil.png',
+            ':speak_no_evil:': 'tab2/speak_no_evil.png',
+            ':horse:': 'tab2/horse.png',
+            ':monkey:': 'tab2/monkey.png',
+            ':mouse:': 'tab2/mouse.png',
+            ':panda_face:': 'tab2/panda_face.png',
+            ':penguin:': 'tab2/penguin.png',
+            ':pig:': 'tab2/pig.png',
+            ':monkey_face:': 'tab2/monkey_face.png',
+            ':poop:': 'tab2/poop.png',
+            ':skull:': 'tab2/skull.png',
+            ':snail:': 'tab2/snail.png',
+            ':snake:': 'tab2/snake.png',
+            ':turtle:': 'tab2/turtle.png',
+            ':whale:': 'tab2/whale.png',
+            ':wolf:': 'tab2/wolf.png'
+        }, // Tab 2 Animals        
+        {
+            ':apple:': 'tab3/apple.png',
+            ':banana:': 'tab3/banana.png',
+            ':cake:': 'tab3/cake.png',
+            ':cookie:': 'tab3/cookie.png',
+            ':doughnut:': 'tab3/doughnut.png',
+            ':egg:': 'tab3/egg.png',
+            ':eggplant:': 'tab3/eggplant.png',
+            ':pizza:': 'tab3/pizza.png',
+            ':fries:': 'tab3/fries.png',
+            ':hamburger:': 'tab3/hamburger.png',
+            ':icecream:': 'tab3/icecream.png',
+            ':lemon:': 'tab3/lemon.png',
+            ':mushroom:': 'tab3/mushroom.png',
+            ':strawberry:': 'tab3/strawberry.png',
+            ':airplane:': 'tab3/airplane.png',
+            ':ambulance:': 'tab3/ambulance.png',
+            ':articulated_lorry:': 'tab3/articulated_lorry.png',
+            ':bike:': 'tab3/bike.png',
+            ':car:': 'tab3/car.png',
+            ':bullettrain_side:': 'tab3/bullettrain_side.png',
+            ':bus:': 'tab3/bus.png',
+            ':fire_engine:': 'tab3/fire_engine.png',
+            ':oncoming_automobile:': 'tab3/oncoming_automobile.png',
+            ':oncoming_police_car:': 'tab3/oncoming_police_car.png',
+            ':oncoming_taxi:': 'tab3/oncoming_taxi.png',
+            ':police_car:': 'tab3/police_car.png',
+            ':rowboat:': 'tab3/rowboat.png',
+            ':tractor:': 'tab3/tractor.png',
+            ':ship:': 'tab3/ship.png',
+            ':rocket:': 'tab3/rocket.png'
+        }, // Tab Food, Drink & Cars     
+        {
+            ':beer:': 'tab4/beer.png',
+            ':beers:': 'tab4/beers.png',
+            ':cocktail:': 'tab4/cocktail.png',
+            ':coffee:': 'tab4/coffee.png',
+            ':tropical_drink:': 'tab4/tropical_drink.png',
+            ':wine_glass:': 'tab4/wine_glass.png',
+            ':jack_o_lantern:': 'tab4/jack_o_lantern.png',
+            ':fireworks:': 'tab4/fireworks.png',
+            ':four_leaf_clover:': 'tab4/four_leaf_clover.png',
+            ':christmas_tree:': 'tab4/christmas_tree.png',
+            ':santa:': 'tab4/santa.png',
+            ':snowflake:': 'tab4/snowflake.png',
+            ':snowman:': 'tab4/snowman.png',
+            ':ring:': 'tab4/ring.png',
+            ':wedding:': 'tab4/wedding.png',
+            ':angel:': 'tab4/angel.png',
+            ':kiss:': 'tab4/kiss.png',
+            ':pray:': 'tab4/pray.png',
+            ':clap:': 'tab4/clap.png',
+            ':couple_with_heart:': 'tab4/couple_with_heart.png',
+            ':two_men_holding_hands:': 'tab4/two_men_holding_hands.png',
+            ':two_women_holding_hands:': 'tab4/two_women_holding_hands.png',
+            ':lips:': 'tab4/lips.png',
+            ':dancer:': 'tab4/dancer.png',
+            ':cupid:': 'tab4/cupid.png',
+            ':gift_heart:': 'tab4/gift_heart.png',
+            ':gift:': 'tab4/gift.png',
+            ':dress:': 'tab4/dress.png'
+        }, // Drink, Holidays & People        
+        {
+            ':baseball:': 'tab5/baseball.png',
+            ':basketball:': 'tab5/basketball.png',
+            ':football:': 'tab5/football.png',
+            ':soccer:': 'tab5/soccer.png',
+            ':golf:': 'tab5/golf.png',
+            ':tennis:': 'tab5/tennis.png',
+            ':swimmer:': 'tab5/swimmer.png',
+            ':surfer:': 'tab5/surfer.png',
+            ':snowboarder:': 'tab5/snowboarder.png',
+            ':checkered_flag:': 'tab5/checkered_flag.png',
+            ':eyeglasses:': 'tab5/eyeglasses.png',
+            ':man:': 'tab5/man.png',
+            ':muscle:': 'tab5/muscle.png',
+            ':nail_care:': 'tab5/nail_care.png',
+            ':ok_hand:': 'tab5/ok_hand.png',
+            ':point_up:': 'tab5/point_up.png',
+            ':punch:': 'tab5/punch.png',
+            ':raised_hands:': 'tab5/raised_hands.png',
+            ':runner:': 'tab5/runner.png',
+            ':thumbDown:': 'tab5/thumbDown.png',
+            ':thumbUp:': 'tab5/thumbUp.png',
+            ':tongue:': 'tab5/tongue.png',
+            ':walking:': 'tab5/walking.png',
+            ':v:': 'tab5/v.png',
+            ':bikini:': 'tab5/bikini.png',
+            ':crown:': 'tab5/crown.png',
+            ':trophy:': 'tab5/trophy.png',
+            ':game_die:': 'tab5/game_die.png'
+        }, // Sports and People
+        {
+            ':8ball:': 'tab6/8ball.png',
+            ':alarm_clock:': 'tab6/alarm_clock.png',
+            ':alien:': 'tab6/alien.png',
+            ':bomb:': 'tab6/bomb.png',
+            ':bouquet:': 'tab6/bouquet.png',
+            ':broken_heart:': 'tab6/broken_heart.png',
+            ':dollar:': 'tab6/dollar.png',
+            ':exclamation:': 'tab6/exclamation.png',
+            ':question:': 'tab6/question.png',
+            ':fire:': 'tab6/fire.png',
+            ':flashlight:': 'tab6/flashlight.png',
+            ':gem:': 'tab6/gem.png',
+            ':guitar:': 'tab6/guitar.png',
+            ':gun:': 'tab6/gun.png',
+            ':heart:': 'tab6/heart.png',
+            ':lipstick:': 'tab6/lipstick.png',
+            ':mortar_board:': 'tab6/mortar_board.png',
+            ':musical_note:': 'tab6/musical_note.png',
+            ':pill:': 'tab6/pill.png',
+            ':rose:': 'tab6/rose.png',
+            ':shower:': 'tab6/shower.png',
+            ':star:': 'tab6/star.png',
+            ':sunny:': 'tab6/sunny.png',
+            ':sweat_drops:': 'tab6/sweat_drops.png',
+            ':umbrella:': 'tab6/umbrella.png',
+            ':zzz:': 'tab6/zzz.png'
+        }  // Other Tab6
+    ];
 
     // sample to build off 
     //console.log('run thru array and add emoji');
 
-    for (var i = 0; i < 4; i++)
+    for (var i = 0; i < 6; i++)
     {
         //console.log('This is loop' + i);
         $.each(tabIcons[i], function (title, png)
@@ -603,7 +713,7 @@ function insertImageArray(imageCount)
             console.log(b);
             var timeOffset = a.from(b);
             $('#profilePosts').append('<div class="profilePostDiv">'
-                    + '<img class="postDivImg" alt="'+timeOffset +'" src="http://www.emoapp.info/uploads/' + value[2] + '.jpg"/>'
+                    + '<img class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/' + value[2] + '.jpg"/>'
                     + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
                     + '</div>');
         }
@@ -618,12 +728,12 @@ function insertImageArray(imageCount)
         console.log('Image Clicked');
         var imgSrc = $(this).attr('src');
         var offSet = $(this).attr('alt');
-        $('#profilePopup').append('<div class="giantImg"><img src="'+imgSrc+'" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
+        $('#profilePopup').append('<div class="giantImg"><img src="' + imgSrc + '" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
         // Remove Click Event
         $(".giantImg").click(function () {
             $(".giantImg").remove();
         });
-    });  
+    });
 }
 
 $(document).ready(function ()
