@@ -398,6 +398,11 @@ ul, menu, dir {
     padding: 0;
 }
 
+.mytab {
+    width: 16% !important;  /* 12.5% for 8 tabs wide */
+    clear: none !important;  /* Prevent line break caused by ui-block-a */
+}
+
 .tabEmoji
 {
     background-color: #E2E2E2;    

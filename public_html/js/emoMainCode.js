@@ -379,6 +379,7 @@ $(document).ready(function ()
         if (keypadOnOff === 'off')
         {
             console.log('emoji keypad opened');
+             $("#tabs").tabs();
             $('#toggle').html('close');
             $("#insertButtons").velocity({top: "-=250", easing: "easein"}, 400).delay(800);
             window.localStorage.setItem('emojiKeypad', 'on');
@@ -481,7 +482,6 @@ $(document).on("pagecreate", "#emotionPostPage", function () {
             ':cookie:': 'tab3/cookie.png',
             ':doughnut:': 'tab3/doughnut.png',
             ':egg:': 'tab3/egg.png',
-            ':eggplant:': 'tab3/eggplant.png',
             ':pizza:': 'tab3/pizza.png',
             ':fries:': 'tab3/fries.png',
             ':hamburger:': 'tab3/hamburger.png',
@@ -503,9 +503,8 @@ $(document).on("pagecreate", "#emotionPostPage", function () {
             ':police_car:': 'tab3/police_car.png',
             ':rowboat:': 'tab3/rowboat.png',
             ':tractor:': 'tab3/tractor.png',
-            ':ship:': 'tab3/ship.png',
             ':rocket:': 'tab3/rocket.png'
-        }, // Tab Food, Drink & Cars     
+        }, // Tab Food, & Cars     
         {
             ':beer:': 'tab4/beer.png',
             ':beers:': 'tab4/beers.png',
@@ -588,6 +587,7 @@ $(document).on("pagecreate", "#emotionPostPage", function () {
             ':pill:': 'tab6/pill.png',
             ':rose:': 'tab6/rose.png',
             ':shower:': 'tab6/shower.png',
+            ':eggplant:': 'tab3/eggplant.png',
             ':star:': 'tab6/star.png',
             ':sunny:': 'tab6/sunny.png',
             ':sweat_drops:': 'tab6/sweat_drops.png',
