@@ -205,7 +205,7 @@ ul, menu, dir {
 }
 .profileNavImg {
     float: right;
-    padding-right: 1em;
+    padding-right: .2em;
 }
 
 .profileHeader img {
@@ -444,4 +444,9 @@ ul, menu, dir {
 
 #settingsPage .collapseDiv {
     padding: 0 20%;
+}
+.profileNavImgPin {
+    
+    padding-left: 14.5em;
+
 }
