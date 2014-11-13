@@ -299,13 +299,15 @@ ul, menu, dir {
 {
     height: auto;
     margin: 0 auto;
-    padding-left: 1.5em;
+    padding-left: 1.8em;
+    width: 110px;
+    max-width: 110px;
 }
 
 .infoMenuButtonImg {
-    padding-left: 1.5em;
-    width: 144px;
-    max-width: 144px;
+    padding-left: 1.8em;
+    width: 110px;
+    max-width: 110px;
 }
 
 /* ------------------------------------------------------------------------------------------

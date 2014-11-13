@@ -161,7 +161,7 @@ body,
 .menu-top {
     line-height: 45px;
     background-color: #FFFFFF;
-    padding-left: 2em;
+    padding-left: 1.5em;
 }
 
 .menu-top .profile {
@@ -275,7 +275,7 @@ body,
     bottom: 5px;
     left: 5px;
     width: 270px;
-    text-align: left;
+    text-align: center;
 }
 
 

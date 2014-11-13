@@ -11,7 +11,7 @@
 	height: 2.25em;
 	border: none;
 	font-size: 1.5em;
-	color: #373a47;
+	color: #ffffff;
 	background: transparent;
 }
 
@@ -63,7 +63,7 @@
 .popup-wrap {
 	position: fixed;
 	z-index: 999;
-	background: #ebedf4;
+	background: #ffffff;
 	-webkit-transition: width 0.3s, height 0.3s;
 	transition: width 0.3s, height 0.3s;
 	width: 0;
@@ -91,7 +91,7 @@
 	opacity: 0;
 	font-size: 0.65em;
 	
-        color: #64697d;
+        color: #9e9e9e;
 	
         text-align: right;
 }
