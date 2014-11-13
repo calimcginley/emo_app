@@ -195,22 +195,24 @@ function setMapInAction()
         // Get the map Bounds to spped up the app
         // bbox should be a string in the form of 'southwest_lng,southwest_lat,northeast_lng,northeast_lat'
         // // %2C is comma encode
+        // southwest_lng,southwest_lat,northeast_lng,northeast_lat
         // http://www.emoapp.info/php/mysql_points_geojson_sensus.php?bounds=-6.219635009765625,53.37462442337814,-6.219635009765625,53.37462442337814&emoTypes=%271|2|3|4|5|6|7|8%27&timeType=default&interval=WEEK&startDate=null&endDate=null
-        var bbBounds = map.getBounds();
-        var southwest_lng = bbBounds.getSouthWest().lng;
-        var southwest_lat = bbBounds.getSouthWest().lat;
-        var northeast_lng = bbBounds.getNorthEast().lng;
-        var northeast_lat = bbBounds.getNorthEast().lat;
-        var bbString = southwest_lng +'%2C'+southwest_lat +'%2C'+northeast_lng +'%2C'+northeast_lat;
-        console.log('BBox: '+bbString);
+//        var bbBounds = map.getBounds();
+//        var southwest_lng = bbBounds.getSouthWest().lng;
+//        var southwest_lat = bbBounds.getSouthWest().lat;
+//        var northeast_lng = bbBounds.getNorthEast().lng;
+//        var northeast_lat = bbBounds.getNorthEast().lat;
+//        var bbString = southwest_lng +','+southwest_lat +','+northeast_lng +','+northeast_lat;
+//        console.log('BBox: '+bbString);
+        //var bbString = "";
         var jsonStringHex = " ";
         if (timeType === 'dateRange')
         {
-            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?bounds='+bbString+'&emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=' + moment(startDate, "YYYY-MM-DD").format() + '&endDate=' + moment(endDate, "YYYY-MM-DD").format();
+            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=' + moment(startDate, "YYYY-MM-DD").format() + '&endDate=' + moment(endDate, "YYYY-MM-DD").format();
         }
         else
         {
-            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?bounds='+bbString+'&emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=null&endDate=null';
+            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=null&endDate=null';
         }
         console.log('The PHP url is now:');
         console.log(jsonStringHex);
