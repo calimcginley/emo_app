@@ -195,7 +195,7 @@ ul, menu, dir {
     width: 100%;
     padding-top: 20px;
     height: 88px; 
-    background-image: url(../images/profile/profileBack_3.svg);
+    background-image: url(../images/profile/profileBack_4.svg);
     top: 0;
     left: 0;    
 }
@@ -430,6 +430,7 @@ ul, menu, dir {
     letter-spacing: 0.3em; 
     font-weight: lighter;
     text-align: center;
+    
 }
 
 #settingsPage .content-wrap input, select, label {

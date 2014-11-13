@@ -629,8 +629,8 @@ Copyright (c) 2014 Daniel Eden
 }
 
 .bounceInDown {
-  -webkit-animation-name: bounceInDown;
-          animation-name: bounceInDown;
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeOut;
 }
 
 @-webkit-keyframes bounceInLeft {
