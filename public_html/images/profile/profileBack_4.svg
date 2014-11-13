@@ -194,39 +194,43 @@
 				361.184,166.613 			"/>
 		</g>
 	</g>
-	<g>
-		<polygon opacity="0.5" fill="#FBEE29" points="0,82.079 26.333,82.079 36.333,86.503 0,86.503 		"/>
-		<polygon opacity="0.5" fill="#A25BA4" enable-background="new    " points="70,86.503 72.726,86.503 80,98.078 80,102.896 		"/>
-		<polygon opacity="0.5" fill="#ED3794" enable-background="new    " points="90,86.503 87.274,86.503 80,98.078 80,102.896 		"/>
-		<polygon opacity="0.5" fill="#79CDCB" points="47.41,86.503 42.894,82.079 70,82.079 72.726,86.503 71.687,89.269 70,86.503 		"/>
-		<polygon opacity="0.5" fill="#C32127" enable-background="new    " points="112.584,86.503 117.101,82.079 89.994,82.079 
-			87.269,86.503 88.307,89.269 89.994,86.503 		"/>
-		<polygon opacity="0.5" fill="#65BC46" enable-background="new    " points="16.334,86.503 26.334,82.079 52.667,82.079 
-			47.167,86.503 		"/>
-		<polygon opacity="0.5" fill="#F6851F" enable-background="new    " points="143.042,86.503 133.042,82.079 106.709,82.079 
-			112.21,86.503 		"/>
-		<polygon opacity="0.5" fill="#65BC46" enable-background="new    " points="145.209,86.503 155.209,82.079 181.543,82.079 
-			176.042,86.503 		"/>
-		<polygon opacity="0.5" fill="#DE5D83" enable-background="new    " points="77.877,94.699 77.061,98.078 80,102.896 
-			82.939,98.078 82.112,94.699 80,98.078 		"/>
-		<polygon opacity="0.5" fill="#FBEE29" points="123.176,86.503 133.042,82.079 155.125,82.079 161,86.503 		"/>
-		<polygon opacity="0.5" fill="#79CDCB" points="175.764,86.503 170.459,82.079 208.969,82.079 204.752,86.503 		"/>
-		<polygon opacity="0.5" fill="#ED3794" enable-background="new    " points="204.752,86.503 200.001,82.079 229.25,82.079 
-			232.094,86.503 230.893,89.092 229.25,86.503 		"/>
-		<polygon opacity="0.5" fill="#A25BA4" enable-background="new    " points="239.5,102.896 244.521,94.665 241.661,94.665 
-			239.536,98.078 237.342,94.665 234.375,94.699 		"/>
-		<polygon opacity="0.5" fill="#F6851F" enable-background="new    " points="229.25,86.503 232.094,86.503 239.536,98.078 
-			239.5,102.896 		"/>
-		<polygon opacity="0.5" fill="#79CDCB" enable-background="new    " points="239.5,102.896 249.5,86.503 246.745,86.503 
-			239.536,98.078 		"/>
-		<polygon opacity="0.5" fill="#65BC46" enable-background="new    " points="247.931,89.075 246.745,86.503 249.5,82.079 
-			266.666,82.079 271.541,86.503 249.5,86.503 		"/>
-		<polygon opacity="0.5" fill="#FBEE29" enable-background="new    " points="266.666,82.079 262.874,86.503 285.042,86.503 
-			280.25,82.079 		"/>
-		<polygon opacity="0.5" fill="#C32127" enable-background="new    " points="280.429,82.079 274.689,86.503 306.331,86.503 
-			297.312,82.079 		"/>
-		<polygon opacity="0.5" fill="#DE5D83" enable-background="new    " points="294.497,86.503 297.312,82.079 320,82.079 320,86.503 
-					"/>
-	</g>
+	<polygon opacity="0.5" fill="#A25BA4" enable-background="new    " points="70,86.503 72.726,86.503 80,98.078 80,102.896 	"/>
+	<polygon opacity="0.5" fill="#ED3794" enable-background="new    " points="90,86.503 87.274,86.503 80,98.078 80,102.896 	"/>
+	<polygon opacity="0.5" fill="#79CDCB" points="47.41,86.503 42.894,82.079 70,82.079 72.726,86.503 71.687,89.269 70,86.503 	"/>
+	<polygon opacity="0.5" fill="#C32127" enable-background="new    " points="112.584,86.503 117.101,82.079 89.994,82.079 
+		87.269,86.503 88.307,89.269 89.994,86.503 	"/>
+	<polygon opacity="0.5" fill="#F6851F" enable-background="new    " points="143.042,86.503 133.042,82.079 106.709,82.079 
+		112.21,86.503 	"/>
+	<polygon opacity="0.5" fill="#65BC46" enable-background="new    " points="145.209,86.503 155.209,82.079 181.543,82.079 
+		176.042,86.503 	"/>
+	<polygon opacity="0.5" fill="#DE5D83" enable-background="new    " points="77.877,94.699 77.061,98.078 80,102.896 82.939,98.078 
+		82.112,94.699 80,98.078 	"/>
+	<polygon opacity="0.5" fill="#FBEE29" points="123.176,86.503 133.042,82.079 155.125,82.079 161,86.503 	"/>
+	<polygon opacity="0.5" fill="#79CDCB" points="175.764,86.503 170.459,82.079 208.969,82.079 204.752,86.503 	"/>
+	<polygon opacity="0.5" fill="#ED3794" enable-background="new    " points="204.752,86.503 200.001,82.079 229.25,82.079 
+		232.094,86.503 230.893,89.092 229.25,86.503 	"/>
+	<polygon opacity="0.5" fill="#A25BA4" enable-background="new    " points="239.5,102.896 244.521,94.665 241.661,94.665 
+		239.536,98.078 237.342,94.665 234.375,94.699 	"/>
+	<polygon opacity="0.5" fill="#F6851F" enable-background="new    " points="229.25,86.503 232.094,86.503 239.536,98.078 
+		239.5,102.896 	"/>
+	<polygon opacity="0.5" fill="#79CDCB" enable-background="new    " points="239.5,102.896 249.5,86.503 246.745,86.503 
+		239.536,98.078 	"/>
+	<polygon opacity="0.5" fill="#65BC46" enable-background="new    " points="247.931,89.075 246.745,86.503 249.5,82.079 
+		266.666,82.079 271.541,86.503 249.5,86.503 	"/>
+	<polygon opacity="0.5" fill="#FBEE29" points="266.666,82.079 262.438,86.562 277.5,86.503 280.501,82.079 279.375,78.562 
+		277.105,82.079 	"/>
+	<polygon opacity="0.5" fill="#C32127" enable-background="new    " points="277.105,82.079 280.501,82.079 287,72.5 287,66.75 	"/>
+	<polygon opacity="0.5" fill="#A25BA4" enable-background="new    " points="296.25,82.079 294.053,78.438 293.469,82.292 
+		296.25,86.503 307.688,86.503 303.812,82.079 	"/>
+	<polygon opacity="0.5" fill="#ED3794" enable-background="new    " points="287,66.75 296.25,82.079 293.469,82.292 287,72.5 	"/>
+	<polygon opacity="0.5" fill="#F6851F" enable-background="new    " points="301.25,86.503 303.812,82.079 320,82.079 320,86.503 	
+		"/>
+	<polygon opacity="0.5" fill="#FBEE29" points="53.334,82.079 57.562,86.562 42.5,86.503 39.499,82.079 40.625,78.562 
+		42.895,82.079 	"/>
+	<polygon opacity="0.5" fill="#C32127" enable-background="new    " points="42.895,82.079 39.499,82.079 33,72.5 33,66.75 	"/>
+	<polygon opacity="0.5" fill="#A25BA4" enable-background="new    " points="23.75,82.079 25.947,78.438 26.531,82.292 
+		23.75,86.503 12.312,86.503 16.188,82.079 	"/>
+	<polygon opacity="0.5" fill="#ED3794" enable-background="new    " points="33,66.75 23.75,82.079 26.531,82.292 33,72.5 	"/>
+	<polygon opacity="0.5" fill="#F6851F" enable-background="new    " points="18.75,86.503 16.188,82.079 0,82.079 0,86.503 	"/>
 </g>
 </svg>
