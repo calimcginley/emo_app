@@ -10,6 +10,7 @@ window.localStorage.setItem('hex-are', 'on');
 var emoFilterArray = ['1', '2', '3', '4', '5', '6', '7', '8'];
 window.localStorage.setItem('timeType', 'default');
 var filterOpen = false;
+var firstMarkers = true;
 
 var onSuccess = function (position)
 {
@@ -191,14 +192,17 @@ function setMapInAction()
 
         console.log('The REGEXP string is now:');
         console.log(emoTypes);
-        var jsonStringHex = ";"
+        // Get the map Bounds to spped up the app
+        var bbBounds = L.latLngBounds.pad(.5).toBBoxString();
+        console.log('BBox: '+bbBounds);
+        var jsonStringHex = " ";
         if (timeType === 'dateRange')
         {
-            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=' + moment(startDate, "YYYY-MM-DD").format() + '&endDate=' + moment(endDate, "YYYY-MM-DD").format();
+            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?bounds='+bbBounds+'&emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=' + moment(startDate, "YYYY-MM-DD").format() + '&endDate=' + moment(endDate, "YYYY-MM-DD").format();
         }
         else
         {
-            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=null&endDate=null';
+            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?bounds='+bbBounds+'&emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=null&endDate=null';
         }
         console.log('The PHP url is now:');
         console.log(jsonStringHex);
@@ -246,6 +250,12 @@ function setMapInAction()
             }
         });
 
+        // Remove Markers before adding layer again
+        // First time can't remove markers
+        if (!firstMarkers)
+            map.removeLayer(markers);
+        firstMarkers = false;
+
         //*******************  Marker Cluster Layer  *******************************
         //**************************************************************************
         markers = new L.MarkerClusterGroup({
@@ -257,12 +267,7 @@ function setMapInAction()
         //$.getJSON('http://emoapp.info/php/jsonPosts.php', function(data) {
         $.getJSON(jsonStringHex, function (data) {
             $.each(data.features, function (index, value) {
-                //$.each(data.posts, function(index, value) {
-                //console.log('emoType in marker functio');
-                //console.log(value.properties.emoType);
-
                 var myIcon = L.icon({
-                    //iconUrl: 'images/svgPins/pin' + value.emoType + '.svg',
                     iconUrl: 'images/svgPins/pin' + value.properties.emoType + '.svg',
                     iconSize: [45, 60],
                     iconAnchor: [22, 60],
@@ -270,18 +275,18 @@ function setMapInAction()
                     shadowSize: [73, 46],
                     shadowAnchor: [41, 46]
                 });
-                //var marker = L.marker([value.lat, value.long]
-                //console.log(value.geometry.coordinates);
                 var latLongStr = value.geometry.coordinates.toString();
                 var latLongArr = latLongStr.split(',');
-                //console.log(latLongArr[1]);
                 var marker = L.marker([latLongArr[1], latLongArr[0]]
-                        //var marker = L.marker(value.geometry.coordinates
-                        //, {title: value.postID, icon: myIcon});
                         , {title: value.properties.postID, icon: myIcon});
-                //console.log(JSON.stringify(marker));
                 markers.addLayer(marker);
             });
+            var zoomIn = map.getZoom() + 1;
+            if (zoomIn >= 15)
+            {
+                console.log('zooming!!');
+                map.setZoom(zoomIn);
+            }
         });
 
         //********  Marker Click Event  ***************
@@ -296,55 +301,52 @@ function setMapInAction()
             map.setView(e.layer.getLatLng());
             markerClicked(postID);
         });
-
-        //*******************************************************
-        //********  Zoom Switcher for the Layers  ***************
-        //*******************************************************
-        map.on('zoomend', zoom);
-        function zoom()
-        {
-            var zoomNow = map.getZoom();
-            console.log("Map zoom is " + zoomNow);
-            if (zoomNow >= 14)
-            {
-                // Hide the hex layer
-                $(".emotionHexbin").hide();
-                // Set hex layer to off
-                window.localStorage.setItem('hex-are', 'off');
-                console.log('hex hidden?, show markers');
-                // Show the marker layer
-                map.addLayer(markers);
-            }
-            else
-            {
-                // Hide the Marker layer
-                map.removeLayer(markers);
-                // Show the layers
-                $(".emotionHexbin").show();
-                // Set hex layers to visable
-                window.localStorage.setItem('hex-are', 'on');
-                // Get zoom level to display current layer
-                var zoom = map.getZoom();
-                console.log('zoom is' + zoom);
-                console.log('SHow Hex, hide Pins');
-                $(".zoom-" + zoom).show();
-            }
-        }
     };
 
     //********  Call the inital Function  *********
     //*********************************************
-    // 
     setJsonLayers();
+    map.on('zoomend', zoom);
+    function zoom()
+    {
+        var zoomNow = map.getZoom();
+        console.log("Map zoom is " + zoomNow);
+        if (zoomNow >= 14)
+        {
+            // Hide the hex layer
+            $(".emotionHexbin").hide();
+            // Set hex layer to off
+            window.localStorage.setItem('hex-are', 'off');
+            console.log('hex hidden?, show markers');
+            // Show the marker layer
+            map.addLayer(markers);
+            console.log(markers);
+        }
+        else
+        {
+            // Hide the Marker layer
+            map.removeLayer(markers);
+            // Show the layers
+            $(".emotionHexbin").show();
+            // Set hex layers to visable
+            window.localStorage.setItem('hex-are', 'on');
+            // Get zoom level to display current layer
+            var zoom = map.getZoom();
+            console.log('zoom is' + zoom);
+            console.log('SHow Hex, hide Pins');
+            $(".zoom-" + zoom).show();
+        }
+    }
     // Call the function every 5 seconds thereafter to refresh page
     window.setInterval(function () {
         if ($.mobile.activePage.attr('id') === 'mapPage')
         {
             /// Clear Layers and add new
             // Call the JSON Data function
-            setJsonLayers();
+            if (!$('#mapPage').hasClass('show-popup'))
+                setJsonLayers();
         }
-    }, 60000);
+    }, 10000);
 
     // - - -  When the mapPage is shown This code will trigger - - -
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   
@@ -356,7 +358,6 @@ function setMapInAction()
     });
 }
 //  End of setMapInAction()
-
 
 //********  Marker Click Event Code  ***************
 function markerClicked(postID)
@@ -396,7 +397,6 @@ function markerClicked(postID)
                 console.log(b);
                 var timeOffset = a.from(b);
                 console.log(timeOffset);
-
                 $('#popUpInfo').html('<i class="fa fa-clock-o fa-2x"></i> ' + timeOffset);
             });
 
@@ -442,7 +442,6 @@ function addMarkerToMap(emoType, postID, pinLat, pinLong)
     });
     //addMarker.addTo(map);
     markers.addLayer(addMarker);
-
 }
 
 //********  Center Map on marker click  ***************
@@ -452,13 +451,11 @@ function centerMap(mapLat, mapLong)
     map.setView([mapLat, mapLong]);
 }
 
-
 function mapSetView(mLat, mLong)
 {
     console.log('setting mao view');
     map.setView([mLat, mLong], 15);
 }
-
 
 // Map Emoji Filter
 $(document).on("pageshow", "#mapPage", function () {
@@ -485,14 +482,12 @@ $(document).on("pageshow", "#mapPage", function () {
             openFilterBar();
         }
 
-
         // Open the filet menu bar
         function openFilterBar()
         {
             console.log('Open Filter bar');
             $("#emojiSearchBar").velocity({top: "70px", easing: "easein"}, 500);
             //$("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
-
             $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
             filterOpen = !filterOpen;
         }
@@ -504,7 +499,6 @@ $(document).on("pageshow", "#mapPage", function () {
         // Parent Emoji Clicked
         console.log('Filter clicked');
         var emoType = $(this).attr('data-name');
-
         if ($(this).hasClass('filterOff'))
         {
             emoFilterArray.push(emoType);
@@ -549,18 +543,17 @@ $(document).on("pageshow", "#mapPage", function () {
         $("#filterButton").val('Filter emoji').button("refresh");
     });
 
-
     // Filter Button closes the filter bar and initates new hex-svg elements.
     $("#filterButton").bind("click", function (event, ui) {
         // Check the button type and decide which timeType to declare
         var btnType = $("#filterButton").val();
-        if(btnType === 'Filter by Date')
+        if (btnType === 'Filter by Date')
         {
             window.localStorage.setItem('timeType', 'dateRange');
         }
         else
         {
-            window.localStorage.setItem('timeType', 'default');            
+            window.localStorage.setItem('timeType', 'default');
         }
 
         console.log('Filter Button Clicked');
@@ -585,7 +578,6 @@ $(document).on("pageshow", "#mapPage", function () {
 // ------------------------------------------------------------------------------------------
 // ------------------------------ Filter form inputs  -------------------------------
 // ------------------------------------------------------------------------------------------
-
     $('.input-daterange').datepicker({
         autoclose: true,
         todayHighlight: true
