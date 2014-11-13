@@ -175,7 +175,6 @@ ul, menu, dir {
     width: 100%;
     left: 0;
     text-align: center;
-    padding-top: .5em;
 }
 
 #emojiSearchBar img {
@@ -206,7 +205,7 @@ ul, menu, dir {
 }
 .profileNavImg {
     float: right;
-    padding-right: .2em;
+    padding-right: 1em;
 }
 
 .profileHeader img {
@@ -445,9 +444,4 @@ ul, menu, dir {
 
 #settingsPage .collapseDiv {
     padding: 0 20%;
-}
-.profileNavImgPin {
-    
-    padding-left: 14.5em;
-
 }
