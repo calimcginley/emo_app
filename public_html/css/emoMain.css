@@ -175,6 +175,7 @@ ul, menu, dir {
     width: 100%;
     left: 0;
     text-align: center;
+    padding-top: .5em;
 }
 
 #emojiSearchBar img {
