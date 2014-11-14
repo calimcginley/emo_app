@@ -57,13 +57,24 @@ li a
 // ----------------------------------------------------------------------------------------*/ 
 
 #loginForm {
-    padding-top: 64px;
+    padding-top: 84px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#loginPage #loginForm .ui-page-theme-a .ui-btn {
+    background-color: #fff;
 }
 
 /* Sets the password input and title input fields */
 #password-clear 
 {
     display: none;
+}
+
+#formImg {
+    position: absolute;
+    bottom: 0;
 }
 
 /* Set the form inputs CSS */

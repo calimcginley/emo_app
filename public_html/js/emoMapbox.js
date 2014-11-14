@@ -40,7 +40,7 @@ function setMapInAction()
     //**************************************************************************
 
     console.log('At mapbox stage the lat is ' + setViewLat + ' and long is ' + setViewLong);
-    map = L.mapbox.map('map', 'calimcginley.d78c7e7b', {zoomControl: false, detectRetina: true, maxZoom: 17})
+    map = L.mapbox.map('map', 'sona.3ab9e710', {zoomControl: false, detectRetina: true, maxZoom: 17})
             .setView([setViewLat, setViewLong], 14);
 
     //**********************  Leaflet Hexbin Layer Class ***********************
