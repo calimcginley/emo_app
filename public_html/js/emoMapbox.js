@@ -391,7 +391,7 @@ function markerClicked(postID)
                 console.log('image: ' + val.imageName);
                 console.log('Post Time: ' + val.timeThen);
                 console.log('Now: ' + val.timeNow);
-                var imgSrc = 'http://emoapp.info/uploads/' + val.imageName + '.jpg';
+                var imgSrc = 'http://emoapp.info/uploads/' + val.imageName + '.png';
                 console.log('The image src is : ' + imgSrc);
                 $('#emoPostPopup').attr('src', imgSrc);
                 // Time Difference

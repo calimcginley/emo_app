@@ -278,6 +278,7 @@ $(document).on('click', '#postToMapBtn', function () {
     function sendPost()
     {
         var userID = window.localStorage.getItem('userID');
+        console.log('User ID: ' + userID);
         var userEmail = window.localStorage.getItem('email');
         console.log('User Email: ' + userEmail);
         var parentEmoji = window.localStorage.getItem('parentPostEmoji');
@@ -298,7 +299,7 @@ $(document).on('click', '#postToMapBtn', function () {
                 textVisible: true
             });
             console.log('File Path');
-            var imageData = document.getElementById('imageCanvas').toDataURL('image/jpg', 0.6);
+            var imageData = document.getElementById('imageCanvas').toDataURL('image/png', 0.6);
             console.log('Image DATA: ');
             console.log(imageData);
 
@@ -379,7 +380,7 @@ $(document).ready(function ()
         if (keypadOnOff === 'off')
         {
             console.log('emoji keypad opened');
-             $("#tabs").tabs();
+            $("#tabs").tabs();
             $('#toggle').html('close');
             $("#insertButtons").velocity({top: "-=200", easing: "easein"}, 400).delay(800);
             window.localStorage.setItem('emojiKeypad', 'on');
@@ -648,6 +649,7 @@ $(document).on("pageshow", "#profilePage", function (e, data) {
     {
         window.localStorage.setItem('imageCount', 7);
         var userID = window.localStorage.getItem('userID');
+        console.log('Getting posts for Users: '+userID);
         $.ajax({url: 'http://emoapp.info/php/getUserPosts.php',
             data: {userID: userID},
             type: 'post',
@@ -668,16 +670,26 @@ $(document).on("pageshow", "#profilePage", function (e, data) {
 
                 // Get user posts and place them into assoc Array
                 console.log('User Posts Fetch successfull');
-                $.each(result.posts, function (index, value) {
-                    console.log(index + ' : ' + value.postID);
-                    array_push = [index, value.postID, value.imageName, value.timeServer, value.timeNow];
-                    console.log(array_push);
-                    profileImageArray.push(array_push);
-                    window.localStorage.setItem('profileArray', JSON.stringify(profileImageArray));
+                console.log(result);
+//                if ($.isEmptyObject(result.post))
+//                {
+                    // you code here
+                    //console.log('NO DATA!');
+                    //$('#profilePosts').append('<h3 id="noMsg" style="padding-top:50px">You have no Posts yet</h3><img src="images/vibesHeader_2.svg" class="mapLink" alt="" style="padding-left: 7.5em; padding-top: 8em;">');
+//                }
+//                else
+//                {
+                    $('#noMsg').remove();
+                    $.each(result.posts, function (index, value) {
+                        console.log(index + ' : ' + value.postID);
+                        array_push = [index, value.postID, value.imageName, value.timeServer, value.timeNow];
+                        console.log(array_push);
+                        profileImageArray.push(array_push);
+                        window.localStorage.setItem('profileArray', JSON.stringify(profileImageArray));
 
-                });
-                insertImageArray(window.localStorage.getItem('imageCount'));
-
+                    });
+                    insertImageArray(window.localStorage.getItem('imageCount'));
+//                }
             },
             error: function (error) {
                 // This callback function will trigger on unsuccessful action               
@@ -713,7 +725,7 @@ function insertImageArray(imageCount)
             console.log(b);
             var timeOffset = a.from(b);
             $('#profilePosts').append('<div class="profilePostDiv">'
-                    + '<img class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/' + value[2] + '.jpg"/>'
+                    + '<img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png"/>'
                     + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
                     + '</div>');
         }
@@ -726,9 +738,9 @@ function insertImageArray(imageCount)
 
     $(".postDivImg").click(function () {
         console.log('Image Clicked');
-        var imgSrc = $(this).attr('src');
+        var imgSrc = $(this).attr('id');
         var offSet = $(this).attr('alt');
-        $('#profilePopup').append('<div class="giantImg"><img src="' + imgSrc + '" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
+        $('#profilePopup').append('<div class="giantImg"><img src="http://www.emoapp.info/uploads/' + imgSrc + '.jpg" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
         // Remove Click Event
         $(".giantImg").click(function () {
             $(".giantImg").remove();
