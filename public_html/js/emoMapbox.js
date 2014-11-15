@@ -42,6 +42,37 @@ function setMapInAction()
     console.log('At mapbox stage the lat is ' + setViewLat + ' and long is ' + setViewLong);
     map = L.mapbox.map('map', 'sona.3ab9e710', {zoomControl: false, detectRetina: true, maxZoom: 17})
             .setView([setViewLat, setViewLong], 14);
+    // Add the locate Button
+    //L.control.locate({position:'bottomright'}).addTo(map);
+    var MyControl = L.Control.extend({
+        options: {
+            position: 'bottomright'
+        },
+        onAdd: function (map) {
+            // create the control container with a particular class name
+            var container = L.DomUtil.create('div', 'centerButton');
+
+            // ... initialize other DOM elements, add listeners, etc.
+            var link = L.DomUtil.create('a', 'leaflet-bar-part leaflet-bar-part-single', container);
+            link.href = '#';
+
+            L.DomEvent
+                    .on(link, 'click', L.DomEvent.stopPropagation)
+                    .on(link, 'click', L.DomEvent.preventDefault)
+                    .on(link, 'click', function () {
+                        console.log('Center Button Clicked!!1');
+                        function centerSuccess()
+                        {
+                            map.setView([position.coords.latitude, position.coords.longitude]);
+                        }
+                        navigator.geolocation.getCurrentPosition(centerSuccess, onError);
+                    });
+            return container;
+        }
+    });
+
+    map.addControl(new MyControl());
+
 
     //**********************  Leaflet Hexbin Layer Class ***********************
     //**************************************************************************
@@ -457,12 +488,17 @@ function centerMap(mapLat, mapLong)
 
 function mapSetView(mLat, mLong)
 {
-    console.log('setting mao view');
+    console.log('setting map view');
     map.setView([mLat, mLong], 15);
 }
 
+
+
 // Map Emoji Filter
 $(document).on("pageshow", "#mapPage", function () {
+
+    // Filter Menu Button
+    $(".centerButton a").html('<i class="fa fa-compass fa-3x"></i>');
 
     // Filter Menu Button
     $(".emoFilterBtn").click(function ()

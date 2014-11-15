@@ -102,6 +102,10 @@ $(document).ready(function () {
         $(".left-panel-btn").velocity({width: '144px', easing: "easein"}, 500);
         isInfoMenuOpen = !isInfoMenuOpen;
     }
+    
+    $('.about-wrap').click(function() {
+        $('#settingsPage').removeClass('show-about');
+    });
 });
 
 // Remove Classes when leaving map page
