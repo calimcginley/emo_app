@@ -63,9 +63,15 @@ function setMapInAction()
                         console.log('Center Button Clicked!!1');
                         function centerSuccess()
                         {
+                            console.log('Lat: '+position.coords.latitude +'Long: '+position.coords.longitude)
                             map.setView([position.coords.latitude, position.coords.longitude]);
                         }
-                        navigator.geolocation.getCurrentPosition(centerSuccess, onError);
+                        function centerError ()
+                        {
+                            console.log('Failed to get Geo');
+                        }
+                        
+                        navigator.geolocation.getCurrentPosition(centerSuccess, centerError);
                     });
             return container;
         }
