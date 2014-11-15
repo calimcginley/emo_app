@@ -740,7 +740,7 @@ function insertImageArray(imageCount)
         console.log('Image Clicked');
         var imgSrc = $(this).attr('id');
         var offSet = $(this).attr('alt');
-        $('#profilePopup').append('<div class="giantImg"><img src="http://www.emoapp.info/uploads/' + imgSrc + '.jpg" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
+        $('#profilePopup').append('<div class="giantImg"><img src="http://www.emoapp.info/uploads/' + imgSrc + '.png" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
         // Remove Click Event
         $(".giantImg").click(function () {
             $(".giantImg").remove();
