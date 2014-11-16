@@ -19,7 +19,10 @@ var onSuccess = function (position)
     setViewLong = position.coords.longitude;
     window.localStorage.setItem('postLong', setViewLong);
     console.log('geo local success lat is ' + setViewLat + ' and long is ' + setViewLong);
-    setMapInAction();
+    if (firstMarkers)
+    {
+        setMapInAction();
+    }
 };
 
 function onError(error)
@@ -29,10 +32,19 @@ function onError(error)
     setViewLong = '52.341';
     window.localStorage.setItem('postLong', setViewLong);
     console.log('Geo local fail lat is ' + setViewLat + ' and long is ' + setViewLong);
-    setMapInAction();
+    if (firstMarkers)
+    {
+        setMapInAction();
+    }
 }
 
-navigator.geolocation.getCurrentPosition(onSuccess, onError);
+function setLocale()
+{
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+}
+
+setLocale();
+
 
 function setMapInAction()
 {
@@ -51,6 +63,7 @@ function setMapInAction()
         onAdd: function (map) {
             // create the control container with a particular class name
             var container = L.DomUtil.create('div', 'centerButton');
+            console.log('Lets Create the New Button');
 
             // ... initialize other DOM elements, add listeners, etc.
             var link = L.DomUtil.create('a', 'leaflet-bar-part leaflet-bar-part-single', container);
@@ -61,23 +74,19 @@ function setMapInAction()
                     .on(link, 'click', L.DomEvent.preventDefault)
                     .on(link, 'click', function () {
                         console.log('Center Button Clicked!!1');
-                        function centerSuccess()
-                        {
-                            console.log('Lat: '+position.coords.latitude +'Long: '+position.coords.longitude)
-                            map.setView([position.coords.latitude, position.coords.longitude]);
-                        }
-                        function centerError ()
-                        {
-                            console.log('Failed to get Geo');
-                        }
-                        
-                        navigator.geolocation.getCurrentPosition(centerSuccess, centerError);
+                        setLocale();
+                        var cenLat = window.localStorage.getItem('postLat');
+                        var cenLng = window.localStorage.getItem('postLong');
+                        alert('Lat: ' + cenLat + 'Long: ' + cenLng);
+                        console.log('Lat: ' + cenLat + 'Long: ' + cenLng);
+                        map.setView([cenLat, cenLng]);
                     });
             return container;
         }
     });
-
+    console.log('Lets Add the New Button');
     map.addControl(new MyControl());
+
 
 
     //**********************  Leaflet Hexbin Layer Class ***********************
@@ -339,7 +348,8 @@ function setMapInAction()
             console.log(e.layer.options.title);
             var postID = e.layer.options.title;
             console.log('Exisitng Marker was clicked - postID: ' + postID);
-            map.setView(e.layer.getLatLng());
+            var markerClickLatLng = e.layer.getLatLng();
+            map.setView(markerClickLatLng);
             markerClicked(postID);
         });
     };
@@ -379,15 +389,15 @@ function setMapInAction()
         }
     }
     // Call the function every 5 seconds thereafter to refresh page
-    window.setInterval(function () {
-        if ($.mobile.activePage.attr('id') === 'mapPage')
-        {
-            /// Clear Layers and add new
-            // Call the JSON Data function
-            if (!$('#mapPage').hasClass('show-popup'))
-                setJsonLayers();
-        }
-    }, 30000);
+//    window.setInterval(function () {
+//        if ($.mobile.activePage.attr('id') === 'mapPage')
+//        {
+//            /// Clear Layers and add new
+//            // Call the JSON Data function
+//            if (!$('#mapPage').hasClass('show-popup'))
+//                setJsonLayers();
+//        }
+//    }, 30000);
 
     // - - -  When the mapPage is shown This code will trigger - - -
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   
@@ -395,7 +405,13 @@ function setMapInAction()
         // - -  Leaflet / MapBox Map - - 
         console.log('Invalidate the map size');
         map.invalidateSize();   // fixes the issue with map size   
-        //        $('.leaflet-control-attribution').attr(' display', 'none');
+
+        // If this is not the first time the map is shown
+        // Refresh the markers
+        if (!firstMarkers)
+        {
+            setJsonLayers();
+        }
     });
 }
 //  End of setMapInAction()
@@ -438,7 +454,7 @@ function markerClicked(postID)
                 console.log(b);
                 var timeOffset = a.from(b);
                 console.log(timeOffset);
-                $('#popUpInfo').html('<i class="fa fa-clock-o fa-2x"></i> ' + timeOffset);
+                $('#popUpInfo').html('<p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p>');
             });
 
             // Open the Map Marker
@@ -485,18 +501,18 @@ function addMarkerToMap(emoType, postID, pinLat, pinLong)
     markers.addLayer(addMarker);
 }
 
-//********  Center Map on marker click  ***************
+////********  Center Map on marker click  ***************
 function centerMap(mapLat, mapLong)
 {
-    console.log('centered map view');
+    alert('centered map view');
     map.setView([mapLat, mapLong]);
 }
 
-function mapSetView(mLat, mLong)
-{
-    console.log('setting map view');
-    map.setView([mLat, mLong], 15);
-}
+//function mapSetView(mLat, mLong)
+//{
+//    console.log('setting map view');
+//    map.setView([mLat, mLong], 15);
+//}
 
 
 
@@ -505,6 +521,16 @@ $(document).on("pageshow", "#mapPage", function () {
 
     // Filter Menu Button
     $(".centerButton a").html('<i class="fa fa-compass fa-3x"></i>');
+
+    // Share Button
+    // Twitter Share Button
+    $('#btnShare').click(function () {
+
+        var fileShare = $('#emoPostPopup').attr('src');
+        console.log('Share button clicked: ' + fileShare);
+        window.plugins.socialsharing.shareViaTwitter('Check out my Vibe @Vibes_ios', fileShare, 'http://emoapp.info');
+    });
+
 
     // Filter Menu Button
     $(".emoFilterBtn").click(function ()

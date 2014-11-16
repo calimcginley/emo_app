@@ -346,7 +346,13 @@ $(document).on('click', '#postToMapBtn', function () {
                 console.log('Variables are - Post ID: ' + result + ' ' + postLat + ' ' + postLong + ' - Parent: ' + parentEmoji);
                 addMarkerToMap(parentEmoji, result, postLat, postLong);
                 centerMap(postLat, postLong);
-                //$('')
+
+                var imgSrc = 'http://www.emoapp.info/uploads/' + imageNameStr + '.png';
+                $('#emoPostPopup').attr('src', imgSrc);
+                // Time Difference
+                $('#popUpInfo').html('<p><i class="fa fa-clock-o fa-2x"></i> Just now.<p>');
+                // Open the Map Marker
+                $('#mapPage').addClass('show-popup');
             },
             error: function (results, error) {
                 // This callback function will trigger on unsuccessful action               
@@ -649,7 +655,7 @@ $(document).on("pageshow", "#profilePage", function (e, data) {
     {
         window.localStorage.setItem('imageCount', 7);
         var userID = window.localStorage.getItem('userID');
-        console.log('Getting posts for Users: '+userID);
+        console.log('Getting posts for Users: ' + userID);
         $.ajax({url: 'http://emoapp.info/php/getUserPosts.php',
             data: {userID: userID},
             type: 'post',
@@ -673,22 +679,22 @@ $(document).on("pageshow", "#profilePage", function (e, data) {
                 console.log(result);
 //                if ($.isEmptyObject(result.post))
 //                {
-                    // you code here
-                    //console.log('NO DATA!');
-                    //$('#profilePosts').append('<h3 id="noMsg" style="padding-top:50px">You have no Posts yet</h3><img src="images/vibesHeader_2.svg" class="mapLink" alt="" style="padding-left: 7.5em; padding-top: 8em;">');
+                // you code here
+                //console.log('NO DATA!');
+                //$('#profilePosts').append('<h3 id="noMsg" style="padding-top:50px">You have no Posts yet</h3><img src="images/vibesHeader_2.svg" class="mapLink" alt="" style="padding-left: 7.5em; padding-top: 8em;">');
 //                }
 //                else
 //                {
-                    $('#noMsg').remove();
-                    $.each(result.posts, function (index, value) {
-                        console.log(index + ' : ' + value.postID);
-                        array_push = [index, value.postID, value.imageName, value.timeServer, value.timeNow];
-                        console.log(array_push);
-                        profileImageArray.push(array_push);
-                        window.localStorage.setItem('profileArray', JSON.stringify(profileImageArray));
+                $('#noMsg').remove();
+                $.each(result.posts, function (index, value) {
+                    console.log(index + ' : ' + value.postID);
+                    array_push = [index, value.postID, value.imageName, value.timeServer, value.timeNow];
+                    console.log(array_push);
+                    profileImageArray.push(array_push);
+                    window.localStorage.setItem('profileArray', JSON.stringify(profileImageArray));
 
-                    });
-                    insertImageArray(window.localStorage.getItem('imageCount'));
+                });
+                insertImageArray(window.localStorage.getItem('imageCount'));
 //                }
             },
             error: function (error) {
@@ -756,8 +762,6 @@ $(document).ready(function ()
         var imgCount = window.localStorage.getItem('imageCount');
         insertImageArray(imgCount);
     });
-
-    // profilePostDiv
 });
 
 $(document).on("pageshow", "#settingsPage", function () {

@@ -242,39 +242,3 @@ body,
     background-color: #B3B3B3;
     opacity: .7;
 }
-
-/* Popup CSS */
-
-#btnClose
-{
-    position:absolute;
-    width: 88px;
-    height: 88px;        
-    z-index: 2000;
-    top: 5px;
-    right: 5px;
-    padding-bottom: 10px;
-    background-color: rgba(255,255,255,0.02);
-}
-
-#emoPostPopup
-{
-    position:absolute;
-    z-index: 1950;
-    top: 40px;
-    right: 0;
-    width: 100%;
-    /* transform: rotate(90deg); */
-}
-
-#popUpInfo
-{
-    position:absolute;
-    z-index: 1950;
-    bottom: 5px;
-    left: 5px;
-    width: 270px;
-    text-align: left;
-}
-
-

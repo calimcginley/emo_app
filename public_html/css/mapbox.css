@@ -63,7 +63,7 @@
 
 .leaflet-right .leaflet-control{margin-right:10px}
 
-.leaflet-bottom,.leaflet-top{position:absolute;z-index:1000;pointer-events:none}
+.leaflet-bottom,.leaflet-top{position:absolute;z-index:499;pointer-events:none}
 
 .leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}
 
