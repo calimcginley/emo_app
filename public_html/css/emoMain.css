@@ -466,3 +466,12 @@ ul, menu, dir {
 #settingsPage .collapseDiv {
     padding: 0 20%;
 }
+
+
+
+.profileNavImgPin {
+    
+    float: right;
+    padding-left: 3.8em;
+
+}
