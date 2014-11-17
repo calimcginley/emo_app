@@ -2,7 +2,7 @@
 <!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="320px"
-	 height="224.25px" viewBox="0 -80.75 320 224.25" enable-background="new 0 -80.75 320 224.25" xml:space="preserve">
+	 height="264.25px" viewBox="0 -120.75 320 264.25" enable-background="new 0 -120.75 320 264.25" xml:space="preserve">
 <g id="Layer_1" display="none">
 	<g id="Layer_1_1_">
 		<g display="inline">
@@ -314,8 +314,8 @@
 		<stop  offset="0.9853" style="stop-color:#FFFEF8"/>
 		<stop  offset="1" style="stop-color:#FFFFFF"/>
 	</linearGradient>
-	<rect x="-1.987" y="-80.75" opacity="0.8" fill="url(#SVGID_1_)" width="323.652" height="279.403"/>
-	<g>
+	<rect x="-1.987" y="-80.75" opacity="0.7" fill="url(#SVGID_1_)" width="323.652" height="279.403"/>
+	<g opacity="0.8">
 		<rect x="-1.987" y="-31.176" opacity="0.04" fill="#FFFFFF" width="27.97" height="265.084"/>
 		<rect x="292.849" y="-31.176" opacity="0.04" fill="#FFFFFF" width="27.969" height="265.084"/>
 		<rect x="25.983" y="2.133" opacity="0.04" fill="#FFFFFF" width="19.985" height="231.775"/>
