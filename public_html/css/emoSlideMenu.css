@@ -238,13 +238,11 @@ body,
     transform: translate3d(0,0,0);
 }
 
-<<<<<<< Updated upstream
 .show-menu #insertButtons,
 .show-menu #settingsForm {
     background-color: #B3B3B3;
     opacity: .7;
 }
-=======
 
 
 /* Popup CSS */
@@ -281,6 +279,3 @@ body,
     text-align: center;
     color: #ffffff;
 }
-
-
->>>>>>> Stashed changes

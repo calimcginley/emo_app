@@ -61,7 +61,6 @@
 
 /* Popup */
 .popup-wrap {
-<<<<<<< Updated upstream
     position: fixed;
     z-index: 999;
     background: #ffffff;
@@ -111,7 +110,7 @@
 }
 
 #btnShare {
-  position:absolute;
+    position:absolute;
     z-index: 1950;
     width: 0;
     text-align: right;
@@ -123,20 +122,6 @@
     left: 155px;
     width: 140px;   
     padding-left: 10px;
-=======
-	position: fixed;
-	z-index: 999;
-	background-image: url("../images/popupBack.svg");
-	-webkit-transition: width 0.3s, height 0.3s;
-	transition: width 0.3s, height 0.3s;
-	width: 0;
-	height: 0;
-	font-size: 1.5em;
-	bottom: 1em;
-	left: 5px;
-	-webkit-transform-origin: 0% 100%;
-	transform-origin: 0% 100%;
->>>>>>> Stashed changes
 }
 
 @media screen and (max-width: 50em) {
@@ -150,7 +135,6 @@
 }
 
 .popup {
-<<<<<<< Updated upstream
     position: relative;
     height: 100%;
     opacity: 0;
@@ -158,23 +142,14 @@
     z-index: 1050;
     color: #9e9e9e;	
     text-align: right;
-=======
-        position: relative;
-	height: 100%;
-	opacity: 0;
-	font-size: 0.65em;
-	
-        color: #ffffff;
-	
-        text-align: right;
->>>>>>> Stashed changes
 }
 
 /* About */
 .about-wrap {
     position: fixed;
     z-index: 1050;
-    background: #ebedf4;
+    //background: #ebedf4;
+    background-image: url("../images/popupBack.svg");
     -webkit-transition: width 0.3s, height 0.3s;
     transition: width 0.3s, height 0.3s;
     width: 0;
@@ -183,8 +158,7 @@
     bottom: 0px;
     left: 0px;
     -webkit-transform-origin: 0% 100%;
-    transform-origin: 0% 100%;
-
+    transform-origin: 0% 100%;    
 }
 
 @media screen and (max-width: 50em) {
