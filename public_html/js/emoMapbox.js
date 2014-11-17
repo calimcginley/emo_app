@@ -78,7 +78,6 @@ function setMapInAction()
                         setLocale();
                         var cenLat = window.localStorage.getItem('postLat');
                         var cenLng = window.localStorage.getItem('postLong');
-                        alert('Lat: ' + cenLat + 'Long: ' + cenLng);
                         console.log('Lat: ' + cenLat + 'Long: ' + cenLng);
                         map.setView({lat: cenLat, lon: cenLng});
                     });
@@ -421,7 +420,7 @@ function markerClicked(postID)
         success: function (result) {
             $.each(result.marker, function (key, val) {
                 // Map marker was success  
-                $('#emoPostPopup').attr('src', ' ');
+                $('#emoPostPopup').attr('src', 'images/loading.svg');
                 console.log('Map Marker Fetch Succesfull');
                 console.log('image: ' + val.imageName);
                 console.log('Post Time: ' + val.timeThen);
@@ -437,6 +436,11 @@ function markerClicked(postID)
                 var timeOffset = a.from(b);
                 console.log(timeOffset);
                 $('#popUpInfo').html('<p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p>');
+
+                $("#emoPostPopup").load(function () {
+                    // Handler for .load() called.
+                    $.mobile.loading("hide");
+                });
             });
 
             // Open the Map Marker
@@ -484,10 +488,9 @@ function addMarkerToMap(emoType, postID, pinLat, pinLong)
 }
 
 ////********  Center Map on marker click  ***************
-function centerMap(mapLat, mapLong)
+function centerMap()
 {
-    alert('centered map view');
-    map.setView({lat: mapLat, lon: mapLong});
+    setLocale();
 }
 
 // Map Emoji Filter

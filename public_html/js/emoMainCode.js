@@ -170,7 +170,6 @@ $(document).ready(function () {
 
 function camera()
 {
-    //alert('camera function');
     // Place camera phonegap function here
     navigator.camera.getPicture(onSuccess, onFail, {
         quality: 48,
@@ -313,7 +312,14 @@ $(document).on('click', '#postToMapBtn', function () {
             }).done(function (o) {
                 console.log('Image Uploaded: saved');
                 $.mobile.loading("hide");
-                $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
+                $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});     
+                // Open the Map Marker
+                var imgSrc = 'http://www.emoapp.info/uploads/' + fileNameStr + '.png';
+                $('#emoPostPopup').attr('src', imgSrc);
+                // Time Difference
+                $('#popUpInfo').html('<i class="fa fa-clock-o fa-2x"></i> Just now.');
+                $('#mapPage').addClass('show-popup');                
+                setLocale();
             });
         }
 
@@ -345,14 +351,7 @@ $(document).on('click', '#postToMapBtn', function () {
                 console.log('Post was inserted to database ' + result);
                 console.log('Variables are - Post ID: ' + result + ' ' + postLat + ' ' + postLong + ' - Parent: ' + parentEmoji);
                 addMarkerToMap(parentEmoji, result, postLat, postLong);
-                centerMap(postLat, postLong);
-
-                var imgSrc = 'http://www.emoapp.info/uploads/' + imageNameStr + '.png';
-                $('#emoPostPopup').attr('src', imgSrc);
-                // Time Difference
-                $('#popUpInfo').html('<p><i class="fa fa-clock-o fa-2x"></i> Just now.<p>');
-                // Open the Map Marker
-                $('#mapPage').addClass('show-popup');
+               
             },
             error: function (results, error) {
                 // This callback function will trigger on unsuccessful action               
@@ -677,14 +676,7 @@ $(document).on("pageshow", "#profilePage", function (e, data) {
                 // Get user posts and place them into assoc Array
                 console.log('User Posts Fetch successfull');
                 console.log(result);
-//                if ($.isEmptyObject(result.post))
-//                {
-                // you code here
-                //console.log('NO DATA!');
-                //$('#profilePosts').append('<h3 id="noMsg" style="padding-top:50px">You have no Posts yet</h3><img src="images/vibesHeader_2.svg" class="mapLink" alt="" style="padding-left: 7.5em; padding-top: 8em;">');
-//                }
-//                else
-//                {
+
                 $('#noMsg').remove();
                 $.each(result.posts, function (index, value) {
                     console.log(index + ' : ' + value.postID);
@@ -695,7 +687,6 @@ $(document).on("pageshow", "#profilePage", function (e, data) {
 
                 });
                 insertImageArray(window.localStorage.getItem('imageCount'));
-//                }
             },
             error: function (error) {
                 // This callback function will trigger on unsuccessful action               
