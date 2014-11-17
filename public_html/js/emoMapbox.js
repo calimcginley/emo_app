@@ -27,9 +27,9 @@ var onSuccess = function (position)
 
 function onError(error)
 {
-    setViewLat = '-5.27';
+    setViewLat = '53.344103999999990000';
     window.localStorage.setItem('postLat', setViewLat);
-    setViewLong = '52.341';
+    setViewLong = '-6.267493699999932000';
     window.localStorage.setItem('postLong', setViewLong);
     console.log('Geo local fail lat is ' + setViewLat + ' and long is ' + setViewLong);
     if (firstMarkers)
@@ -79,7 +79,7 @@ function setMapInAction()
                         var cenLng = window.localStorage.getItem('postLong');
                         alert('Lat: ' + cenLat + 'Long: ' + cenLng);
                         console.log('Lat: ' + cenLat + 'Long: ' + cenLng);
-                        map.setView([cenLat, cenLng]);
+                        map.setView({lat:cenLat,lon: cenLng});
                     });
             return container;
         }
@@ -176,7 +176,7 @@ function setMapInAction()
                         map.on('click', function (e) {
                             if (map.getZoom() <= 16)
                             {
-                                map.setView([e.latlng.lat, e.latlng.lng], map.getZoom() + 2);
+                                map.setView({lat: e.latlng.lat, lon:e.latlng.lng}, map.getZoom() + 2);
                                 $('#zoomLevel').html('The level is' + map.getZoom());
                             }
                             else
@@ -505,16 +505,8 @@ function addMarkerToMap(emoType, postID, pinLat, pinLong)
 function centerMap(mapLat, mapLong)
 {
     alert('centered map view');
-    map.setView([mapLat, mapLong]);
+    map.setView({lat: mapLat, lon: mapLong});
 }
-
-//function mapSetView(mLat, mLong)
-//{
-//    console.log('setting map view');
-//    map.setView([mLat, mLong], 15);
-//}
-
-
 
 // Map Emoji Filter
 $(document).on("pageshow", "#mapPage", function () {
