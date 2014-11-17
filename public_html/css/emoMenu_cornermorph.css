@@ -103,7 +103,7 @@
 {
     position:absolute;
     z-index: 1950;
-    bottom: 5px;
+    bottom: 2px;
     left: 5px;
     width: 150px;
     text-align: left;
@@ -118,10 +118,10 @@
 
 .show-popup #btnShare
 {
-    bottom: 5px;
+    bottom: 2px;
     left: 155px;
     width: 140px;   
-    padding-left: 10px;
+    padding-left: 9px;
 }
 
 @media screen and (max-width: 50em) {
