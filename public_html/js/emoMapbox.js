@@ -8,7 +8,8 @@ var setViewLat;
 var setViewLong;
 window.localStorage.setItem('hex-are', 'on');
 var emoFilterArray = ['1', '2', '3', '4', '5', '6', '7', '8'];
-window.localStorage.setItem('timeType', 'default');
+window.localStorage.setItem('timeType', 'fastButtons');
+window.localStorage.setItem('interval', 'WEEK');
 var filterOpen = false;
 var firstMarkers = true;
 
@@ -79,7 +80,7 @@ function setMapInAction()
                         var cenLng = window.localStorage.getItem('postLong');
                         alert('Lat: ' + cenLat + 'Long: ' + cenLng);
                         console.log('Lat: ' + cenLat + 'Long: ' + cenLng);
-                        map.setView({lat:cenLat,lon: cenLng});
+                        map.setView({lat: cenLat, lon: cenLng});
                     });
             return container;
         }
@@ -95,8 +96,8 @@ function setMapInAction()
         includes: L.Mixin.Events,
         initialize: function (rawData, options) {
             this.levels = {};
-            this.layout = d3.hexbin().radius(22);
-            this.rscale = d3.scale.sqrt().range([0, 22]).clamp(true);
+            this.layout = d3.hexbin().radius(15);
+            this.rscale = d3.scale.sqrt().range([0, 15]).clamp(false);
             this.rwData = rawData;
             this.config = options;
         },
@@ -109,7 +110,7 @@ function setMapInAction()
             return L.bounds(this.project([b[0][0], b[1][1]]), this.project([b[1][0], b[0][1]]));
         },
         update: function () {
-            var pad = 10, xy = this.getBounds(this.rwData), zoom = this.map.getZoom();
+            var pad = 50, xy = this.getBounds(this.rwData), zoom = this.map.getZoom();
             this.container
                     .attr("width", xy.getSize().x + (2 * pad))
                     .attr("height", xy.getSize().y + (2 * pad))
@@ -158,7 +159,7 @@ function setMapInAction()
             bins.map(function (elem) {
                 counts.push(elem.length);
             });
-            this.rscale.domain([0, (ss.mean(counts) + (ss.standard_deviation(counts) * 3))]);
+            this.rscale.domain([0, (ss.mean(counts) + (ss.standard_deviation(counts) * 2))]);
 
             var path = hexagons.enter().append("path").attr("class", "hexagon");
             this.config.style.call(this, path);
@@ -174,15 +175,8 @@ function setMapInAction()
                     })
                     .on('click', function (d) {
                         map.on('click', function (e) {
-                            if (map.getZoom() <= 16)
-                            {
-                                map.setView({lat: e.latlng.lat, lon:e.latlng.lng}, map.getZoom() + 2);
-                                $('#zoomLevel').html('The level is' + map.getZoom());
-                            }
-                            else
-                            {
-                                $(this).addClass('.animateHexagon');
-                            }
+                            map.setView({lat: e.latlng.lat, lon: e.latlng.lng}, map.getZoom() + 2);
+                            $('#zoomLevel').html('The level is' + map.getZoom());
                         });
                     });
         },
@@ -238,19 +232,7 @@ function setMapInAction()
 
         console.log('The REGEXP string is now:');
         console.log(emoTypes);
-        // Get the map Bounds to spped up the app
-        // bbox should be a string in the form of 'southwest_lng,southwest_lat,northeast_lng,northeast_lat'
-        // // %2C is comma encode
-        // southwest_lng,southwest_lat,northeast_lng,northeast_lat
-        // http://www.emoapp.info/php/mysql_points_geojson_sensus.php?bounds=-6.219635009765625,53.37462442337814,-6.219635009765625,53.37462442337814&emoTypes=%271|2|3|4|5|6|7|8%27&timeType=default&interval=WEEK&startDate=null&endDate=null
-//        var bbBounds = map.getBounds();
-//        var southwest_lng = bbBounds.getSouthWest().lng;
-//        var southwest_lat = bbBounds.getSouthWest().lat;
-//        var northeast_lng = bbBounds.getNorthEast().lng;
-//        var northeast_lat = bbBounds.getNorthEast().lat;
-//        var bbString = southwest_lng +','+southwest_lat +','+northeast_lng +','+northeast_lat;
-//        console.log('BBox: '+bbString);
-        //var bbString = "";
+
         var jsonStringHex = " ";
         if (timeType === 'dateRange')
         {
@@ -362,7 +344,7 @@ function setMapInAction()
     {
         var zoomNow = map.getZoom();
         console.log("Map zoom is " + zoomNow);
-        if (zoomNow >= 14)
+        if (zoomNow >= 17)
         {
             // Hide the hex layer
             $(".emotionHexbin").hide();
