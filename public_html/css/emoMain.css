@@ -75,7 +75,7 @@ li a
 #formImg {
     position: absolute;
     bottom: 0;
-    
+
 }
 
 /* Set the form inputs CSS */
@@ -86,8 +86,8 @@ input[type='text']
 
 #loginType .ui-controlgroup, fieldset.ui-controlgroup
 {
-    margin: 0 74px;
-    width: 100%;
+    //margin: 0 74px;
+    //width: 100%;
 }
 
 #formErrorMsg
@@ -130,7 +130,7 @@ input[type='text']
 .maps {
     position: relative;
     top: 0;
-    min-height: 590px;
+    min-height: 503px;
     width: 100%;
     height: 100%;
 }
@@ -313,26 +313,66 @@ ul, menu, dir {
 // ------------------------------  Panel Menu  ------------------------------------------
 // ----------------------------------------------------------------------------------------*/ 
 
-.left-panel 
-{
-    margin-top: 0px;
-    background-color: #b2b2b2;
-    padding-top: 15px;
+.menu-button {
+    position: fixed;
+    z-index: 1005;
+    margin-top: 20px;
+    padding: 0;
+    width: 44px;
+    max-width: 15%;
+    height: 44px;
+    border: none;
+    text-indent: 2.5em;
+    font-size: 1.5em;
+    color: transparent;
+    background: transparent;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    background-image: url('img/hamburger_light.svg');
+    background-size: 100%;
 }
 
-.left-panel-btn
+.panel-btn, .infoMenuButtonImg
 {
     height: auto;
-    margin: 0 auto;
-    padding-left: 1.8em;
-    width: 110px;
-    max-width: 110px;
+    margin: 0;
+    padding: 1em 0em;
+    width: 150px;
+    max-width: 150px;
 }
 
 .infoMenuButtonImg {
-    padding-left: 1.8em;
-    width: 110px;
-    max-width: 110px;
+    margin-bottom: 100px;
+}
+
+.profile-button {
+    margin-top: 20px;
+    padding: 0;
+    width: 44px;
+    max-width: 15%;
+    height: 44px;
+    border: none;
+    text-indent: 2.5em;
+    font-size: 1.5em;
+    color: transparent;
+    background: transparent;
+    background-image: url('../images/profile/myVibes.svg');
+    background-size: 100%;
+}
+
+.settings-button {
+    margin-top: 20px;
+    padding: 0;
+    width: 44px;
+    max-width: 15%;
+    height: 44px;
+    border: none;
+    text-indent: 2.5em;
+    font-size: 1.5em;
+    color: transparent;
+    background: transparent;
+    background-image: url('../images/profile/settings.svg');
+    background-size: 100%;
 }
 
 /* ------------------------------------------------------------------------------------------
@@ -474,7 +514,7 @@ ul, menu, dir {
 
 
 .profileNavImgPin {
-    
+
     float: right;
     padding-left: 3.8em;
 

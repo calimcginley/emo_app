@@ -53,7 +53,7 @@ function setMapInAction()
     //**************************************************************************
 
     console.log('At mapbox stage the lat is ' + setViewLat + ' and long is ' + setViewLong);
-    map = L.mapbox.map('map', 'sona.3ab9e710', {zoomControl: false, detectRetina: true, maxZoom: 17})
+    map = L.mapbox.map('map', 'sona.3ab9e710', {zoomControl: false, detectRetina: true, maxZoom: 20, attributionControl: false})
             .setView([setViewLat, setViewLong], 14);
     // Add the locate Button
     //L.control.locate({position:'bottomright'}).addTo(map);
@@ -111,6 +111,7 @@ function setMapInAction()
         update: function () {
             var pad = 50, xy = this.getBounds(this.rwData), zoom = this.map.getZoom();
             this.container
+                    //  Container Widths not Hex sizes
                     .attr("width", xy.getSize().x + (2 * pad))
                     .attr("height", xy.getSize().y + (2 * pad))
                     .style("margin-left", (xy.min.x - pad) + "px")
@@ -154,28 +155,32 @@ function setMapInAction()
             var bins = this.layout(data);
             var hexagons = container.selectAll(".hexagon").data(bins);
 
-            var counts = [];
-            bins.map(function (elem) {
-                counts.push(elem.length);
-            });
-            this.rscale.domain([0, (ss.mean(counts) + (ss.standard_deviation(counts) * 2))]);
-
             var path = hexagons.enter().append("path").attr("class", "hexagon");
             this.config.style.call(this, path);
-
             that = this;
 
             hexagons
                     .attr("d", function (d) {
-                        return that.layout.hexagon(that.rscale(d.length));
+                        var hexSize = d.length * .05 + 0.5;
+                        if (map.getZoom() > 15)
+                            hexSize = hexSize * 1.25;
+                        if (map.getZoom() < 12)
+                            hexSize = hexSize * .5;
+                        if (map.getZoom() < 5)
+                            hexSize = hexSize * .75;
+                        return that.layout.hexagon(that.rscale(hexSize));
                     })
                     .attr("transform", function (d) {
                         return "translate(" + d.x + "," + d.y + ")";
                     })
                     .on('click', function (d) {
                         map.on('click', function (e) {
-                            map.setView({lat: e.latlng.lat, lon: e.latlng.lng}, map.getZoom() + 2);
-                            $('#zoomLevel').html('The level is' + map.getZoom());
+                            var zoom = map.getZoom() + 1;
+                            if (zoom <= 19)
+                            {
+                                map.setView({lat: e.latlng.lat, lon: e.latlng.lng}, zoom);
+                                // $('#zoomLevel').html('The level is' + map.getZoom());
+                            }
                         });
                     });
         },
@@ -283,119 +288,77 @@ function setMapInAction()
                     {
                         return emoArray[hexCode];
                     }
+                }).attr("title", function (d) {
+                    // Add the postID's to the hexagons
+                    var posts = '';
+                    var len = d.length - 1;
+                    $.each(d, function (key, value)
+                    {
+                        // Create a string for attr
+                        if (len === key)
+                        {
+                            posts = posts + value[2].postID;
+                        }
+                        else
+                        {
+                            posts = posts + value[2].postID + ',';
+                        }
+                    });
+                    // return the string as attr
+                    return posts;
+                }).attr("name", function (d) {
+                    var latLng = '';
+                    $.each(d, function (key, value)
+                    {
+                        // d.geometry.coordinates
+                        latLng = value[2].postLat + ',' + value[2].postLong;
+                    });
+                    return latLng;
                 });
             }
-        });
-
-        // Remove Markers before adding layer again
-        // First time can't remove markers
-        if (!firstMarkers)
-            map.removeLayer(markers);
-        firstMarkers = false;
-
-        //*******************  Marker Cluster Layer  *******************************
-        //**************************************************************************
-        markers = new L.MarkerClusterGroup({
-            spiderfyDistanceMultiplier: 3,
-            removeOutsideVisibleBounds: true,
-            spiderfyOnMaxZoom: true
-        });
-
-        //$.getJSON('http://emoapp.info/php/jsonPosts.php', function(data) {
-        $.getJSON(jsonStringHex, function (data) {
-            $.each(data.features, function (index, value) {
-                var myIcon = L.icon({
-                    iconUrl: 'images/svgPins/pin' + value.properties.emoType + '.svg',
-                    iconSize: [45, 60],
-                    iconAnchor: [22, 60],
-                    shadowUrl: 'images/svgPins/Pin_shadow.svg',
-                    shadowSize: [73, 46],
-                    shadowAnchor: [41, 46]
-                });
-                var latLongStr = value.geometry.coordinates.toString();
-                var latLongArr = latLongStr.split(',');
-                var marker = L.marker([latLongArr[1], latLongArr[0]]
-                        , {title: value.properties.postID, icon: myIcon});
-                markers.addLayer(marker);
-            });
-        });
-
-        //********  Marker Click Event  ***************
-        //*********************************************
-        markers.on('click', function (e) {
-            console.log('Existing Marker Clicked');
-            console.log('Exisitng Marker Clicked: Function');
-            // Get the title for map and pass into php file with AJAX and post result
-            console.log(e.layer.options.title);
-            var postID = e.layer.options.title;
-            console.log('Exisitng Marker was clicked - postID: ' + postID);
-            var markerClickLatLng = e.layer.getLatLng();
-            map.setView(markerClickLatLng);
-            markerClicked(postID);
         });
     };
 
     //********  Call the inital Function  *********
     //*********************************************
     setJsonLayers();
-    map.on('zoomend', zoom);
-    function zoom()
-    {
-        var zoomNow = map.getZoom();
-        console.log("Map zoom is " + zoomNow);
-        if (zoomNow >= 17)
-        {
-            // Hide the hex layer
-            $(".emotionHexbin").hide();
-            // Set hex layer to off
-            window.localStorage.setItem('hex-are', 'off');
-            console.log('hex hidden?, show markers');
-            // Show the marker layer
-            map.addLayer(markers);
-            console.log(markers);
-        }
-        else
-        {
-            // Hide the Marker layer
-            map.removeLayer(markers);
-            // Show the layers
-            $(".emotionHexbin").show();
-            // Set hex layers to visable
-            window.localStorage.setItem('hex-are', 'on');
-            // Get zoom level to display current layer
-            var zoom = map.getZoom();
-            console.log('zoom is' + zoom);
-            console.log('SHow Hex, hide Pins');
-            $(".zoom-" + zoom).show();
-        }
-    }
-    // Call the function every 5 seconds thereafter to refresh page
-//    window.setInterval(function () {
-//        if ($.mobile.activePage.attr('id') === 'mapPage')
-//        {
-//            /// Clear Layers and add new
-//            // Call the JSON Data function
-//            if (!$('#mapPage').hasClass('show-popup'))
-//                setJsonLayers();
-//        }
-//    }, 30000);
+    $(".emotionHexbin").show();
 
     // - - -  When the mapPage is shown This code will trigger - - -
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   
     $(document).on("pageshow", "#mapPage", function () {
         // - -  Leaflet / MapBox Map - - 
         console.log('Invalidate the map size');
-        map.invalidateSize();   // fixes the issue with map size   
-
-        // If this is not the first time the map is shown
-        // Refresh the markers
-        if (!firstMarkers)
-        {
-            setJsonLayers();
-        }
+        map.invalidateSize();   // fixes the issue with map size  
+//        // If this is not the first time the map is shown
+//        // Refresh the markers
+//        if (!firstMarkers)
+//        {
+//            setJsonLayers();
+//        }
     });
 }
 //  End of setMapInAction()
+
+
+// Clicked on Hexagon Event
+$('#mapPage').on('click', '.hexagon', function (e) {
+    if (map.getZoom() >= 19)
+    {
+        var latLng = $(this).attr('name');
+        var latLngArr = latLng.split(',');
+        map.setView({lat: latLngArr[0], lon: latLngArr[1]});
+        //alert('Hex clicked ma ma');
+        var postIDStr = $(this).attr('title');
+        //alert(postID);
+        var arrPosts = postIDStr.split(',');
+        if (arrPosts.length === 1)
+        {
+            // Pass Arr Value to Post function
+            markerClicked(arrPosts[0]);
+        }
+    }
+});
 
 //********  Marker Click Event Code  ***************
 function markerClicked(postID)
@@ -499,6 +462,11 @@ $(document).on("pageshow", "#mapPage", function () {
     // Filter Menu Button
     $(".centerButton a").html('<i class="fa fa-compass fa-3x"></i>');
 
+//    $(".hexagon").click(function () {
+//        console.log('Hex CLicked');
+//                
+//    });
+
     // Share Button
     // Twitter Share Button
     $('#btnShare').click(function () {
@@ -519,7 +487,7 @@ $(document).on("pageshow", "#mapPage", function () {
         console.log('pageID: ' + pageID);
         if (pageID === 'mapPage')
         {
-            $('#' + pageID).removeClass('show-menu');
+            $("#menuPanel").panel("close");
             isOpen = !isOpen;
             console.log('close menu');
             openFilterBar();

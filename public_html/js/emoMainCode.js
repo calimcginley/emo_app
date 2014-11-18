@@ -6,6 +6,10 @@
 
 $(document).ready(function () {
 
+    $(function () {
+        $("[data-role=panel]").panel().enhanceWithin();
+    });
+
     var imageArray = [];
     window.localStorage.setItem('profileArray', JSON.stringify(imageArray));
     console.log(window.localStorage.getItem('profileArray'));
@@ -312,13 +316,13 @@ $(document).on('click', '#postToMapBtn', function () {
             }).done(function (o) {
                 console.log('Image Uploaded: saved');
                 $.mobile.loading("hide");
-                $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});     
+                $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
                 // Open the Map Marker
                 var imgSrc = 'http://www.emoapp.info/uploads/' + fileNameStr + '.png';
                 $('#emoPostPopup').attr('src', imgSrc);
                 // Time Difference
                 $('#popUpInfo').html('<i class="fa fa-clock-o fa-2x"></i> Just now.');
-                $('#mapPage').addClass('show-popup');                
+                $('#mapPage').addClass('show-popup');
                 setLocale();
             });
         }
@@ -351,7 +355,7 @@ $(document).on('click', '#postToMapBtn', function () {
                 console.log('Post was inserted to database ' + result);
                 console.log('Variables are - Post ID: ' + result + ' ' + postLat + ' ' + postLong + ' - Parent: ' + parentEmoji);
                 addMarkerToMap(parentEmoji, result, postLat, postLong);
-               
+
             },
             error: function (results, error) {
                 // This callback function will trigger on unsuccessful action               
