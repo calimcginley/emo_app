@@ -375,6 +375,109 @@ ul, menu, dir {
     background-size: 100%;
 }
 
+
+#myPopup0 {
+
+    background-color: white;
+    color: #9e9e9e;
+    font: sans-serif;
+    font-weight: lighter;
+    font-family: helvetica;
+    letter-spacing: 1px;
+    border-color: #F8ED40;
+}
+
+
+#myPopup1 {
+
+    background-color: white;
+    color: #9e9e9e;
+    font: sans-serif;
+    font-weight: lighter;
+    font-family: helvetica;
+    letter-spacing: 1px;
+    border-color: #06B052;
+}
+
+#myPopup2 {
+
+    background-color: white;
+    color: #9e9e9e;
+    font: sans-serif;
+    font-weight: lighter;
+    font-family: helvetica;
+    letter-spacing: 1px;
+    border-color: #426EB5;
+}
+
+#myPopup3 {
+
+    background-color: white;
+    color: #9e9e9e;
+    font: sans-serif;
+    font-weight: lighter;
+    font-family: helvetica;
+    letter-spacing: 1px;
+    border-color: #F7961D;
+}
+
+#myPopup4 {
+
+    background-color: white;
+    color: #9e9e9e;
+    font: sans-serif;
+    font-weight: lighter;
+    font-family: helvetica;
+    letter-spacing: 1px;
+    border-color: #754D9E;
+}
+
+#myPopup5 {
+
+    background-color: white;
+    color: #9e9e9e;
+    font: sans-serif;
+    font-weight: lighter;
+    font-family: helvetica;
+    letter-spacing: 1px;
+    border-color: #ED2A25;
+
+}
+
+#myPopup6 {
+
+    background-color: white;
+    color: #9e9e9e;
+    font: sans-serif;
+    font-weight: lighter;
+    font-family: helvetica;
+    letter-spacing: 1px;
+    border-color: #ED4798;
+}
+
+#myPopup7 {
+
+    background-color: white;
+    color: #9e9e9e;
+    font: sans-serif;
+    font-weight: lighter;
+    font-family: helvetica;
+    letter-spacing: 1px;
+    border-color: #F3BCD1;
+}
+
+.p {
+
+    text-align: center;
+}
+
+#mapAttr a {
+    padding-top: 30px;
+    font-size: .5em;
+    color: #C1C0C0; 
+}
+
+
 /* ------------------------------------------------------------------------------------------
 // ------------------------------  Emoji Selection #emojiSelectPage ---------------------------------
 // ----------------------------------------------------------------------------------------*/ 
@@ -517,5 +620,14 @@ ul, menu, dir {
 
     float: right;
     padding-left: 3.8em;
+    
 
+}
+
+/* -----------------------------------------------------------------------------
+// ------------------------------  Hexagon Stripes  --------------------------
+// ---------------------------------------------------------------------------*/ 
+
+.hex01 {
+    
 }

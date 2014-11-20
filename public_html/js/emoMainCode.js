@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     $('.mapLink').click(function () {
         var pageID = $.mobile.activePage.attr('id');
-        $('#' + pageID).removeClass('show-menu');
+        $("#menuPanel").panel("close");
         $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
     });
 
@@ -132,7 +132,7 @@ $(document).ready(function () {
         console.log('pageID: ' + pageID);
         if (pageID === 'mapPage')
         {
-            $('#' + pageID).removeClass('show-menu');
+            $("#menuPanel").panel("close");
             isOpen = !isOpen;
             console.log('close menu');
             openParentEmojiBar();
@@ -170,6 +170,21 @@ $(document).ready(function () {
         // Change Page
         $(":mobile-pagecontainer").pagecontainer("change", "#emotionPostPage", {transition: "slidedown"});
     });
+
+
+    $('.menu-button').click(function () {
+        // Check weather the Panel was open
+        // It not it's about to so remove overlay menus
+        if (!$('#menuPanel').hasClass('ui-panel-open'))
+        {
+            $(".panel-btn").velocity({width: '150px', easing: "easein"}, 1);
+            $(".infoMenuButtonImg").velocity({marginBottom: 100, easing: "easein"}, 1);
+            $('#mapPage').removeClass('show-popup');
+            $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
+            $("#emojiPostSelectParent").velocity({top: "-200px", easing: "easein"}, 10);
+        }
+    });
+
 });
 
 function camera()
