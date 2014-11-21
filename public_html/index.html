@@ -149,7 +149,7 @@
             <div data-role="header">
                 <a href="#menuPanel" data-rel="panel" class="ui-btn ui-icon-menu menu-button"></a>
                 <h1><img src="images/vibes.svg" alt=""/></h1>
-                <a href="#settingsPage" data-transition="turn" class="settings-button"></a>
+                <a href="#settingsPage" data-transition="flip" class="settings-button"></a>
             </div>
             <div role="main" class="ui-content content-wrap">
                 <div id="profilePopup">
@@ -167,7 +167,7 @@
             <div data-role="header">
                 <a href="#menuPanel" data-rel="panel" class="ui-btn ui-icon-menu menu-button"></a>
                 <h1><img src="images/vibes.svg" alt=""/></h1>
-                <a href="#profilePage" data-transition="turn" class="profile-button"></a>  
+                <a href="#profilePage" data-transition="flip" class="profile-button"></a>  
             </div>
             <div role="main" class="ui-content content-wrap">
                 <!-- ABout Popup-->
@@ -178,21 +178,22 @@
                         </div>                       
                         <div id="aboutInfo">
                             <!-- start slipsum code -->
-                            <h1  style="padding-left: 4.5em; color: #79CCC9; font-weight: lighter; letter-spacing: 0.3em;">What</h1>
+                            <h1  style="padding-left: 6em; color: #79CCC9; font-weight: lighter; letter-spacing: 0.3em;">What</h1>
                             <p class="what" >Vibes is a location-based, emotion-mapping app. Use the search function to quickly and easily view the Vibe of any area you would like to see!</p>
 
-                            <h1 style="padding-left: 4.5em; color: #EA3992; font-weight: lighter; letter-spacing: 0.3em;">How</h1>
+                            <h1 style="padding-left: 6em; color: #EA3992; font-weight: lighter; letter-spacing: 0.3em;">How</h1>
                             <p class="how" >Instead of text Vibes uses images, emojis and colour to communicate. To add your Vibe to the map simply take a photo, tag it with one of the 8 emojis (your choice determines the colour of your pin) then describe how you're feeling using our custom emoji set!</p>
-                            <h1 style="padding-left: 4.5em; color: #F5841F; font-weight: lighter; letter-spacing: 0.3em;">Who</h1>
+                            <h1 style="padding-left: 6em; color: #F5841F; font-weight: lighter; letter-spacing: 0.3em;">Who</h1>
                             <p class="who" > A hybrid app designed and developed by Keith McGinley & Sona Harrison as part of a final project for an Msc in Creative Digital Media from Dublin Institute of Technology (DIT).</p>
                             <!-- end slipsum code -->                      </div>
                     </nav>              
                 </div>
                 <!-- end iABout popup -->
                 <div class="profileTab">
-                    <div id="settingsForm">
-                        <button class="buttonStyles" id="aboutButton" data-transition="slide" >About Vibes</button>
+                    <div id="settingsForm">                      
                         <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u"  data-iconpos="right" >                              
+                            <br>
+                            <br>
                             <h3 class="collapseDiv" >Info</h3> 
                             <input type="text" name="First Name" id="firstName" placeholder="First Name" class="floatlabel_1"/>
                             <input type="text" name="Last Name" id="lastName" placeholder="Last Name" class="floatlabel_1"/>
@@ -203,9 +204,17 @@
                                 <option value="2">Female</option>
                                 <option value="3">Other</option>
                             </select>
-                            <button id="updateBtn" class="buttonStyles" >Update User Info</button>
-                        </div>
-                        <button id="logoutBtn" class="buttonStyles" >Logout</button>
+                            <a href="#" id="updateBtn">Done?</a> 
+                            <br>
+                        <br>
+                        <br>
+                        </div> 
+                        <a href="#" id="aboutButton" data-transition="none" >About Vibes</a>
+                        <br>
+                        <br>
+                        <br>
+                        
+                        <a href="#" id="logoutBtn">Log out</a>
                     </div>
                     <img src='images/vibesHeader_2.svg' class="mapLink" alt='' style="padding-left: 7.5em; padding-top: 8em;" >
                 </div>
@@ -263,7 +272,7 @@
                 <div class="profile">
                     <img src="images/vibesHeader.svg" class="mapLink"  alt="vibe">
                 </div>
-                <img src="images/vibesBorder.svg" alt="vibe">
+                <img src="images/vibesBorder.svg" alt="vibe" class="menuBorder">
             </nav>
             <nav class="menu-side">
                 <div class="menu-top-buttons">
@@ -273,7 +282,7 @@
                     <a href="#profilePage" data-transition="slide"><img src="images/menu/profileBtn_2.svg" class="panel-btn" alt="" /></a>
                 </div>
                 <a href="#" data-transition="slide" class="infoMenuButton"><img src="images/menu/pinsIcon.svg" alt="" class="infoMenuButtonImg" /></a>
-                <div id="infoMenu">
+                <div class="infoMenu" >
                     <a href="#myPopup0" data-rel="popup" > <input type="image" src="images/emoji-1.svg" alt="Submit" width="54" height="48"></a>
                     <a href="#myPopup1" data-rel="popup" > <input type="image" src="images/emoji-2.svg" alt="Submit" width="54" height="48"></a><br><br>
                     <a href="#myPopup2" data-rel="popup" > <input type="image" src="images/emoji-3.svg" alt="Submit" width="54" height="48"></a>

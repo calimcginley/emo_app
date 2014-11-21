@@ -336,7 +336,7 @@ ul, menu, dir {
 {
     height: auto;
     margin: 0;
-    padding: 1em 0em;
+    padding: 1em 3em;
     width: 150px;
     max-width: 150px;
 }
@@ -603,7 +603,8 @@ ul, menu, dir {
     color: #9e9e9e; 
     letter-spacing: 0.3em; 
     font-weight: lighter;
-    text-align: center;   
+    text-align: center; 
+    
 }
 
 #settingsPage .content-wrap input, select, label {
@@ -611,7 +612,35 @@ ul, menu, dir {
 }
 
 #settingsPage .collapseDiv {
-    padding: 0 20%;
+    padding: 10% 20%;
+    float: top;
+    
+}
+
+
+
+ #logoutBtn {
+  margin: 7em;
+  float: bottom;
+  text-decoration: none;
+  color: #ED4798;
+}
+
+ #updateBtn {
+   
+    
+  text-decoration: none;
+  color: #63B6E5;
+    
+}
+
+ #aboutButton {
+  text-decoration: none;
+  color: #F7961D;
+  margin-top: 3em;
+  margin-left: 5em;
+ 
+    
 }
 
 
@@ -624,10 +653,25 @@ ul, menu, dir {
 
 }
 
+.menuBorder {
+    
+    padding-left: 3em;
+
+}
+
+
+
 /* -----------------------------------------------------------------------------
 // ------------------------------  Hexagon Stripes  --------------------------
 // ---------------------------------------------------------------------------*/ 
 
 .hex01 {
     
+}
+
+
+
+.infoMenu {
+
+    padding-left: 3em;
 }
