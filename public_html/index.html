@@ -42,40 +42,45 @@
         <!-- Map Locate -->
         <script src='js/L.Control.Locate.js'></script>
         <link href='css/L.Control.Locate.css' rel='stylesheet' />
+        <link rel="stylesheet" href="css/emoSlideMenu.css" type="text/css">
+
     </head>
     <body>
         <!--    Start of   -->
         <!--    Splash Page   -->
-        <div data-role="page" id="splashPage" data-theme="a">
+        <div data-role="page" id="splashPage">
             <div data-role="content">
-                <img id="splashImage" src="images/emoSplash.svg" alt="" class="img100 bounceInDown"/>
+                <img id="splashImage" src="images/emoSplash.svg" alt="" data-transition="slide"/>
             </div>
         </div>
         <!--   End of   --><!--  Splash Page -->
 
         <!--    Start of   --><!--    Login Page   -->
-        <div data-role="page" id="loginPage" data-theme="a">
-            <div data-role="header">
-                <img src="images/vibesHeader.svg" alt="Vibes"/>           
-            </div>
-            <div role="main" class="ui-content">
-                <form id="loginForm" data-ajax="false">
+        
+        <div  id="loginPage" style="background-image: url(images/loginImg.svg); background-repeat:no-repeat;">
+        <div role="main" class="loginContent">
+            <!--     <form id="loginForm" data-ajax="false">-->
                     <input type="email" name="email" id="email" placeholder="Email" class="floatlabel_1"/>
                     <!-- Here the user can select login/sign up -->
                     <fieldset id="loginType" data-role="controlgroup" data-type="horizontal">
-                        <input type="radio" name="radio-loginSignUp" id="radio-loginSignUp_a" value="login" checked="checked">
-                        <label for="radio-loginSignUp_a">Login</label>
-                        <input type="radio" name="radio-loginSignUp" id="radio-loginSignUp_b" value="signUp">
-                        <label for="radio-loginSignUp_b">Sign Up</label>
+                        <!-- <input type="radio" name="radio-loginSignUp" id="radio-loginSignUp_a" value="login" checked="checked"> -->
+                        
+                      
                     </fieldset> 
-                    <input id="password" type="password" name="password" placeholder="Password" autocomplete="off" class="floatlabel_1"/>
-                    <input type="button" name="submitBtn" id="submitBtn" value="Login"/>
-                </form>
+                   <input id="password" type="password" name="password" placeholder="Password" autocomplete="off" class="floatlabel_1"/>
+                    <input type="button" name="submitBtn" id="submitBtn" value="Login"/> 
+               
                 <p>
                     <span id="formErrorMsg"></span><br>
                     <a href="#" onclick="forgotPassword()" id="forgotPass" >Forgot Password?</a><br>
                 </p>  
-                <img src="images/vibesLoginBorder.svg" alt="" id="formImg">
+                <br>
+                <br>
+                <br>
+                <br>
+                
+                <a href="#" id="signUp">Create Account </a>
+              
             </div>            
         </div>
         <!--   End of   --><!--  Login Page  -->
@@ -145,8 +150,8 @@
         </div>
         <!--   End of  --><!--   Main Map Page  -->
         <!--    Start of  --><!--    Profile Page   -->
-        <div data-role="page" id="profilePage" data-theme="a">
-            <div data-role="header">
+        <div data-role="page" id="profilePage">
+            <div data-role="header" data-position="fixed">
                 <a href="#menuPanel" data-rel="panel" class="ui-btn ui-icon-menu menu-button"></a>
                 <h1><img src="images/vibes.svg" alt=""/></h1>
                 <a href="#settingsPage" data-transition="flip" class="settings-button"></a>
@@ -155,7 +160,7 @@
                 <div id="profilePopup">
                     <div id="profilePostsWrap">
                         <div id="profilePosts"></div>
-                        <button id="addProfilePost" data-theme="a">Load More</button>
+                        <a href="#" id="addProfilePost" >Load More</a>
                     </div>
                 </div>
             </div><!-- /content-wrap -->
@@ -164,7 +169,7 @@
         <!--   Start of   --><!--  Settings Page   - -->
 
         <div data-role="page" id="settingsPage" data-theme="a">
-            <div data-role="header">
+            <div data-role="header" data-position="fixed">
                 <a href="#menuPanel" data-rel="panel" class="ui-btn ui-icon-menu menu-button"></a>
                 <h1><img src="images/vibes.svg" alt=""/></h1>
                 <a href="#profilePage" data-transition="flip" class="profile-button"></a>  
@@ -216,7 +221,8 @@
                         
                         <a href="#" id="logoutBtn">Log out</a>
                     </div>
-                    <img src='images/vibesHeader_2.svg' class="mapLink" alt='' style="padding-left: 7.5em; padding-top: 8em;" >
+                    
+                    <img src='images/vibesHeader_2.svg' class="mapLink" alt='' style="margin: 7.5em;" >
                 </div>
             </div><!-- /content-wrap -->
         </div><!-- /Page -->
@@ -229,7 +235,6 @@
                 <h1><img src="images/vibes.svg" alt=""/></h1>
             </div>
             <div role="main" class="ui-content content-wrap"> 
-                <div id="canvasBuffer"></div>
                 <canvas id="imageCanvas"></canvas>
                 <div id="insertButtons">
                     <div id='emojiSentDiv' class="emojiRender">
@@ -274,7 +279,10 @@
                 </div>
                 <img src="images/vibesBorder.svg" alt="vibe" class="menuBorder">
             </nav>
+             
             <nav class="menu-side">
+                
+               
                 <div class="menu-top-buttons">
                     <a href="#mapPage" class="mapLink" data-transition="slide"><img src="images/menu/mapBtn_2.svg" class="panel-btn" alt="" /></a>
                     <a href="#" data-transition="slide" class="emoFilterBtn"><img src="images/menu/searchBtn.svg" class="panel-btn" alt="" /></a>
