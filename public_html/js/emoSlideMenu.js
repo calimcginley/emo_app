@@ -36,6 +36,7 @@ $('#mapPage').on('click', '#btnClose', function () {
         if (!isInfoMenuOpen)
         {
             $(".panel-btn").velocity({width: 0, easing: "easein"}, 500); //menu-top-buttons
+            $(".menu-top-buttons a").velocity({height: 0, easing: "easein"}, 500); //menu-top-buttons
             $(".infoMenuButtonImg").velocity({marginBottom: 0, easing: "easein"}, 500); //menu-top-buttons
             isInfoMenuOpen = !isInfoMenuOpen;
         }
@@ -48,6 +49,7 @@ $('#mapPage').on('click', '#btnClose', function () {
     function closeInfoMenu()
     {
         $(".panel-btn").velocity({width: '150px', easing: "easein"}, 500);
+        $(".menu-top-buttons a").velocity({height: 72, easing: "easein"}, 500); //menu-top-buttons
         $(".infoMenuButtonImg").velocity({marginBottom: 100, easing: "easein"}, 500); //menu-top-buttons
         isInfoMenuOpen = !isInfoMenuOpen;
     }

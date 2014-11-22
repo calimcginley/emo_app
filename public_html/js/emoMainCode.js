@@ -334,11 +334,12 @@ $(document).on('click', '#postToMapBtn', function () {
                 $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
                 // Open the Map Marker
                 var imgSrc = 'http://www.emoapp.info/uploads/' + fileNameStr + '.png';
-                $('#emoPostPopup').attr('src', imgSrc);
+                //$('#emoPostPopup').attr('src', imgSrc);
                 // Time Difference
-                $('#popUpInfo').html('<i class="fa fa-clock-o fa-2x"></i> Just now.');
-                $('#mapPage').addClass('show-popup');
+                //$('#popUpInfo').html('<i class="fa fa-clock-o fa-2x"></i> Just now.');
+                //$('#mapPage').addClass('show-popup');
                 setLocale();
+                
             });
         }
 

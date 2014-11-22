@@ -171,7 +171,7 @@ body,
 }
 
 
-.menu-top .menu-side {
+.menu-top  {
     width: 200px;
 }
 
@@ -197,14 +197,14 @@ body,
     }
 }
 
-.menu-side a {
+.menu-top-buttons a {
     display: block;
-    padding: 1.2em;
+    //padding: 1.2em;
     border-bottom: 0px solid rgba(0,0,0,0.1);
 }
 
-.menu-side a:first-child {
-
+.infoMenu a {
+    padding-right: 2em;
 }
 
 /* Shown menu */
@@ -242,24 +242,11 @@ body,
 .show-menu #insertButtons,
 .show-menu #settingsForm {
     background-color: #B3B3B3;
-    opacity: .7;
-   
+    opacity: .7;   
 }
 
 
 /* Popup CSS */
-
-#btnClose
-{
-    position:absolute;
-    width: 88px;
-    height: 88px;        
-    z-index: 2000;
-    top: 5px;
-    right: 5px;
-    padding-bottom: 10px;
-    background-color: rgba(255,255,255,0.02);
-}
 
 #emoPostPopup
 {

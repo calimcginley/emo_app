@@ -7,7 +7,6 @@
         <meta charset="UTF-8">
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
         <!--  Theme Roller Can go here  -->
-        <link href="css/vibes.css" rel="stylesheet" type="text/css"/>
         <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery-1.10.2.min.js"></script> 
         <script src="js/jquery.mobile-1.4.5.min.js"></script>
@@ -28,7 +27,7 @@
         <!--   JS Plugins go here   -->
         <script src="js/cordova.js" type="text/javascript"></script>
         <script src='js/mapbox.js'  type="text/javascript"></script>
-<!--        <script src="js/leaflet.markercluster-src.js"  type="text/javascript"></script>-->
+        <!--        <script src="js/leaflet.markercluster-src.js"  type="text/javascript"></script>-->
         <script src="js/d3.min.js"  type="text/javascript"></script>
         <script src="js/hexbin.js"  type="text/javascript"></script>
         <script src="js/simple_statistics.js"  type="text/javascript"></script>
@@ -56,20 +55,20 @@
         <!--   End of   --><!--  Splash Page -->
 
         <!--    Start of   --><!--    Login Page   -->
-        
+
         <div  id="loginPage" style="background-image: url(images/loginImg.svg); background-repeat:no-repeat;">
-        <div role="main" class="loginContent">
-            <!--     <form id="loginForm" data-ajax="false">-->
-                    <input type="email" name="email" id="email" placeholder="Email" class="floatlabel_1"/>
-                    <!-- Here the user can select login/sign up -->
-                    <fieldset id="loginType" data-role="controlgroup" data-type="horizontal">
-                        <!-- <input type="radio" name="radio-loginSignUp" id="radio-loginSignUp_a" value="login" checked="checked"> -->
-                        
-                      
-                    </fieldset> 
-                   <input id="password" type="password" name="password" placeholder="Password" autocomplete="off" class="floatlabel_1"/>
-                    <input type="button" name="submitBtn" id="submitBtn" value="Login"/> 
-               
+            <div role="main" class="loginContent">
+                <!--     <form id="loginForm" data-ajax="false">-->
+                <input type="email" name="email" id="email" placeholder="Email" class="floatlabel_1"/>
+                <!-- Here the user can select login/sign up -->
+                <fieldset id="loginType" data-role="controlgroup" data-type="horizontal">
+                    <!-- <input type="radio" name="radio-loginSignUp" id="radio-loginSignUp_a" value="login" checked="checked"> -->
+
+
+                </fieldset> 
+                <input id="password" type="password" name="password" placeholder="Password" autocomplete="off" class="floatlabel_1"/>
+                <input type="button" name="submitBtn" id="submitBtn" value="Login"/> 
+
                 <p>
                     <span id="formErrorMsg"></span><br>
                     <a href="#" onclick="forgotPassword()" id="forgotPass" >Forgot Password?</a><br>
@@ -78,9 +77,9 @@
                 <br>
                 <br>
                 <br>
-                
+
                 <a href="#" id="signUp">Create Account </a>
-              
+
             </div>            
         </div>
         <!--   End of   --><!--  Login Page  -->
@@ -198,7 +197,6 @@
                     <div id="settingsForm">                      
                         <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u"  data-iconpos="right" >                              
                             <br>
-                            <br>
                             <h3 class="collapseDiv" >Info</h3> 
                             <input type="text" name="First Name" id="firstName" placeholder="First Name" class="floatlabel_1"/>
                             <input type="text" name="Last Name" id="lastName" placeholder="Last Name" class="floatlabel_1"/>
@@ -208,20 +206,19 @@
                                 <option value="1">Male</option>
                                 <option value="2">Female</option>
                                 <option value="3">Other</option>
-                            </select>
-                            <a href="#" id="updateBtn">Done?</a> 
-                            <br>
-                        <br>
-                        <br>
+                            </select><p>
+                                <a href="#" id="updateBtn">Done?</a> 
+                                <br>
+                            </p>
                         </div> 
                         <a href="#" id="aboutButton" data-transition="none" >About Vibes</a>
                         <br>
                         <br>
                         <br>
-                        
+
                         <a href="#" id="logoutBtn">Log out</a>
                     </div>
-                    
+
                     <img src='images/vibesHeader_2.svg' class="mapLink" alt='' style="margin: 7.5em;" >
                 </div>
             </div><!-- /content-wrap -->
@@ -279,10 +276,10 @@
                 </div>
                 <img src="images/vibesBorder.svg" alt="vibe" class="menuBorder">
             </nav>
-             
+
             <nav class="menu-side">
-                
-               
+
+
                 <div class="menu-top-buttons">
                     <a href="#mapPage" class="mapLink" data-transition="slide"><img src="images/menu/mapBtn_2.svg" class="panel-btn" alt="" /></a>
                     <a href="#" data-transition="slide" class="emoFilterBtn"><img src="images/menu/searchBtn.svg" class="panel-btn" alt="" /></a>
@@ -325,7 +322,6 @@
                         <p>Grey represents the embarrassed Vibe.<br>Feelings associated with grey <br>include <span style="color: #F3BCD1">embarrassment,</span>anxiety and shyness.</p>
                     </div>
                 </div>
-                <div id="mapAttr" class="leaflet-control-attribution leaflet-control"><a href="https://www.mapbox.com/about/maps/" target="_blank" class="ui-link">© Mapbox © OpenStreetMap</a> <a class="mapbox-improve-map ui-link" href="https://www.mapbox.com/map-feedback/#sona.3ab9e710/-6.265/53.340/14" target="_blank">Improve this map</a></div>
             </nav>
         </div>
         <!--  JavaScript Code required for Menu -->

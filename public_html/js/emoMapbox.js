@@ -75,6 +75,8 @@ function setMapInAction()
                     .on(link, 'click', L.DomEvent.preventDefault)
                     .on(link, 'click', function () {
                         console.log('Center Button Clicked!!1');
+                        console.log('SVG CODE');
+                        console.log('SVG CODE END');
                         setLocale();
                         var cenLat = window.localStorage.getItem('postLat');
                         var cenLng = window.localStorage.getItem('postLong');
@@ -343,7 +345,7 @@ $('#mapPage').on('click', '.hexagon', function (e) {
     }
     else
     {
-        console.log('Map Zoom is: '+map.getZoom());
+        console.log('Map Zoom is: ' + map.getZoom());
         //Handle the multiple case
         if (map.getZoom() > 19)
         {
@@ -356,13 +358,13 @@ $('#mapPage').on('click', '.hexagon', function (e) {
 //********  Marker Click Event Code  ***************
 function markerClicked(postID, typeSearch)
 {
-    console.log('Marker Clicked: |'+postID+'|');
+    console.log('Marker Clicked: |' + postID + '|');
     console.log(typeSearch);
     $.ajax({url: 'http://emoapp.info/php/getMarkerInfo.php',
         data: {action: typeSearch, postID: postID},
         type: 'post', dataType: "json", async: 'true',
         beforeSend: function () {
-            console.log('Sending to Server postIDs: '+postID);
+            console.log('Sending to Server postIDs: ' + postID);
             // This callback function will trigger before data is sent
             $.mobile.loading("show", {
                 text: 'Fetching Emotion Data',
@@ -376,9 +378,9 @@ function markerClicked(postID, typeSearch)
         success: function (result) {
             $('.popup-wrap').empty();
             console.log('Vibes Fetch Succesfull');
-            console.log('result.marker length: ' +result.marker.length+' - result.marker object: ' +result.marker);
+            console.log('result.marker length: ' + result.marker.length + ' - result.marker object: ' + result.marker);
             // Open Nav and Close Div
-            var htmlStr = '<nav class="popup"><div id="btnClose"><i class="fa fa-times fa-2x"></i></div>';
+            var htmlStr = '<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup"><div id="imgs"><ul>';
             $.each(result.marker, function (key, val) {
                 var len = result.marker.length - 1;
                 var imgSrc = 'http://emoapp.info/uploads/' + val.imageName + '.png';
@@ -392,18 +394,33 @@ function markerClicked(postID, typeSearch)
                 console.log(timeOffset);
                 //$('#popUpInfo').html('<p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p>');
 
+//                htmlStr = htmlStr +
+//                        '<div class="vibesDiv">'
+//                        + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
+//                        + '<div class="popUpInfo">'
+//                        + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
+//                        + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
+//                        + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
+//                        + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>';
+
                 htmlStr = htmlStr +
-                        '<div class="vibesDiv">'
+                        '<li class="dragend-page">'
                         + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
                         + '<div class="popUpInfo">'
                         + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
                         + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
                         + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
-                        + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>';
+                        + '</div><img src="images/vibesBorder.svg" class="vibeLine"></li>';
+
                 if (len === key)
                 {
-                    htmlStr = htmlStr + '</nav>';
+                    htmlStr = htmlStr + '</ul></div></nav>';
                 }
+                //$("#imgs").dragend({
+//                    scribe: "20px",
+//                    afterInitialize: function () {
+//                        this.container.style.visibility = "visible";
+//                    }});
             });
             // Close Nav
             $('.popup-wrap').html(htmlStr);
@@ -445,10 +462,12 @@ function addMarkerToMap(emoType, postID, pinLat, pinLong)
         // Get the title for map and pass into php file with AJAX and post result
         console.log('Post ID is: ' + postID);
         console.log('New Marker was clicked - postID: ' + postID);
-        //markerClicked(postID);
+        markerClicked(postID, 0);
     });
-    //addMarker.addTo(map);
-    markers.addLayer(addMarker);
+    addMarker.addTo(map);
+    //markers.addLayer(addMarker);
+    
+    map.removeLayer(addMarker).delay( 30000 );
 }
 
 ////********  Center Map on marker click  ***************
@@ -459,6 +478,76 @@ function centerMap()
 
 // Map Emoji Filter
 $(document).on("pageshow", "#mapPage", function () {
+
+
+    // :: Swipes ::
+    var IMG_WIDTH = 300;
+    var currentImg = 0;
+    var maxImages = 20;
+    var speed = 500;
+
+    var imgs;
+
+    var swipeOptions = {
+        triggerOnTouchEnd: true,
+        swipeStatus: swipeStatus,
+        allowPageScroll: "vertical",
+        threshold: 75
+    };
+
+    $(function () {
+        imgs = $("#imgs");
+        imgs.swipe(swipeOptions);
+    });
+
+    /**
+     * Catch each phase of the swipe.
+     * move : we drag the div
+     * cancel : we animate back to where we were
+     * end : we animate to the next image
+     */
+    function swipeStatus(event, phase, direction, distance) {
+        //If we are moving before swipe, and we are going L or R in X mode, or U or D in Y mode then drag.
+        if (phase == "move" && (direction == "left" || direction == "right")) {
+            var duration = 0;
+
+            if (direction == "left") {
+                scrollImages((IMG_WIDTH * currentImg) + distance, duration);
+            } else if (direction == "right") {
+                scrollImages((IMG_WIDTH * currentImg) - distance, duration);
+            }
+
+        } else if (phase == "cancel") {
+            scrollImages(IMG_WIDTH * currentImg, speed);
+        } else if (phase == "end") {
+            if (direction == "right") {
+                previousImage();
+            } else if (direction == "left") {
+                nextImage();
+            }
+        }
+    }
+
+    function previousImage() {
+        currentImg = Math.max(currentImg - 1, 0);
+        scrollImages(IMG_WIDTH * currentImg, speed);
+    }
+
+    function nextImage() {
+        currentImg = Math.min(currentImg + 1, maxImages - 1);
+        scrollImages(IMG_WIDTH * currentImg, speed);
+    }
+
+    /**
+     * Manually update the position of the imgs on drag
+     */
+    function scrollImages(distance, duration) {
+        imgs.css("transition-duration", (duration / 1000).toFixed(1) + "s");
+
+        //inverse the number we set in the css
+        var value = (distance < 0 ? "" : "-") + Math.abs(distance).toString();
+        imgs.css("transform", "translate(" + value + "px,0)");
+    }
 
     // Filter Menu Button
     $(".centerButton a").html('<i class="fa fa-compass fa-3x"></i>');
