@@ -48,16 +48,16 @@
         <!--    Start of   -->
         <!--    Splash Page   -->
         <div data-role="page" id="splashPage">
-            <div data-role="content">
-                <img id="splashImage" src="images/emoSplash.svg" alt="" data-transition="slide"/>
+            <div role="main" class="ui-content content-wrap">
+                <img id="splashImage" class="img100" src="images/emoSplash.svg" alt="" data-transition="slide"/>
             </div>
         </div>
         <!--   End of   --><!--  Splash Page -->
 
         <!--    Start of   --><!--    Login Page   -->
 
-        <div  id="loginPage" style="background-image: url(images/loginImg.svg); background-repeat:no-repeat;">
-            <div role="main" class="loginContent">
+        <div data-role="page"  id="loginPage">
+            <div role="main" class="ui-content content-wrap loginContent">
                 <!--     <form id="loginForm" data-ajax="false">-->
                 <input type="email" name="email" id="email" placeholder="Email" class="floatlabel_1"/>
                 <!-- Here the user can select login/sign up -->
@@ -86,7 +86,7 @@
 
         <!--   Start of  --><!--   Main Map Page  -->
         <div data-role="page" id="mapPage" data-theme="a">
-            <div data-role="header">
+            <div data-role="header" data-position="fixed">
                 <a href="#menuPanel" data-rel="panel" class="ui-btn ui-icon-menu menu-button"></a>
                 <h1><img src="images/vibes.svg" alt=""/></h1>
             </div>
@@ -227,7 +227,7 @@
 
         <!--    Start of  --><!--    Emotion Post Page   -->
         <div data-role="page" id="emotionPostPage" data-theme="a" >
-            <div data-role="header">
+            <div data-role="header" data-position="fixed">
                 <a href="#menuPanel" data-rel="panel" class="ui-btn ui-icon-menu menu-button"></a>
                 <h1><img src="images/vibes.svg" alt=""/></h1>
             </div>

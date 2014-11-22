@@ -104,46 +104,6 @@ body,
     transition: opacity 0.3s, transform 0s 0.3s;
 }
 
-/* Menu Button */
-
-.bufferMenu {
-    height: 5em;
-    width: 100%;
-    background-color: #FFFFFF;
-}
-
-.menu-button {
-    position: fixed;
-    z-index: 1005;
-    margin-top: 20px;
-    padding: 0;
-    width: 44px;
-    max-width: 15%;
-    height: 44px;
-    border: none;
-    text-indent: 2.5em;
-    font-size: 1.5em;
-    color: transparent;
-    background: transparent;
-    -webkit-transition: -webkit-transform 0.3s;
-    transition: transform 0.3s;
-    background-image: url('img/hamburger_light.svg');
-    background-size: 100%;
-}
-
-.menu-button ::before {
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    bottom: 0.5em;
-    left: 0.5em;
-    background: linear-gradient(#373a47 20%, transparent 20%, transparent 40%, #373a47 40%, #373a47 60%, transparent 60%, transparent 80%, #373a47 80%);
-    content: '';
-}
-
-.menu-button:hover {
-    opacity: 0.6;
-}
 /* Menu */
 .menu-wrap {
     position: absolute;
@@ -201,6 +161,10 @@ body,
     display: block;
     //padding: 1.2em;
     border-bottom: 0px solid rgba(0,0,0,0.1);
+}
+
+.infoMenu {
+    //display: none;
 }
 
 .infoMenu a {

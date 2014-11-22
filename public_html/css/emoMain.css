@@ -31,7 +31,7 @@ body
 {
     font-family: 'Raleway_200', sans-serif;
     color: #000;
-    background-color: #FFFFFF;
+    background-color: #ccc !important;
 }
 
 
@@ -55,6 +55,11 @@ li a
 /* ------------------------------------------------------------------------------------------
 // ------------------------------  Login Form CSS -------------------------------------------
 // ----------------------------------------------------------------------------------------*/ 
+
+#loginPage {
+    background-image: url(../images/loginImg.svg); 
+    background-repeat:no-repeat;
+}
 
 #loginForm {
     padding-top: 84px;
@@ -366,10 +371,14 @@ ul, menu, dir {
 // ------------------------------  Panel Menu  ------------------------------------------
 // ----------------------------------------------------------------------------------------*/ 
 
+.ui-header-fixed.ui-fixed-hidden .ui-btn-left, .ui-header-fixed.ui-fixed-hidden .ui-btn-right {
+    margin-top: 15px;
+}
+
 .menu-button {
     position: fixed;
     z-index: 1005;
-    margin-top: 20px;
+    margin-top: 30px;
     padding: 0;
     width: 44px;
     max-width: 15%;
@@ -383,6 +392,16 @@ ul, menu, dir {
     transition: transform 0.3s;
     background-image: url('img/hamburger_light.svg');
     background-size: 100%;
+}
+
+.menu-button ::before {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    bottom: 0.5em;
+    left: 0.5em;
+    background: linear-gradient(#373a47 20%, transparent 20%, transparent 40%, #373a47 40%, #373a47 60%, transparent 60%, transparent 80%, #373a47 80%);
+    content: '';
 }
 
 .panel-btn, .infoMenuButtonImg
@@ -583,7 +602,7 @@ ul, menu, dir {
 #insertButtons
 {
     position: absolute;
-    top: 400px;
+    top: 380px;
     left: 0; 
     width: 320px;
     background-color: #ffffff;
@@ -703,23 +722,3 @@ ul, menu, dir {
 .menuBorder {  
     padding-left: 2em;
 }
-
-
-
-/* -----------------------------------------------------------------------------
-// ------------------------------  Hexagon Stripes  --------------------------
-// ---------------------------------------------------------------------------*/ 
-
-.hex01 {
-    
-}
-
-
-
-.infoMenu {
-
-    padding-left: 3em;
-}
-
-
-

@@ -241,7 +241,8 @@ function setMapInAction()
             function hexbinStyle(hexagons)
             {
                 console.log('hexbin style start - - - - - - -');
-                hexagons.attr("stroke", "black").attr("fill", function (d)
+                //hexagons.attr("fill", function (d)
+                hexagons.style("fill", function (d) // changed tp style
                 {
                     //********  Set Hexbin colour using count array  ***************
                     var emoArray = {
@@ -284,7 +285,7 @@ function setMapInAction()
                     {
                         return emoArray[gradCode];
                     }
-                }).attr("title", function (d) {
+                }).attr("stroke", 'black').attr("title", function (d) {
                     // Add the postID's to the hexagons
                     var posts = '';
                     var len = d.length - 1;

@@ -16,14 +16,14 @@ $(document).ready(function () {
     $(".mapLink").click(function () {
         if (isOpen && 'mapPage' === $.mobile.activePage.attr('id'))
         {
-            $("#menuPanel").panel( "close" );
+            $("#menuPanel").panel("close");
             $('#settingsPage').removeClass('show-about');
             isOpen = !isOpen;
         }
     });
 
 // Close the Popup using #close-button
-$('#mapPage').on('click', '#btnClose', function () {
+    $('#mapPage').on('click', '#btnClose', function () {
         $('#mapPage').removeClass('show-popup');
         $('#settingsPage').removeClass('show-about');
         console.log('Close popup on map page');
@@ -36,6 +36,7 @@ $('#mapPage').on('click', '#btnClose', function () {
         if (!isInfoMenuOpen)
         {
             $(".panel-btn").velocity({width: 0, easing: "easein"}, 500); //menu-top-buttons
+            $(".infoMenu").show(); // vibes info
             $(".menu-top-buttons a").velocity({height: 0, easing: "easein"}, 500); //menu-top-buttons
             $(".infoMenuButtonImg").velocity({marginBottom: 0, easing: "easein"}, 500); //menu-top-buttons
             isInfoMenuOpen = !isInfoMenuOpen;
@@ -49,6 +50,7 @@ $('#mapPage').on('click', '#btnClose', function () {
     function closeInfoMenu()
     {
         $(".panel-btn").velocity({width: '150px', easing: "easein"}, 500);
+        $(".infoMenu").hide(); // vibes info
         $(".menu-top-buttons a").velocity({height: 72, easing: "easein"}, 500); //menu-top-buttons
         $(".infoMenuButtonImg").velocity({marginBottom: 100, easing: "easein"}, 500); //menu-top-buttons
         isInfoMenuOpen = !isInfoMenuOpen;
@@ -63,7 +65,7 @@ $('#mapPage').on('click', '#btnClose', function () {
 $(document).on("pagecontainerbeforehide", function (event, ui) {
 // Close the menu when leaving page
     var pageID = $.mobile.activePage.attr('id');
-    $("#menuPanel").panel( "close" );
+    $("#menuPanel").panel("close");
     $('#' + pageID).removeClass('show-popup');
     $('#settingsPage').removeClass('show-about');
     $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
