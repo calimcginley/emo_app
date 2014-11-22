@@ -247,6 +247,23 @@ ul, menu, dir {
 /* ------------------------------------------------------------------------------------------
 // ------------------------------  Profile Page  ------------------------------------------
 // ----------------------------------------------------------------------------------------*/ 
+
+.profilePage {
+    
+    max-height: 633px;
+    max-width: 320px;
+    
+    
+    
+}
+
+#loadMore {
+    
+    
+}
+
+
+
 .profileHeader
 {
     position: fixed;    
@@ -257,6 +274,13 @@ ul, menu, dir {
     background-image: url(../images/profile/profileBack_4.svg);
     top: 0;
     left: 0;    
+}
+
+.profileheaderImg {
+    
+    width: 128px;
+    
+    
 }
 
 .profileHeader a {
@@ -352,7 +376,8 @@ ul, menu, dir {
     padding-top:   10px;
     padding-bottom:   10px;
     height: 44px !important;
-    min-width:  100% !important;
+    min-width:  200px !important;
+    max-width: 200px;
     color: #ED4798;
     text-decoration: none;
     text-align: center;
