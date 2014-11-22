@@ -115,8 +115,11 @@ body,
 
 .menu-top {
     line-height: 45px;
-    background-color: #FFFFFF;
-    padding-left: 1.5em;
+    background-color: #FFFFFF; 
+   
+   /* background-image: url(../images/menu/menuTopBack.svg);
+    background-repeat: no-repeat; 
+    padding-left: 1.5em; */
 }
 
 .menu-top .profile {
@@ -137,8 +140,8 @@ body,
 
 .menu-top .profile img {
     float: left;
-    margin-right: 3em;
-    padding-left: 1em;
+    margin-right: 6em;
+    
 }
 
 .icon-list {
@@ -159,12 +162,15 @@ body,
 
 .menu-top-buttons a {
     display: block;
-    //padding: 1.2em;
+    padding-left: 1.2em;
     border-bottom: 0px solid rgba(0,0,0,0.1);
 }
 
 .infoMenu {
     //display: none;
+    
+    margin-left: 4em;
+    margin-top: 1em;
 }
 
 .infoMenu a {
@@ -234,3 +240,10 @@ body,
 }
 
 
+
+.menu-side {
+    
+    background-image: url(../images/menu/menuSideImg.svg);
+    background-repeat: no-repeat;
+
+}
