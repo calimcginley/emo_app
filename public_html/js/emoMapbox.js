@@ -161,6 +161,8 @@ function setMapInAction()
                     .on('click', function (d) {
                         if ($('.statsBox').hasClass('statsUp'))
                         {
+                            $('.statsBox').removeClass('statsUp');
+
                             map.on('click', function (e) {
                                 var zoom = map.getZoom() + 2;
                                 map.setView({lat: e.latlng.lat, lon: e.latlng.lng}, zoom);
@@ -170,8 +172,19 @@ function setMapInAction()
                         else
                         {
                             $('.statsBox').addClass('statsUp');
+                            var statsArray = [];
                             var lenStats = d.length;
+                            makePie(d);
+
                             $('.statsBox').html('<h1>' + lenStats + '</h1>');
+                            // Remove timeout
+                            //$('.statsBox').html('').delay(4000);
+                            function wipeStats()
+                            {
+                                $('.statsBox').removeClass('statsUp');
+                                $('.statsBox').html('<h1>none</h1>');
+                            }
+                            var timeoutID = window.setTimeout(wipeStats, 4000);
                         }
                     });
         },
@@ -201,6 +214,41 @@ function setMapInAction()
     L.hexbinLayer = function (data, styleFunction) {
         return new L.HexbinLayer(data, styleFunction);
     };
+    
+    
+    function makePie (data) {
+
+        alert('pie!');
+          d3.select(".statsBox").selectAll(".arc").remove()
+          d3.select(".statsBox").selectAll(".pie").remove()
+
+          var arc = d3.svg.arc()
+              .outerRadius(45)
+              .innerRadius(10);
+
+          var pie = d3.layout.pie()
+               .value(function(d) { return d; });
+
+          var svg = d3.select(".statsBox").select("svg")
+                      .append("g")
+                        .attr("class", "pie")
+                        .attr("transform", "translate(50,50)");
+
+          var g = svg.selectAll(".arc")
+                    .data(pie(data))
+                    .enter().append("g")
+                      .attr("class", "arc");
+
+              g.append("path")
+                .attr("d", arc)
+                .style("fill", function(d, i) { return i === 1 ? 'orange':'green'; });
+
+              g.append("text")
+                  .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+                  .style("text-anchor", "middle")
+                  .text(function (d) { return d.value === 0 ? "" : d.value; });
+        }
+    
 
     //*******************  Get JSON data from php url***************************
     //**************************************************************************
@@ -275,7 +323,7 @@ function setMapInAction()
                     var hexColor = '';
                     // Get the max value from the array
                     $.each(countArray, function (key, val) {
-                        console.log(countArray +'array has ' +val + ' val:maxValue ' + maxValue);
+                        console.log(countArray + 'array has ' + val + ' val:maxValue ' + maxValue);
                         if (val === maxValue)
                         {
                             hexColor = hexColor + key;
@@ -283,10 +331,72 @@ function setMapInAction()
                     });
                     hexColor.split("");
                     console.log(hexColor);
-                    var hexLen = hexColor.length -1;
-
-                    var hexOutput = $.xcolor.average(emoArray[hexColor[0]],emoArray[hexColor[hexLen]]);
-                    console.log(hexOutput);
+                    var hexOutput;
+                    var hexLen = hexColor.length;
+                    //var hexColorLast = hexColor.length - 1;
+                    if (hexLen === 1)
+                    {
+                        hexOutput = emoArray[hexColor[0]];
+                    }
+                    else
+                    {
+                        // Mix Two Colors
+                        var mix01 = $.xcolor.average(emoArray[hexColor[0]], emoArray[hexColor[1]]);
+                        if (hexLen === 2)
+                        {
+                            hexOutput = mix01;
+                        }
+                        else
+                        {
+                            if (hexLen === 3)
+                            {
+                                // Fix Three Colours
+                                hexOutput = $.xcolor.average(mix01, emoArray[hexColor[2]]);
+                            }
+                            else
+                            {
+                                var mix23 = $.xcolor.average(emoArray[hexColor[2]], emoArray[hexColor[3]]);
+                                if (hexLen === 4)
+                                {
+                                    // Mix Four Colours
+                                    var mix0123 = $.xcolor.average(mix01, mix23);
+                                    hexOutput = mix0123;
+                                }
+                                else
+                                {
+                                    if (hexLen === 5)
+                                    {
+                                        // Mixing 5 Colors
+                                        hexOutput = $.xcolor.average(mix0123, emoArray[hexColor[4]]);
+                                    }
+                                    else
+                                    {
+                                        var mix45 = $.xcolor.average(emoArray[hexColor[4]], emoArray[hexColor[5]]);
+                                        var mix012345 = $.xcolor.average(mix0123, mix45);
+                                        if (hexLen === 6)
+                                        {
+                                            //Mixing 6 Colors
+                                            hexOutput = mix012345;
+                                        }
+                                        else
+                                        {
+                                            if (hexLen === 7)
+                                            {
+                                                // Mixing 7 Colors
+                                                hexOutput = $.xcolor.average(mix012345, emoArray[hexColor[6]]);
+                                            }
+                                            else
+                                            {
+                                                // Mixing 8 Colors
+                                                var mix0123456 = $.xcolor.average(mix012345, emoArray[hexColor[6]]);
+                                                hexOutput = $.xcolor.average(mix0123456, emoArray[hexColor[7]]);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     return hexOutput;
                 }).attr("stroke", 'black').attr("title", function (d) {
                     // Add the postID's to the hexagons

@@ -3,10 +3,6 @@
 // ------------------------------  Font CSS ------------------------------------
 // ---------------------------------------------------------------------------*/ 
 
-
-.statsBox {
-}
-
 @font-face
 {
     font-family: Raleway_200;
@@ -78,11 +74,6 @@ li a
 .loginContent {
     width: 320px;
     padding-top: 100px;
-}
-
-#logIn {
-
-
 }
 
 #signUp {
@@ -179,15 +170,19 @@ input[type='text']
     width: 100%;
     height: 100%;
 }
-
-.centerButton {
+#mapPage .centerButton {
     width: 45px;
+    margin: 0;
     height: 50px;
-    padding: 3px;
-    background-color: rgba(255,255,255, 0.15);
-    //border-style: solid;
-    //border-width: 2px;
-    //border-color: #63B6E5;
+    padding: 5px;
+    background-color: rgba(255,255,255, 0.05);
+}
+#map .leaflet-control-container .leaflet-bottom.leaflet-right .centerButton.leaflet-control  a {
+    text-align: right;
+     color: #F7B4D5;  
+}
+
+.statsBox {
 }
 
 /* ------------------------------------------------------------------------------------------
