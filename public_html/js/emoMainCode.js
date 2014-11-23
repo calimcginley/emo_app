@@ -191,10 +191,10 @@ function camera()
 {
     // Place camera phonegap function here
     navigator.camera.getPicture(onSuccess, onFail, {
-        quality: 48,
+        quality: 80,
         destinationType: Camera.DestinationType.FILE_URI,
-        targetWidth: 960,
-        targetHeight: 960,
+        targetWidth: 640,
+        targetHeight: 640,
         saveToPhotoAlbum: true,
         correctOrientation: false,
         allowEdit: true
@@ -210,8 +210,13 @@ function camera()
         var canvas = document.getElementById('imageCanvas');
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
+        // Add white bg
+        context.rect(0, 0, 640, 720);
+        context.fillStyle = '#ffffff';
+        context.fill();
+        
         // Add the emoji Colour
-        context.rect(0, 0, 960, 975);
+        context.rect(0, 0, 640, 650);
         context.fillStyle = emojiColours[parentEmoji];
         context.fill();
 
@@ -219,7 +224,7 @@ function camera()
         var imageObj = new Image();
         imageObj.onload = function () {
             context.globalAlpha = 1;
-            context.drawImage(imageObj, 0, 0, 960, 960);
+            context.drawImage(imageObj, 0, 0, 640, 640);
         };
         imageObj.src = imageURI;
     }
@@ -246,7 +251,7 @@ $(document).on('click', '#postToMapBtn', function () {
         var imgEmoji = $(".emojiRender").children('.removeEmoji');
         var emojiImgArr = jQuery.makeArray(imgEmoji);
         console.log(emojiImgArr);
-        var padLeft = 15;
+        var padLeft = 10;
         var canvas = document.getElementById('imageCanvas');
         var context = canvas.getContext('2d');
 
@@ -258,18 +263,18 @@ $(document).on('click', '#postToMapBtn', function () {
             var imgEmo = new Image();
             (function (pad) {
                 imgEmo.onload = function () {
-                    context.drawImage(imgEmo, pad, 980, 90, 90);
+                    context.drawImage(imgEmo, pad, 655, 60, 60);
                 };
                 imgEmo.src = 'images/emojis/' + value.title + '.png';
             })(padLeft);
-            padLeft = padLeft + 105;
+            padLeft = padLeft + 70;
             console.log(padLeft);
         });
         // Add the emoji Icon Canvas
         var emojiIconObj = new Image();
         emojiIconObj.onload = function () {
             context.globalAlpha = 0.58;
-            context.drawImage(emojiIconObj, 20, 20, 200, 176);
+            context.drawImage(emojiIconObj, 14, 14, 132, 117);
         };
         emojiIconObj.src = 'images/emojiSelect/emoji-' + window.localStorage.getItem('parentPostEmoji') + '.png';
         emojiIconObj.addEventListener('load', sendPost);
@@ -426,8 +431,8 @@ $(document).on("pagecreate", "#emotionPostPage", function () {
 
     // Set the image in place for camera
     var canvas = document.getElementById('imageCanvas');
-    canvas.width = 960;
-    canvas.height = 1080;
+    canvas.width = 640;
+    canvas.height = 720;
     canvas.style.width = '320px';
     canvas.style.height = '360px';
     var context = canvas.getContext('2d');
