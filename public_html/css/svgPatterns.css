@@ -1,0 +1,32 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-Nov-2014, 18:34:27
+    Author     : Keith
+*/
+
+
+
+<style type="text/css" >
+<![CDATA[
+
+myGreen {
+    stop-color: #006600;
+    fill:   #00cc00;
+}
+
+myGreen {
+    stroke: #006600;
+    fill:   #00cc00;
+}
+
+path.myRed {
+    stroke: #660000;
+    fill:   #cc0000;
+}
+
+]]>
+</style>
