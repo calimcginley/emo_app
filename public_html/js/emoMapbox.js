@@ -13,6 +13,12 @@ window.localStorage.setItem('interval', 'WEEK');
 var filterOpen = false;
 var firstMarkers = true;
 
+var vibeObject = {
+    '0': '#F7ED43', '1': '#66BA4D',
+    '2': '#6CCCE1', '3': '#F48530',
+    '4': '#A4579F', '5': '#C3242D',
+    '6': '#E01888', '7': '#DD5F84'};
+
 var onSuccess = function (position)
 {
     setViewLat = position.coords.latitude;
@@ -159,33 +165,35 @@ function setMapInAction()
                         return "translate(" + d.x + "," + d.y + ")";
                     })
                     .on('click', function (d) {
-                        if ($('.statsBox').hasClass('statsUp'))
+                        // Move the map to hexbin click
+                        function moveMapClick()
                         {
-                            $('.statsBox').removeClass('statsUp');
-
                             map.on('click', function (e) {
                                 var zoom = map.getZoom() + 2;
                                 map.setView({lat: e.latlng.lat, lon: e.latlng.lng}, zoom);
                             });
+                        }
+                        // Remove timeout
+                        function wipeStats()
+                        {
+                            $('.statsBox').removeClass('statsUp');
                             $('.statsBox').html(' ');
                         }
-                        else
-                        {
-                            $('.statsBox').addClass('statsUp');
-                            var statsArray = [];
-                            var lenStats = d.length;
-                            makePie(d);
-
-                            $('.statsBox').html('<h1>' + lenStats + '</h1>');
-                            // Remove timeout
-                            //$('.statsBox').html('').delay(4000);
-                            function wipeStats()
-                            {
-                                $('.statsBox').removeClass('statsUp');
-                                $('.statsBox').html('<h1>none</h1>');
-                            }
-                            var timeoutID = window.setTimeout(wipeStats, 4000);
-                        }
+                        var statsString = [0, 0, 0, 0, 0, 0, 0, 0]; // count vibe array and function
+                        $.each(d, function (key, val) {
+                            var vibeNumber = val[2].emoType - 1;
+                            statsString[vibeNumber]++;
+                        });
+                        console.log('statsArray: ' + statsString);
+                        $('.statsBox').addClass('statsUp'); // Add the stats class to div and add numbers span
+                        $('.statsBox').html('<span class="pieChart">' + statsString.toString() + '</span>');
+                        $(".pieChart").peity("pie", { // trigger the pieChart code and colours
+                            fill: ['#F7ED43', '#66BA4D', '#6CCCE1', '#F48530', '#A4579F', '#C3242D', '#E01888', '#DD5F84'],
+                            radius: 50,
+                            innerRadius: 30
+                        });
+                        var delayMapMove = window.setTimeout(moveMapClick, 2000);
+                        var wipeStatsDelay = window.setTimeout(wipeStats, 4000);
                     });
         },
         addTo: function (map) {
@@ -203,7 +211,7 @@ function setMapInAction()
                         .attr('class', 'leaflet-layer leaflet-zoom-hide emotionHexbin');
                 //this.container.append('defs').html('<linearGradient id="pat01"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat02"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat03"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat04"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat05"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat06"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat07"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat10"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat12"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat13"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat14"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat15"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat16"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat17"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat20"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat21"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat23"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat24"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat25"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat26"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat27"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat30"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat31"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat32"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat34"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat35"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat36"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat37"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat40"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat41"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat42"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat43"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat45"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat46"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat47"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat50"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat51"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat52"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat53"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat54"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat56"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat57"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat60"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat61"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat62"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat63"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat64"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat65"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat67"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat70"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat71"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat72"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat73"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat74"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat75"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat76"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient>');
                 //this.container.append('defs').html('<linearGradient id="pat01"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat02"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat03"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat04"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat05"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat06"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat07"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat10"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat12"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat13"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat14"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat15"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat16"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat17"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat20"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat21"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat23"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat24"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat25"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat26"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat27"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat30"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat31"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat32"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat34"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat35"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat36"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat37"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat40"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat41"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat42"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat43"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat45"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat46"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat47"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat50"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat51"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat52"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat53"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat54"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat56"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat57"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat60"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat61"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat62"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat63"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat64"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat65"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat67"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat70"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat71"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat72"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat73"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat74"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat75"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat76"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient>');
-                this.container.append('defs').html('<pattern id="image" x="-100" y="-100" height="200" width="200"><image x="50" y="50" width="100" height="100" xlink:href="http://www.e-pint.com/epint.jpg"></image></pattern>');
+                //this.container.append('defs').html('<pattern id="image" x="-100" y="-100" height="200" width="200"><image x="50" y="50" width="100" height="100" xlink:href="http://www.e-pint.com/epint.jpg"></image></pattern>');
 
             }
             map.on({'moveend': this.update}, this);
@@ -214,42 +222,6 @@ function setMapInAction()
     L.hexbinLayer = function (data, styleFunction) {
         return new L.HexbinLayer(data, styleFunction);
     };
-    
-    
-    function makePie (data) {
-
-        alert('pie!');
-          d3.select(".statsBox").selectAll(".arc").remove()
-          d3.select(".statsBox").selectAll(".pie").remove()
-
-          var arc = d3.svg.arc()
-              .outerRadius(45)
-              .innerRadius(10);
-
-          var pie = d3.layout.pie()
-               .value(function(d) { return d; });
-
-          var svg = d3.select(".statsBox").select("svg")
-                      .append("g")
-                        .attr("class", "pie")
-                        .attr("transform", "translate(50,50)");
-
-          var g = svg.selectAll(".arc")
-                    .data(pie(data))
-                    .enter().append("g")
-                      .attr("class", "arc");
-
-              g.append("path")
-                .attr("d", arc)
-                .style("fill", function(d, i) { return i === 1 ? 'orange':'green'; });
-
-              g.append("text")
-                  .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-                  .style("text-anchor", "middle")
-                  .text(function (d) { return d.value === 0 ? "" : d.value; });
-        }
-    
-
     //*******************  Get JSON data from php url***************************
     //**************************************************************************
     window.setJsonLayers = function () {
@@ -307,17 +279,12 @@ function setMapInAction()
                 {
                     //********  Set Hexbin colour using count array  ***************
                     // http://www.xarg.org/project/jquery-color-plugin-xcolor/
-                    var emoArray = {
-                        '0': '#F7ED43', '1': '#66BA4D',
-                        '2': '#6CCCE1', '3': '#F48530',
-                        '4': '#A4579F', '5': '#C3242D',
-                        '6': '#E01888', '7': '#DD5F84'};
                     var countArray = [0, 0, 0, 0, 0, 0, 0, 0];
                     var dLen = d.length;
                     var hexCode;
                     $.each(d, function (key, value) {
-                        var emoNumber = value[2].emoType - 1;
-                        countArray[emoNumber]++;
+                        var vibeNumber = value[2].emoType - 1;
+                        countArray[vibeNumber]++;
                     });
                     var maxValue = Math.max.apply(null, countArray);
                     var hexColor = '';
@@ -336,12 +303,12 @@ function setMapInAction()
                     //var hexColorLast = hexColor.length - 1;
                     if (hexLen === 1)
                     {
-                        hexOutput = emoArray[hexColor[0]];
+                        hexOutput = vibeObject[hexColor[0]];
                     }
                     else
                     {
                         // Mix Two Colors
-                        var mix01 = $.xcolor.average(emoArray[hexColor[0]], emoArray[hexColor[1]]);
+                        var mix01 = $.xcolor.average(vibeObject[hexColor[0]], vibeObject[hexColor[1]]);
                         if (hexLen === 2)
                         {
                             hexOutput = mix01;
@@ -351,11 +318,11 @@ function setMapInAction()
                             if (hexLen === 3)
                             {
                                 // Fix Three Colours
-                                hexOutput = $.xcolor.average(mix01, emoArray[hexColor[2]]);
+                                hexOutput = $.xcolor.average(mix01, vibeObject[hexColor[2]]);
                             }
                             else
                             {
-                                var mix23 = $.xcolor.average(emoArray[hexColor[2]], emoArray[hexColor[3]]);
+                                var mix23 = $.xcolor.average(vibeObject[hexColor[2]], vibeObject[hexColor[3]]);
                                 if (hexLen === 4)
                                 {
                                     // Mix Four Colours
@@ -367,11 +334,11 @@ function setMapInAction()
                                     if (hexLen === 5)
                                     {
                                         // Mixing 5 Colors
-                                        hexOutput = $.xcolor.average(mix0123, emoArray[hexColor[4]]);
+                                        hexOutput = $.xcolor.average(mix0123, vibeObject[hexColor[4]]);
                                     }
                                     else
                                     {
-                                        var mix45 = $.xcolor.average(emoArray[hexColor[4]], emoArray[hexColor[5]]);
+                                        var mix45 = $.xcolor.average(vibeObject[hexColor[4]], vibeObject[hexColor[5]]);
                                         var mix012345 = $.xcolor.average(mix0123, mix45);
                                         if (hexLen === 6)
                                         {
@@ -383,13 +350,13 @@ function setMapInAction()
                                             if (hexLen === 7)
                                             {
                                                 // Mixing 7 Colors
-                                                hexOutput = $.xcolor.average(mix012345, emoArray[hexColor[6]]);
+                                                hexOutput = $.xcolor.average(mix012345, vibeObject[hexColor[6]]);
                                             }
                                             else
                                             {
                                                 // Mixing 8 Colors
-                                                var mix0123456 = $.xcolor.average(mix012345, emoArray[hexColor[6]]);
-                                                hexOutput = $.xcolor.average(mix0123456, emoArray[hexColor[7]]);
+                                                var mix0123456 = $.xcolor.average(mix012345, vibeObject[hexColor[6]]);
+                                                hexOutput = $.xcolor.average(mix0123456, vibeObject[hexColor[7]]);
                                             }
                                         }
                                     }
