@@ -115,16 +115,16 @@ body,
 
 .menu-top {
     line-height: 45px;
-    background-color: #FFFFFF; 
+     /*background-color: #efefef; */
    
-   /* background-image: url(../images/menu/menuTopBack.svg);
+   background-image: url(../images/menu/menuTopBack_2.svg);
     background-repeat: no-repeat; 
-    padding-left: 1.5em; */
+    
 }
 
 .menu-top .profile {
     display: inline-block;
-    padding-top: 20px;
+    padding-top: 5px;
     padding-bottom: 0;
     line-height: 40px;
 }
@@ -135,12 +135,12 @@ body,
 
 
 .menu-top  {
-    width: 200px;
+    width: 300px;
 }
 
 .menu-top .profile img {
     float: left;
-    margin-right: 6em;
+    
     
 }
 
@@ -150,7 +150,7 @@ body,
 }
 
 .icon-list a {
-    margin: 0 1em 0 0;
+   
     padding: 0;
 }
 

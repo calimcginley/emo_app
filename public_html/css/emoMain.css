@@ -771,5 +771,6 @@ ul, menu, dir {
 }
 
 .menuBorder {  
-    padding-left: 2em;
+    
+    width: 300px;
 }
