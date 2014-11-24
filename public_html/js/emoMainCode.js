@@ -744,12 +744,13 @@ function insertImageArray(imageCount)
             var b = moment(value[4]);
             console.log(b);
             var timeOffset = a.from(b);
-            $('#profilePosts').append('<div class="profilePostDiv">'
+            $('#profilePosts').append('<div class="profilePostDiv" >'
                     + '<img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png"/>'
                     + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
                     + '</div>');
         }
     });
+    
     // Append the add Button
     //$('#addProfilePost').append('<button id="addProfilePost" data-theme="a">Load More</button>');
     imageCount = parseInt(imageCount) + 7;

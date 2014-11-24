@@ -269,16 +269,11 @@ ul, menu, dir {
 // ----------------------------------------------------------------------------------------*/ 
 
 .profilePage {
-
     max-height: 633px;
     max-width: 320px;
-
-
-
 }
 
 #loadMore {
-
 
 }
 
@@ -297,10 +292,7 @@ ul, menu, dir {
 }
 
 .profileheaderImg {
-
     width: 128px;
-
-
 }
 
 .profileHeader a {
