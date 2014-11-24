@@ -63,7 +63,7 @@
 .popup-wrap {
     position: fixed;
     z-index: 999;
-    background: #ffffff;
+    background-image: url('../images/popupBg.svg');
     -webkit-transition: width 0.3s, height 0.3s;
     transition: width 0.3s, height 0.3s;
     width: 0;
@@ -84,9 +84,10 @@
     width: 94%;
     height: 44px;        
     padding: 3%;
-    background-color: rgba(255,255,255,1);
+    background-color: rgba(255,255,255,0.1);
     text-align: right;
     font-size: 1em;
+    margin-bottom: -25px;
 }
 
 .vibesDiv {
@@ -262,6 +263,7 @@
 .show-popup .popup-wrap {
     width: 310px;
     height: 480px;
+    border: 1px;
     -webkit-animation: anim-jelly 0.8s linear forwards;
     animation: anim-jelly 0.8s linear forwards;
 }

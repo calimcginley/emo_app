@@ -425,7 +425,6 @@ $(document).ready(function ()
     });
 });
 
-
 // load the emoji keypad
 $(document).on("pagecreate", "#emotionPostPage", function () {
 
@@ -439,7 +438,6 @@ $(document).on("pagecreate", "#emotionPostPage", function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     var canvasBtnObj = new Image();
-
     canvasBtnObj.onload = function () {
         context.globalAlpha = 1;
         context.drawImage(canvasBtnObj, 0, 0);

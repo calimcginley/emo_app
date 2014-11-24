@@ -166,6 +166,7 @@ function setMapInAction()
                     })
                     .on('click', function (d) {
                         // Move the map to hexbin click
+                        console.log('Hexbin clicked, show stats and zoom in!');
                         function moveMapClick()
                         {
                             map.on('click', function (e) {
@@ -176,24 +177,39 @@ function setMapInAction()
                         // Remove timeout
                         function wipeStats()
                         {
-                            $('.statsBox').removeClass('statsUp');
-                            $('.statsBox').html(' ');
+                            $('.statsBox').removeClass('rollIn');
+                            $('.statsBox').addClass('rollOut');
+                            var delayWipe = window.setTimeout(function () {
+                                $('.statsBox').removeClass('statsUp rollOut');
+                                $('.statsBox').html(' ');
+                            }, 700);
                         }
                         var statsString = [0, 0, 0, 0, 0, 0, 0, 0]; // count vibe array and function
                         $.each(d, function (key, val) {
                             var vibeNumber = val[2].emoType - 1;
                             statsString[vibeNumber]++;
                         });
-                        console.log('statsArray: ' + statsString);
-                        $('.statsBox').addClass('statsUp'); // Add the stats class to div and add numbers span
-                        $('.statsBox').html('<span class="pieChart">' + statsString.toString() + '</span>');
-                        $(".pieChart").peity("pie", { // trigger the pieChart code and colours
-                            fill: ['#F7ED43', '#66BA4D', '#6CCCE1', '#F48530', '#A4579F', '#C3242D', '#E01888', '#DD5F84'],
-                            radius: 50,
-                            innerRadius: 30
-                        });
-                        var delayMapMove = window.setTimeout(moveMapClick, 2000);
-                        var wipeStatsDelay = window.setTimeout(wipeStats, 4000);
+                        //console.log('statsArray: ' + statsString);
+                        if (d.length > 1)
+                        {
+                            if (!$('.statsBox').hasClass('statsUp'))
+                            {
+                                var wipeStatsDelay = window.setTimeout(wipeStats, 4000);
+                            }
+                            $('.statsBox').addClass('statsUp rollIn'); // Add the stats class to div and add numbers span
+                            $('.statsBox').html('<span class="pieChart">' + statsString.toString() + '</span>');
+                            $(".pieChart").peity("pie", {// trigger the pieChart code and colours
+                                fill: ['#F7ED43', '#66BA4D', '#6CCCE1', '#F48530', '#A4579F', '#C3242D', '#E01888', '#DD5F84'],
+                                radius: 50,
+                                innerRadius: 30
+                            });
+                            var delayMapMove = window.setTimeout(moveMapClick, 2000);
+                        }
+                        else
+                        {
+                            $('.statsBox').removeClass('statsUp');
+                            moveMapClick();
+                        }
                     });
         },
         addTo: function (map) {
