@@ -115,9 +115,9 @@ body,
 
 .menu-top {
     line-height: 45px;
-     /*background-color: #efefef; */
+     background-color: #fff; 
    
-   background-image: url(../images/menu/menuTopBack_2.svg);
+   /*background-image: url(../images/menu/menuTopBack_2.svg);*/
     background-repeat: no-repeat; 
     
 }
