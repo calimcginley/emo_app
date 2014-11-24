@@ -59,10 +59,10 @@ li a
 /* ------------------------------------------------------------------------------------------
 // ------------------------------  Login Form CSS -------------------------------------------
 // ----------------------------------------------------------------------------------------*/ 
-
-#loginPage {
+#loginWrap {
     background-image: url(../images/loginImg.svg); 
-    background-repeat:no-repeat;
+    background-repeat:no-repeat;  
+    background-size: 100%;
 }
 
 #loginForm {
@@ -73,6 +73,7 @@ li a
 
 .loginContent {
     width: 320px;
+    height: 470px;
     padding-top: 100px;
 }
 
@@ -180,7 +181,7 @@ input[type='text']
 }
 #map .leaflet-control-container .leaflet-bottom.leaflet-right .centerButton.leaflet-control  a {
     text-align: right;
-     color: #F7B4D5;  
+    color: #F7B4D5;  
 }
 
 .statsBox {
@@ -764,6 +765,6 @@ ul, menu, dir {
 }
 
 .menuBorder {  
-    
+
     width: 300px;
 }
