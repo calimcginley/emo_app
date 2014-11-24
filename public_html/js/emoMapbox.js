@@ -245,12 +245,12 @@ function setMapInAction()
         $('#hex-svg').remove();
         console.log('getJSONMarkerData() is running ...');
         var timeType = window.localStorage.getItem('timeType');
-        console.log(timeType);
-        console.log(startDate);
-        console.log(endDate);
         var interval = window.localStorage.getItem('interval');
-        var startDate = $('#dateStart').val();
-        var endDate = $('#dateEnd').val();
+        var startDate = $('#dateStart').val() +'+00:00:01';
+        var endDate = $('#dateEnd').val() +'+23:59:59';
+        console.log('timeType: '+timeType);
+        console.log('startDate: '+startDate);
+        console.log('endDate: '+endDate);
 
         var emoTypes = '';
         $.each(emoFilterArray, function (index, value)
@@ -264,6 +264,9 @@ function setMapInAction()
                 emoTypes = emoTypes + value + '|';
             }
         });
+        // Database Time Format 2014-11-16 01:33:56
+        // 2014-11-16 01:33:56
+        // YYYY-MM-DD hh:mm:ss
 
         console.log('The REGEXP string is now:');
         console.log(emoTypes);
@@ -271,7 +274,7 @@ function setMapInAction()
         var jsonStringHex = " ";
         if (timeType === 'dateRange')
         {
-            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=' + moment(startDate, "YYYY-MM-DD").format() + '&endDate=' + moment(endDate, "YYYY-MM-DD").format();
+            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=%27' +startDate + '%27&endDate=%27' +endDate +'%27';
         }
         else
         {
@@ -684,7 +687,7 @@ $(document).on("pageshow", "#mapPage", function () {
         function openFilterBar()
         {
             console.log('Open Filter bar');
-            $("#emojiSearchBar").velocity({top: "70px", easing: "easein"}, 500);
+            $("#emojiSearchBar").velocity({top: "0px", easing: "easein"}, 500);
             //$("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
             $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
             filterOpen = !filterOpen;
@@ -778,6 +781,7 @@ $(document).on("pageshow", "#mapPage", function () {
 // ------------------------------------------------------------------------------------------
     $('.input-daterange').datepicker({
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        format: 'yyyy-mm-dd'
     });
 });
