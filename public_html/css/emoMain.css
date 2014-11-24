@@ -389,8 +389,9 @@ ul, menu, dir {
     width: 100%;
 }
 
-#addMoreDiv {
+#addMoreDiv, #logoutDiv {
     width: 320px;
+    height: 60px;
     clear: both;
 }
 #profilePostsWrap a,

@@ -147,7 +147,7 @@ $(document).ready(function () {
         function openParentEmojiBar()
         {
             console.log('Open Filter bar');
-            $("#emojiPostSelectParent").velocity({top: "200px", easing: "easein"}, 10);
+            //$("#emojiPostSelectParent").velocity({top: "200px", easing: "easein"}, 10);
             $("#emojiPostSelectParent").velocity({left: "0", easing: "easein"}, 500);
             // Close Other
             $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
@@ -180,8 +180,8 @@ $(document).ready(function () {
             $(".panel-btn").velocity({width: '150px', easing: "easein"}, 1);
             $(".infoMenuButtonImg").velocity({marginBottom: 100, easing: "easein"}, 1);
             $('#mapPage').removeClass('show-popup');
-            $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
-            $("#emojiPostSelectParent").velocity({top: "-200px", easing: "easein"}, 10);
+            $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 300);
+            $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 300);
         }
     });
 
