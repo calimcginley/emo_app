@@ -117,7 +117,8 @@ body,
     line-height: 45px;
      /*background-color: #efefef; */
    
-   background-image: url(../images/menu/menuTopBack_2.svg);
+   
+   /* background-image: url(../images/menu/menuTopBack_2.svg); */
     background-repeat: no-repeat; 
     
 }

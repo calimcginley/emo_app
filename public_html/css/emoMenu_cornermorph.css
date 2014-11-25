@@ -88,22 +88,27 @@
     text-align: right;
     font-size: 1em;
     margin-bottom: -25px;
+    color: white;
 }
 
 #imageCon {
     position: absolute;
     top: 0;
     overflow: scroll;
+    
 }
 
 .vibesDiv {
     float: left;
-    padding-top: 44px;
+    padding-top: 5px;
+    
 }
 
 .emoPostPopup
 {
     width: 100%;
+    
+   
 }
 
 .timeInfo, .btnLove, .btnShare {
@@ -138,6 +143,7 @@
 
 .popup {
     position: relative;
+    background-color: #fff;
     height: 100%;
     opacity: 0;
     font-size: 0.65em;
@@ -217,7 +223,7 @@
 .profile img {
     float: right;
     /* border-radius: 50%; */
-    margin-left: 7em;
+    margin-left: 6.5em;
     margin-top: 10px;
 }
 
@@ -273,6 +279,7 @@
     border: 1px;
     -webkit-animation: anim-jelly 0.8s linear forwards;
     animation: anim-jelly 0.8s linear forwards;
+    
 }
 
 .show-popup .popup {
@@ -293,15 +300,15 @@
 .show-about .about-wrap {
     width: 100%;
     height: 490px;
-    -webkit-animation: anim-jelly 0.8s linear forwards;
-    animation: anim-jelly 0.8s linear forwards;
+    /* -webkit-animation: anim-jelly 0.8s linear forwards; */
+   /* animation: anim-jelly 0.8s linear forwards; */
 }
 
 .show-about .about {
     height: 100%;
     opacity: 1;
-    -webkit-transition: opacity 0.3s 0.3s;
-    transition: opacity 0.3s 0.3s;
+   /* -webkit-transition: opacity 0.3s 0.3s; */
+   /* transition: opacity 0.1s 0.1s; */
 }
 
 /* Generated with Bounce.js. Edit at http://goo.gl/PJ93gs */
