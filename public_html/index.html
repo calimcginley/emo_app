@@ -61,27 +61,27 @@
         <div data-role="page"  id="loginPage">
             <div role="main" class="ui-content content-wrap">
                 <div id="loginWrap" class="loginContent">
-                <!--     <form id="loginForm" data-ajax="false">-->
-                <input type="email" name="email" id="email" placeholder="Email" class="floatlabel_1"/>
-                <!-- Here the user can select login/sign up -->
-                <fieldset id="loginType" data-role="controlgroup" data-type="horizontal">
-                    <!-- <input type="radio" name="radio-loginSignUp" id="radio-loginSignUp_a" value="login" checked="checked"> -->
+                    <!--     <form id="loginForm" data-ajax="false">-->
+                    <input type="email" name="email" id="email" placeholder="Email" class="floatlabel_1"/>
+                    <!-- Here the user can select login/sign up -->
+                    <fieldset id="loginType" data-role="controlgroup" data-type="horizontal">
+                        <!-- <input type="radio" name="radio-loginSignUp" id="radio-loginSignUp_a" value="login" checked="checked"> -->
 
 
-                </fieldset> 
-                <input id="password" type="password" name="password" placeholder="Password" autocomplete="off" class="floatlabel_1"/>
-                <input type="button" name="submitBtn" id="submitBtn" value="Login"/> 
+                    </fieldset> 
+                    <input id="password" type="password" name="password" placeholder="Password" autocomplete="off" class="floatlabel_1"/>
+                    <input type="button" name="submitBtn" id="submitBtn" value="Login"/> 
 
-                <p>
-                    <span id="formErrorMsg"></span><br>
-                    <a href="#" onclick="forgotPassword()" id="forgotPass" >Forgot Password?</a><br>
-                </p>  
-                <br>
-                <br>
-                <br>
-                <br>
+                    <p>
+                        <span id="formErrorMsg"></span><br>
+                        <a href="#" id="forgotPass" >Forgot Password?</a><br>
+                    </p>  
+                    <br>
+                    <br>
+                    <br>
+                    <br>
 
-                <a href="#" id="signUp">Create Account </a>
+                    <a href="#" id="signUp">Create Account </a>
                 </div>
 
             </div>            
@@ -346,6 +346,22 @@
                 </div>
             </nav>
         </div>
+
+        <div data-role="page" id="passPage"> <!-- newPass -->
+            <div data-role="header">
+                <h2>Enter New Password</h2>
+            </div>
+            <div role="main" class="ui-content">
+                <span id="passMsg"></span>
+                <input id="curPass" type="password" name="curPass" placeholder="Current Password" autocomplete="off" class="floatlabel_1"/>
+                <input id="newPass" type="password" name="newPass" placeholder="New Password" autocomplete="off" class="floatlabel_1"/>
+                <input id="conPass" type="password" name="conPass" placeholder="Confirm Password" autocomplete="off" class="floatlabel_1"/>
+                <span id="formErrorMsg"></span><br>
+                <a href="#" id="changePass">Change Password</a>
+            </div>
+        </div>
+
+
         <!--  JavaScript Code required for Menu -->
         <script src="js/classie.js"></script>
         <script src="js/emoSlideMenu.js"></script>

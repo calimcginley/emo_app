@@ -87,20 +87,12 @@ li a
     background-color: #E2E2E2;
     opacity: .9;
     border-radius: 25px;
-
 }
 
-#forgotPass {
-
+#forgotPass, #changePass {
     text-decoration: none;
     color: #9e9e9e;
     margin: 5em;
-}
-
-#loginPage #loginForm .ui-page-theme-a .ui-btn {
-
-
-
 }
 
 /* Sets the password input and title input fields */
@@ -119,12 +111,6 @@ li a
 input[type='text']
 {
     font-family: 'Raleway_300', sans-serif !important;
-}
-
-#loginType .ui-controlgroup, fieldset.ui-controlgroup
-{
-    //margin: 0 74px;
-    //width: 100%;
 }
 
 #formErrorMsg
