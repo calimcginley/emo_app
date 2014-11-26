@@ -68,7 +68,7 @@ $(document).on("pageshow", "#loginPage", function () {
             var newPass = makeNewPass(); // Generate New Password
             var hashPassword = $.sha256(newPass); // Hash it
             $.ajax({url: 'http://emoapp.info/php/forgotPass.php', // Send Pass
-                data: {userEmail:inputEmail, newPass: hashPassword, curPass:null, action: 'forgot'},
+                data: {userEmail: inputEmail, newPass: hashPassword, curPass: null, action: 'forgot'},
                 type: 'post', async: 'true',
                 beforeSend: function () {  // This callback function will trigger before data is sent     
                     $.mobile.loading("show", {text: 'Forgot Password', textVisible: true});
@@ -88,7 +88,7 @@ $(document).on("pageshow", "#loginPage", function () {
                 }
             });
         }
-        else // Tell them enter email
+        else // Tell them enter email q
         {
             $('#formErrorMsg').html('Please enter your account email address');
         }
@@ -646,7 +646,7 @@ $(document).on("pageshow", "#profilePage", function (e, data) {
             },
             success: function (result) { // Get user posts and place them into assoc Array            
                 console.log('User Posts Fetch successfull: ' + result);
-                $('#noMsg').remove(); // Remove no Posts Msg
+                 // Remove no Posts Msg
                 $.each(result.posts, function (index, value) {
                     console.log(index + ' : ' + value.postID);
                     array_push = [index, value.postID, value.imageName, value.timeServer, value.timeNow];
@@ -660,6 +660,7 @@ $(document).on("pageshow", "#profilePage", function (e, data) {
                 $('#updateBtn').html('There was an error = ' + error);
                 console.log('error = ' + error);
                 console.log(error.success);
+                $.mobile.loading('hide');
             }
         });
     }
@@ -673,28 +674,34 @@ $(document).on("pageshow", "#profilePage", function (e, data) {
 function insertImageArray(imageCount) // Insert into Profile Page function
 {
     var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
-    // Remove the add button and append more images
-    //$('#addProfilePost').remove();
-    console.log('start loop imageCount is ' + imageCount);
-    console.log('profileImageArray:' + profileImageArray);
-    $.each(profileImageArray, function (index, value) {     // Loop through the array to the imageCount number
-        if (index <= imageCount && index >= imageCount - 7)
-        {
-            var a = moment(value[3]);             // Time since Tag
-            console.log(a);
-            var b = moment(value[4]);
-            console.log(b);
-            var timeOffset = a.from(b); // Get time differ and insert posts to page
-            $('#profilePosts').append('<div class="profilePostDiv" >'
-                    + '<img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png"/>'
-                    + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
-                    + '</div>');
-        }
-    });
+    if (profileImageArray > 0)  { // User has posts
+        $('#noMsg').remove();
+        // Remove the add button and append more images
+        //$('#addProfilePost').remove();
+        console.log('start loop imageCount is ' + imageCount);
+        console.log('profileImageArray:' + profileImageArray);
+        $.each(profileImageArray, function (index, value) {     // Loop through the array to the imageCount number
+            if (index <= imageCount && index >= imageCount - 7)
+            {
+                var a = moment(value[3]);             // Time since Tag
+                console.log(a);
+                var b = moment(value[4]);
+                console.log(b);
+                var timeOffset = a.from(b); // Get time differ and insert posts to page
+                $('#profilePosts').append('<div class="profilePostDiv" >'
+                        + '<img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png"/>'
+                        + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
+                        + '</div>');
+            }
+        });
 
-    imageCount = parseInt(imageCount) + 7;
-    window.localStorage.setItem('imageCount', imageCount);
-    console.log('AfterInsert: imageCount is now ' + imageCount);
+        imageCount = parseInt(imageCount) + 7;
+        window.localStorage.setItem('imageCount', imageCount);
+        console.log('AfterInsert: imageCount is now ' + imageCount);
+    }
+    else {    // User has no posts   
+        $('#noMsg').html('You have no posts yet. Click on Post in Menu to make one.');
+    }
 
     $(".postDivImg").click(function () { // Expand Image on Click
         console.log('Image Clicked');
