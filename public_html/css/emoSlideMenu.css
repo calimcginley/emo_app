@@ -114,11 +114,11 @@ body,
 }
 
 .menu-top {
-    line-height: 45px;
+    line-height: 40px;
      /*background-color: #efefef; */
    
    
-   /* background-image: url(../images/menu/menuTopBack_2.svg); */
+    background-image: url(../images/menu/menuTopBack_2.svg); 
     background-repeat: no-repeat; 
     
 }
@@ -163,7 +163,7 @@ body,
 
 .menu-top-buttons a {
     display: block;
-    padding-left: 1.2em;
+    /* padding-left: 1em; */
     border-bottom: 0px solid rgba(0,0,0,0.1);
 }
 
@@ -244,7 +244,7 @@ body,
 
 .menu-side {
     
-    background-image: url(../images/menu/menuSideImg.svg);
+    background-image: url(../images/menu/menuSideImg_2.svg);
     background-repeat: no-repeat;
 
 }

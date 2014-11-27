@@ -441,14 +441,14 @@ ul, menu, dir {
 {
     height: auto;
     margin: 0;
-    padding: 1em 3em;
+    padding: 1em 3.6em;
     width: 150px;
     max-width: 150px;
 }
 
 .infoMenuButtonImg {
     margin-bottom: 100px;
-    padding-left: 4em;
+    /* padding-left: 3.9em; */
 }
 
 .profile-button {
