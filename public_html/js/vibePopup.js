@@ -6,9 +6,6 @@
 isOpen = false;
 isPopUpOpen = false;
 isInfoMenuOpen = false;
-
-
-
 /****************  #mapPage  ******************/
 // Menu Open close for #mapPage
 
@@ -26,6 +23,7 @@ $(document).ready(function () {
     $('#mapPage').on('click', '#btnClose', function () {
         $('#mapPage').removeClass('show-popup');
         $('#settingsPage').removeClass('show-about');
+        enableMap();
         console.log('Close popup on map page');
         console.log('The current page is ' + $.mobile.activePage.attr('id'));
     });
@@ -33,12 +31,16 @@ $(document).ready(function () {
     $('.infoMenuButton').click(function () {
         // check if infoMenu is open
         console.log('Button click: infoMenuButton');
-        if (!isInfoMenuOpen)
+        if (!isInfoMenuOpen) // MEnu is closed, open it
         {
-            $(".panel-btn").velocity({width: 0, easing: "easein"}, 500); //menu-top-buttons
+            // Lets Scroll
             $(".infoMenu").show(); // vibes info
-            $(".menu-top-buttons a").velocity({height: 0, easing: "easein"}, 500); //menu-top-buttons
-            $(".infoMenuButtonImg").velocity({marginBottom: 0, easing: "easein"}, 500); //menu-top-buttons
+            $(".infoMenu").velocity({opacity: '1', easing: 'easein'}, 600); // vibes info
+            $('#panelBtns').velocity({top: '-200px', easing: 'easein'}, 800);
+
+            //$(".panel-btn").velocity({width: 0, easing: "easein"}, 500); //menu-top-buttons
+            //$(".menu-top-buttons a").velocity({height: 0, easing: "easein"}, 500); //menu-top-buttons
+            //$(".infoMenuButtonImg").velocity({marginBottom: 0, easing: "easein"}, 500); //menu-top-buttons
             isInfoMenuOpen = !isInfoMenuOpen;
         }
         else
@@ -49,10 +51,15 @@ $(document).ready(function () {
 
     function closeInfoMenu()
     {
-        $(".panel-btn").velocity({width: '150px', easing: "easein"}, 500);
-        $(".infoMenu").hide(); // vibes info
-        $(".menu-top-buttons a").velocity({height: 72, easing: "easein"}, 500); //menu-top-buttons
-        $(".infoMenuButtonImg").velocity({marginBottom: 100, easing: "easein"}, 500); //menu-top-buttons
+        // vibes info
+        $(".infoMenu").velocity({opacity: '0', easing: 'easeout'}, 900); // vibes info
+        $('#panelBtns').velocity({top: '90px', easing: 'easein'}, 600, function () {
+            $(".infoMenu").hide();
+        });
+        //$(".panel-btn").velocity({width: '150px', easing: "easein"}, 500);
+        //$(".infoMenu").hide(); // vibes info
+        //$(".menu-top-buttons a").velocity({height: 72, easing: "easein"}, 500); //menu-top-buttons
+        //$(".infoMenuButtonImg").velocity({marginBottom: 100, easing: "easein"}, 500); //menu-top-buttons
         isInfoMenuOpen = !isInfoMenuOpen;
     }
 

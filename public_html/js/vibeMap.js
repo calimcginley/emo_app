@@ -52,7 +52,6 @@ function setLocale()
 
 setLocale();
 
-
 function setMapInAction()
 {
     //**********************  Create Leaflet/Mapbox Map ************************
@@ -60,6 +59,7 @@ function setMapInAction()
 
     console.log('At mapbox stage the lat is ' + setViewLat + ' and long is ' + setViewLong);
     map = L.mapbox.map('map', 'sona.3ab9e710', {zoomControl: false, detectRetina: true, maxZoom: 20, attributionControl: false})
+            //map = L.mapbox.map('map', 'calimcginley.d78c7e7b', {zoomControl: false, detectRetina: true, maxZoom: 20, attributionControl: false})
             .setView([setViewLat, setViewLong], 14);
     // Add the locate Button
     //L.control.locate({position:'bottomright'}).addTo(map);
@@ -170,8 +170,10 @@ function setMapInAction()
                         function moveMapClick()
                         {
                             map.on('click', function (e) {
-                                var zoom = map.getZoom() + 2;
-                                map.setView({lat: e.latlng.lat, lon: e.latlng.lng}, zoom);
+                                if (map.getZoom() <= 17) // Keep zooming
+                                {
+                                    map.setView({lat: e.latlng.lat, lon: e.latlng.lng}, zoom + 2);
+                                }
                             });
                         }
                         // Remove timeout
@@ -184,14 +186,16 @@ function setMapInAction()
                                 $('.statsBox').html(' ');
                             }, 700);
                         }
-                        var statsString = [0, 0, 0, 0, 0, 0, 0, 0]; // count vibe array and function
-                        $.each(d, function (key, val) {
-                            var vibeNumber = val[2].emoType - 1;
-                            statsString[vibeNumber]++;
-                        });
+
                         //console.log('statsArray: ' + statsString);
                         if (d.length > 1)
                         {
+                            var statsString = [0, 0, 0, 0, 0, 0, 0, 0]; // count vibe array and function
+                            $.each(d, function (key, val) {
+                                var vibeNumber = val[2].emoType - 1;
+                                statsString[vibeNumber]++;
+                            });
+
                             if (!$('.statsBox').hasClass('statsUp'))
                             {
                                 var wipeStatsDelay = window.setTimeout(wipeStats, 4000);
@@ -203,7 +207,7 @@ function setMapInAction()
                                 radius: 50,
                                 innerRadius: 30
                             });
-                            var delayMapMove = window.setTimeout(moveMapClick, 2000);
+                            moveMapClick(); // Delay MoveMap
                         }
                         else
                         {
@@ -225,10 +229,6 @@ function setMapInAction()
                         .append('svg')
                         .attr("id", "hex-svg")
                         .attr('class', 'leaflet-layer leaflet-zoom-hide emotionHexbin');
-                //this.container.append('defs').html('<linearGradient id="pat01"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat02"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat03"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat04"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat05"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat06"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat07"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat10"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat12"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat13"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat14"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat15"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat16"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat17"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat20"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat21"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat23"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat24"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat25"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat26"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat27"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat30"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat31"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat32"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat34"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat35"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat36"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat37"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat40"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat41"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat42"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat43"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat45"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat46"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat47"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat50"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat51"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat52"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat53"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat54"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat56"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat57"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat60"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat61"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat62"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat63"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat64"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat65"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat67"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="51%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat70"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat71"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat72"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat73"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat74"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat75"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat76"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="51%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient>');
-                //this.container.append('defs').html('<linearGradient id="pat01"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat02"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat03"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat04"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat05"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat06"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat07"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat10"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat12"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat13"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat14"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat15"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat16"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat17"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat20"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat21"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat23"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat24"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat25"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat26"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat27"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat30"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat31"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat32"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat34"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat35"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat36"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat37"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat40"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat41"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat42"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat43"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat45"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat46"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat47"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat50"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat51"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat52"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat53"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat54"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat56"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient><linearGradient id="pat57"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat60"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat61"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat62"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat63"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat64"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat65"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat67"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/></linearGradient><linearGradient id="pat70"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#F7ED43;stop-opacity:1"/></linearGradient><linearGradient id="pat71"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#66BA4D;stop-opacity:1"/></linearGradient><linearGradient id="pat72"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#6CCCE1;stop-opacity:1"/></linearGradient><linearGradient id="pat73"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#F48530;stop-opacity:1"/></linearGradient><linearGradient id="pat74"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#A4579F;stop-opacity:1"/></linearGradient><linearGradient id="pat75"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#C3242D;stop-opacity:1"/></linearGradient><linearGradient id="pat76"x1="0%"y1="0%"x2="100%"y2="0%"><stop offset="50%"style="stop-color:#DD5F84;stop-opacity:1"/><stop offset="50%"style="stop-color:#E01888;stop-opacity:1"/></linearGradient>');
-                //this.container.append('defs').html('<pattern id="image" x="-100" y="-100" height="200" width="200"><image x="50" y="50" width="100" height="100" xlink:href="http://www.e-pint.com/epint.jpg"></image></pattern>');
-
             }
             map.on({'moveend': this.update}, this);
             this.update();
@@ -246,11 +246,11 @@ function setMapInAction()
         console.log('getJSONMarkerData() is running ...');
         var timeType = window.localStorage.getItem('timeType');
         var interval = window.localStorage.getItem('interval');
-        var startDate = $('#dateStart').val() +'+00:00:01';
-        var endDate = $('#dateEnd').val() +'+23:59:59';
-        console.log('timeType: '+timeType);
-        console.log('startDate: '+startDate);
-        console.log('endDate: '+endDate);
+        var startDate = $('#dateStart').val() + '+00:00:01';
+        var endDate = $('#dateEnd').val() + '+23:59:59';
+        console.log('timeType: ' + timeType);
+        console.log('startDate: ' + startDate);
+        console.log('endDate: ' + endDate);
 
         var emoTypes = '';
         $.each(emoFilterArray, function (index, value)
@@ -274,7 +274,7 @@ function setMapInAction()
         var jsonStringHex = " ";
         if (timeType === 'dateRange')
         {
-            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=%27' +startDate + '%27&endDate=%27' +endDate +'%27';
+            jsonStringHex = 'http://www.emoapp.info/php/mysql_points_geojson_sensus.php?emoTypes=%27' + emoTypes + '%27&timeType=' + timeType + '&interval=' + interval + '&startDate=%27' + startDate + '%27&endDate=%27' + endDate + '%27';
         }
         else
         {
@@ -432,6 +432,7 @@ function setMapInAction()
 
 // Clicked on Hexagon Event
 $('#mapPage').on('click', '.hexagon', function (e) {
+    var zoom = map.getZoom();
     var latLng = $(this).attr('name');
     var latLngArr = latLng.split(',');
     var postIDStr = $(this).attr('title');
@@ -441,21 +442,31 @@ $('#mapPage').on('click', '.hexagon', function (e) {
         // Single Post
         // Pass Arr Value to Post function
         console.log('Its posting time: ' + postIDStr);
-        map.setView({lat: latLngArr[0], lon: latLngArr[1]}, 24);
+        map.setView({lat: latLngArr[0], lon: latLngArr[1]}, 20);
         markerClicked(postIDStr, 0);
     }
     else
     {
-        // 1 Muli Post
-        console.log('Map Zoom is: ' + map.getZoom());
-        //Handle the multiple case
-        if (map.getZoom() > 19)
+        if (zoom >= 18)
         {
+            map.setView({lat: latLngArr[0], lon: latLngArr[1]}, 20);
             console.log('Its posting time: ' + postIDStr);
             markerClicked(postIDStr, 1);
         }
+        else
+        {
+           map.setView({lat: latLngArr[0], lon: latLngArr[1]}, zoom+2); 
+        }
     }
 });
+
+function setPopupView(setLat, setLng, emojiType)
+{
+    alert('Change Map View');
+    map.setView({lat: setLat, lon: setLng}, 19);
+    setJsonLayers();
+    addMarkerToMap(emojiType, setLat, setLng);
+}
 
 //********  Marker Click Event Code  ***************
 function markerClicked(postID, typeSearch)
@@ -484,7 +495,7 @@ function markerClicked(postID, typeSearch)
             console.log('Vibes Fetch Succesfull');
             console.log('result.marker length: ' + result.marker.length + ' - result.marker object: ' + result.marker);
             // Open Nav and Close Div
-            var htmlStr = '<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup"><div id="imgs"';
+            var htmlStr = '<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup"><div id="imgs">';
             $.each(result.marker, function (key, val) {
                 var len = result.marker.length - 1;
                 var imgSrc = 'http://emoapp.info/uploads/' + val.imageName + '.png';
@@ -537,35 +548,30 @@ function markerClicked(postID, typeSearch)
 }
 
 //********  Add Marker  ***************
-function addMarkerToMap(emoType, postID, pinLat, pinLong)
+function addMarkerToMap(emoType, pinLat, pinLong)
 {
-    console.log('The values passed to addMarkerToMap: EmoType-' + emoType + ' PostID-' + postID + ' LatLong-' + pinLat + pinLong);
+    //console.log('The values passed to addMarkerToMap: EmoType-' + emoType + ' PostID-' + postID + ' LatLong-' + pinLat + pinLong);
     var addMarker;
     var myIcon = L.icon({
         iconUrl: 'images/svgPins/animated/pin' + emoType + '.svg',
         iconRetinaUrl: 'images/svgPins/animated/pin' + emoType + '.svg',
-        iconSize: [76, 80],
-        iconAnchor: [36, 80],
-        popupAnchor: [-3, -31],
-        shadowUrl: 'images/svgPins/animated/Pin_shadow.svg',
-        shadowRetinaUrl: 'images/svgPins/animated/Pin_shadow.svg',
-        shadowSize: [73, 46],
-        shadowAnchor: [41, 46]
+        iconSize: [76, 80], iconAnchor: [36, 80], popupAnchor: [-3, -31],
+        shadowUrl: 'images/svgPins/animated/Pin_shadow.svg', shadowRetinaUrl: 'images/svgPins/animated/Pin_shadow.svg',
+        shadowSize: [73, 46], shadowAnchor: [41, 46]
     });
     var addMarker = L.marker([pinLat, pinLong]
-            , {title: postID, icon: myIcon});
+            , {icon: myIcon});
 
-    addMarker.on('click', function () {
-        console.log('New Marker Clicked');
-        console.log('New Marker Clicked: Function');
-        // Get the title for map and pass into php file with AJAX and post result
-        console.log('Post ID is: ' + postID);
-        console.log('New Marker was clicked - postID: ' + postID);
-        markerClicked(postID, 0);
-    });
-    addMarker.addTo(map);
-    //markers.addLayer(addMarker);
-
+//    addMarker.on('click', function () {
+//        console.log('New Marker Clicked');
+//        console.log('New Marker Clicked: Function');
+//        // Get the title for map and pass into php file with AJAX and post result
+//        console.log('Post ID is: ' + postID);
+//        console.log('New Marker was clicked - postID: ' + postID);
+//        markerClicked(postID, 0);
+//    });
+    //addMarker.addTo(map);
+    map.addLayer(addMarker);
     map.removeLayer(addMarker).delay(30000);
 }
 
