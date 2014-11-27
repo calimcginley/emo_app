@@ -462,7 +462,6 @@ $('#mapPage').on('click', '.hexagon', function (e) {
 
 function setPopupView(setLat, setLng, emojiType)
 {
-    alert('Change Map View');
     map.setView({lat: setLat, lon: setLng}, 19);
     setJsonLayers();
     addMarkerToMap(emojiType, setLat, setLng);

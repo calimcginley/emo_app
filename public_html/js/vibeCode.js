@@ -18,7 +18,7 @@ $(document).ready(function () { // A click event for each emoji which creates a 
     $('.mapLink').click(function () { // Return to Map "Home Button" Event
         var pageID = $.mobile.activePage.attr('id');
         $("#menuPanel").panel("close");
-        $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "drop"});
+        $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
     });
 
     $('.emoPostBtn').click(function (e) { // Open the parent EMoji select button
@@ -49,7 +49,6 @@ $(document).ready(function () { // A click event for each emoji which creates a 
     });
 
     $('.emojiParent').on('click', function () { // Parent Emoji Clicked
-        alert('Emoji Clicked!!');
         var pEmoji = $(this).attr('data-name');
         console.log(pEmoji);
         window.localStorage.setItem('parentPostEmoji', pEmoji);
@@ -140,7 +139,6 @@ function camera() // Camera Function to Handle the image creation
 
 function insertImageArray(imageCount) // Insert into Profile Page function
 {
-    alert('Post here');
     //var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
     var profileImageArray = window.localStorage.getItem('profileArray');
     console.log('profileArray<br>' + profileImageArray);
@@ -196,7 +194,6 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
     {
         if (!keyPadMade)
         {
-            alert('emotionPage Created Created');
             console.log('set tab selection of emoji');     // Set up emoji Keypad
             var tabIcons = [
                 {
@@ -410,7 +407,7 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
     {
         e.preventDefault(); // Page show prevent default
         var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
-        if (profileImageArray.length === 0)
+        if (profileImageArray !== null)
         {
             window.localStorage.setItem('imageCount', 7);
             var userID = window.localStorage.getItem('userID');
