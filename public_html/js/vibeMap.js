@@ -152,13 +152,13 @@ function setMapInAction()
 
             hexagons
                     .attr("d", function (d) {
-                        var hexSize = d.length * .05 + 0.5;
+                        var hexSize = d.length * 0.05 + 0.5;
                         if (map.getZoom() > 15)
                             hexSize = hexSize * 1.25;
                         if (map.getZoom() < 12)
-                            hexSize = hexSize * .5;
+                            hexSize = hexSize * 0.5;
                         if (map.getZoom() < 5)
-                            hexSize = hexSize * .75;
+                            hexSize = hexSize * 0.75;
                         return that.layout.hexagon(that.rscale(hexSize));
                     })
                     .attr("transform", function (d) {
@@ -342,10 +342,10 @@ function setMapInAction()
                             else
                             {
                                 var mix23 = $.xcolor.average(vibeObject[hexColor[2]], vibeObject[hexColor[3]]);
+                                var mix0123 = $.xcolor.average(mix01, mix23);
                                 if (hexLen === 4)
                                 {
                                     // Mix Four Colours
-                                    var mix0123 = $.xcolor.average(mix01, mix23);
                                     hexOutput = mix0123;
                                 }
                                 else
@@ -550,7 +550,6 @@ function markerClicked(postID, typeSearch)
 function addMarkerToMap(emoType, pinLat, pinLong)
 {
     //console.log('The values passed to addMarkerToMap: EmoType-' + emoType + ' PostID-' + postID + ' LatLong-' + pinLat + pinLong);
-    var addMarker;
     var myIcon = L.icon({
         iconUrl: 'images/svgPins/animated/pin' + emoType + '.svg',
         iconRetinaUrl: 'images/svgPins/animated/pin' + emoType + '.svg',
@@ -558,17 +557,7 @@ function addMarkerToMap(emoType, pinLat, pinLong)
         shadowUrl: 'images/svgPins/animated/Pin_shadow.svg', shadowRetinaUrl: 'images/svgPins/animated/Pin_shadow.svg',
         shadowSize: [73, 46], shadowAnchor: [41, 46]
     });
-    var addMarker = L.marker([pinLat, pinLong]
-            , {icon: myIcon});
-
-//    addMarker.on('click', function () {
-//        console.log('New Marker Clicked');
-//        console.log('New Marker Clicked: Function');
-//        // Get the title for map and pass into php file with AJAX and post result
-//        console.log('Post ID is: ' + postID);
-//        console.log('New Marker was clicked - postID: ' + postID);
-//        markerClicked(postID, 0);
-//    });
+    var addMarker = L.marker([pinLat, pinLong], {icon: myIcon});
     //addMarker.addTo(map);
     map.addLayer(addMarker);
     map.removeLayer(addMarker).delay(30000);

@@ -119,7 +119,7 @@ $(document).on("pagecreate", "#loginPage", function ()
                         console.log('The auto ID is: ' + userID);
                         // Place the email function here
                         // emailSignUpSuccess()
-                        $.mobile.changePage("#mapPage");
+                        $.mobile.changePage("#guidePage");
                     } else {
                         console.log('Signup was unsuccessful = ' + result.msg);
                         $('#formErrorMsg').html(result.msg);

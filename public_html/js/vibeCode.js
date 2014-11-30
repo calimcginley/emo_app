@@ -9,6 +9,10 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         $("[data-role=panel]").panel().enhanceWithin();
     });
 
+    $(function () { // Fast Click
+        FastClick.attach(document.body);
+    });
+
     var imageArray = [];    // Image Array for Profile Page
     window.localStorage.setItem('profileArray', JSON.stringify(imageArray));
     console.log(window.localStorage.getItem('profileArray'));
@@ -62,7 +66,7 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         {
             $(document).delegate('.ui-content', 'touchmove', false);
             $(".infoMenu").hide();
-            $('#panelBtns').velocity({top: '90px', easing: 'easein'}, 600 );
+            $('#panelBtns').velocity({top: '90px', easing: 'easein'}, 600);
             //$(".panel-btn").velocity({width: '150px', easing: "easein"}, 1);
             //$(".infoMenuButtonImg").velocity({marginBottom: 100, easing: "easein"}, 1);
             $('#mapPage').removeClass('show-popup');
@@ -70,6 +74,10 @@ $(document).ready(function () { // A click event for each emoji which creates a 
             $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 300);
         }
     });
+});
+
+$(window).load(function () { // Loads the CSS into memory to speed app up
+    $.preloadCssImages();
 });
 
 var endOfSplash = function () //End of splashPage Function
@@ -162,6 +170,7 @@ function insertImageArray(imageCount) // Insert into Profile Page function
                         + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
                         + '</div>');
             }
+            var myScroll = new IScroll('#profilePosts');
         });
 
         imageCount = parseInt(imageCount) + 7;
@@ -383,7 +392,6 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                     $(tabKey).append('<img class="addEmoji" src="images/emojis/' + png + '" title="' + title + '">');
                 });
             }
-            ;
             keyPadMade = true;
         }
 
@@ -539,6 +547,14 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
             endOfSplash();
         });
     }
+    else if (pageId === "guidePage") // SHow the Splash Page
+    {
+        $('#slides').slidesjs({
+            width: 320,
+            height: 332,
+            navigation: false
+        });
+    }
     else if (pageId === "emotionPostPage") // Show the emotionPostPage
     {
         $('.emojiRender').each(function (i, d) { // Renders emoji on keyPad click
@@ -572,20 +588,21 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
             camera();
         });
     }
-    else if (pageId === "loginPage") // Show loginPage
+    else if (pageId === "loginPage") // Show loginPag
     {
+        function makeNewPass()
+        {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < 6; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            return text;
+        }
+
         $('#forgotPass').click(function () {    // Forgot Password Event
             var inputEmail = $('#email').val();
             if (inputEmail.length > 0)
             {
-                function makeNewPass()
-                {
-                    var text = "";
-                    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                    for (var i = 0; i < 6; i++)
-                        text += possible.charAt(Math.floor(Math.random() * possible.length));
-                    return text;
-                }
                 var newPass = makeNewPass(); // Generate New Password
                 var hashPassword = $.sha256(newPass); // Hash it
                 $.ajax({url: 'http://emoapp.info/php/forgotPass.php', // Send Pass
@@ -640,12 +657,9 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
                         console.log('error = ' + error);
                         console.log(error.success);
                     }
-                });
-
-                // Add the logged in on success
+                }); // Add the logged in on success            
             }
             else { // Passwords don't match
-
             }
         });
     }
@@ -701,7 +715,7 @@ $(document).on('click', '#postToMapBtn', function () {
         console.log('Geo local fail postLat is ' + postLat + ' and postLong is ' + postLong);
         renderImage();
     }
-    ;
+
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
     function sendPost() // Sent the post to server and save info to Database

@@ -38,19 +38,22 @@
         <script src="js/jquery.xcolor.min.js" type="text/javascript"></script>
         <!-- Pie Charts -->
         <script src="js/jquery.peity.min.js" type="text/javascript"></script>
+        <script src="js/fastclick.js" type="text/javascript"></script>
+        <script src="js/iscroll-lite.js" type="text/javascript"></script>
+        <!-- Sona SLide -->
+        <script src="js/jquery.slides.min.js" type="text/javascript"></script>
+        <link href="css/slider.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <!--    Start of   -->
-        <!--    Splash Page   -->
+        <!--    Start of Splash Page   -->
         <div data-role="page" id="splashPage">
             <div role="main" class="ui-content content-wrap-noHead">         
                 <img id="splashImage" class="img100" src="images/emoSplash.svg" alt=""/>
             </div>
         </div>
-        <!--   End of   --><!--  Splash Page -->
+        <!--   End of Splash Page -->
 
-        <!--    Start of   --><!--    Login Page   -->
-
+        <!--    Start of Login Page   -->
         <div data-role="page"  id="loginPage">
             <div role="main" class="ui-content content-wrap-noHead">
                 <div id="loginWrap" class="loginContent">
@@ -72,12 +75,39 @@
                     <br>
                     <a href="#" id="signUp">Create Account </a>
                 </div>
-
             </div>            
         </div>
-        <!--   End of   --><!--  Login Page  -->
+        <!--   End of Login Page  -->
 
-        <!--   Start of  --><!--   Main Map Page  -->
+        <!--    Start of Guide Page   -->
+        <div data-role="page"  id="guidePage">
+            <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                <a href="#menuPanel" data-rel="panel" class="ui-btn ui-icon-menu menu-button"></a>
+                <h1><img src="images/vibes.svg" alt=""/></h1>
+            </div>
+            <div role="main" class="ui-content content-wrap">
+                <!-- SlidesJS Required: Start Slides -->
+                <!-- The container is used to define the width of the slideshow -->
+                <div class="container">
+                    <div id="slides">
+                        <img src="images/guide/example-slide-1.svg" alt="" class="guideImg">
+                        <img src="images/guide/example-slide-2.svg" alt="" class="guideImg">
+                        <img src="images/guide/slideTwo.svg" alt="" class="guideImg">
+                        <img src="images/guide/example-slide-4.svg" alt="" class="guideImg">
+                        <!--  <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
+                          <a href="#" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>  -->
+                    </div>
+                </div>
+                <!-- End SlidesJS Required: Start Slides -->
+                <p class="p">
+                    <img src="images/vibesHeader.svg" class="mapLink"  alt="vibe"><br>
+                <a href="#mapPage">Go to Map</a>
+                </p>
+            </div>            
+        </div>
+        <!--   End of Guide Page  -->
+
+        <!--   Start of Main Map Page  -->
         <div data-role="page" id="mapPage" data-theme="a">
             <div data-role="header" data-position="fixed" data-tap-toggle="false">
                 <a href="#menuPanel" data-rel="panel" class="ui-btn ui-icon-menu menu-button"></a>
@@ -87,7 +117,6 @@
                 <!-- MAp Code -->
                 <div id='map' class="maps"></div>
                 <div class="statsBox animated"></div>
-
                 <script src="js/vibeMap.js" type="text/javascript"></script>
                 <!-- Emoji Filter Bar -->
                 <div id="emojiSearchBar">
@@ -215,11 +244,9 @@
                             </p>
                         </div>
                         <br>
-                        <br>
-
                         <a href="#" id="aboutButton" data-transition="none" >About Vibes</a>
                         <br>
-                        <br>
+                        <a href="#guidePage" id="guideLink" data-transition="none" >User Guide</a>                       
                         <br>
                         <div id="logoutDiv">
                             <a href="#" id="logoutBtn">Logout</a>
