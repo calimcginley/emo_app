@@ -455,7 +455,7 @@ $('#mapPage').on('click', '.hexagon', function (e) {
         }
         else
         {
-           map.setView({lat: latLngArr[0], lon: latLngArr[1]}, zoom+2); 
+            map.setView({lat: latLngArr[0], lon: latLngArr[1]}, zoom + 2);
         }
     }
 });
@@ -494,7 +494,9 @@ function markerClicked(postID, typeSearch)
             console.log('Vibes Fetch Succesfull');
             console.log('result.marker length: ' + result.marker.length + ' - result.marker object: ' + result.marker);
             // Open Nav and Close Div
-            var htmlStr = '<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup"><div id="imgs">';
+            var htmlStr = '<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup">'
+               //     + '<div id="imgs">'; // Scrolling
+            +'<div class="container"><div id="vibeSlides">'; // SLides
             $.each(result.marker, function (key, val) {
                 var len = result.marker.length - 1;
                 var imgSrc = 'http://emoapp.info/uploads/' + val.imageName + '.png';
@@ -508,31 +510,38 @@ function markerClicked(postID, typeSearch)
                 console.log(timeOffset);
                 //$('#popUpInfo').html('<p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p>');
 
-                htmlStr = htmlStr +
-                        '<div class="vibesDiv">'
+                /*   htmlStr = htmlStr +
+                 '<div class="vibesDiv">'
+                 // + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
+                 + '<img src="images/load.png" data-src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
+                 + '<div class="popUpInfo">'
+                 + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
+                 + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
+                 + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
+                 + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>'; */
+
+                htmlStr = htmlStr + '<div class="slides">'
                         + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
                         + '<div class="popUpInfo">'
                         + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
                         + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
                         + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
-                        + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>';
-
-//                htmlStr = htmlStr +
-//                        '<li class="dragend-page">'
-//                        + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
-//                        + '<div class="popUpInfo">'
-//                        + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
-//                        + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
-//                        + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
-//                        + '</div><img src="images/vibesBorder.svg" class="vibeLine"></li>';
+                        + '</div></div>';
 
                 if (len === key)
                 {
-                    htmlStr = htmlStr + '</div></nav>';
+                    htmlStr = htmlStr + '</div>'; // Slides
+                    // htmlStr = htmlStr + '</div></nav>'; // Scrolling
                 }
             });
             // Close Nav
             $('.popup-wrap').html(htmlStr);
+            $("img").unveil(); // Set Image Unveil into action
+            $('#vibeSlides').slidesjs({
+                width: 320,
+                height: 400,
+                navigation: false
+            });
             // Open the Map Marker
             $('#mapPage').addClass('show-popup');
             $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);

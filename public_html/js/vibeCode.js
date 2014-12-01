@@ -76,9 +76,9 @@ $(document).ready(function () { // A click event for each emoji which creates a 
     });
 });
 
-$(window).load(function () { // Loads the CSS into memory to speed app up
-    $.preloadCssImages();
-});
+//$(window).load(function () { // Loads the CSS into memory to speed app up
+   // $.preloadCssImages();
+//});
 
 var endOfSplash = function () //End of splashPage Function
 {
@@ -551,7 +551,7 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
     {
         $('#slides').slidesjs({
             width: 320,
-            height: 332,
+            height: 450,
             navigation: false
         });
     }
