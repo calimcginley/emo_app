@@ -187,6 +187,7 @@
     color: #9e9e9e;	
     text-align: left;
     background-color: #FFFFFF;
+    border: #E2E2E2 1px solid;
 }
 
 .how {   
@@ -213,6 +214,14 @@
 #btnCloseAbout {
     text-align: right;
 }
+
+#guideLink {
+    
+    padding-left: 6.5em;
+   
+}
+
+
 
 .profile {
     display: inline-block;

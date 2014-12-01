@@ -341,12 +341,14 @@ ul, menu, dir {
 #profilePosts {
     min-height: 400px;
     width: 100%;
+    
 }
 
 #profilePosts p {
     font-size: 0.9em;
     color: #9e9e9e;
     margin-top: 0;
+    
 }
 
 .profilePostDiv {
@@ -364,11 +366,12 @@ ul, menu, dir {
 .giantImg {
     position: absolute;
     padding: 40px 0;
-    background-color: rgba(255,255,255, .95);
+    background-color: #fff;
     top: 0;
     left: 0;
     z-index: 10000;
     width: 100%;
+    border-bottom: #E2E2E2 1px solid;
 }
 .giantImg img {
     width: 100%;
@@ -711,7 +714,13 @@ ul, menu, dir {
 }
 
 .clearLast {
-    float: left;
+    float: left; 
+    border-top: #9e9e9e 1px solid;
+     border-bottom: #9e9e9e 1px solid;
+    margin: 8px;
+    padding: 2px;
+    
+    
 }
 
 .placeEmojiDiv {
@@ -721,7 +730,11 @@ ul, menu, dir {
 }
 
 .closeKeyPad {
-    float: right;
+    float: right; 
+    border-top: #9e9e9e 1px solid;
+    border-bottom: #9e9e9e 1px solid;
+    margin: 8px;
+    padding: 2px;
 }
 
 #tabs.ui-tabs 
@@ -785,7 +798,7 @@ ul, menu, dir {
     padding: 0;
 }
 #logoutBtn {
-    margin: 7em;
+    margin: 8.2em;
     float: bottom;
     text-decoration: none;
     color: #9e9e9e;
@@ -801,7 +814,7 @@ ul, menu, dir {
     text-decoration: none;
     color: #9e9e9e;
     margin-top: 3em;
-    margin-left: 5em;
+    margin-left: 6em;
 
 }
 

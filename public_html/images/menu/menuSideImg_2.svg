@@ -1514,69 +1514,6 @@
 	<polygon display="inline" opacity="0.9" fill="#06B052" enable-background="new    " points="257.452,120.642 253.204,107.977 
 		248.588,120.642 	"/>
 </g>
-<rect x="-2.967" y="-101.5" fill="#FFFFFF" width="276.584" height="89"/>
-<g>
-	<polygon opacity="0.6" fill="#ED4798" enable-background="new    " points="87.174,-12 111.445,-48.405 139.109,-12 	"/>
-	<polygon opacity="0.6" fill="#ED2A25" enable-background="new    " points="58.64,-12 87.687,-58.177 120.795,-12 	"/>
-	<polygon opacity="0.6" fill="#426EB5" enable-background="new    " points="146.945,-12 177.378,-57.65 212.068,-12 	"/>
-	<polygon opacity="0.7" fill="#754D9E" enable-background="new    " points="131.82,-12 156.093,-48.405 183.757,-12 	"/>
-	<polygon opacity="0.6" fill="#06B052" enable-background="new    " points="102.764,-12 133.197,-57.65 167.887,-12 	"/>
-	<polygon opacity="0.8" fill="#F7961D" enable-background="new    " points="193.311,-12 203.715,-27.609 215.577,-12 	"/>
-	<polygon opacity="0.7" fill="#ED4798" enable-background="new    " points="162.132,-12 179.507,-38.062 199.314,-12 	"/>
-	<polygon opacity="0.7" fill="#F8ED40" enable-background="new    " points="71.047,-12 88.422,-38.062 108.229,-12 	"/>
-	<polygon opacity="0.8" fill="#F7961D" enable-background="new    " points="39.17,-12.5 51.652,-38.562 62.206,-12.5 	"/>
-	<polygon opacity="0.8" fill="#426EB5" enable-background="new    " points="51.928,-12 62.333,-27.609 74.196,-12 	"/>
-	<polygon opacity="0.5" fill="#ED4798" enable-background="new    " points="111.445,-48.905 100.789,-40.401 103.373,-36.798 	"/>
-	<polygon opacity="0.6" fill="#F8ED40" enable-background="new    " points="88.422,-38.562 100.096,-31.892 97.013,-27.259 	"/>
-	<polygon opacity="0.6" fill="#754D9E" enable-background="new    " points="156.093,-48.905 166.837,-42.338 164.148,-38.305 	"/>
-	<polygon opacity="0.6" fill="#ED4798" enable-background="new    " points="179.507,-38.562 169.281,-31.549 172.236,-27.659 	"/>
-	<polygon opacity="0.7" fill="#F7961D" enable-background="new    " points="203.715,-28.109 201.098,-26.938 202.075,-25.649 	"/>
-	<polygon opacity="0.7" fill="#426EB5" enable-background="new    " points="62.333,-28.109 67.244,-26.179 65.685,-23.7 	"/>
-	<polygon opacity="0.7" fill="#ED4798" enable-background="new    " points="56.262,-12.5 37.387,-50.541 16.881,-12.5 	"/>
-	<polygon opacity="0.7" fill="#ED2A25" enable-background="new    " points="229.088,-12.5 216.605,-38.562 206.053,-12.5 	"/>
-	<polygon opacity="0.7" fill="#F7961D" enable-background="new    " points="51.652,-38.562 45.44,-34.312 47.565,-30.027 	"/>
-	<polygon opacity="0.6" fill="#ED2A25" enable-background="new    " points="216.605,-38.562 222.795,-34.266 220.693,-30.027 	"/>
-	<polygon opacity="0.6" fill="#F8ED40" enable-background="new    " points="211.996,-12.5 230.871,-50.541 251.377,-12.5 	"/>
-</g>
-<polyline opacity="0.4" fill="#ED4798" enable-background="new    " points="37.387,-50.541 18.583,-100 -2.967,-100 
-	-2.967,-50.541 16.881,-12.5 "/>
-<polygon opacity="0.3" fill="#F7961D" enable-background="new    " points="45.44,-34.312 37.387,-50.541 18.375,-100 
-	45.44,-100.166 51.652,-38.562 "/>
-<polygon opacity="0.4" fill="#ED2A25" enable-background="new    " points="67.244,-26.179 64.789,-100.166 88.125,-100 
-	87.687,-58.677 "/>
-<polygon opacity="0.04" enable-background="new    " points="87.687,-58.677 88.422,-38.562 72.519,-14.707 65.685,-23.7 "/>
-<polygon opacity="0.3" fill="#ED2A25" enable-background="new    " points="100.789,-40.401 87.687,-58.677 88.125,-100 
-	100.096,-100 "/>
-<polygon opacity="0.3" fill="#ED4798" enable-background="new    " points="100.789,-40.401 100.096,-100 111.445,-100 
-	111.445,-48.905 "/>
-<polygon opacity="0.4" fill="#ED4798" enable-background="new    " points="111.445,-48.905 111.445,-100 119.75,-100.166 
-	119.75,-37.98 "/>
-<polygon opacity="0.3" fill="#06B052" enable-background="new    " points="119.75,-37.98 119.75,-100.166 133.25,-100.166 
-	133.197,-58.15 "/>
-<polygon opacity="0.4" fill="#06B052" enable-background="new    " points="133.197,-58.15 133.25,-100.166 149.25,-100 
-	148.676,-37.78 "/>
-<polygon opacity="0.3" fill="#754D9E" enable-background="new    " points="156.093,-48.905 156.093,-100 149.25,-100 
-	148.676,-37.78 "/>
-<polygon opacity="0.3" fill="#426EB5" enable-background="new    " points="58.322,-22.092 51.652,-38.562 45.457,-100 
-	54.417,-100.166 62.333,-28.109 "/>
-<polygon opacity="0.4" fill="#426EB5" enable-background="new    " points="62.333,-28.109 54.417,-100.166 64.789,-100.166 
-	67.244,-26.166 "/>
-<polygon opacity="0.3" fill="#426EB5" enable-background="new    " points="166.837,-42.338 166.837,-100 179.507,-100 
-	177.378,-58.15 "/>
-<polygon opacity="0.04" enable-background="new    " points="133.197,-58.15 135.325,-17.481 148.676,-37.78 "/>
-<polygon opacity="0.04" enable-background="new    " points="177.378,-58.15 179.507,-38.562 196.116,-16.709 202.075,-25.649 "/>
-<polygon opacity="0.4" fill="#426EB5" enable-background="new    " points="201,-27.125 216.125,-100 179.507,-100 177.378,-58.15 
-	"/>
-<polygon opacity="0.3" fill="#F7961D" enable-background="new    " points="201,-27.125 203.715,-28.109 220.625,-100 216.125,-100 
-	"/>
-<polygon opacity="0.4" fill="#F7961D" enable-background="new    " points="209.363,-20.677 216.605,-38.562 230.625,-100 
-	220.625,-100 203.715,-28.109 "/>
-<polygon opacity="0.3" fill="#ED2A25" enable-background="new    " points="216.605,-38.562 230.625,-100 244.084,-100 
-	230.871,-50.541 222.753,-34.295 "/>
-<polygon opacity="0.3" fill="#F8ED40" enable-background="new    " points="251.377,-12.5 273.617,-50.167 273.617,-100.166 
-	244.084,-100 230.917,-50.5 "/>
-<polygon opacity="0.4" fill="#754D9E" enable-background="new    " points="156.093,-48.905 166.837,-42.338 166.837,-100 
-	156.093,-100 "/>
 <g display="none">
 	<polygon display="inline" opacity="0.6" fill="#ED4798" enable-background="new    " points="17.881,0 253.268,189.334 252.377,0 	
 		"/>
@@ -1625,42 +1562,35 @@
 	<rect x="-2" y="879" opacity="0.8" fill="#F8ED40" enable-background="new    " width="8" height="44"/>
 </g>
 <g>
-	<rect x="265" y="916" opacity="0.7" fill="#ED4798" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="883" opacity="0.6" fill="#ED2A25" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="850" opacity="0.7" fill="#754D9E" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="819" opacity="0.8" fill="#426EB5" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="783" opacity="0.6" fill="#06B052" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="710" opacity="0.8" fill="#F7961D" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="746" opacity="0.8" fill="#F8ED40" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="676" opacity="0.7" fill="#ED4798" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="643" opacity="0.6" fill="#ED2A25" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="610" opacity="0.7" fill="#754D9E" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="579" opacity="0.8" fill="#426EB5" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="543" opacity="0.6" fill="#06B052" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="470" opacity="0.8" fill="#F7961D" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="506" opacity="0.8" fill="#F8ED40" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="439" opacity="0.7" fill="#ED4798" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="406" opacity="0.6" fill="#ED2A25" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="373" opacity="0.7" fill="#754D9E" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="342" opacity="0.8" fill="#426EB5" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="306" opacity="0.6" fill="#06B052" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="233" opacity="0.8" fill="#F7961D" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="269" opacity="0.8" fill="#F8ED40" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="206" opacity="0.7" fill="#ED4798" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="173" opacity="0.6" fill="#ED2A25" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="140" opacity="0.7" fill="#754D9E" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="109" opacity="0.8" fill="#426EB5" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="73" opacity="0.6" fill="#06B052" enable-background="new    " width="8" height="44"/>
-	<rect x="265" opacity="0.8" fill="#F7961D" enable-background="new    " width="8" height="44"/>
-	<rect x="265" y="36" opacity="0.8" fill="#F8ED40" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="916" opacity="0.7" fill="#ED4798" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="883" opacity="0.6" fill="#ED2A25" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="850" opacity="0.7" fill="#754D9E" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="819" opacity="0.8" fill="#426EB5" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="783" opacity="0.6" fill="#06B052" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="710" opacity="0.8" fill="#F7961D" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="746" opacity="0.8" fill="#F8ED40" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="676" opacity="0.7" fill="#ED4798" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="643" opacity="0.6" fill="#ED2A25" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="610" opacity="0.7" fill="#754D9E" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="579" opacity="0.8" fill="#426EB5" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="543" opacity="0.6" fill="#06B052" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="470" opacity="0.8" fill="#F7961D" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="506" opacity="0.8" fill="#F8ED40" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="439" opacity="0.7" fill="#ED4798" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="406" opacity="0.6" fill="#ED2A25" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="373" opacity="0.7" fill="#754D9E" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="342" opacity="0.8" fill="#426EB5" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="306" opacity="0.6" fill="#06B052" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="233" opacity="0.8" fill="#F7961D" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="269" opacity="0.8" fill="#F8ED40" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="206" opacity="0.7" fill="#ED4798" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="173" opacity="0.6" fill="#ED2A25" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="140" opacity="0.7" fill="#754D9E" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="109" opacity="0.8" fill="#426EB5" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="73" opacity="0.6" fill="#06B052" enable-background="new    " width="8" height="44"/>
+	<rect x="264" opacity="0.8" fill="#F7961D" enable-background="new    " width="8" height="44"/>
+	<rect x="264" y="36" opacity="0.8" fill="#F8ED40" enable-background="new    " width="8" height="44"/>
 </g>
-<path fill="#FFFFFF" d="M-23.613,242.128c-3.562,0-6.461,2.897-6.461,6.461c0,3.564,2.899,6.462,6.461,6.462
-	c3.563,0,6.462-2.897,6.462-6.462C-17.151,245.026-20.05,242.128-23.613,242.128z"/>
-<path opacity="0.7" fill="#A9A8A8" enable-background="new    " d="M-20.336,181.663l-11.873-11.873
-	c2.029-2.688,3.248-6.021,3.248-9.648c0-8.863-7.185-16.05-16.047-16.05c-8.862,0-16.047,7.187-16.047,16.049
-	c0,8.861,7.186,16.047,16.047,16.047c4.018,0,7.681-1.484,10.496-3.927l11.789,11.791L-20.336,181.663z M-59.367,160.141
-	c0-7.918,6.439-14.356,14.357-14.356c7.916,0,14.358,6.438,14.358,14.356c0,7.917-6.442,14.357-14.358,14.357
-	C-52.926,174.498-59.367,168.058-59.367,160.141z"/>
 <g id="Layer_1_3_" display="none">
 	<g id="Layer_2_3_" display="inline">
 		<g>
@@ -1842,11 +1772,4 @@
 </linearGradient>
 <polyline display="none" fill="none" stroke="url(#SVGID_1_)" stroke-miterlimit="10" points="5.667,0 105.17,0 136.465,36 
 	164.715,0 272,0 "/>
-<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="504.752" y1="217.375" x2="504.752" y2="128.625">
-	<stop  offset="0" style="stop-color:#F8ED40;stop-opacity:0.5"/>
-	<stop  offset="0.2661" style="stop-color:#F7961D;stop-opacity:0.5"/>
-	<stop  offset="0.6278" style="stop-color:#ED4798;stop-opacity:0.5"/>
-	<stop  offset="1" style="stop-color:#426EB5;stop-opacity:0.5"/>
-</linearGradient>
-<rect x="360.019" y="128.625" opacity="0.6" fill="url(#SVGID_2_)" width="289.467" height="88.75"/>
 </svg>
