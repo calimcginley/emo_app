@@ -1,22 +1,18 @@
 /*  EMO Emotion Mapping App | Main Code for App  */
 /*  Code by Keith McGinley @calimcginley  */
 // Init Code
-$(document).ready(function () { // A click event for each emoji which creates a token in local storage to aid empji post
+$(document).ready(function () { // A click event for each emoji which creates a token in local storage  to aid empji post
     parentOpen = false;
     keyPadMade = false;
-
     $(function () { // Panels Code
         $("[data-role=panel]").panel().enhanceWithin();
     });
-
     $(function () { // Fast Click
         FastClick.attach(document.body);
     });
-
-    var imageArray = [];    // Image Array for Profile Page
+    var imageArray = []; // Image Array for Profile Page
     window.localStorage.setItem('profileArray', JSON.stringify(imageArray));
     console.log(window.localStorage.getItem('profileArray'));
-
     $('.floatlabel_1').floatlabel(); // float label code
 
     $('.mapLink').click(function () { // Return to Map "Home Button" Event
@@ -25,6 +21,24 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
     });
 
+    function shareSuccess() {
+        alert('success');
+    }
+    function shareError() {
+        alert('error');
+    }
+
+    function share() {
+        console.log('Tweet Button Function');
+        window.plugins.socialsharing.share('images/load.png', 'Check out my pic', '../images/load.png', null, shareSuccess, shareError);
+    }
+
+    $('.tweetBtn').click(function () { // Return to Map "Home Button" Event
+        console.log('Tweet Button Clicked');
+        share();
+        //window.plugins.socialsharing.share('Some text');
+        //window.plugins.socialsharing.shareViaTwitter('Message', null, 'http://www.emoapp.info', null, function(e){alert("success: " + e);}, function(e){alert("error: " + e);});
+    });
     $('.emoPostBtn').click(function (e) { // Open the parent EMoji select button
         console.log('Post Btn Clicked');
         var pageID = $.mobile.activePage.attr('id');
@@ -51,7 +65,6 @@ $(document).ready(function () { // A click event for each emoji which creates a 
             parentOpen = !parentOpen; // switch boolen
         }
     });
-
     $('.emojiParent').on('click', function () { // Parent Emoji Clicked
         var pEmoji = $(this).attr('data-name');
         console.log(pEmoji);
@@ -59,9 +72,8 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         // Change Page to emotionPostPage
         $(":mobile-pagecontainer").pagecontainer("change", "#emotionPostPage", {transition: "slidedown"});
     });
-
     $('.menu-button').click(function () {   // Check weather the Panel was open       
-        // It not it's about to so remove overlay menus
+// It not it's about to so remove overlay menus
         if (!$('#menuPanel').hasClass('ui-panel-open'))
         {
             $(document).delegate('.ui-content', 'touchmove', false);
@@ -75,9 +87,8 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         }
     });
 });
-
 //$(window).load(function () { // Loads the CSS into memory to speed app up
-   // $.preloadCssImages();
+// $.preloadCssImages();
 //});
 
 var endOfSplash = function () //End of splashPage Function
@@ -96,7 +107,6 @@ var endOfSplash = function () //End of splashPage Function
         $(":mobile-pagecontainer").pagecontainer("change", "#loginPage", {transition: "flow"});
     }
 };
-
 function camera() // Camera Function to Handle the image creation
 {
     // Place camera phonegap function here
@@ -110,7 +120,6 @@ function camera() // Camera Function to Handle the image creation
         allowEdit: true
     });
     console.log('Camera opened on phone');
-
     function onSuccess(imageURI)
     {
         var emojiColours = ['#F7ED43', '#66BA4D', '#6CCCE1', '#F48530', '#A4579F', '#C3242D', '#E01888', '#DD5F84'];
@@ -124,12 +133,10 @@ function camera() // Camera Function to Handle the image creation
         context.rect(0, 0, 640, 720);
         context.fillStyle = '#ffffff';
         context.fill();
-
         // Add the emoji Colour
         context.rect(0, 0, 640, 650);
         context.fillStyle = emojiColours[parentEmoji];
         context.fill();
-
         // Camera Image Loaded
         var imageObj = new Image();
         imageObj.onload = function () {
@@ -147,7 +154,7 @@ function camera() // Camera Function to Handle the image creation
 
 function insertImageArray(imageCount) // Insert into Profile Page function
 {
-    //var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
+//var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
     var profileImageArray = window.localStorage.getItem('profileArray');
     console.log('profileArray<br>' + profileImageArray);
     if (profileImageArray !== null) { // User has posts
@@ -160,7 +167,7 @@ function insertImageArray(imageCount) // Insert into Profile Page function
         $.each(JSON.parse(profileImageArray), function (index, value) {     // Loop through the array to the imageCount number
             if (index <= imageCount && index >= imageCount - 7)
             {
-                var a = moment(value[3]);             // Time since Tag
+                var a = moment(value[3]); // Time since Tag
                 console.log(a);
                 var b = moment(value[4]);
                 console.log(b);
@@ -172,7 +179,6 @@ function insertImageArray(imageCount) // Insert into Profile Page function
             }
             var myScroll = new IScroll('#profilePosts');
         });
-
         imageCount = parseInt(imageCount) + 7;
         window.localStorage.setItem('imageCount', imageCount);
         console.log('AfterInsert: imageCount is now ' + imageCount);
@@ -203,7 +209,7 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
     {
         if (!keyPadMade)
         {
-            console.log('set tab selection of emoji');     // Set up emoji Keypad
+            console.log('set tab selection of emoji'); // Set up emoji Keypad
             var tabIcons = [
                 {
                     ':joy:': 'joy.png',
@@ -382,7 +388,6 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                     ':zzz:': 'zzz.png'
                 }  // Other Tab6
             ];
-
             for (var i = 0; i < 6; i++)
             {
                 console.log('Adding Tab');
@@ -495,7 +500,6 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                 console.log("XMLHttpRequest", XMLHttpRequest);
             }
         });
-
         $("#updateBtn").click(function () { // When the update button on settingPage is clicked
             console.log('Update Button Clicked');
             var firstName = $('#firstName').val();
@@ -522,17 +526,14 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                 }
             });
         });
-
         $("#aboutButton").click(function () { // ABout Btn clicked
             $('#settingsPage').addClass('show-about');
         });
-
         $('#btnCloseAbout').click(function () { // ABout Btn closed
             $('#settingsPage').removeClass('show-about');
         });
     }
 });
-
 // Page Show Events
 $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown functions
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
@@ -542,7 +543,6 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
         setTimeout(function () {
             endOfSplash();
         }, 4000);
-
         $('#splashImage').click(function () {
             endOfSplash();
         });
@@ -551,7 +551,7 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
     {
         $('#slides').slidesjs({
             width: 320,
-            height: 450,
+            height: 490,
             navigation: false
         });
     }
@@ -561,7 +561,6 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
             console.log('emoji img code set');
             $(d).emoji();
         });
-
         window.localStorage.setItem('emojiKeypad', 'off');
         $("#toggle").click(function () { // Set local storage value for keypad
             $("#panel").slideToggle("fast");
@@ -582,7 +581,6 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
                 window.localStorage.setItem('emojiKeypad', 'off');
             }
         });
-
         $("#imageCanvas").click(function (e) { // Camera Button Clicked
             console.log('Camera CLicked');
             camera();
@@ -664,13 +662,11 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
         });
     }
 });
-
 // Post to map Functions    
 $(document).on('click', '#postToMapBtn', function () {
     console.log('Post to map clicked:');
     var postLat;
     var postLong;
-
     function renderImage() { // Create the image in canvas
         var imgEmoji = $(".emojiRender").children('.removeEmoji');
         var emojiImgArr = jQuery.makeArray(imgEmoji); // Make the emoji description array
@@ -678,7 +674,6 @@ $(document).on('click', '#postToMapBtn', function () {
         var padLeft = 10;
         var canvas = document.getElementById('imageCanvas');
         var context = canvas.getContext('2d');
-
         $.each(emojiImgArr, function (index, value) { // Emoji Input to Canvas          
             console.log('index: ' + index + ' Title: ' + value.title);
             var imgEmo = new Image();
@@ -691,7 +686,6 @@ $(document).on('click', '#postToMapBtn', function () {
             padLeft = padLeft + 70;
             console.log(padLeft);
         });
-
         var emojiIconObj = new Image(); // Add the emoji Icon Canvas
         emojiIconObj.onload = function () {
             context.globalAlpha = 0.58;
@@ -717,7 +711,6 @@ $(document).on('click', '#postToMapBtn', function () {
     }
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
     function sendPost() // Sent the post to server and save info to Database
     {   // Get the informtion to send to server
         var userID = window.localStorage.getItem('userID');
@@ -730,7 +723,6 @@ $(document).on('click', '#postToMapBtn', function () {
         var month = now.getMonth() + 1;
         var timeDevice = now.getFullYear() + '-' + month + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
         console.log('User ID: ' + userID + ' User Email: ' + userEmail + ' Parent Emoji: ' + parentEmoji + ' Image Name: ' + imageNameStr + ' Public Post: ' + postPublic + ' Time on Device: ' + timeDevice);
-
         function uploadPhoto(fileNameStr, cenLng, cenLat) { // Upload Image Function
             $.mobile.loading("show", {
                 text: 'Image uploading ...',
@@ -762,7 +754,6 @@ $(document).on('click', '#postToMapBtn', function () {
                         + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
                         + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>'
                         + '</div></nav>');
-
                 $('#mapPage').addClass('show-popup');
                 console.log('Lat:Lng' + cenLat + ':' + cenLng);
                 setPopupView(cenLat, cenLng, parentEmoji);
@@ -802,33 +793,27 @@ $(document).on('click', '#postToMapBtn', function () {
     }
     ;
 });
-
 $(document).on('click', '.addEmoji', function () { // click to add emoji function
     var emojiName = $(this).attr('title');
     console.log('emoji clicked- Title is = ' + emojiName);
     console.log('emoji img added - now refresh p');
-
     $(".emojiRender").append(emojiName);
     $('.emojiRender').emoji();
 });
-
 $(document).on('click', '.removeEmoji', function () { // click removes emojis
     console.log('emoji img removed');
     $(this).remove();
 });
-
 $(document).on('click', '.clearLast', function () { // click removes last emojis
     console.log('emoji img remove last');
     // Get last child of div and delete
     //$(this).remove();
 });
-
 $(document).on('click', '#openKeyPad', function () { // open keyPad
     console.log('Open Keypad');
     $("#keyPadDiv").velocity({bottom: "20px", easing: "easein"}, 500); // Close Other bar
     $("#emojiSentDiv").removeClass('placeEmojiDiv');
 });
-
 $(document).on('click', '.closeKeyPad', function () { // close keyPad
     console.log('Close KeyPad');
     $("#keyPadDiv").velocity({bottom: "-100%", easing: "easein"}, 500); // Close Other bar

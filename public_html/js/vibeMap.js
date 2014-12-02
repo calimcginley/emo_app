@@ -14,10 +14,10 @@ var filterOpen = false;
 var firstMarkers = true;
 
 var vibeObject = {
-    '0': '#F7ED43', '1': '#66BA4D',
-    '2': '#6CCCE1', '3': '#F48530',
+    '0': '#F7ED43', '1': '#EFB9CE',
+    '2': '#6CCCE1', '3': '#E01888',
     '4': '#A4579F', '5': '#C3242D',
-    '6': '#E01888', '7': '#DD5F84'};
+    '6': '#F48530', '7': '#66BA4D'};
 
 var onSuccess = function (position)
 {
@@ -148,17 +148,23 @@ function setMapInAction()
             var path = hexagons.enter().append("path").attr("class", "hexagon hex01");
             this.config.style.call(this, path);
             that = this;
-            var showStats;
+            //var showStats;
 
-            hexagons
-                    .attr("d", function (d) {
-                        var hexSize = d.length * 0.05 + 0.5;
-                        if (map.getZoom() > 15)
-                            hexSize = hexSize * 1.25;
-                        if (map.getZoom() < 12)
-                            hexSize = hexSize * 0.5;
-                        if (map.getZoom() < 5)
-                            hexSize = hexSize * 0.75;
+            hexagons.attr("d", function (d) {
+                        var lenVibes = d.length;
+                        var hexSize = 1 - (d.length * 0.05);
+                        if (lenVibes >= 20)
+                        {
+                            hexSize = 1;
+                        }
+                        else if(lenVibes > 200)
+                        {
+                            hexSize = 1.5;
+                        }
+                        else
+                        {
+                            hexSize = (lenVibes * 0.025) + 0.6;
+                        }
                         return that.layout.hexagon(that.rscale(hexSize));
                     })
                     .attr("transform", function (d) {
@@ -203,7 +209,7 @@ function setMapInAction()
                             $('.statsBox').addClass('statsUp rollIn'); // Add the stats class to div and add numbers span
                             $('.statsBox').html('<span class="pieChart">' + statsString.toString() + '</span>');
                             $(".pieChart").peity("pie", {// trigger the pieChart code and colours
-                                fill: ['#F7ED43', '#66BA4D', '#6CCCE1', '#F48530', '#A4579F', '#C3242D', '#E01888', '#DD5F84'],
+                                fill: ['#F7ED43', '#EFB9CE', '#6CCCE1', '#E01888', '#A4579F', '#C3242D', '#F48530', '#66BA4D'],
                                 radius: 50,
                                 innerRadius: 30
                             });
@@ -491,57 +497,63 @@ function markerClicked(postID, typeSearch)
         },
         success: function (result) {
             $('.popup-wrap').empty();
+            function timeDiff(then, now) // Get DIfference in Time
+            {
+                var a = moment(then);
+                //console.log(a);
+                var b = moment(now);
+                //console.log(b);
+                var timeOffset = a.from(b);
+                return timeOffset;
+            }
             console.log('Vibes Fetch Succesfull');
+            var len = result.marker.length - 1;
             console.log('result.marker length: ' + result.marker.length + ' - result.marker object: ' + result.marker);
             // Open Nav and Close Div
-            var htmlStr = '<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup">'
-               //     + '<div id="imgs">'; // Scrolling
-            +'<div class="container"><div id="vibeSlides">'; // SLides
-            $.each(result.marker, function (key, val) {
-                var len = result.marker.length - 1;
-                var imgSrc = 'http://emoapp.info/uploads/' + val.imageName + '.png';
-                console.log('The image src is : ' + imgSrc);
-                // Time Difference
-                var a = moment(val.timeThen);
-                console.log(a);
-                var b = moment(val.timeNow);
-                console.log(b);
-                var timeOffset = a.from(b);
-                console.log(timeOffset);
-                //$('#popUpInfo').html('<p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p>');
-
-                /*   htmlStr = htmlStr +
-                 '<div class="vibesDiv">'
-                 // + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
-                 + '<img src="images/load.png" data-src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
-                 + '<div class="popUpInfo">'
-                 + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
-                 + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
-                 + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
-                 + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>'; */
-
-                htmlStr = htmlStr + '<div class="slides">'
-                        + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
+            var htmlStr = '<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup">';
+            if (len === 0) // Only one post to display
+            {
+                var imgSrc = 'http://emoapp.info/uploads/' + result.marker[0].imageName + '.png';
+                var timeOffset = timeDiff(result.marker[0].timeThen, result.marker[0].timeNow);
+                htmlStr = htmlStr + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
                         + '<div class="popUpInfo">'
                         + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
                         + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
                         + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
-                        + '</div></div>';
+                        + '</div></nav>';
+                $('.popup-wrap').html(htmlStr); // Place html into popup
+            }
+            else
+            {
+                htmlStr = htmlStr + '<div class="container"><div id="vibeSlides">'; // SLides
+                $.each(result.marker, function (key, val) {
+                    var imgSrc = 'http://emoapp.info/uploads/' + val.imageName + '.png';
+                    console.log('The image src is : ' + imgSrc);
+                    // Time Difference
+                    var timeOffset = timeDiff(val.timeThen, val.timeNow);
+                    console.log('Time Offset: ' + timeOffset);
+                    htmlStr = htmlStr + '<div class="slides">'
+                            + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
+                            + '<div class="popUpInfo">'
+                            + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
+                            + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
+                            + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
+                            + '</div></div>';
 
-                if (len === key)
-                {
-                    htmlStr = htmlStr + '</div>'; // Slides
-                    // htmlStr = htmlStr + '</div></nav>'; // Scrolling
-                }
-            });
-            // Close Nav
-            $('.popup-wrap').html(htmlStr);
-            $("img").unveil(); // Set Image Unveil into action
-            $('#vibeSlides').slidesjs({
-                width: 320,
-                height: 400,
-                navigation: false
-            });
+                    if (len === key)
+                    {
+                        htmlStr = htmlStr + '</div></div></nav>'; // Slides
+                    }
+                });
+                // Close Nav
+                $('.popup-wrap').html(htmlStr);
+                $("img").unveil(); // Set Image Unveil into action
+                $('#vibeSlides').slidesjs({
+                    width: 320,
+                    height: 400,
+                    navigation: false
+                });
+            }
             // Open the Map Marker
             $('#mapPage').addClass('show-popup');
             $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
