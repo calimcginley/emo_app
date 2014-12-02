@@ -142,8 +142,29 @@ input[type='text']
 
 /* ------------------------------  Splash Screen CSS ----------------------------------------
 // ----------------------------------------------------------------------------------------*/ 
-.guideImg {
-    width: 100%;    
+.guideImg1 {
+    width: 100%; 
+    background-image: url("../images/guide/takePhotoBack.png");
+    background-repeat: no-repeat;
+}
+
+.guideImg0 {
+    width: 100%; 
+    background-image: url("../images/guide/whatsYourVibeBack.png");
+    background-repeat: no-repeat;
+}
+
+.guideImg2 {
+    width: 100%; 
+    background-image: url("../images/guide/emotionSearchBack.png");
+    background-repeat: no-repeat;
+}
+
+.guideImg3 {
+    width: 100%; 
+    background-image: url("../images/guide/keepTrackBack.png");
+    background-repeat: no-repeat;
+
 }
 
 /* ------------------------------  Map Div CSS ----------------------------------------------
@@ -826,4 +847,8 @@ ul, menu, dir {
 .menuBorder {  
 
     width: 300px;
+}
+
+.guideImg2 {
+
 }
