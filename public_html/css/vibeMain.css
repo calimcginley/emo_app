@@ -80,7 +80,7 @@ li a
 #signUp {
     padding: 8px;
     margin-left: 5.5em; 
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     text-decoration: none;
     color: #ED4798;
     font-weight: bolder;
@@ -302,6 +302,7 @@ ul, menu, dir {
 // ------------------------------  Profile Page  ------------------------------------------
 // ----------------------------------------------------------------------------------------*/ 
 
+
 .profilePage {
     max-height: 633px;
     max-width: 320px;
@@ -418,7 +419,7 @@ ul, menu, dir {
 #logoutDiv {
     width: 320px;
     padding-top: 15px;
-    height: 44px;
+    
     background-color: rgba(255,255,255,0.8);
     clear: both;
 }
@@ -826,26 +827,43 @@ ul, menu, dir {
 
 #settingsForm p {
     text-align: center;
-    padding: 0;
+    padding-bottom: 10px;
 }
 #logoutBtn {
-    margin: 8.2em;
+    
     float: bottom;
+    padding: 8px;
+    margin-left: -.5em;
     text-decoration: none;
     color: #9e9e9e;
+    font-weight: bolder;
+    opacity: .9;
+    border: #E2E2E2 1px solid;
+
 
 
 }
 #updateBtn {
+    padding: 6px;
+    margin-left: -.5em;
+    
     text-decoration: none;
-    color: #63B6E5;
+    color: #ED4798;
+    font-weight: bolder;
+    background-color: #E2E2E2;
+    opacity: .9;
+   /* border-radius: 25px; */
 }
 
 #aboutButton {
+  
+    padding: 8px;
+    margin-left: -.5em;
     text-decoration: none;
     color: #9e9e9e;
-    margin-top: 3em;
-    margin-left: 6em;
+    font-weight: bolder;
+    opacity: .9;
+    border: #E2E2E2 1px solid;
 
 }
 
@@ -859,6 +877,4 @@ ul, menu, dir {
     width: 300px;
 }
 
-.guideImg2 {
 
-}
