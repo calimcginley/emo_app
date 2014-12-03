@@ -366,18 +366,27 @@
 
         <!-- Password Tab -->
         <div data-role="page" id="passPage"> <!-- newPass -->
-            <div data-role="header">
-                <h2>Enter New Password</h2>
-            </div>
-            <div role="main" class="ui-content">
+          
+            <div id="newPassContent" class="ui-content">
+                
+                <div id="passPageDiv">
                 <span id="passMsg"></span>
-                <input id="curPass" type="password" name="curPass" placeholder="Current Password" autocomplete="off" class="floatlabel_1"/>
+                <br>
+                <br>
+                <input id="curPass" type="password" name="curPass" placeholder="Current Password" autocomplete="off" class="floatlabel_1"/> 
                 <input id="newPass" type="password" name="newPass" placeholder="New Password" autocomplete="off" class="floatlabel_1"/>
                 <input id="conPass" type="password" name="conPass" placeholder="Confirm Password" autocomplete="off" class="floatlabel_1"/>
                 <span id="formErrorMsg"></span><br>
-                <a href="#" id="changePass">Change Password</a>
+                <br>
+                <br>
+               
+              
+                <a href="#" id="changePass">Save</a>
+                </div>
             </div>
+                
         </div>
+            
         <!--  JavaScript Code required for Menu -->
         <script src="js/classie.js"></script>
         <script src="js/vibePopup.js"></script>

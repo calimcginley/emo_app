@@ -905,3 +905,38 @@ ul, menu, dir {
     
 
 }
+
+/* -----------------------------------------------------------------------------
+// ------------------------------  reset Pass - CSS  --------------------------
+// ---------------------------------------------------------------------------*/ 
+
+.passPage {
+   
+    
+    
+}
+
+
+#passPageDiv {
+    
+    padding-top: 6em;
+    min-height: 480px;
+    
+    background-image: url("../images/resetPassImg.svg");
+    background-repeat: no-repeat;
+    background-position: bottom center; 
+    
+}
+
+#changePass {
+    
+     padding: 10px;
+    margin-left: 8.5em; 
+    /* margin-bottom: 20px; */
+    text-decoration: none;
+    color: #426EB5;
+    font-weight: bolder;
+    background-color: #E2E2E2;
+    opacity: .9;
+    border-radius: 25px;
+}
