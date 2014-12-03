@@ -355,21 +355,22 @@ ul, menu, dir {
     width: 100%;
     //height: 100%;
     height: 508px;
-    overflow:scroll;
+    //overflow:visible;
     margin-bottom: 10px;
 }
 
 #profilePosts {
-    min-height: 400px;
+    min-height: 508px;
     width: 100%;
-    
+    overflow:visible;
+
 }
 
 #profilePosts p {
     font-size: 0.9em;
     color: #9e9e9e;
     margin-top: 0;
-    
+    text-align: center;
 }
 
 .profilePostDiv {
@@ -737,11 +738,11 @@ ul, menu, dir {
 .clearLast {
     float: left; 
     border-top: #9e9e9e 1px solid;
-     border-bottom: #9e9e9e 1px solid;
+    border-bottom: #9e9e9e 1px solid;
     margin: 8px;
     padding: 2px;
-    
-    
+
+
 }
 
 .placeEmojiDiv {

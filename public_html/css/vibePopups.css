@@ -116,6 +116,7 @@
     width: 0;
     text-align: left;    
     float: left;
+    padding: 5px;
 }
 
 .show-popup .timeInfo {

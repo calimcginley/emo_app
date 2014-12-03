@@ -122,7 +122,7 @@ function camera() // Camera Function to Handle the image creation
     console.log('Camera opened on phone');
     function onSuccess(imageURI)
     {
-        var emojiColours = ['#F7ED43', '#66BA4D', '#6CCCE1', '#F48530', '#A4579F', '#C3242D', '#E01888', '#DD5F84'];
+        var emojiColours = ['#F7ED43', '#EFB9CE', '#6CCCE1', '#E01888', '#A4579F', '#C3242D', '#F48530', '#66BA4D'];
         var parentEmoji = window.localStorage.getItem('parentPostEmoji') - 1;
         console.log('Camera opened and image was captured');
         // Canvas Mood on image
@@ -177,9 +177,10 @@ function insertImageArray(imageCount) // Insert into Profile Page function
                         + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
                         + '</div>');
             }
-            var myScroll = new IScroll('#profilePosts');
+            
         });
         imageCount = parseInt(imageCount) + 7;
+        $('#profilePosts').trigger('create');
         window.localStorage.setItem('imageCount', imageCount);
         console.log('AfterInsert: imageCount is now ' + imageCount);
     }
@@ -418,7 +419,9 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
     }
     else if (pageId === "profilePage") // When the Profile is showen. This code will trigger
     {
-        e.preventDefault(); // Page show prevent default
+        // Start Skroller
+        skrollr.init();
+        //e.preventDefault(); // Page show prevent default
         var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
         if (profileImageArray !== null)
         {
@@ -465,6 +468,7 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                     $.mobile.loading('hide');
                 }
             });
+            
         }
 
         $("#addProfilePost").click(function () { // Add More Posts to Page
@@ -688,7 +692,7 @@ $(document).on('click', '#postToMapBtn', function () {
         });
         var emojiIconObj = new Image(); // Add the emoji Icon Canvas
         emojiIconObj.onload = function () {
-            context.globalAlpha = 0.58;
+            context.globalAlpha = 1;
             context.drawImage(emojiIconObj, 14, 14, 132, 117);
         };
         emojiIconObj.src = 'images/emojiSelect/emoji-' + window.localStorage.getItem('parentPostEmoji') + '.png';
@@ -750,8 +754,8 @@ $(document).on('click', '#postToMapBtn', function () {
                         + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
                         + '<div class="popUpInfo">'
                         + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> Just Now</p></div>'
-                        + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
-                        + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
+                       // + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
+                       // + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
                         + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>'
                         + '</div></nav>');
                 $('#mapPage').addClass('show-popup');

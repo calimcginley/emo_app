@@ -23,7 +23,6 @@ $(document).ready(function () {
     $('#mapPage').on('click', '#btnClose', function () {
         $('#mapPage').removeClass('show-popup');
         $('#settingsPage').removeClass('show-about');
-        enableMap();
         console.log('Close popup on map page');
         console.log('The current page is ' + $.mobile.activePage.attr('id'));
     });

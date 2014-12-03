@@ -175,16 +175,20 @@ function setMapInAction()
                         console.log('Hexbin clicked, show stats and zoom in!');
                         function moveMapClick()
                         {
+                            var zoom = map.getZoom();
                             map.on('click', function (e) {
-                                if (map.getZoom() <= 17) // Keep zooming
+                                if (zoom <= 17) // Keep zooming
                                 {
+                                    console.log('moving');
                                     map.setView({lat: e.latlng.lat, lon: e.latlng.lng}, zoom + 2);
                                 }
                             });
+                            alert('moved'+zoom);
                         }
                         // Remove timeout
                         function wipeStats()
                         {
+                            
                             $('.statsBox').removeClass('rollIn');
                             $('.statsBox').addClass('rollOut');
                             var delayWipe = window.setTimeout(function () {
@@ -213,12 +217,12 @@ function setMapInAction()
                                 radius: 50,
                                 innerRadius: 30
                             });
-                            moveMapClick(); // Delay MoveMap
+                            //moveMapClick(); // Delay MoveMap
                         }
                         else
                         {
                             $('.statsBox').removeClass('statsUp');
-                            moveMapClick();
+                            //moveMapClick();
                         }
                     });
         },
@@ -293,12 +297,12 @@ function setMapInAction()
 
             //**********  Hexbin Layer to Map and Style Function ***************
             //******************************************************************
-            console.log('geoData - - - - -  - ');
+            console.log('geoData');
             //console.log(geoData);
             hexLayer = L.hexbinLayer(geoData, {style: hexbinStyle}).addTo(map);
             function hexbinStyle(hexagons)
             {
-                console.log('hexbin style start - - - - - - -');
+                console.log('hexbin style');
                 //hexagons.attr("fill", function (d)
                 hexagons.attr("fill", function (d) // changed tp style
                 {
@@ -315,14 +319,14 @@ function setMapInAction()
                     var hexColor = '';
                     // Get the max value from the array
                     $.each(countArray, function (key, val) {
-                        console.log(countArray + 'array has ' + val + ' val:maxValue ' + maxValue);
+                        //console.log(countArray + 'array has ' + val + ' val:maxValue ' + maxValue);
                         if (val === maxValue)
                         {
                             hexColor = hexColor + key;
                         }
                     });
                     hexColor.split("");
-                    console.log(hexColor);
+                    //console.log(hexColor);
                     var hexOutput;
                     var hexLen = hexColor.length;
                     //var hexColorLast = hexColor.length - 1;
@@ -518,8 +522,8 @@ function markerClicked(postID, typeSearch)
                 htmlStr = htmlStr + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
                         + '<div class="popUpInfo">'
                         + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
-                        + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
-                        + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
+                        //+ '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
+                        //+ '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
                         + '</div></nav>';
                 $('.popup-wrap').html(htmlStr); // Place html into popup
             }
@@ -536,8 +540,8 @@ function markerClicked(postID, typeSearch)
                             + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
                             + '<div class="popUpInfo">'
                             + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
-                            + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
-                            + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
+                            //+ '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
+                            //+ '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
                             + '</div></div>';
 
                     if (len === key)
