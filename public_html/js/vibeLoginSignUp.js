@@ -74,8 +74,6 @@ $(document).on("pagecreate", "#loginPage", function ()
         }
     });
 
-
-
     $('#signUp').on('click', function () {
         // catch the form's submit event
         // console records
@@ -139,7 +137,6 @@ $(document).on("pagecreate", "#loginPage", function ()
 // There is one or both inputs empty    
         }
     });
-
 });
 
 function checkErrorForm(inputEmail, inputPassword)

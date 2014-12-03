@@ -177,7 +177,7 @@ function insertImageArray(imageCount) // Insert into Profile Page function
                         + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
                         + '</div>');
             }
-            
+
         });
         imageCount = parseInt(imageCount) + 7;
         $('#profilePosts').trigger('create');
@@ -468,7 +468,7 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                     $.mobile.loading('hide');
                 }
             });
-            
+
         }
 
         $("#addProfilePost").click(function () { // Add More Posts to Page
@@ -598,35 +598,43 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             for (var i = 0; i < 6; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
+            alert(text);
             return text;
         }
 
         $('#forgotPass').click(function () {    // Forgot Password Event
+            function movetoPass() {
+                $(":mobile-pagecontainer").pagecontainer("change", "#passPage", {transition: "fade"});
+            }
             var inputEmail = $('#email').val();
+            window.localStorage.setItem('mailSent', 'no');
             if (inputEmail.length > 0)
             {
                 var newPass = makeNewPass(); // Generate New Password
                 var hashPassword = $.sha256(newPass); // Hash it
+                console.log('New Pass: ' + newPass + 'EMail: ' + inputEmail + ' Hash:' + hashPassword);
                 $.ajax({url: 'http://emoapp.info/php/forgotPass.php', // Send Pass
-                    data: {userEmail: inputEmail, newPass: hashPassword, curPass: null, action: 'forgot'},
+                    data: {userEmail: inputEmail, newPass: newPass, newPassHash: hashPassword},
                     type: 'post', async: 'true',
                     beforeSend: function () {  // This callback function will trigger before data is sent     
                         $.mobile.loading("show", {text: 'Forgot Password', textVisible: true});
                     },
                     complete: function () { // This callback function will trigger on data sent/received complete                
-                        $.mobile.loading("hide");
+
                     },
                     success: function (result) { // Open New Pass Dialog
+                        $.mobile.loading("hide");
                         $('#passMsg').html('<p>You will have recieved new password to account email.<br>Enter pass below and create your new password.</p>');
                         window.localStorage.setItem('tempEMail', inputEmail);
-                        $.mobile.changePage("#passPage", {role: "dialog"});
+                        movetoPass();
                     },
                     error: function (error) { // This callback function will trigger on unsuccessful action                      
                         $('#updateBtn').html('There was an error = ' + error);
                         console.log('error = ' + error);
-                        console.log(error.success);
+                        console.log(error.status);
                     }
                 });
+
             }
             else // Tell them enter email q
             {
@@ -638,21 +646,34 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
     {
         $('#changePass').click(function () { // Update Password clicked
             var newPass = $('#newPass').val();
-            var curPass = $('#curPass').val();
+            var newPassHash = $.sha256(newPass);
+            var curPass = $.sha256($('#curPass').val());
+            var copyPass = $('#conPass').val();
+            console.log('?' + newPass + ' = ' + copyPass);
             $('#formErrorMsg').html('');
-            if (newPass === $('#conPass').val()) { // Passwords match, update      
-                $.ajax({url: 'http://emoapp.info/php/forgotPass.php', // Send Pass
-                    data: {userEmail: window.localStorage.getItem('tempEMail'), newPass: newPass, curPass: curPass, action: 'update'},
-                    type: 'post', async: 'true',
+            if (newPass === copyPass) { // Passwords match, update      
+                $.ajax({url: 'http://emoapp.info/php/passChange.php', // Send Pass
+                    data: {userEmail: window.localStorage.getItem('tempEMail'), newPass: newPassHash, curPass: curPass},
+                    type: 'post', async: 'true', dataType: 'json',
                     beforeSend: function () {  // This callback function will trigger before data is sent     
                         $.mobile.loading("show", {text: 'Forgot Password', textVisible: true});
                     },
-                    complete: function () { // This callback function will trigger on data sent/received complete                
+                    complete: function () { // This callback function will trigger on data sent/received complete  
+                        console.log('Ajax Complete');
                         $.mobile.loading("hide");
                     },
                     success: function (result) { // Open New Pass Dialog
-                        $('#passMsg').html('<p>You will have recieved new password to account email.<br>Enter pass below and create your new password.</p>');
-                        $.mobile.changePage("#passPage", {role: "dialog"});
+                        console.log(result.status);
+                        if (result.status === 'ok')
+                        {
+                            $('#passMsg').html(' ');
+                            $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
+                        } 
+                        else
+                        {
+                            console.log("$('#formErrorMsg').html('result.status');");
+                            $('#formErrorMsg').html('result.status');
+                        }
                     },
                     error: function (error) { // This callback function will trigger on unsuccessful action                      
                         $('#updateBtn').html('There was an error = ' + error);
@@ -662,6 +683,7 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
                 }); // Add the logged in on success            
             }
             else { // Passwords don't match
+                $('#formErrorMsg').html("Passwords didn't match");
             }
         });
     }
@@ -754,8 +776,8 @@ $(document).on('click', '#postToMapBtn', function () {
                         + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
                         + '<div class="popUpInfo">'
                         + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> Just Now</p></div>'
-                       // + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
-                       // + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
+                        // + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
+                        // + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
                         + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>'
                         + '</div></nav>');
                 $('#mapPage').addClass('show-popup');
