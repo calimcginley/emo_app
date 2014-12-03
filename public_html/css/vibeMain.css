@@ -725,14 +725,7 @@ ul, menu, dir {
     height: 64px;
 }
 
-@media screen and (max-height: 480px) {
-    #buttonsDiv {
-        position: fixed;
-        top: 360px;
-        z-index: 1000;
-        width: 320px;
-    }
-}
+
 
 /* ------------------------------------------------------------------------------------------
 // ------------------------------  emoji panel ---------------------------------
@@ -878,3 +871,37 @@ ul, menu, dir {
 }
 
 
+/* iPhone 4 Spec */
+
+@media screen and (max-height: 480px) {
+    #buttonsDiv {
+        position: fixed;
+        top: 360px;
+        z-index: 1000;
+        width: 320px;
+    }
+    
+    
+    
+    
+    
+}
+
+
+.guideExit {
+    
+    margin-top: 20px;
+    padding: 0;
+    width: 44px;
+    max-width: 15%;
+    height: 44px;
+    border: none;
+    text-indent: 2.5em;
+    font-size: 1.5em;
+    color: transparent;
+    background: transparent;
+    background-image: url('../images/profile/guideExit.svg');
+    background-size: 100%;
+    
+
+}
