@@ -177,7 +177,7 @@ input[type='text']
 
 #map {
     width: 320px;
-    height: 500px;
+    height: 501px;
 }
 
 .keys {
@@ -342,7 +342,7 @@ ul, menu, dir {
 .profileTab {
     position: fixed;
     overflow: hidden;
-    height: 500px;
+    height: 501px;
     margin-top: 0px;
     margin-bottom: 0px;
     letter-spacing: 0.3em;
@@ -353,13 +353,13 @@ ul, menu, dir {
 }
 
 #skrollr-body {
-    height: 500px;
+    height: 501px;
     width: 320px;
 }
 
 #profilePopup {
     position: absolute;
-    height: 500px;
+    height: 501px;
     width: 320px;
     overflow: visible;
 }
@@ -368,7 +368,7 @@ ul, menu, dir {
     //position: absolute;
     width: 100%;
     //height: 100%;
-    height: 500px;
+    height: 501px;
     //overflow:visible;
     margin-bottom: 10px;
 }
@@ -380,7 +380,7 @@ ul, menu, dir {
 }
 
 #profilePosts {
-    min-height: 500px;
+    min-height: 501px;
     width: 100%;
 }
 
@@ -963,4 +963,24 @@ ul, menu, dir {
     background-color: #E2E2E2;
     opacity: .9;
     border-radius: 25px;
+}
+
+#uploadNotifaction {
+   position: fixed;
+   top: -100%;
+   right: 5px;
+   background-color: rgba(255,255,255,0.7);
+}
+
+#imageUploading {
+    width: 78px;
+    height: 120px;
+    position: fixed;
+    top: 70px;
+    right: 5px;
+    z-index: 1000; 
+    background-image: url(../images/imageLoading.svg);
+    background-size: cover;
+    background-color: rgba(255,255,255,0.7);
+    visibility: hidden;
 }

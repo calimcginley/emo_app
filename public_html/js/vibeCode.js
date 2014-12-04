@@ -669,7 +669,7 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
                         {
                             $('#passMsg').html(' ');
                             $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
-                        } 
+                        }
                         else
                         {
                             console.log("$('#formErrorMsg').html('result.status');");
@@ -751,10 +751,11 @@ $(document).on('click', '#postToMapBtn', function () {
         var timeDevice = now.getFullYear() + '-' + month + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
         console.log('User ID: ' + userID + ' User Email: ' + userEmail + ' Parent Emoji: ' + parentEmoji + ' Image Name: ' + imageNameStr + ' Public Post: ' + postPublic + ' Time on Device: ' + timeDevice);
         function uploadPhoto(fileNameStr, cenLng, cenLat) { // Upload Image Function
-            $.mobile.loading("show", {
-                text: 'Image uploading ...',
-                textVisible: true
-            });
+            // Show the Loading Msg Div
+            $('#imageUploading').show();
+            var imgSrc = 'http://www.emoapp.info/uploads/' + fileNameStr + '.png';
+            $('#viewUpload').attr('title', imgSrc);
+
             var imageData = document.getElementById('imageCanvas').toDataURL('image/png', 0.6);
             //console.log('Image DATA: ');
             //console.log(imageData);      
@@ -766,24 +767,9 @@ $(document).on('click', '#postToMapBtn', function () {
                 }
             }).done(function (o) {
                 console.log('Image Uploaded: saved');
-                $.mobile.loading("hide");
-                $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
-                // Open the Map Marker
-                var imgSrc = 'http://www.emoapp.info/uploads/' + fileNameStr + '.png';
-                // $('#emoPostPopup').attr('src', imgSrc);
-                // Time Difference
-                $('.popup-wrap').html('<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup"><div id="imgs">'
-                        + '<div class="vibesDiv">'
-                        + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
-                        + '<div class="popUpInfo">'
-                        + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> Just Now</p></div>'
-                        // + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
-                        // + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
-                        + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>'
-                        + '</div></nav>');
-                $('#mapPage').addClass('show-popup');
-                console.log('Lat:Lng' + cenLat + ':' + cenLng);
-                setPopupView(cenLat, cenLng, parentEmoji);
+                $('#imageUploading').hide(); // Hide Image Uploading
+                // Show #uploadNotifaction
+                $("#uploadNotifaction").velocity({top: "70px", easing: "easein"}, 500);
             });
         }
         uploadPhoto(imageNameStr, postLong, postLat); // Start the file upload process   
@@ -809,7 +795,8 @@ $(document).on('click', '#postToMapBtn', function () {
                 console.log('Database call was : ' + result);
                 console.log('Post was inserted to database ' + result);
                 console.log('Variables are - Post ID: ' + result + ' ' + postLat + ' ' + postLong + ' - Parent: ' + parentEmoji);
-                addMarkerToMap(parentEmoji, result, postLat, postLong);
+                addMarkerToMap(parentEmoji, result, postLat, postLong); // Add Marker
+                $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
             },
             error: function (results, error) {
                 // This callback function will trigger on unsuccessful action               
@@ -820,6 +807,22 @@ $(document).on('click', '#postToMapBtn', function () {
     }
     ;
 });
+
+$(document).on('click', '#viewUpload', function () { // click to view image
+    $("#uploadNotifaction").velocity({top: "-100%", easing: "easein"}, 500);
+    var imgSrc = $('#viewUpload').attr('title'); // Get Image src from button
+    $('.popup-wrap').html('<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup"><div id="imgs">'
+            + '<div class="vibesDiv">'
+            + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
+            + '<div class="popUpInfo">'
+            + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> Just Now</p></div>'
+            // + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
+            // + '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
+            + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>'
+            + '</div></nav>');
+    $('#mapPage').addClass('show-popup');
+});
+
 $(document).on('click', '.addEmoji', function () { // click to add emoji function
     var emojiName = $(this).attr('title');
     console.log('emoji clicked- Title is = ' + emojiName);
@@ -827,6 +830,7 @@ $(document).on('click', '.addEmoji', function () { // click to add emoji functio
     $(".emojiRender").append(emojiName);
     $('.emojiRender').emoji();
 });
+
 $(document).on('click', '.removeEmoji', function () { // click removes emojis
     console.log('emoji img removed');
     $(this).remove();
