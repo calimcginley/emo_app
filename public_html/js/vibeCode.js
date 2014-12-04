@@ -137,11 +137,13 @@ function camera() // Camera Function to Handle the image creation
 function insertImageArray(imageCount) // Insert into Profile Page function
 {
 //var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
+    var addMoreHtml = '<div id="addMoreDiv"><p><a href="#" id="addProfilePost" >Load More</a></p></div>';
+    $('#addMoreDiv').remove(); // Remove the Button and Add it after
     var profileImageArray = window.localStorage.getItem('profileArray');
     console.log('profileArray<br>' + profileImageArray);
     if (profileImageArray !== null) { // User has posts
-        $('#noMsg').hide();
-        $('#addMoreDiv').show();
+        $('#noPosts').hide();
+        //$('#addMoreDiv').show();
         // Remove the add button and append more images
         //$('#addProfilePost').remove();
         console.log('start loop imageCount is ' + imageCount);
@@ -154,29 +156,28 @@ function insertImageArray(imageCount) // Insert into Profile Page function
                 var b = moment(value[4]);
                 console.log(b);
                 var timeOffset = a.from(b); // Get time differ and insert posts to page
-                $('#profilePosts').append('<div class="profilePostDiv" >'
+                $('#skrollr-body').append('<div class="profilePostDiv" >'
                         + '<img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png"/>'
                         + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
                         + '</div>');
             }
-
         });
         imageCount = parseInt(imageCount) + 7;
-        $('#profilePosts').trigger('create');
+        $('#skrollr-body').append(addMoreHtml);
+        //$('#profilePosts').trigger('create');
         window.localStorage.setItem('imageCount', imageCount);
         console.log('AfterInsert: imageCount is now ' + imageCount);
     }
     else {    // User has no posts  
-        $('#noMsg').show();
-        $('#addMoreDiv').hide();
-        $('#noMsg').html("<div class='noVibes'><img src='images/noVibes.svg' alt=''><p>You don't have any Vibes yet</p></div>");
+        $('#addMoreDiv').remove();
+        $('#skrollr-body').html("<div class='noVibes'><img src='images/noVibes.svg' alt=''><p>You don't have any Vibes yet</p></div>");
     }
 
     $(".postDivImg").click(function () { // Expand Image on Click
         console.log('Image Clicked');
         var imgSrc = $(this).attr('id');
         var offSet = $(this).attr('alt');
-        $('#profilePopup').append('<div class="giantImg"><img src="http://www.emoapp.info/uploads/' + imgSrc + '.png" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
+        $('#skrollr-body').append('<div class="giantImg"><img src="http://www.emoapp.info/uploads/' + imgSrc + '.png" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
         // Remove Click Event
         $(".giantImg").click(function () {
             $(".giantImg").remove();
@@ -391,13 +392,24 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
         canvas.style.height = '360px';
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
-        // Add the image button code
-        var canvasBtnObj = new Image();
-        canvasBtnObj.onload = function () {
+        function gradientImg() { // Add the image button code
+            var canvasBtnObj = new Image();
+            canvasBtnObj.onload = function () {
+                context.globalAlpha = 1;
+                context.drawImage(canvasBtnObj, 0, 0, 640, 720);
+            }; // The url to the image
+            canvasBtnObj.src = 'images/menu/canvasBtn.svg';
+        }
+        // Add the image button background
+        var canvasBgObj = new Image();
+        canvasBgObj.onload = function () {
             context.globalAlpha = 1;
-            context.drawImage(canvasBtnObj, 0, 0, 640, 720);
+            context.drawImage(canvasBgObj, 0, 0, 640, 720);
         }; // The url to the image
-        canvasBtnObj.src = 'images/menu/canvasBtn.svg';
+        canvasBgObj.src = 'images/menu/canvasBg.jpg';
+        canvasBgObj.addEventListener('load', gradientImg);
+
+
     }
     else if (pageId === "profilePage") // When the Profile is showen. This code will trigger
     {
@@ -440,7 +452,7 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                     }
                     else
                     {
-                        $('#profilePosts').html('<br><hr><h3>' + result.message + '</h3><hr>');
+                        $('#skrollr-body').prepend('<div id="noPosts"><br><hr><h3>' + result.message + '</h3><hr></div>');
                         $('#addMoreDiv').hide();
                     }
                 },

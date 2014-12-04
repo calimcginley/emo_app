@@ -184,7 +184,7 @@
                     <a href="#" title="" id="viewUpload">View Your Vibe</a>
                 </div>
                 <div id="imageUploading"></div>
-                
+
             </div>
         </div>
         <!--   End of  --><!--   Main Map Page  -->
@@ -196,15 +196,18 @@
                 <h1><img src="images/vibes.svg" alt="" id="profileheaderImg"/></h1>
                 <a href="#settingsPage" data-transition="flip" class="settings-button"></a>
             </div>
-            <div id="skrollr-body" class="ui-content content-wrap">
-                <div id="profilePopup">
+            <div class="ui-content content-wrap">
+                <div id="skrollr-body">
+                    
+                </div>
+                <!-- <div id="profilePopup">
                     <div id="profilePostsWrap"> 
                         <div id="profilePosts"></div>
                         <div id="addMoreDiv">
                             <p><a href="#" id="addProfilePost" >Load More</a></p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div><!-- /content-wrap -->
         </div><!-- /Page -->
         <!--   End of Profile Page   - -->
@@ -221,9 +224,9 @@
                 <div class="about-wrap">
                     <nav class="about">
                         <div id="btnCloseAbout">
-                           <!-- <i class="fa fa-times fa-2x"></i> -->
+                            <!-- <i class="fa fa-times fa-2x"></i> -->
                         </div>
-                        
+
                         <div id="aboutInfo">
                             <!-- start slipsum code -->
                             <h1  style="padding-left: 5.9em; color: #79CCC9; font-weight: lighter; letter-spacing: 0.1em;">What</h1>
@@ -251,21 +254,21 @@
                                 <option value="2">Female</option>
                                 <option value="3">Other</option>
                             </select>
-                            
+
                             <p>
                                 <a href="#" id="updateBtn">Done?</a> 
 
                             </p>
                         </div>
                         <div id="logoutDiv">
-                        <p>
-                            <a href="#" id="aboutButton" data-transition="none" >About Vibes</a>
-                        </p>
-                        
-                        <p>
-                            <a href="#guidePage" id="guideLink" data-transition="none" >User Guide</a>                       
-                        </p>
-                        
+                            <p>
+                                <a href="#" id="aboutButton" data-transition="none" >About Vibes</a>
+                            </p>
+
+                            <p>
+                                <a href="#guidePage" id="guideLink" data-transition="none" >User Guide</a>                       
+                            </p>
+
                             <p> <a href="#" id="logoutBtn">Logout</a></p>
                         </div>
                     </div>
@@ -369,27 +372,27 @@
 
         <!-- Password Tab -->
         <div data-role="page" id="passPage"> <!-- newPass -->
-          
+
             <div id="newPassContent" class="ui-content">
-                
+
                 <div id="passPageDiv">
-                <span id="passMsg"></span>
-                <br>
-                <br>
-                <input id="curPass" type="password" name="curPass" placeholder="Current Password" autocomplete="off" class="floatlabel_1"/> 
-                <input id="newPass" type="password" name="newPass" placeholder="New Password" autocomplete="off" class="floatlabel_1"/>
-                <input id="conPass" type="password" name="conPass" placeholder="Confirm Password" autocomplete="off" class="floatlabel_1"/>
-                <span id="formErrorMsg"></span><br>
-                <br>
-                <br>
-               
-              
-                <a href="#" id="changePass">Save</a>
+                    <span id="passMsg"></span>
+                    <br>
+                    <br>
+                    <input id="curPass" type="password" name="curPass" placeholder="Current Password" autocomplete="off" class="floatlabel_1"/> 
+                    <input id="newPass" type="password" name="newPass" placeholder="New Password" autocomplete="off" class="floatlabel_1"/>
+                    <input id="conPass" type="password" name="conPass" placeholder="Confirm Password" autocomplete="off" class="floatlabel_1"/>
+                    <span id="formErrorMsg"></span><br>
+                    <br>
+                    <br>
+
+
+                    <a href="#" id="changePass">Save</a>
                 </div>
             </div>
-                
+
         </div>
-            
+
         <!--  JavaScript Code required for Menu -->
         <script src="js/classie.js"></script>
         <script src="js/vibePopup.js"></script>
