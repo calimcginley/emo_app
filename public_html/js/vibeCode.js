@@ -18,7 +18,7 @@ $(document).ready(function () { // A click event for each emoji which creates a 
     $('.mapLink').click(function () { // Return to Map "Home Button" Event
         var pageID = $.mobile.activePage.attr('id');
         $("#menuPanel").panel("close");
-        $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
+        $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
     });
 
     function shareSuccess() {
@@ -104,7 +104,7 @@ var endOfSplash = function () //End of splashPage Function
     else
     {
         console.log('No localStorage logged value');
-        $(":mobile-pagecontainer").pagecontainer("change", "#loginPage", {transition: "flow"});
+        $(":mobile-pagecontainer").pagecontainer("change", "#loginPage", {transition: "slide"});
     }
 };
 function camera() // Camera Function to Handle the image creation
@@ -187,7 +187,7 @@ function insertImageArray(imageCount) // Insert into Profile Page function
     else {    // User has no posts  
         $('#noMsg').show();
         $('#addMoreDiv').hide();
-        $('#noMsg').html('You have no posts yet. Click on Post in Menu to make one.');
+        $('#noMsg').html("<div class='noVibes'><img src='images/noVibes.svg' alt=''><p>You don't have any Vibes yet</p></div>");
     }
 
     $(".postDivImg").click(function () { // Expand Image on Click
@@ -459,6 +459,7 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                     else
                     {
                         $('#profilePosts').html('<br><hr><h3>' + result.message + '</h3><hr>');
+                        $('#addMoreDiv').hide();
                     }
                 },
                 error: function (error) { // This callback function will trigger on unsuccessful action                      
@@ -604,7 +605,7 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
 
         $('#forgotPass').click(function () {    // Forgot Password Event
             function movetoPass() {
-                $(":mobile-pagecontainer").pagecontainer("change", "#passPage", {transition: "fade"});
+                $(":mobile-pagecontainer").pagecontainer("change", "#passPage", {transition: "slide"});
             }
             var inputEmail = $('#email').val();
             window.localStorage.setItem('mailSent', 'no');
@@ -667,7 +668,7 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
                         if (result.status === 'ok')
                         {
                             $('#passMsg').html(' ');
-                            $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
+                            $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
                         } 
                         else
                         {
@@ -766,7 +767,7 @@ $(document).on('click', '#postToMapBtn', function () {
             }).done(function (o) {
                 console.log('Image Uploaded: saved');
                 $.mobile.loading("hide");
-                $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "fade"});
+                $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
                 // Open the Map Marker
                 var imgSrc = 'http://www.emoapp.info/uploads/' + fileNameStr + '.png';
                 // $('#emoPostPopup').attr('src', imgSrc);

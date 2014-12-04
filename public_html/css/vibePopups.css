@@ -318,7 +318,7 @@
 
 .show-popup .popup-wrap {
     width: 320px;
-    height: 508px;
+    height: 500px;
     border: 1px;
     -webkit-animation: anim-jelly 0.8s linear forwards;
     animation: anim-jelly 0.8s linear forwards;  

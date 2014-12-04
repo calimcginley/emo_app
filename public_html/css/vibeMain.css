@@ -177,7 +177,7 @@ input[type='text']
 
 #map {
     width: 320px;
-    height: 508px;
+    height: 500px;
 }
 
 .keys {
@@ -328,6 +328,7 @@ ul, menu, dir {
 .profileHeader a {
     float: right;
 }
+
 .profileNavImg {
     float: right;
     padding-right: 1em;
@@ -351,20 +352,36 @@ ul, menu, dir {
     margin-left: 2px;
 }
 
-#profilePostsWrap {
+#skrollr-body {
+    height: 500px;
+    width: 320px;
+}
+
+#profilePopup {
     position: absolute;
+    height: 500px;
+    width: 320px;
+    overflow: visible;
+}
+
+#profilePostsWrap {
+    //position: absolute;
     width: 100%;
     //height: 100%;
-    height: 508px;
+    height: 500px;
     //overflow:visible;
     margin-bottom: 10px;
 }
 
-#profilePosts {
-    min-height: 508px;
-    width: 100%;
-    overflow:visible;
+.profilePostDiv {
+    width: 45%;
+    float: left;
+    margin-left: 3.33%;
+}
 
+#profilePosts {
+    min-height: 500px;
+    width: 100%;
 }
 
 #profilePosts p {
@@ -374,12 +391,6 @@ ul, menu, dir {
     text-align: center;
 }
 
-.profilePostDiv {
-    width: 45%;
-    float: left;
-    margin-left: 3.33%;
-}
-
 #profilePostsWrap #profilePosts .largeImg {
     width: 100%;
     margin-left: 0;
@@ -387,7 +398,7 @@ ul, menu, dir {
 }
 
 .giantImg {
-    position: absolute;
+    position: fixed;
     padding: 40px 0;
     background-color: #fff;
     top: 0;
@@ -410,11 +421,24 @@ ul, menu, dir {
     width: 100%;
 }
 
+.noVibes {  
+    max-width: 320px;
+    max-height: 100px;
+    
+    padding-top: 5px;
+    border: 1px solid #9e9e9e;
+    color: #9e9e9e;
+    text-align: center;
+}
+
+
 #addMoreDiv {
     width: 320px;
     height: 60px;
     clear: both;
 }
+
+/* ENd of Profile Posts */
 
 #logoutDiv {
     width: 320px;
