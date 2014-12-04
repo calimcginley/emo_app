@@ -141,24 +141,23 @@ function camera() // Camera Function to Handle the image creation
 function insertImageArray(imageCount) // Insert into Profile Page function
 {
 //var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
-    var addMoreHtml = '<div id="addMoreDiv"><p><a href="#" class="addProfilePost" >Load More</a></p></div>';
-    $('#addMoreDiv').remove(); // Remove the Button and Add it after
+    //var addMoreHtml = '<div id="addMoreDiv"><p><a href="#" id="addProfilePost" >Load More</a></p></div>';
+    $('#addMoreDiv').hide(); // Remove the Button and Add it after
+    $('.noVibes').remove(); // Remove the Button and Add it after
     var profileImageArray = window.localStorage.getItem('profileArray');
-    console.log('profileArray<br>' + profileImageArray);
+    //console.log('profileArray<br>' + profileImageArray);
     if (profileImageArray !== null) { // User has posts
         $('#noPosts').hide();
-        //$('#addMoreDiv').show();
-        // Remove the add button and append more images
-        //$('#addProfilePost').remove();
+
         console.log('start loop imageCount is ' + imageCount);
-        console.log('profileImageArray:' + profileImageArray);
+        //console.log('profileImageArray:' + profileImageArray);
         $.each(JSON.parse(profileImageArray), function (index, value) {     // Loop through the array to the imageCount number
             if (index <= imageCount && index >= imageCount - 7)
             {
                 var a = moment(value[3]); // Time since Tag
-                console.log(a);
+                //console.log(a);
                 var b = moment(value[4]);
-                console.log(b);
+                //console.log(b);
                 var timeOffset = a.from(b); // Get time differ and insert posts to page
                 $('#skrollr-body').append('<div class="profilePostDiv" >'
                         + '<img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png"/>'
@@ -167,13 +166,14 @@ function insertImageArray(imageCount) // Insert into Profile Page function
             }
         });
         imageCount = parseInt(imageCount) + 7;
-        $('#skrollr-body').prepend(addMoreHtml);
+        //$('#skrollr-body').prepend(addMoreHtml);
         //$('#profilePosts').trigger('create');
+        $('#addMoreDiv').show();
         window.localStorage.setItem('imageCount', imageCount);
         console.log('AfterInsert: imageCount is now ' + imageCount);
     }
     else {    // User has no posts  
-        $('#addMoreDiv').remove();
+        $('#addMoreDiv').hide();
         $('#skrollr-body').html("<div class='noVibes'><img src='images/noVibes.svg' alt=''><p>You don't have any Vibes yet</p></div>");
     }
 
@@ -418,7 +418,7 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
     else if (pageId === "profilePage") // When the Profile is showen. This code will trigger
     {
         // Start Skroller
-        skrollr.init();
+        //skrollr.init();
         //e.preventDefault(); // Page show prevent default
         var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
         if (profileImageArray !== null)
@@ -467,12 +467,15 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                     $.mobile.loading('hide');
                 }
             });
-
         }
 
-        $(".addProfilePost").click(function () { // Add More Posts to Page
-            var imgCount = window.localStorage.getItem('imageCount');
-            insertImageArray(imgCount);
+        $("#scrollPost").on("scrollstop", function (event) { // Button Appears When SCroll Stops
+            console.log('Stopped');
+            $("#addMoreDiv").velocity({bottom: "0", easing: "easein"}, 400).delay(800);
+            setTimeout(function () { // CLose Div after 3seconds
+                $("#addMoreDiv").velocity({bottom: "-100px", easing: "easein"}, 400).delay(800);
+            }, 3000);
+
         });
     }
     else if (pageId === "settingsPage") // Settings Page Code
@@ -859,4 +862,10 @@ $(document).on('click', '#viewUpload', function () { // click to view image
             + '</div><img src="images/vibesBorder.svg" class="vibeLine"></div>'
             + '</div></nav>');
     $('#mapPage').addClass('show-popup');
+});
+
+$(document).on('click', '#addProfilePost', function () { // Add More Posts to Page
+    alert('Add More CLicked');
+    var imgCount = window.localStorage.getItem('imageCount');
+    insertImageArray(imgCount);
 });

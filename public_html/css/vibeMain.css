@@ -352,11 +352,16 @@ ul, menu, dir {
     margin-left: 2px;
 }
 
-#skrollr-body {
+#scrollPost {
     position: absolute;
     width: 320px;
-    min-height: 500px;
-    overflow:visible;
+    min-height: 450px;
+    overflow:scroll;
+    height: 501px;
+}
+
+#skrollr-body {
+
 }
 
 #profilePopup {
@@ -444,11 +449,14 @@ ul, menu, dir {
 }
 
 #addMoreDiv {
+    position: fixed;
+    bottom: -100px;
     height: 100px;
     width: 320px;
+    background-color: rgba(255,255,255, 0.7);
 }
 
-#skrollr-body .addProfilePost {
+#skrollr-body #addProfilePost {
     padding-left:  50px;
     padding-right:   50px;
     padding-top:   10px;
