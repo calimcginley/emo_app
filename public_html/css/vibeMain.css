@@ -424,7 +424,7 @@ ul, menu, dir {
 .noVibes {  
     max-width: 320px;
     max-height: 100px;
-    
+
     padding-top: 5px;
     border: 1px solid #9e9e9e;
     color: #9e9e9e;
@@ -443,7 +443,7 @@ ul, menu, dir {
 #logoutDiv {
     width: 320px;
     padding-top: 15px;
-    
+
     background-color: rgba(255,255,255,0.8);
     clear: both;
 }
@@ -847,7 +847,7 @@ ul, menu, dir {
     padding-bottom: 10px;
 }
 #logoutBtn {
-    
+
     float: bottom;
     padding: 8px;
     margin-left: -.5em;
@@ -863,17 +863,17 @@ ul, menu, dir {
 #updateBtn {
     padding: 6px;
     margin-left: -.5em;
-    
+
     text-decoration: none;
     color: #ED4798;
     font-weight: bolder;
     background-color: #E2E2E2;
     opacity: .9;
-   /* border-radius: 25px; */
+    /* border-radius: 25px; */
 }
 
 #aboutButton {
-  
+
     padding: 8px;
     margin-left: -.5em;
     text-decoration: none;
@@ -904,16 +904,16 @@ ul, menu, dir {
         z-index: 1000;
         width: 320px;
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 }
 
 
 .guideExit {
-    
+
     margin-top: 20px;
     padding: 0;
     width: 44px;
@@ -926,7 +926,7 @@ ul, menu, dir {
     background: transparent;
     background-image: url('../images/profile/guideExit.svg');
     background-size: 100%;
-    
+
 
 }
 
@@ -935,26 +935,25 @@ ul, menu, dir {
 // ---------------------------------------------------------------------------*/ 
 
 .passPage {
-   
-    
-    
+
+
+
 }
 
 
 #passPageDiv {
-    
+
     padding-top: 6em;
     min-height: 480px;
-    
+
     background-image: url("../images/resetPassImg.svg");
     background-repeat: no-repeat;
     background-position: bottom center; 
-    
+
 }
 
-#changePass {
-    
-     padding: 10px;
+#changePass { 
+    padding: 10px;
     margin-left: 8.5em; 
     /* margin-bottom: 20px; */
     text-decoration: none;
@@ -966,21 +965,20 @@ ul, menu, dir {
 }
 
 #uploadNotifaction {
-   position: fixed;
-   top: -100%;
-   right: 5px;
-   background-color: rgba(255,255,255,0.7);
+    position: fixed;
+    top: -100%;
+    right: 5px;
+    background-color: rgba(255,255,255,0.7);
 }
 
 #imageUploading {
     width: 78px;
     height: 120px;
     position: fixed;
-    top: 70px;
+    top: -100%;
     right: 5px;
     z-index: 1000; 
     background-image: url(../images/imageLoading.svg);
     background-size: cover;
     background-color: rgba(255,255,255,0.7);
-    visibility: hidden;
 }

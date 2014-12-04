@@ -45,12 +45,16 @@ function onError(error)
     }
 }
 
+$(document).ready(function () { 
+  navigator.geolocation.getCurrentPosition(onSuccess, onError);     
+});
+
 function setLocale()
 {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
-setLocale();
+//setLocale();
 
 function setMapInAction()
 {
@@ -183,7 +187,6 @@ function setMapInAction()
                                     map.setView({lat: e.latlng.lat, lon: e.latlng.lng}, zoom + 2);
                                 }
                             });
-                            alert('moved'+zoom);
                         }
                         // Remove timeout
                         function wipeStats()
