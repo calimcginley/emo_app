@@ -2,6 +2,40 @@
 <!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<<<<<<< HEAD:public_html/images/menu/canvasBtn.svg
+=======
+     width="960px" height="1080px" viewBox="0 0 960 1080" enable-background="new 0 0 960 1080" xml:space="preserve">
+<g>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="480.0005" y1="1080" x2="480.0004" y2="-9.7349">
+		<stop  offset="0" style="stop-color:#F8ED40"/>
+		<stop  offset="0.2576" style="stop-color:#FF8A15"/>
+		<stop  offset="0.5424" style="stop-color:#FF3FE5"/>
+		<stop  offset="0.7917" style="stop-color:#3F81FF"/>
+		<stop  offset="1" style="stop-color:#00944C"/>
+	</linearGradient>
+	<rect y="-9.735" opacity="0.1" fill="url(#SVGID_1_)" width="960" height="1089.735"/>
+	<g>
+		<text transform="matrix(1 0 0 1 252.5 517.5)" fill="#9E9E9E" font-family="'GuardianSans-Light'" font-size="60">Tap to take a photo</text>
+		<g>
+			<rect x="253.5" y="559.693" opacity="0.9" fill="#F8ED40" width="63.68" height="4.232"/>
+			<rect x="284.983" y="559.693" opacity="0.9" fill="#F7961D" width="63.68" height="4.232"/>
+			<rect x="316.939" y="559.693" opacity="0.8" fill="#ED2A25" width="63.68" height="4.232"/>
+			<rect x="349.315" y="559.693" opacity="0.9" fill="#ED4798" width="63.68" height="4.232"/>
+			<rect x="381.277" y="559.693" opacity="0.9" fill="#754D9E" width="63.681" height="4.232"/>
+			<rect x="413.054" y="559.693" opacity="0.9" fill="#426EB5" width="63.681" height="4.232"/>
+			<rect x="444.554" y="559.693" opacity="0.9" fill="#06B052" width="63.681" height="4.232"/>
+			<rect x="476.266" y="559.693" opacity="0.9" fill="#F8ED40" width="63.682" height="4.232"/>
+			<rect x="507.749" y="559.693" opacity="0.9" fill="#F7961D" width="63.68" height="4.232"/>
+			<rect x="539.704" y="559.693" opacity="0.8" fill="#ED2A25" width="63.682" height="4.232"/>
+			<rect x="572.08" y="559.693" opacity="0.9" fill="#ED4798" width="63.682" height="4.232"/>
+			<rect x="604.044" y="559.693" opacity="0.9" fill="#754D9E" width="63.679" height="4.232"/>
+			<rect x="635.82" y="559.693" opacity="0.9" fill="#426EB5" width="63.68" height="4.232"/>
+			<rect x="667.319" y="559.693" opacity="0.9" fill="#06B052" width="32.181" height="4.232"/>
+		</g>
+	</g>
+</g>
+=======
+>>>>>>> FETCH_HEAD:public_html/images/menu/canvasBtn_1.svg
 	 width="960px" height="1080px" viewBox="0 0 960 1080" enable-background="new 0 0 960 1080" xml:space="preserve">
 <image display="none" overflow="visible" width="6748" height="4500" xlink:href="D6196A67C499D17D.jpg"  transform="matrix(0.24 0 0 0.24 -173.2798 0)">
 </image>
@@ -13,6 +47,7 @@
 	<stop  offset="1" style="stop-color:#00944C"/>
 </linearGradient>
 <rect y="-9.735" opacity="0.9" fill="url(#SVGID_1_)" enable-background="new    " width="960" height="1089.735"/>
+<<<<<<< HEAD:public_html/images/menu/canvasBtn.svg
 <g enable-background="new    ">
 	<path fill="#FFFFFF" d="M273.959,478.802h-13.5v-2.88h30.359v2.88h-13.5V517.5h-3.36V478.802z"/>
 	<path fill="#FFFFFF" d="M288.36,509.7c0-5.22,3.24-8.04,9.179-8.699l8.94-1.021v-3.96c0-5.1-2.34-6.659-7.8-6.659
@@ -65,4 +100,8 @@
 		c0-8.999-4.44-12.419-10.319-12.419c-6.061,0-10.2,4.319-10.2,12.419v1.261c0,8.879,4.44,12.419,10.319,12.419
 		C698.572,515.34,702.712,511.141,702.712,502.86z"/>
 </g>
+=======
+<text transform="matrix(1 0 0 1 252.5 517.5)" fill="#FFFFFF" font-family="'GuardianSans-Light'" font-size="60">Tap to take a photo</text>
+>>>>>>> Stashed changes
+>>>>>>> FETCH_HEAD:public_html/images/menu/canvasBtn_1.svg
 </svg>
