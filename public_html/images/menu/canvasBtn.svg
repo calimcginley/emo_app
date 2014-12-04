@@ -2,6 +2,7 @@
 <!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<<<<<<< Updated upstream
      width="960px" height="1080px" viewBox="0 0 960 1080" enable-background="new 0 0 960 1080" xml:space="preserve">
 <g>
 	<g>
@@ -37,4 +38,16 @@
 		</g>
 	</g>
 </g>
+=======
+	 width="960px" height="1080px" viewBox="0 0 960 1080" enable-background="new 0 0 960 1080" xml:space="preserve">
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="466.0005" y1="173.0005" x2="466.0003" y2="1262.7349" gradientTransform="matrix(1 0 0 -1 14 1253)">
+	<stop  offset="0" style="stop-color:#F8ED40"/>
+	<stop  offset="0.2576" style="stop-color:#FF8A15"/>
+	<stop  offset="0.5424" style="stop-color:#FF3FE5"/>
+	<stop  offset="0.7917" style="stop-color:#3F81FF"/>
+	<stop  offset="1" style="stop-color:#00944C"/>
+</linearGradient>
+<rect y="-9.735" opacity="0.9" fill="url(#SVGID_1_)" enable-background="new    " width="960" height="1089.735"/>
+<text transform="matrix(1 0 0 1 252.5 517.5)" fill="#FFFFFF" font-family="'GuardianSans-Light'" font-size="60">Tap to take a photo</text>
+>>>>>>> Stashed changes
 </svg>

@@ -828,6 +828,7 @@ ul, menu, dir {
     letter-spacing: 0.3em; 
     font-weight: lighter;
     text-align: center;
+    border: #E2E2E2 1px solid;
 
 
 }
