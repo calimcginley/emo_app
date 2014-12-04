@@ -353,8 +353,10 @@ ul, menu, dir {
 }
 
 #skrollr-body {
-    height: 501px;
+    position: absolute;
     width: 320px;
+    min-height: 500px;
+    overflow:visible;
 }
 
 #profilePopup {
@@ -431,13 +433,6 @@ ul, menu, dir {
     text-align: center;
 }
 
-
-#addMoreDiv {
-    width: 320px;
-    height: 60px;
-    clear: both;
-}
-
 /* ENd of Profile Posts */
 
 #logoutDiv {
@@ -447,16 +442,18 @@ ul, menu, dir {
     background-color: rgba(255,255,255,0.8);
     clear: both;
 }
-#profilePostsWrap a,
-#addProfilePost {
-    //margin-left: 7em;
+
+#addMoreDiv {
+    height: 100px;
+    width: 320px;
+}
+
+#skrollr-body .addProfilePost {
     padding-left:  50px;
     padding-right:   50px;
     padding-top:   10px;
     padding-bottom:   10px;
     height: 44px !important;
-    min-width:  200px !important;
-    max-width: 200px;
     color: #ED4798;
     text-decoration: none;
     text-align: center;
@@ -465,11 +462,7 @@ ul, menu, dir {
     font-size: 16px;
     margin: 4em;
     border-radius: 25px;
-
-    //background-repeat: no-repeat; 
-
 }
-
 
 /* ------------------------------------------------------------------------------------------
 // ------------------------------  Panel Menu  ------------------------------------------

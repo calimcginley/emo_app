@@ -67,6 +67,10 @@ $(document).ready(function () { // A click event for each emoji which creates a 
             $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 300);
             $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 300);
         }
+        else
+        {
+            $(document).delegate('.ui-content', 'touchmove', true);
+        }
     });
 });
 //$(window).load(function () { // Loads the CSS into memory to speed app up
@@ -137,7 +141,7 @@ function camera() // Camera Function to Handle the image creation
 function insertImageArray(imageCount) // Insert into Profile Page function
 {
 //var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
-    var addMoreHtml = '<div id="addMoreDiv"><p><a href="#" id="addProfilePost" >Load More</a></p></div>';
+    var addMoreHtml = '<div id="addMoreDiv"><p><a href="#" class="addProfilePost" >Load More</a></p></div>';
     $('#addMoreDiv').remove(); // Remove the Button and Add it after
     var profileImageArray = window.localStorage.getItem('profileArray');
     console.log('profileArray<br>' + profileImageArray);
@@ -163,7 +167,7 @@ function insertImageArray(imageCount) // Insert into Profile Page function
             }
         });
         imageCount = parseInt(imageCount) + 7;
-        $('#skrollr-body').append(addMoreHtml);
+        $('#skrollr-body').prepend(addMoreHtml);
         //$('#profilePosts').trigger('create');
         window.localStorage.setItem('imageCount', imageCount);
         console.log('AfterInsert: imageCount is now ' + imageCount);
@@ -466,7 +470,7 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
 
         }
 
-        $("#addProfilePost").click(function () { // Add More Posts to Page
+        $(".addProfilePost").click(function () { // Add More Posts to Page
             var imgCount = window.localStorage.getItem('imageCount');
             insertImageArray(imgCount);
         });
