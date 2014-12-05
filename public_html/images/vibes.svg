@@ -184,15 +184,15 @@
 </g>
 <g id="Layer_2_1_">
 	<g>
-		<polygon opacity="0.8" fill="#F8ED40" enable-background="new    " points="122.213,-0.346 98.039,33.334 59.606,33.334 		"/>
-		<polygon opacity="0.5" fill="#ED2A25" enable-background="new    " points="98.039,33.334 122.213,-0.346 98.039,-0.346 		"/>
-		<polygon opacity="0.6" fill="#426EB5" enable-background="new    " points="122.213,-0.346 133.752,-0.346 115.566,8.91 		"/>
-		<polygon opacity="0.6" fill="#ED4798" enable-background="new    " points="98.039,33.334 115.566,8.91 98.039,-0.346 
-			76.082,-9.916 		"/>
-		<polygon opacity="0.5" fill="#06B052" enable-background="new    " points="98.039,33.334 98.039,8.91 65.38,8.91 		"/>
-		<polygon opacity="0.2" fill="#06B052" enable-background="new    " points="98.039,33.334 89.753,17.035 85.641,8.91 98.039,8.91 
-					"/>
-		<polygon opacity="0.7" fill="#754D9E" enable-background="new    " points="65.38,8.91 75.52,16.495 98.039,8.91 		"/>
+		<polygon opacity="0.8" fill="#F8ED40" enable-background="new    " points="122.213,4.654 98.039,38.334 59.606,38.334 		"/>
+		<polygon opacity="0.5" fill="#ED2A25" enable-background="new    " points="98.039,38.334 122.213,4.654 98.039,4.654 		"/>
+		<polygon opacity="0.6" fill="#426EB5" enable-background="new    " points="122.213,4.654 133.752,4.654 115.566,13.91 		"/>
+		<polygon opacity="0.6" fill="#ED4798" enable-background="new    " points="98.039,38.334 115.566,13.91 98.039,4.654 
+			76.082,-4.916 		"/>
+		<polygon opacity="0.5" fill="#06B052" enable-background="new    " points="98.039,38.334 98.039,13.91 65.38,13.91 		"/>
+		<polygon opacity="0.2" fill="#06B052" enable-background="new    " points="98.039,38.334 89.753,22.035 85.641,13.91 
+			98.039,13.91 		"/>
+		<polygon opacity="0.7" fill="#754D9E" enable-background="new    " points="65.38,13.91 75.52,21.495 98.039,13.91 		"/>
 	</g>
 </g>
 </svg>
