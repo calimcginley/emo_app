@@ -141,34 +141,33 @@ function camera() // Camera Function to Handle the image creation
 function insertImageArray(imageCount) // Insert into Profile Page function
 {
 //var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
-    //var addMoreHtml = '<div id="addMoreDiv"><p><a href="#" id="addProfilePost" >Load More</a></p></div>';
-    $('#addMoreDiv').hide(); // Remove the Button and Add it after
+    var addMoreHtml = '<div id="addMoreDiv"><p><a href="#" id="addProfilePost" >Load More</a></p></div>';
+     // Remove the Button and Add it after
     $('.noVibes').remove(); // Remove the Button and Add it after
     var profileImageArray = window.localStorage.getItem('profileArray');
     //console.log('profileArray<br>' + profileImageArray);
     if (profileImageArray !== null) { // User has posts
         $('#noPosts').hide();
-
         console.log('start loop imageCount is ' + imageCount);
         //console.log('profileImageArray:' + profileImageArray);
         $.each(JSON.parse(profileImageArray), function (index, value) {     // Loop through the array to the imageCount number
             if (index <= imageCount && index >= imageCount - 7)
             {
+                $('#addMoreDiv').remove();
                 var a = moment(value[3]); // Time since Tag
                 //console.log(a);
                 var b = moment(value[4]);
                 //console.log(b);
                 var timeOffset = a.from(b); // Get time differ and insert posts to page
-                $('#skrollr-body').append('<div class="profilePostDiv" >'
+                $('.iscroll-content').append('<div class="profilePostDiv" >'
                         + '<img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png"/>'
                         + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
                         + '</div>');
+                $('.iscroll-content').append(addMoreHtml);
             }
         });
+        $("#skrollr-body").trigger( "updatelayout" );
         imageCount = parseInt(imageCount) + 7;
-        //$('#skrollr-body').prepend(addMoreHtml);
-        //$('#profilePosts').trigger('create');
-        $('#addMoreDiv').show();
         window.localStorage.setItem('imageCount', imageCount);
         console.log('AfterInsert: imageCount is now ' + imageCount);
     }
@@ -469,14 +468,14 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
             });
         }
 
-        $("#scrollPost").on("scrollstop", function (event) { // Button Appears When SCroll Stops
-            console.log('Stopped');
-            $("#addMoreDiv").velocity({bottom: "0", easing: "easein"}, 400).delay(800);
-            setTimeout(function () { // CLose Div after 3seconds
-                $("#addMoreDiv").velocity({bottom: "-100px", easing: "easein"}, 400).delay(800);
-            }, 3000);
-
-        });
+//        $("#skrollr-body").on("scrollstop", function (event) { // Button Appears When SCroll Stops
+//            console.log('Stopped');
+//            $("#addMoreDiv").velocity({bottom: "0", easing: "easein"}, 400).delay(800);
+//            setTimeout(function () { // CLose Div after 3seconds
+//                $("#addMoreDiv").velocity({bottom: "-100px", easing: "easein"}, 400).delay(800);
+//            }, 3000);
+//
+//        });
     }
     else if (pageId === "settingsPage") // Settings Page Code
     {
@@ -731,6 +730,7 @@ $(document).on('click', '#postToMapBtn', function () {
 
     function renderImage() { // Create the image in canvas
         function sendPost() { // Sent the post to server and save info to Database
+            $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
             function uploadPhoto(fileNameStr, cenLng, cenLat) { // Upload Image Function
                 // Show the Loading Msg Div
                 var imgSrc = 'http://www.emoapp.info/uploads/' + fileNameStr + '.png';
@@ -785,7 +785,6 @@ $(document).on('click', '#postToMapBtn', function () {
                 success: function (result) {
                     $.mobile.loading("hide");
                     $("#imageUploading").velocity({top: "70px", easing: "easein"}, 500);
-                    $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
                     console.log('Database call was : ' + result);
                     console.log('Post was inserted to database ' + result);
                     console.log('Variables are - Post ID: ' + result + ' ' + postLat + ' ' + postLong + ' - Parent: ' + parentEmoji);

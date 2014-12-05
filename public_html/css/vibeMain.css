@@ -353,15 +353,17 @@ ul, menu, dir {
 }
 
 #scrollPost {
-    position: absolute;
-    width: 320px;
-    min-height: 450px;
-    overflow:scroll;
-    height: 501px;
+
 }
 
 #skrollr-body {
-
+/*    position: absolute;
+    top: 0;
+    width: 320px;
+    min-height: 450px;
+    height: 501px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;*/
 }
 
 #profilePopup {
@@ -408,7 +410,7 @@ ul, menu, dir {
     position: fixed;
     padding: 40px 0;
     background-color: #fff;
-    top: 0;
+    top: 67px;
     left: 0;
     z-index: 10000;
     width: 100%;
@@ -449,9 +451,8 @@ ul, menu, dir {
 }
 
 #addMoreDiv {
-    position: fixed;
-    bottom: -100px;
-    height: 100px;
+    width: 100%;
+    float: left;
     width: 320px;
     background-color: rgba(255,255,255, 0.7);
 }
