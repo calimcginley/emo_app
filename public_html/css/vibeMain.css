@@ -551,6 +551,12 @@ ul, menu, dir {
     content: '';
 }
 
+.headerBtn {
+    width: 44px;
+    height: 44px;
+    margin-top: -10px;
+}
+
 .panel-btn, .infoMenuButtonImg
 {
     height: auto;

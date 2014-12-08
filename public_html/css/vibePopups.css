@@ -171,7 +171,7 @@
     position: fixed;
     z-index: 1050;
     //background: #ebedf4;
-    background-image: url("../images/popupBack.svg");
+    background-image: url("../images/popupBg.svg");
     -webkit-transition: width 0.3s, height 0.3s;
     transition: width 0.3s, height 0.3s;
     width: 0;
