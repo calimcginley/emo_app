@@ -35,7 +35,7 @@ $(document).ready(function () {
             // Lets Scroll
             $(".infoMenu").show(); // vibes info
             $(".infoMenu").velocity({opacity: '1', easing: 'easein'}, 600); // vibes info
-            $('#panelBtns').velocity({top: '-200px', easing: 'easein'}, 800);
+            $('#panelBtns').velocity({top: '-290px', easing: 'easein'}, 800);
 
             //$(".panel-btn").velocity({width: 0, easing: "easein"}, 500); //menu-top-buttons
             //$(".menu-top-buttons a").velocity({height: 0, easing: "easein"}, 500); //menu-top-buttons

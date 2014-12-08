@@ -76,7 +76,7 @@ $(document).ready(function () { // A click event for each emoji which creates a 
             $(".infoMenu").hide();
             $('#panelBtns').velocity({top: '90px', easing: 'easein'}, 600);
             //$(".panel-btn").velocity({width: '150px', easing: "easein"}, 1);
-            //$(".infoMenuButtonImg").velocity({marginBottom: 100, easing: "easein"}, 1);
+            //$(".infoMenuImg").velocity({marginBottom: 100, easing: "easein"}, 1);
             $('#mapPage').removeClass('show-popup');
             $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 300);
             $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 300);
