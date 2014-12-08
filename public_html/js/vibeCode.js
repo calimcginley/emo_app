@@ -4,6 +4,7 @@
 $(document).ready(function () { // A click event for each emoji which creates a token in local storage  to aid empji post
     parentOpen = false;
     keyPadMade = false;
+    sliderCreated = false;
     $(function () { // Panels Code
         $("[data-role=panel]").panel().enhanceWithin();
     });
@@ -19,6 +20,18 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         var pageID = $.mobile.activePage.attr('id');
         $("#menuPanel").panel("close");
         $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
+    });
+
+    //
+    $('#cancelPass').click(function (e) {
+        if (window.localStorage.getItem('logged') === 'Yes')
+        {
+            $(":mobile-pagecontainer").pagecontainer("change", "#settingsPage", {transition: "slide"});
+        }
+        else
+        {
+            $(":mobile-pagecontainer").pagecontainer("change", "#loginPage", {transition: "slide"});
+        }
     });
 
     $('.emoPostBtn').click(function (e) { // Open the parent EMoji select button
@@ -54,6 +67,7 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         // Change Page to emotionPostPage
         $(":mobile-pagecontainer").pagecontainer("change", "#emotionPostPage", {transition: "slidedown"});
     });
+
     $('.menu-button').click(function () {   // Check weather the Panel was open       
 // It not it's about to so remove overlay menus
         if (!$('#menuPanel').hasClass('ui-panel-open'))
@@ -140,47 +154,64 @@ function camera() // Camera Function to Handle the image creation
 
 function insertImageArray(imageCount) // Insert into Profile Page function
 {
-//var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
     var addMoreHtml = '<div id="addMoreDiv"><p><a href="#" id="addProfilePost" >Load More</a></p></div>';
-     // Remove the Button and Add it after
-    $('.noVibes').remove(); // Remove the Button and Add it after
+    $('#noVibes').remove(); // Remove the Button and Add it after
     var profileImageArray = window.localStorage.getItem('profileArray');
-    //console.log('profileArray<br>' + profileImageArray);
     if (profileImageArray !== null) { // User has posts
-        $('#noPosts').hide();
-        console.log('start loop imageCount is ' + imageCount);
-        //console.log('profileImageArray:' + profileImageArray);
-        $.each(JSON.parse(profileImageArray), function (index, value) {     // Loop through the array to the imageCount number
-            if (index <= imageCount && index >= imageCount - 7)
+        var slideHtmlArr = [];
+        $.each(JSON.parse(profileImageArray), function (index, value) {     // Loop through the array to the imageCount numb        
+            //if (index <= imageCount && index >= imageCount - 7)
+            if (index <= imageCount)
             {
                 $('#addMoreDiv').remove();
                 var a = moment(value[3]); // Time since Tag
-                //console.log(a);
                 var b = moment(value[4]);
-                //console.log(b);
                 var timeOffset = a.from(b); // Get time differ and insert posts to page
-                $('.iscroll-content').append('<div class="profilePostDiv" >'
-                        + '<img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png"/>'
-                        + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p>'
-                        + '</div>');
-                $('.iscroll-content').append(addMoreHtml);
+                slideHtmlArr.push('<div class="profilePostDiv"><img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png"/>'
+                        + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p></div>');
             }
         });
-        $("#skrollr-body").trigger( "updatelayout" );
+        var slideHtml = '<div class="container"><div id="profileSlides"><div class="slide">';
+        var arrLenSlide = slideHtmlArr.length;
+        $.each(slideHtmlArr, function (index, value) {
+            var countArr = index + 1;
+            console.log('Count Arr si: ' + countArr);
+            if (countArr % 4 === 0 && arrLenSlide !== index + 1) // Remainder 4, if zero create new page.
+            {
+                console.log('Was divisible by 4');
+                slideHtml = slideHtml + value + '</div><div class="slide">';
+            }
+            else
+            {
+                slideHtml = slideHtml + value;
+            }
+        });
+        slideHtml = slideHtml + '</div></div></div>'; // Close last div page and add button
+        console.log(slideHtml);
+        $('#profilePageSlider').html(slideHtml); // Add to page
+        $('#profileSlides').slidesjs({// Set Slideshow
+            width: 320,
+            height: 400,
+            navigation: false
+        });
+
         imageCount = parseInt(imageCount) + 7;
         window.localStorage.setItem('imageCount', imageCount);
         console.log('AfterInsert: imageCount is now ' + imageCount);
     }
     else {    // User has no posts  
         $('#addMoreDiv').hide();
-        $('#skrollr-body').html("<div class='noVibes'><img src='images/noVibes.svg' alt=''><p>You don't have any Vibes yet</p></div>");
+        $('#profileSlideDiv').html("<div id='noVibes'><img src='images/noVibes.svg' alt=''><p>You don't have any Vibes yet</p></div>");
     }
+
+
+    $('#profilePageSlider').append(addMoreHtml);
 
     $(".postDivImg").click(function () { // Expand Image on Click
         console.log('Image Clicked');
         var imgSrc = $(this).attr('id');
         var offSet = $(this).attr('alt');
-        $('#skrollr-body').append('<div class="giantImg"><img src="http://www.emoapp.info/uploads/' + imgSrc + '.png" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
+        $('#profilePageSlider').append('<div class="giantImg"><img src="http://www.emoapp.info/uploads/' + imgSrc + '.png" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
         // Remove Click Event
         $(".giantImg").click(function () {
             $(".giantImg").remove();
@@ -190,6 +221,63 @@ function insertImageArray(imageCount) // Insert into Profile Page function
 
 // Before Show Code Used to set up pages
 $(document).on('pagecontainerbeforeshow', function (e, ui) {
+
+    $("#profilePage").pagecontainer({// Profile Page Created Add Images
+        create: function (event, ui) {
+            // Start Skroller
+            //skrollr.init();
+            //e.preventDefault(); // Page show prevent default
+            var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
+            window.localStorage.setItem('imageCount', 7);
+            var userID = window.localStorage.getItem('userID');
+            console.log('Getting posts for Users: ' + userID);
+            $.ajax({url: 'http://emoapp.info/php/getUserPosts.php', // Get Users Posts
+                data: {userID: userID},
+                type: 'post',
+                async: 'true',
+                dataType: 'json',
+                beforeSend: function () {  // This callback function will trigger before data is sent     
+                    $.mobile.loading("show", {
+                        text: 'Fetching user Data',
+                        textVisible: true
+                    });
+                },
+                complete: function () { // This callback function will trigger on data sent/received complete                
+                    $.mobile.loading("hide");
+                },
+                success: function (result) { // Get user posts and place them into assoc Array  
+
+                    console.log('User Posts Fetch successfull: ' + JSON.stringify(result));
+                    // Remove no Posts Msg
+                    if (result.success === 1)
+                    {
+                        $.each(result.posts, function (index, value) {
+                            console.log(index + ' : ' + value.postID);
+                            array_push = [index, value.postID, value.imageName, value.timeServer, value.timeNow];
+                            //console.log(array_push);
+                            profileImageArray.push(array_push);
+                            window.localStorage.setItem('profileArray', JSON.stringify(profileImageArray));
+                        });
+                        console.log('Inserting fro Page Create');
+                        insertImageArray(7);
+                    }
+                    else
+                    {
+                        $('#noVibes').remove(); // Remove the Button and Add it after
+                        $('#profileSlideDiv').prepend('<div id="noVibes"><br><hr><h3>' + result.message + '</h3><hr></div>');
+                        $('#addMoreDiv').hide();
+                    }
+                },
+                error: function (error) { // This callback function will trigger on unsuccessful action                      
+                    $('#updateBtn').html('There was an error = ' + error);
+                    console.log('error = ' + error);
+                    console.log(error.success);
+                    $.mobile.loading('hide');
+                }
+            });
+        }
+    });
+
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
     console.log(pageId);
     if (pageId === "emotionPostPage") // Set up emotionPostPage and Create emoji Keypad 
@@ -367,7 +455,7 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                     ':pill:': 'pill.png',
                     ':rose:': 'rose.png',
                     ':shower:': 'shower.png',
-                    ':eggplant:': 'tab3/eggplant.png',
+                    ':eggplant:': 'eggplant.png',
                     ':star:': 'star.png',
                     ':sunny:': 'sunny.png',
                     ':sweat_drops:': 'sweat_drops.png',
@@ -380,11 +468,35 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
                 console.log('Adding Tab');
                 $.each(tabIcons[i], function (title, png)
                 {
-                    var tabKey = '#tab' + i;
-                    $(tabKey).append('<img class="addEmoji" src="images/emojis/' + png + '" title="' + title + '">');
+                    var tabKey = '#tab' + i; // needsclick to prevent double input
+                    $(tabKey).append('<img class="addEmoji needsclick" src="images/emojis/' + png + '" title="' + title + '">');
                 });
             }
             keyPadMade = true;
+            $('#slideKey').slidesjs({
+                width: 320,
+                height: 200,
+                callback: {
+                    loaded: function () {
+                        // hide navigation and pagination
+                        $('.slidesjs-pagination, .slidesjs-navigation').hide(0);
+                    }
+                }
+            });
+
+            $(".custom-item").click(function (e) {
+                e.preventDefault();
+                // use data-item value when triggering default pagination link
+                $('a[data-slidesjs-item="' + $(this).attr("data-item") + '"]').trigger('click');
+            });
+
+            $('#emotionPostPage').on('click', '.addEmoji', function () {
+                var emojiName = $(this).attr('title');
+                console.log('emoji clicked- Title is = ' + emojiName);
+                console.log('emoji img added - now refresh p');
+                $(".emojiRender").append(emojiName);
+                $('.emojiRender').emoji();
+            });
         }
 
         $(".emojiRender").html(' '); // Wipe the emoji render        
@@ -416,66 +528,8 @@ $(document).on('pagecontainerbeforeshow', function (e, ui) {
     }
     else if (pageId === "profilePage") // When the Profile is showen. This code will trigger
     {
-        // Start Skroller
-        //skrollr.init();
-        //e.preventDefault(); // Page show prevent default
-        var profileImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
-        if (profileImageArray !== null)
-        {
-            window.localStorage.setItem('imageCount', 7);
-            var userID = window.localStorage.getItem('userID');
-            console.log('Getting posts for Users: ' + userID);
-            $.ajax({url: 'http://emoapp.info/php/getUserPosts.php', // Get Users Posts
-                data: {userID: userID},
-                type: 'post',
-                async: 'true',
-                dataType: 'json',
-                beforeSend: function () {  // This callback function will trigger before data is sent     
-                    $.mobile.loading("show", {
-                        text: 'Fetching user Data',
-                        textVisible: true
-                    });
-                },
-                complete: function () { // This callback function will trigger on data sent/received complete                
-                    $.mobile.loading("hide");
-                },
-                success: function (result) { // Get user posts and place them into assoc Array            
-                    console.log('User Posts Fetch successfull: ' + JSON.stringify(result));
-                    // Remove no Posts Msg
-                    if (result.success === 1)
-                    {
-                        $.each(result.posts, function (index, value) {
-                            console.log(index + ' : ' + value.postID);
-                            array_push = [index, value.postID, value.imageName, value.timeServer, value.timeNow];
-                            //console.log(array_push);
-                            profileImageArray.push(array_push);
-                            window.localStorage.setItem('profileArray', JSON.stringify(profileImageArray));
-                        });
-                        insertImageArray(window.localStorage.getItem('imageCount'));
-                    }
-                    else
-                    {
-                        $('#skrollr-body').prepend('<div id="noPosts"><br><hr><h3>' + result.message + '</h3><hr></div>');
-                        $('#addMoreDiv').hide();
-                    }
-                },
-                error: function (error) { // This callback function will trigger on unsuccessful action                      
-                    $('#updateBtn').html('There was an error = ' + error);
-                    console.log('error = ' + error);
-                    console.log(error.success);
-                    $.mobile.loading('hide');
-                }
-            });
-        }
-
-//        $("#skrollr-body").on("scrollstop", function (event) { // Button Appears When SCroll Stops
-//            console.log('Stopped');
-//            $("#addMoreDiv").velocity({bottom: "0", easing: "easein"}, 400).delay(800);
-//            setTimeout(function () { // CLose Div after 3seconds
-//                $("#addMoreDiv").velocity({bottom: "-100px", easing: "easein"}, 400).delay(800);
-//            }, 3000);
-//
-//        });
+        // Add Images
+        //insertImageArray(window.localStorage.getItem('imageCount'));
     }
     else if (pageId === "settingsPage") // Settings Page Code
     {
@@ -594,13 +648,16 @@ $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown 
             camera();
         });
 
-        $(document).on('click', '.addEmoji', function () { // click to add emoji function
-            var emojiName = $(this).attr('title');
-            console.log('emoji clicked- Title is = ' + emojiName);
-            console.log('emoji img added - now refresh p');
-            $(".emojiRender").append(emojiName);
-            $('.emojiRender').emoji();
-        });
+//        $(document).on('click', '.addEmoji', function () { // click to add emoji function
+//            var emojiName = $(this).attr('title');
+//            console.log('emoji clicked- Title is = ' + emojiName);
+//            console.log('emoji img added - now refresh p');
+//            $(".emojiRender").append(emojiName);
+//            $('.emojiRender').emoji();
+//        });
+
+
+
         $(document).on('click', '.removeEmoji', function () { // click removes emojis
             console.log('emoji img removed');
             $(this).remove();
@@ -730,6 +787,7 @@ $(document).on('click', '#postToMapBtn', function () {
 
     function renderImage() { // Create the image in canvas
         function sendPost() { // Sent the post to server and save info to Database
+            $("#imageUploading").velocity({top: "70px", easing: "easein"}, 500);
             $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
             function uploadPhoto(fileNameStr, cenLng, cenLat) { // Upload Image Function
                 // Show the Loading Msg Div
@@ -746,13 +804,22 @@ $(document).on('click', '#postToMapBtn', function () {
                         imgBase64: imageData, name: fileNameStr
                     }
                 }).done(function (o) {
+                    // [[0,"974","1417954115224_10001000","2014-12-07 12:08:35","2014-12-07 23:58:35"]
+                    // Get Array from storage, add new row and place back into storage
+                    var curImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
+                    curImageArray.unshift(parentEmoji, postId, fileNameStr, timeDevice, timeDevice);
+                    window.localStorage.getItem('profileArray', JSON.stringify(curImageArray));
                     console.log('Image Uploaded: saved');
                     $("#imageUploading").velocity({top: "-100%", easing: "easein"}, 500);
                     // Show #uploadNotifaction
                     $("#uploadNotifaction").velocity({top: "70px", easing: "easein"}, 500);
+                    // Add the image to Profile Page
+                    $('#noVibes').remove();
+                    insertImageArray(7); // Add first 8 posts
                 });
             }
             // Get the informtion to send to server
+            var postId;
             var userID = window.localStorage.getItem('userID');
             var userEmail = window.localStorage.getItem('email');
             var parentEmoji = window.localStorage.getItem('parentPostEmoji');
@@ -784,12 +851,13 @@ $(document).on('click', '#postToMapBtn', function () {
                 },
                 success: function (result) {
                     $.mobile.loading("hide");
-                    $("#imageUploading").velocity({top: "70px", easing: "easein"}, 500);
+                    postId = result;
+                    setJsonLayers(); // Refresh Map
                     console.log('Database call was : ' + result);
                     console.log('Post was inserted to database ' + result);
                     console.log('Variables are - Post ID: ' + result + ' ' + postLat + ' ' + postLong + ' - Parent: ' + parentEmoji);
                     uploadPhoto(imageNameStr, postLong, postLat); // Start the file upload process 
-                    addMarkerToMap(parentEmoji, result, postLat, postLong); // Add Marker
+                    //addMarkerToMap(parentEmoji, result, postLat, postLong); // Add Marker
                     console.log('Map Markers Call Not Failing.');
                 },
                 error: function (results, error) {
@@ -868,3 +936,4 @@ $(document).on('click', '#addProfilePost', function () { // Add More Posts to Pa
     var imgCount = window.localStorage.getItem('imageCount');
     insertImageArray(imgCount);
 });
+

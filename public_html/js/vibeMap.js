@@ -732,6 +732,7 @@ $(document).on("pageshow", "#mapPage", function () {
     $('.input-daterange').datepicker({
         autoclose: true,
         todayHighlight: true,
-        format: 'yyyy-mm-dd'
+        format: 'yyyy-mm-dd',
+        disableTouchKeyboard: true
     });
 });
