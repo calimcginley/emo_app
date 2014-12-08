@@ -515,6 +515,7 @@ function markerClicked(postID, typeSearch)
             }
             console.log('Vibes Fetch Succesfull');
             var len = result.marker.length - 1;
+            var errorStr = "if (this.src != 'images/error.png') this.src = 'images/error.png';";
             console.log('result.marker length: ' + result.marker.length + ' - result.marker object: ' + result.marker);
             // Open Nav and Close Div
             var htmlStr = '<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup">';
@@ -522,7 +523,7 @@ function markerClicked(postID, typeSearch)
             {
                 var imgSrc = 'http://emoapp.info/uploads/' + result.marker[0].imageName + '.png';
                 var timeOffset = timeDiff(result.marker[0].timeThen, result.marker[0].timeNow);
-                htmlStr = htmlStr + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
+                htmlStr = htmlStr + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" " onerror="'+errorStr+'"/>'
                         + '<div class="popUpInfo">'
                         + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
                         //+ '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
@@ -540,7 +541,7 @@ function markerClicked(postID, typeSearch)
                     var timeOffset = timeDiff(val.timeThen, val.timeNow);
                     console.log('Time Offset: ' + timeOffset);
                     htmlStr = htmlStr + '<div class="slides">'
-                            + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
+                            + '<img src="' + imgSrc + '" class="emoPostPopup" onerror="'+errorStr+'"/>'
                             + '<div class="popUpInfo">'
                             + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
                             //+ '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'

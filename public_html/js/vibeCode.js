@@ -159,6 +159,7 @@ function insertImageArray(imageCount) // Insert into Profile Page function
     var profileImageArray = window.localStorage.getItem('profileArray');
     if (profileImageArray !== null) { // User has posts
         var slideHtmlArr = [];
+        var errorStr = "if (this.src != 'images/error.png') this.src = 'images/error.png';";
         $.each(JSON.parse(profileImageArray), function (index, value) {     // Loop through the array to the imageCount numb        
             //if (index <= imageCount && index >= imageCount - 7)
             if (index <= imageCount)
@@ -167,7 +168,7 @@ function insertImageArray(imageCount) // Insert into Profile Page function
                 var a = moment(value[3]); // Time since Tag
                 var b = moment(value[4]);
                 var timeOffset = a.from(b); // Get time differ and insert posts to page
-                slideHtmlArr.push('<div class="profilePostDiv"><img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png"/>'
+                slideHtmlArr.push('<div class="profilePostDiv"><img id="' + value[2] + '" class="postDivImg" alt="' + timeOffset + '" src="http://www.emoapp.info/uploads/thumbs/' + value[2] + '.png" onerror="' + errorStr + '"/>'
                         + '<p><i class="fa fa-clock-o"></i> ' + timeOffset + '</p></div>');
             }
         });
@@ -211,7 +212,8 @@ function insertImageArray(imageCount) // Insert into Profile Page function
         console.log('Image Clicked');
         var imgSrc = $(this).attr('id');
         var offSet = $(this).attr('alt');
-        $('#profilePageSlider').append('<div class="giantImg"><img src="http://www.emoapp.info/uploads/' + imgSrc + '.png" class="animated bounceInDown"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
+        var errorStr = "if (this.src != 'images/error.png') this.src = 'images/error.png';";
+        $('#profilePageSlider').append('<div class="giantImg"><img src="http://www.emoapp.info/uploads/' + imgSrc + '.png" class="animated bounceInDown" onerror="' + errorStr + '"/><p><i class="fa fa-clock-o fa-2x"></i> ' + offSet + '</p></div>');
         // Remove Click Event
         $(".giantImg").click(function () {
             $(".giantImg").remove();
@@ -919,9 +921,10 @@ $(document).on('click', '#postToMapBtn', function () {
 $(document).on('click', '#viewUpload', function () { // click to view image
     $("#uploadNotifaction").velocity({top: "-100%", easing: "easein"}, 500);
     var imgSrc = $('#viewUpload').attr('title'); // Get Image src from button
+    var errorStr = "if (this.src != 'images/error.png') this.src = 'images/error.png';";
     $('.popup-wrap').html('<div id="btnClose"><i class="fa fa-times"></i></div><nav class="popup"><div id="imgs">'
             + '<div class="vibesDiv">'
-            + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" "/>'
+            + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" " onerror="' + errorStr + '"/>'
             + '<div class="popUpInfo">'
             + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> Just Now</p></div>'
             // + '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
