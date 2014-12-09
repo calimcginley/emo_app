@@ -88,6 +88,7 @@
              attributeName="opacity"
              from=".2" to="1" dur="8s" 
              begin="animationBored1.end"
+             repeatCount="indefinite"
             
              
               /> 
@@ -170,6 +171,7 @@
              attributeName="opacity"
              from=".2" to="1" dur="9s" 
              begin="animationSad1.end"
+             repeatCount="indefinite"
              
              
              
@@ -251,6 +253,7 @@
              attributeName="opacity"
              from=".2" to="1" dur="10s" 
              begin="animationFear1.end"
+             repeatCount="indefinite"
             
          
               /> 
@@ -333,6 +336,7 @@
              attributeName="opacity"
              from=".2" to="1" dur="7s" 
              begin="animationEmbar1.end"
+             repeatCount="indefinite"
              
              
              
@@ -409,6 +413,7 @@
              attributeName="opacity"
              from=".2" to="1" dur="3s" 
              begin="animationHappy1.end"
+             repeatCount="indefinite"
              
              
              
@@ -511,6 +516,7 @@
              attributeName="opacity"
              from=".2" to="1" dur="4s" 
              begin="animationChilled1.end"
+             repeatCount="indefinite"
              
              
              
@@ -600,6 +606,7 @@
              attributeName="opacity"
              from=".2" to="1" dur="5s" 
              begin="animationAnger1.end"
+             repeatCount="indefinite"
              
              
              
@@ -703,6 +710,7 @@
              attributeName="opacity"
              from=".2" to="1" dur="6s" 
              begin="animationLove1.end"
+             repeatCount="indefinite"
              
              
              
