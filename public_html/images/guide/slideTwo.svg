@@ -3,7 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="320px" height="449px" viewBox="0 0 320 449" enable-background="new 0 0 320 449" xml:space="preserve">
-<rect id="Bigback" x="15.291" y="40.048" opacity="0.2" fill="#FFFFFF" enable-background="new    " width="294" height="389.998"/>
+<!-- <rect id="Bigback" x="15.291" y="40.048" opacity="0.2" fill="#FFFFFF" enable-background="new    " width="294" height="389.998"/> -->
 <g id="Pink">
 	<polygon id="pink" fill="#ED4798" points="72.992,206.047 61.436,185.441 72.992,164.836 96.103,164.836 107.661,185.441 
 		96.103,206.047 	"/>

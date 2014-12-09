@@ -3,7 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="320px" height="449px" viewBox="0 0 320 449" enable-background="new 0 0 320 449" xml:space="preserve">
-<rect id="MainBack" x="14" y="34" opacity="0.2" fill="#FFFFFF" enable-background="new    " width="294" height="389.998"/>
+<rect id="MainBack" x="14" y="34" opacity="0.1" fill="#FFFFFF" enable-background="new    " width="294" height="389.998"/>
 <!-- <rect id="VibeBack" x="53.169" y="125.333" opacity="0.4" fill="#FFFFFF" enable-background="new    " width="215.333" height="123.333"/> -->
 <g id="Bored">
 	<polygon opacity="0.7" fill="#838383" enable-background="new    " points="127.058,230.835 125.502,230.146 127.058,229.461 
