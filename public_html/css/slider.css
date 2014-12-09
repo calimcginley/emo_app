@@ -52,8 +52,9 @@
     width: 13px;
     height: 0;
     padding-top: 13px;
-    background-image: url(../images/guide/pagination.png);
+    background-image: url(../images/guide/pagination2.png);
     background-position: 0 0;
+    background-size: 100%;
     float: left;
     overflow: hidden;
 }

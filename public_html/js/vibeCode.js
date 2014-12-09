@@ -282,15 +282,6 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         camera();
     });
 
-//    $("#splashPage").on("pageshow", function (event) {
-//        setTimeout(function () {
-//            endOfSplash();
-//        }, 4000);
-//        $('#splashImage').click(function () {
-//            endOfSplash();
-//        });
-//    });
-
     $("#guidePage").on("pageshow", function (event) { // SHow the Splash Page
         $('#slides').slidesjs({
             width: 320,
