@@ -45,8 +45,8 @@ function onError(error)
     }
 }
 
-$(document).ready(function () { 
-  navigator.geolocation.getCurrentPosition(onSuccess, onError);     
+$(document).ready(function () {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
 });
 
 function setLocale()
@@ -155,22 +155,22 @@ function setMapInAction()
             //var showStats;
 
             hexagons.attr("d", function (d) {
-                        var lenVibes = d.length;
-                        var hexSize = 1 - (d.length * 0.05);
-                        if (lenVibes >= 20)
-                        {
-                            hexSize = 1;
-                        }
-                        else if(lenVibes > 200)
-                        {
-                            hexSize = 1.5;
-                        }
-                        else
-                        {
-                            hexSize = (lenVibes * 0.025) + 0.6;
-                        }
-                        return that.layout.hexagon(that.rscale(hexSize));
-                    })
+                var lenVibes = d.length;
+                var hexSize = 1 - (d.length * 0.05);
+                if (lenVibes >= 20)
+                {
+                    hexSize = 1;
+                }
+                else if (lenVibes > 200)
+                {
+                    hexSize = 1.5;
+                }
+                else
+                {
+                    hexSize = (lenVibes * 0.025) + 0.6;
+                }
+                return that.layout.hexagon(that.rscale(hexSize));
+            })
                     .attr("transform", function (d) {
                         return "translate(" + d.x + "," + d.y + ")";
                     })
@@ -191,7 +191,7 @@ function setMapInAction()
                         // Remove timeout
                         function wipeStats()
                         {
-                            
+
                             $('.statsBox').removeClass('rollIn');
                             $('.statsBox').addClass('rollOut');
                             var delayWipe = window.setTimeout(function () {
@@ -445,6 +445,7 @@ function setMapInAction()
 
 // Clicked on Hexagon Event
 $('#mapPage').on('click', '.hexagon', function (e) {
+    console.log('Hex Clicked: check if repeats');
     var zoom = map.getZoom();
     var latLng = $(this).attr('name');
     var latLngArr = latLng.split(',');
@@ -523,7 +524,7 @@ function markerClicked(postID, typeSearch)
             {
                 var imgSrc = 'http://emoapp.info/uploads/' + result.marker[0].imageName + '.png';
                 var timeOffset = timeDiff(result.marker[0].timeThen, result.marker[0].timeNow);
-                htmlStr = htmlStr + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" " onerror="'+errorStr+'"/>'
+                htmlStr = htmlStr + '<img src="' + imgSrc + '" class="emoPostPopup" alt=" " onerror="' + errorStr + '"/>'
                         + '<div class="popUpInfo">'
                         + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
                         //+ '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
@@ -541,7 +542,7 @@ function markerClicked(postID, typeSearch)
                     var timeOffset = timeDiff(val.timeThen, val.timeNow);
                     console.log('Time Offset: ' + timeOffset);
                     htmlStr = htmlStr + '<div class="slides">'
-                            + '<img src="' + imgSrc + '" class="emoPostPopup" onerror="'+errorStr+'"/>'
+                            + '<img src="' + imgSrc + '" class="emoPostPopup" onerror="' + errorStr + '"/>'
                             + '<div class="popUpInfo">'
                             + '<div class="timeInfo"><p><i class="fa fa-clock-o fa-2x"></i> ' + timeOffset + '</p></div>'
                             //+ '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
@@ -598,92 +599,10 @@ function centerMap()
     setLocale();
 }
 
-// Map Emoji Filter
+
+
 $(document).on("pageshow", "#mapPage", function () {
-    // Filter Menu Button
-    $(".centerButton a").html('<i class="fa fa-compass fa-3x"></i>');
-
-    // Share Button - Twitter Share Button
-    $('.btnShare').click(function () {
-
-        var fileShare = $('#emoPostPopup').attr('src');
-        console.log('Share button clicked: ' + fileShare);
-        window.plugins.socialsharing.shareViaTwitter('Check out my Vibe @Vibes_ios', fileShare, 'http://emoapp.info');
-    });
-
-
-    // Filter Menu Button
-    $(".emoFilterBtn").click(function ()
-    {
-        // Check if mapPage is active
-        // If not naviagte to mapPage and then open the filter bar
-        console.log('Filter Clicked');
-        var pageID = $.mobile.activePage.attr('id');
-        console.log('pageID: ' + pageID);
-        if (pageID === 'mapPage')
-        {
-            $("#menuPanel").panel("close");
-            isOpen = !isOpen;
-            console.log('close menu');
-            openFilterBar();
-        }
-        else
-        {
-            console.log('Change to map page and open filter');
-            $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
-            openFilterBar();
-        }
-
-        // Open the filet menu bar
-        function openFilterBar()
-        {
-            console.log('Open Filter bar');
-            $("#emojiSearchBar").velocity({top: "0px", easing: "easein"}, 500);
-            //$("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
-            $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
-            filterOpen = !filterOpen;
-        }
-    });
-
-    // Filter Buttons click event, add/remove opacity class and 
-    // Append and remove emoType from array
-    $('.emojiFilter').on('click', function () {
-        // Parent Emoji Clicked
-        console.log('Filter clicked');
-        var emoType = $(this).attr('data-name');
-        if ($(this).hasClass('filterOff'))
-        {
-            emoFilterArray.push(emoType);
-            $(this).removeClass('filterOff');
-        }
-        else
-        {
-            $(this).addClass('filterOff');
-            $('#checkboxSelectAll').prop("checked", false).checkboxradio("refresh");
-            emoFilterArray = jQuery.grep(emoFilterArray, function (value) {
-                return value !== emoType;
-            });
-        }
-        console.log('The emoType Array is now:');
-        console.log(emoFilterArray);
-    });
-
-    // Checkbox Select All/None function on filter
-    $('#checkboxSelectAll').on('click', function () {
-        if ($('#checkboxSelectAll').prop('checked'))
-        {
-            // Remove all classes for opacity and fill array
-            $('.emojiFilter').removeClass('filterOff');
-            emoFilterArray = ['1', '2', '3', '4', '5', '6', '7', '8'];
-        }
-        else
-        {
-            // Opacity drop all buttons and clear array
-            $('.emojiFilter').addClass('filterOff');
-            emoFilterArray = [];
-        }
-    });
-
+    
     // Advanced Filter
     $("#advancedFilter").on("collapsibleexpand", function (event, ui) {
         // The Advanced Tab is opened
@@ -694,46 +613,118 @@ $(document).on("pageshow", "#mapPage", function () {
         // The Advanced Tab is closed
         $("#filterButton").val('Filter emoji').button("refresh");
     });
+});
 
-    // Filter Button closes the filter bar and initates new hex-svg elements.
-    $("#filterButton").bind("click", function (event, ui) {
-        // Check the button type and decide which timeType to declare
-        var btnType = $("#filterButton").val();
-        if (btnType === 'Filter by Date')
-        {
-            window.localStorage.setItem('timeType', 'dateRange');
+// Map Emoji Filter $(document).on("pageshow", "#mapPage", function () {
+$(document).on('pagecontainershow', function (e, ui) {
+
+    $("#mapPage").pagecontainer({// Profile Page Created Add Images
+        create: function (event, ui) {
+            // Filter Menu Button
+            $(".centerButton a").html('<i class="fa fa-compass fa-3x"></i>');
+
+            $(".emoFilterBtn").click(function () { // Filter Menu Button
+                function openFilterBar() { // Open the filet menu bar
+                    console.log('Open Filter bar');
+                    $("#emojiSearchBar").velocity({top: "0px", easing: "easein"}, 500);
+                    //$("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
+                    $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
+                    filterOpen = !filterOpen;
+                }
+
+                // Check if mapPage is active, If not naviagte to mapPage and then open the filter bar
+                console.log('Filter Clicked');
+                var pageID = $.mobile.activePage.attr('id');
+                console.log('pageID: ' + pageID);
+                if (pageID === 'mapPage')
+                {
+                    $("#menuPanel").panel("close");
+                    isOpen = !isOpen;
+                    console.log('close menu');
+                    openFilterBar();
+                }
+                else
+                {
+                    console.log('Change to map page and open filter');
+                    $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
+                    openFilterBar();
+                }
+            });
+
+            $('.emojiFilter').on('click', function () { // Filter Buttons click event       
+                console.log('Filter clicked'); // Parent Emoji Clicked
+                var emoType = $(this).attr('data-name');
+                if ($(this).hasClass('filterOff')) // add/remove opacity class and append/remove emoType from array
+                {
+                    emoFilterArray.push(emoType);
+                    $(this).removeClass('filterOff');
+                }
+                else
+                {
+                    $(this).addClass('filterOff');
+                    $('#checkboxSelectAll').prop("checked", false).checkboxradio("refresh");
+                    emoFilterArray = jQuery.grep(emoFilterArray, function (value) {
+                        return value !== emoType;
+                    });
+                }
+                console.log('The emoType Array is now:');
+                console.log(emoFilterArray);
+            });
+
+            // Checkbox Select All/None function on filter
+            $('#checkboxSelectAll').on('click', function () {
+                if ($('#checkboxSelectAll').prop('checked'))
+                {
+                    // Remove all classes for opacity and fill array
+                    $('.emojiFilter').removeClass('filterOff');
+                    emoFilterArray = ['1', '2', '3', '4', '5', '6', '7', '8'];
+                }
+                else
+                {
+                    // Opacity drop all buttons and clear array
+                    $('.emojiFilter').addClass('filterOff');
+                    emoFilterArray = [];
+                }
+            });
+
+            // Filter Button closes the filter bar and initates new hex-svg elements.
+            $("#filterButton").bind("click", function (event, ui) {
+                // Check the button type and decide which timeType to declare
+                var btnType = $("#filterButton").val();
+                if (btnType === 'Filter by Date')
+                {
+                    window.localStorage.setItem('timeType', 'dateRange');
+                }
+                else
+                {
+                    window.localStorage.setItem('timeType', 'default');
+                }
+
+                console.log('Filter Button Clicked');
+                $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
+                filterOpen = !filterOpen;
+                setJsonLayers();
+            });
+
+            // Filter Button closes the filter bar and initates new hex-svg elements.
+            $(".quickSearch").bind("click", function (event, ui) {
+                console.log('Quick Search Clicked');
+                // Set the variables
+                var timeInterval = $(this).attr('data-name');
+                window.localStorage.setItem('timeType', 'fastButtons');
+                window.localStorage.setItem('interval', timeInterval);
+                console.log('Time Interval set as: ' + timeInterval);
+                $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
+                filterOpen = !filterOpen;
+                setJsonLayers();
+            });
+
+            $('.input-daterange').datepicker({// Filter form inputs
+                autoclose: true,
+                todayHighlight: true,
+                format: 'yyyy-mm-dd',
+                disableTouchKeyboard: true
+            });
         }
-        else
-        {
-            window.localStorage.setItem('timeType', 'default');
-        }
-
-        console.log('Filter Button Clicked');
-        $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
-        filterOpen = !filterOpen;
-        setJsonLayers();
-    });
-
-    // Filter Button closes the filter bar and initates new hex-svg elements.
-    $(".quickSearch").bind("click", function (event, ui) {
-        console.log('Quick Search Clicked');
-        // Set the variables
-        var timeInterval = $(this).attr('data-name');
-        window.localStorage.setItem('timeType', 'fastButtons');
-        window.localStorage.setItem('interval', timeInterval);
-        console.log('Time Interval set as: ' + timeInterval);
-        $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500);
-        filterOpen = !filterOpen;
-        setJsonLayers();
-    });
-
-// ------------------------------------------------------------------------------------------
-// ------------------------------ Filter form inputs  -------------------------------
-// ------------------------------------------------------------------------------------------
-    $('.input-daterange').datepicker({
-        autoclose: true,
-        todayHighlight: true,
-        format: 'yyyy-mm-dd',
-        disableTouchKeyboard: true
     });
 });
