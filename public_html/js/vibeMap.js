@@ -47,25 +47,23 @@ function onError(error)
     endOfSplash();
 }
 
+function onDeviceReady() {
+    // do everything here.
+    setTimeout(function () {
+        alert('Let nav');
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }, 3000);
+}
+
 $(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown functions
     var pageId = $('body').pagecontainer('getActivePage').prop('id');
     console.log(pageId);
     if (pageId === "splashPage") // SHow the Splash Page
     {
-        
         setTimeout(function () {
-            navigator.geolocation.getCurrentPosition(onSuccess, onError);            
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
         }, 3000);
-        
-        
-        $('#splashImage').click(function () {
-            endOfSplash();
-        });
     }
-});
-
-$(document).ready(function () {
-
 });
 
 function setLocale()
@@ -73,20 +71,14 @@ function setLocale()
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
-//setLocale();
-
 function setMapInAction()
 {
     //**********************  Create Leaflet/Mapbox Map ************************
-    //**************************************************************************
-
     console.log('At mapbox stage the lat is ' + setViewLat + ' and long is ' + setViewLong);
     map = L.mapbox.map('map', 'sona.3ab9e710', {zoomControl: false, detectRetina: true, maxZoom: 20, attributionControl: false})
             //map = L.mapbox.map('map', 'calimcginley.d78c7e7b', {zoomControl: false, detectRetina: true, maxZoom: 20, attributionControl: false})
             .setView([setViewLat, setViewLong], 14);
-    // Add the locate Button
-    //L.control.locate({position:'bottomright'}).addTo(map);
-    var MyControl = L.Control.extend({
+    var MyControl = L.Control.extend({// Add the locate Button
         options: {
             position: 'bottomright'
         },
@@ -94,11 +86,9 @@ function setMapInAction()
             // create the control container with a particular class name
             var container = L.DomUtil.create('div', 'centerButton');
             console.log('Lets Create the New Button');
-
             // ... initialize other DOM elements, add listeners, etc.
             var link = L.DomUtil.create('a', 'leaflet-bar-part leaflet-bar-part-single', container);
             link.href = '#';
-
             L.DomEvent
                     .on(link, 'click', L.DomEvent.stopPropagation)
                     .on(link, 'click', L.DomEvent.preventDefault)
@@ -117,9 +107,6 @@ function setMapInAction()
     });
     console.log('Lets Add the New Button');
     map.addControl(new MyControl());
-
-
-
     //**********************  Leaflet Hexbin Layer Class ***********************
     //**************************************************************************
     L.HexbinLayer = L.Class.extend({
@@ -164,10 +151,8 @@ function setMapInAction()
                 var coords = this.project(d.geometry.coordinates);
                 return [coords[0], coords[1], d.properties];
             }, this);
-
             var bins = this.layout(data);
             var hexagons = container.selectAll(".hexagon").data(bins);
-
             var path = hexagons.enter().append("path").attr("class", "hexagon hex01");
             this.config.style.call(this, path);
             that = this;
@@ -227,7 +212,6 @@ function setMapInAction()
                                 var vibeNumber = val[2].emoType - 1;
                                 statsString[vibeNumber]++;
                             });
-
                             if (!$('.statsBox').hasClass('statsUp'))
                             {
                                 var wipeStatsDelay = window.setTimeout(wipeStats, 4000);
@@ -255,7 +239,6 @@ function setMapInAction()
         onAdd: function (map) {
             this.map = map;
             var overlayPane = this.map.getPanes().overlayPane;
-
             if (!this.container || overlayPane.empty) {
                 this.container = d3.select(overlayPane)
                         .append('svg')
@@ -266,7 +249,6 @@ function setMapInAction()
             this.update();
         }
     });
-
     L.hexbinLayer = function (data, styleFunction) {
         return new L.HexbinLayer(data, styleFunction);
     };
@@ -283,7 +265,6 @@ function setMapInAction()
         console.log('timeType: ' + timeType);
         console.log('startDate: ' + startDate);
         console.log('endDate: ' + endDate);
-
         var emoTypes = '';
         $.each(emoFilterArray, function (index, value)
         {
@@ -302,7 +283,6 @@ function setMapInAction()
 
         console.log('The REGEXP string is now:');
         console.log(emoTypes);
-
         var jsonStringHex = " ";
         if (timeType === 'dateRange')
         {
@@ -314,7 +294,6 @@ function setMapInAction()
         }
         console.log('The PHP url is now:');
         console.log(jsonStringHex);
-
         d3.json(jsonStringHex, function (geoData) {
 
             //**********  Hexbin Layer to Map and Style Function ***************
@@ -446,18 +425,16 @@ function setMapInAction()
             }
         });
     };
-
     //********  Call the inital Function  *********
     //*********************************************
     setJsonLayers();
     $(".emotionHexbin").show();
-
     // - - -  When the mapPage is shown This code will trigger - - -
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   
     $(document).on("pageshow", "#mapPage", function () {
         // - -  Leaflet / MapBox Map - - 
         console.log('Invalidate the map size');
-        map.invalidateSize();   // fixes the issue with map size  
+        map.invalidateSize(); // fixes the issue with map size  
     });
 }
 //  End of setMapInAction()
@@ -492,7 +469,6 @@ $('#mapPage').on('click', '.hexagon', function (e) {
         }
     }
 });
-
 function setPopupView(setLat, setLng, emojiType)
 {
     map.setView({lat: setLat, lon: setLng}, 19);
@@ -567,7 +543,6 @@ function markerClicked(postID, typeSearch)
                             //+ '<div class="btnLove"><p><i class="fa fa-heart-o fa-2x"></i></p></div>'
                             //+ '<div class="btnShare"><p><i class="fa fa-twitter fa-2x"></i></p></div>'
                             + '</div></div>';
-
                     if (len === key)
                     {
                         htmlStr = htmlStr + '</div></div></nav>'; // Slides
@@ -627,12 +602,19 @@ $(document).on("pageshow", "#mapPage", function () {
         // The Advanced Tab is opened
         $("#filterButton").val('Filter by Date').button("refresh");
     });
-
     $("#advancedFilter").on("collapsiblecollapse", function (event, ui) {
         // The Advanced Tab is closed
         $("#filterButton").val('Filter emoji').button("refresh");
     });
 });
+
+function openFilterBar() { // Open the filet menu bar
+    console.log('Open Filter bar');
+    $("#emojiSearchBar").velocity({top: "0px", easing: "easein"}, 500);
+    //$("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
+    $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
+    filterOpen = !filterOpen;
+}
 
 // Map Emoji Filter $(document).on("pageshow", "#mapPage", function () {
 $(document).on('pagecontainershow', function (e, ui) {
@@ -643,14 +625,6 @@ $(document).on('pagecontainershow', function (e, ui) {
             $(".centerButton a").html('<i class="fa fa-compass fa-3x"></i>');
 
             $(".emoFilterBtn").click(function () { // Filter Menu Button
-                function openFilterBar() { // Open the filet menu bar
-                    console.log('Open Filter bar');
-                    $("#emojiSearchBar").velocity({top: "0px", easing: "easein"}, 500);
-                    //$("#emojiSearchBar").velocity({left: "0", easing: "easein"}, 500);
-                    $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
-                    filterOpen = !filterOpen;
-                }
-
                 // Check if mapPage is active, If not naviagte to mapPage and then open the filter bar
                 console.log('Filter Clicked');
                 var pageID = $.mobile.activePage.attr('id');
@@ -658,7 +632,6 @@ $(document).on('pagecontainershow', function (e, ui) {
                 if (pageID === 'mapPage')
                 {
                     $("#menuPanel").panel("close");
-                    isOpen = !isOpen;
                     console.log('close menu');
                     openFilterBar();
                 }
@@ -689,7 +662,6 @@ $(document).on('pagecontainershow', function (e, ui) {
                 console.log('The emoType Array is now:');
                 console.log(emoFilterArray);
             });
-
             // Checkbox Select All/None function on filter
             $('#checkboxSelectAll').on('click', function () {
                 if ($('#checkboxSelectAll').prop('checked'))
@@ -705,7 +677,6 @@ $(document).on('pagecontainershow', function (e, ui) {
                     emoFilterArray = [];
                 }
             });
-
             // Filter Button closes the filter bar and initates new hex-svg elements.
             $("#filterButton").bind("click", function (event, ui) {
                 // Check the button type and decide which timeType to declare
@@ -724,7 +695,6 @@ $(document).on('pagecontainershow', function (e, ui) {
                 filterOpen = !filterOpen;
                 setJsonLayers();
             });
-
             // Filter Button closes the filter bar and initates new hex-svg elements.
             $(".quickSearch").bind("click", function (event, ui) {
                 console.log('Quick Search Clicked');
@@ -737,7 +707,6 @@ $(document).on('pagecontainershow', function (e, ui) {
                 filterOpen = !filterOpen;
                 setJsonLayers();
             });
-
             $('.input-daterange').datepicker({// Filter form inputs
                 autoclose: true,
                 todayHighlight: true,

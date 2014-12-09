@@ -190,6 +190,14 @@ $(document).ready(function () { // A click event for each emoji which creates a 
     sliderCreated = false;
     profileShown = false;
 
+    $("#map").click(function () { // Close Menu
+        if (parentOpen) // Close Posting
+        {
+            $("#emojiPostSelectParent").velocity({left: "-100%", easing: "easein"}, 500);
+            parentOpen = false;
+        }
+    });
+
     $(function () { // Panels Code
         $("[data-role=panel]").panel().enhanceWithin();
     });
@@ -203,12 +211,6 @@ $(document).ready(function () { // A click event for each emoji which creates a 
     //console.log(window.localStorage.getItem('profileArray'));
 
     $('.floatlabel_1').floatlabel(); // float label code
-
-    $('.mapLink').click(function () { // Return to Map "Home Button" Event
-        var pageID = $.mobile.activePage.attr('id');
-        $("#menuPanel").panel("close");
-        $(":mobile-pagecontainer").pagecontainer("change", "#mapPage", {transition: "slide"});
-    });
 
     $('#cancelPass').click(function (e) {
         if (window.localStorage.getItem('logged') === 'Yes')
@@ -228,8 +230,8 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         if (pageID === 'mapPage')
         {
             $("#menuPanel").panel("close");
-            isOpen = !isOpen;
             console.log('close menu');
+            closeMenus();
             openParentEmojiBar();
         }
         else // Move page to mapPage and open parent select
@@ -243,8 +245,8 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         {
             console.log('Open Filter bar');
             $("#emojiPostSelectParent").velocity({left: "0", easing: "easein"}, 500);
-            $("#emojiSearchBar").velocity({top: "-100%", easing: "easein"}, 500); // Close Other bar
-            parentOpen = !parentOpen; // switch boolen
+            $("#emojiSearchBar").velocity({top: "-120%", easing: "easein"}, 500); // Close Other bar
+            parentOpen = true; // switch boolen
         }
     });
 
@@ -394,31 +396,7 @@ $(document).ready(function () { // A click event for each emoji which creates a 
     });
 
     $("#emotionPostPage").on("pagecreate", function (event) {
-        // Add Canvas Background
-        $(".emojiRender").html(' '); // Wipe the emoji render        
-        var canvas = document.getElementById('imageCanvas'); // Set the image in place for camera
-        canvas.width = 640; // Set Retina Image size
-        canvas.height = 720;
-        canvas.style.width = '320px'; // Set x2 Pixel ratio size
-        canvas.style.height = '360px';
-        var context = canvas.getContext('2d');
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        function gradientImg() { // Add the image button code
-            var canvasBtnObj = new Image();
-            canvasBtnObj.onload = function () {
-                context.globalAlpha = 1;
-                context.drawImage(canvasBtnObj, 0, 0, 640, 720);
-            }; // The url to the image
-            canvasBtnObj.src = 'images/menu/canvasBtn.svg';
-        }
-        // Add the image button background
-        var canvasBgObj = new Image();
-        canvasBgObj.onload = function () {
-            context.globalAlpha = 1;
-            context.drawImage(canvasBgObj, 0, 0, 640, 720);
-        }; // The url to the image
-        canvasBgObj.src = 'images/menu/canvasBg.jpg';
-        canvasBgObj.addEventListener('load', gradientImg);
+
 
         console.log('set tab selection of emoji'); // Set up emoji Keypad
         var tabIcons = [
@@ -674,8 +652,34 @@ $(document).ready(function () { // A click event for each emoji which creates a 
 
     });
 
-    $("#emotionPostPage").on("pageshow", function (event) {
+    $("#emotionPostPage").on("pagebeforeshow", function (event) {
         $('#emojiSentDiv').show(); // Show the Render DIv
+        // Add Canvas Background
+        $(".emojiRender").html(' '); // Wipe the emoji render        
+        var canvas = document.getElementById('imageCanvas'); // Set the image in place for camera
+        canvas.width = 640; // Set Retina Image size
+        canvas.height = 720;
+        canvas.style.width = '320px'; // Set x2 Pixel ratio size
+        canvas.style.height = '360px';
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        function gradientImg() { // Add the image button code
+            var canvasBtnObj = new Image();
+            canvasBtnObj.onload = function () {
+                context.globalAlpha = 1;
+                context.drawImage(canvasBtnObj, 0, 0, 640, 720);
+            }; // The url to the image
+            canvasBtnObj.src = 'images/menu/canvasBtn.svg';
+        }
+        // Add the image button background
+        var canvasBgObj = new Image();
+        canvasBgObj.onload = function () {
+            context.globalAlpha = 1;
+            context.drawImage(canvasBgObj, 0, 0, 640, 720);
+        }; // The url to the image
+        canvasBgObj.src = 'images/menu/canvasBg.jpg';
+        canvasBgObj.addEventListener('load', gradientImg);
+
 
 //        $('.emojiRender').each(function (i, d) { // Renders emoji on keyPad click
 //            console.log('emoji img code set');
@@ -925,4 +929,3 @@ $(document).on('click', '#addProfilePost', function () { // Add More Posts to Pa
     //alert('Add More CLicked');
     fetchVibes();
 });
-
