@@ -30,6 +30,7 @@ var onSuccess = function (position)
     {
         setMapInAction();
     }
+    endOfSplash();
 };
 
 function onError(error)
@@ -43,10 +44,28 @@ function onError(error)
     {
         setMapInAction();
     }
+    endOfSplash();
 }
 
+$(document).on('pagecontainershow', function (e, ui) { // emotionPostPage shown functions
+    var pageId = $('body').pagecontainer('getActivePage').prop('id');
+    console.log(pageId);
+    if (pageId === "splashPage") // SHow the Splash Page
+    {
+        
+        setTimeout(function () {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);            
+        }, 3000);
+        
+        
+        $('#splashImage').click(function () {
+            endOfSplash();
+        });
+    }
+});
+
 $(document).ready(function () {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
 });
 
 function setLocale()
@@ -602,7 +621,7 @@ function centerMap()
 
 
 $(document).on("pageshow", "#mapPage", function () {
-    
+
     // Advanced Filter
     $("#advancedFilter").on("collapsibleexpand", function (event, ui) {
         // The Advanced Tab is opened

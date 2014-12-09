@@ -280,14 +280,14 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         camera();
     });
 
-    $("#splashPage").on("pageshow", function (event) {
-        setTimeout(function () {
-            endOfSplash();
-        }, 4000);
-        $('#splashImage').click(function () {
-            endOfSplash();
-        });
-    });
+//    $("#splashPage").on("pageshow", function (event) {
+//        setTimeout(function () {
+//            endOfSplash();
+//        }, 4000);
+//        $('#splashImage').click(function () {
+//            endOfSplash();
+//        });
+//    });
 
     $("#guidePage").on("pageshow", function (event) { // SHow the Splash Page
         $('#slides').slidesjs({
@@ -794,14 +794,15 @@ $(document).on('click', '#postToMapBtn', function () {
                 }).done(function (o) {
                     // [[0,"974","1417954115224_10001000","2014-12-07 12:08:35","2014-12-07 23:58:35"]
                     // Get Array from storage, add new row and place back into storage
-                    var curImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
-                    curImageArray.unshift(parentEmoji, postId, fileNameStr, timeDevice, timeDevice);
-                    window.localStorage.getItem('profileArray', JSON.stringify(curImageArray));
+                    //var curImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
+                    //curImageArray.unshift(parentEmoji, postId, fileNameStr, timeDevice, timeDevice);
+                    //window.localStorage.getItem('profileArray', JSON.stringify(curImageArray));
                     console.log('Image Uploaded: saved');
                     $("#imageUploading").velocity({top: "-100%", easing: "easein"}, 500);
                     // Show #uploadNotifaction
                     $("#uploadNotifaction").velocity({top: "70px", easing: "easein"}, 500);
                     // Add the image to Profile Page
+                    profileShown = false;
                     $('#noVibes').remove();
                     //insertImageArray(7); // Add first 8 posts
                 });

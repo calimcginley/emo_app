@@ -377,6 +377,7 @@ ul, menu, dir {
     width: 45%;
     float: left;
     margin-left: 3.33%;
+    font-size: 0.8em;
 }
 
 #profilePosts {
