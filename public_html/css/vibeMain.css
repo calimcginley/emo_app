@@ -79,21 +79,32 @@ li a
 
 #signUp {
     padding: 8px;
-    margin-left: 5.5em; 
+    margin-left: 6em; 
     /* margin-bottom: 20px; */
     text-decoration: none;
-    color: #ED4798;
+    color: #fff;
     font-weight: bolder;
-    background-color: #E2E2E2;
+    /*background-color: #E2E2E2;
     opacity: .9;
-    border-radius: 25px;
+    border-radius: 25px; */
+    background: -moz-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,219,76,1)), color-stop(19%, rgba(255,151,82,1)), color-stop(38%, rgba(255,76,142,1)), color-stop(60%, rgba(225,76,255,1)), color-stop(80%, rgba(76,157,255,1)), color-stop(100%, rgba(58,194,105,1)));
+background: -webkit-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -o-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -ms-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -moz-linear-gradient(to right, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdb4c', endColorstr='#3ac269', GradientType=1 );
+border-radius: 25px;
 }
+
 
 #forgotPass, #changePass {
     text-decoration: none;
     color: #9e9e9e;
-    margin: 5em;
+    margin: 6em;
 }
+
+
 
 /* Sets the password input and title input fields */
 #password-clear 
@@ -444,9 +455,22 @@ ul, menu, dir {
 
 #addMoreDiv {
     width: 100%;
-    float: left;
+    
+    text-align: center;
+     color: #fff;
     width: 320px;
-    background-color: rgba(255,255,255, 0.7);
+    
+    margin-top: 5px;
+background: -moz-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,219,76,1)), color-stop(19%, rgba(255,151,82,1)), color-stop(38%, rgba(255,76,142,1)), color-stop(60%, rgba(225,76,255,1)), color-stop(80%, rgba(76,157,255,1)), color-stop(100%, rgba(58,194,105,1)));
+background: -webkit-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -o-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -ms-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -moz-linear-gradient(to right, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdb4c', endColorstr='#3ac269', GradientType=1 );
+   
+    
+   
 }
 
 #skrollr-body #addProfilePost {
@@ -455,7 +479,7 @@ ul, menu, dir {
     padding-top:   10px;
     padding-bottom:   10px;
     height: 44px !important;
-    color: #ED4798;
+    color: #fff;
     text-decoration: none;
     text-align: center;
     background-color: white;
@@ -476,7 +500,7 @@ ul, menu, dir {
 .menu-button {
     position: fixed;
     z-index: 1005;
-    margin-top: 30px;
+    padding-top: 30px;
     padding: 0;
     width: 44px;
     max-width: 15%;
@@ -555,7 +579,7 @@ ul, menu, dir {
 .headerBtn {
     width: 44px;
     height: 44px;
-    margin-top: -10px;
+    margin-top: -7px;
 }
 
 .panel-btn, .infoMenuButtonImg
@@ -572,7 +596,7 @@ ul, menu, dir {
     margin-bottom: 100px;
     /* padding-left: 3.9em; */
 }
-
+/*
 .profile-button {
     margin-top: 20px;
     padding: 0;
@@ -602,7 +626,7 @@ ul, menu, dir {
     background-image: url('../images/profile/settings.svg');
     background-size: 100%;
 }
-
+*/
 
 #myPopup0 {
 
@@ -877,14 +901,16 @@ ul, menu, dir {
 }
 
 #aboutButton {
-
+    
+    text-align: center;
     padding: 8px;
     margin-left: -.5em;
     text-decoration: none;
     color: #9e9e9e;
     font-weight: bolder;
     opacity: .9;
-    border: #E2E2E2 1px solid;
+  border: #E2E2E2 1px solid;
+ 
 
 }
 
@@ -948,13 +974,23 @@ ul, menu, dir {
 
 #changePass { 
     padding: 10px;
-    margin-left: 8em; 
+    margin-left: 8.5em; 
     text-decoration: none;
     color: #426EB5;
     font-weight: bolder;
     background-color: #E2E2E2;
     opacity: .9;
-    border-radius: 25px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bolder;
+    background: -moz-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,219,76,1)), color-stop(19%, rgba(255,151,82,1)), color-stop(38%, rgba(255,76,142,1)), color-stop(60%, rgba(225,76,255,1)), color-stop(80%, rgba(76,157,255,1)), color-stop(100%, rgba(58,194,105,1)));
+background: -webkit-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -o-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -ms-linear-gradient(left, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+background: -moz-linear-gradient(to right, rgba(255,219,76,1) 0%, rgba(255,151,82,1) 19%, rgba(255,76,142,1) 38%, rgba(225,76,255,1) 60%, rgba(76,157,255,1) 80%, rgba(58,194,105,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdb4c', endColorstr='#3ac269', GradientType=1 );
+border-radius: 25px;
 }
 
 #uploadNotifaction {

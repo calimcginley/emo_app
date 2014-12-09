@@ -267,13 +267,13 @@
 #cancelPass {
     
     text-align: center;
-    margin-left: 8.2em;
+    margin-left: 8.7em;
     color: #9e9e9e;
-    border-radius: 25px;
+  /*  border-radius: 25px;
     background-color: #fff;
     border: 1px solid;
     border-color: #0088cc;
-    padding: 8px;
+    padding: 8px; */
 }
 
 
