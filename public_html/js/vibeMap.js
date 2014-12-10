@@ -431,6 +431,43 @@ function setMapInAction()
 }
 //  End of setMapInAction()
 
+function addMarkerPulse(latMark, lngMark)
+{
+
+    var myLayer = L.mapbox.featureLayer().addTo(map);
+    console.log('Marker Added');
+    var newVibeGeo = [{
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [lngMark, latMark]
+            },
+            "properties": {
+                "icon": {
+                    "iconUrl": "images/mapIcon/marker.gif", //"/images/mapIcon/marker.svg",
+                    "iconSize": [50, 50], // size of the icon
+                    "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+                    "className": "dot"
+                }
+            }
+        }];
+
+// Set a custom icon on each marker based on feature properties.
+    myLayer.on('layeradd', function (e) {
+        var marker = e.layer,
+                feature = marker.feature;
+
+        marker.setIcon(L.icon(feature.properties.icon));
+    });
+
+// Add features to the map.
+    myLayer.setGeoJSON(newVibeGeo);
+    //myLayer.clearLayers();
+    setTimeout(function() {myLayer.clearLayers(); }, 10000);
+
+    map.setView({lat: latMark, lon: lngMark});
+}
+
 // Clicked on Hexagon Event
 $('#mapPage').on('click', '.hexagon', function (e) {
     console.log('Hex Clicked: check if repeats');
@@ -652,7 +689,7 @@ $("#mapPage").on("pagecreate", function (event) {// Profile Page Created Add Ima
         console.log(emoFilterArray);
     });
     // Checkbox Select All/None function on filter
-    
+
     $('#checkboxSelectAll').on('click', function () {
         if ($('#checkboxSelectAll').prop('checked'))
         {
@@ -667,7 +704,7 @@ $("#mapPage").on("pagecreate", function (event) {// Profile Page Created Add Ima
             emoFilterArray = [];
         }
     });
-    
+
     // Filter Button closes the filter bar and initates new hex-svg elements.
     $("#filterButton").bind("click", function (event, ui) {
         // Check the button type and decide which timeType to declare
@@ -686,7 +723,7 @@ $("#mapPage").on("pagecreate", function (event) {// Profile Page Created Add Ima
         filterOpen = !filterOpen;
         setJsonLayers();
     });
-    
+
     // Filter Button closes the filter bar and initates new hex-svg elements.
     $(".quickSearch").bind("click", function (event, ui) {
         console.log('Quick Search Clicked');
@@ -699,7 +736,7 @@ $("#mapPage").on("pagecreate", function (event) {// Profile Page Created Add Ima
         filterOpen = !filterOpen;
         setJsonLayers();
     });
-    
+
     $('.input-daterange').datepicker({// Filter form inputs
         autoclose: true,
         todayHighlight: true,
