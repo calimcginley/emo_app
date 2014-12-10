@@ -70,12 +70,21 @@
 
 #slides a:link,
 #slides a:visited {
-    color: #9e9e9e;
+    color: #ED4798;
 }
 
 #slides a:hover,
 #slides a:active {
     color: #9e9e9e;
+}
+
+#goMap {
+    padding: 1px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: small;
+  
 }
 
 .navbar {
