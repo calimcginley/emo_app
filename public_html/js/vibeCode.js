@@ -917,6 +917,5 @@ $(document).on('click', '#viewUpload', function () { // click to view image
 });
 
 $(document).on('click', '#addProfilePost', function () { // Add More Posts to Page
-    //alert('Add More CLicked');
     fetchVibes();
 });

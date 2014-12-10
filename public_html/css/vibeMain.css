@@ -200,11 +200,10 @@ input[type='text']
     overflow: hidden;
 }
 #mapPage .centerButton {
-    width: 45px;
+    width: 60px;
     margin: 0;
-    height: 50px;
-    padding: 5px;
-    background-image: url(../images/mapIcon/MapIcon.svg);
+    height: 60px;
+    padding: 0 5px 5px 0;
     background-color: rgba(255,255,255, 0.05);
 }
 #map .leaflet-control-container .leaflet-bottom.leaflet-right .centerButton.leaflet-control  a {
@@ -212,6 +211,9 @@ input[type='text']
     color: #F7B4D5;  
 }
 
+#map .centerButton img {
+width: 100%;
+}
 
 /* ---- Wheel of Colour ---*/
 #mapPage .statsUp {
