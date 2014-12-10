@@ -206,6 +206,10 @@ $(document).ready(function () { // A click event for each emoji which creates a 
         FastClick.attach(document.body);
     });
 
+    //var imageArray = []; // Image Array for Profile Page
+    //window.localStorage.setItem('profileArray', JSON.stringify(imageArray));
+    //console.log(window.localStorage.getItem('profileArray'));
+
     $('.floatlabel_1').floatlabel(); // float label code
 
     $('#cancelPass').click(function (e) {
@@ -570,7 +574,7 @@ $(document).ready(function () { // A click event for each emoji which creates a 
             $.each(tabIcons[i], function (title, png)
             {
                 var tabKey = '#tab' + i; // needsclick to prevent double input
-                $(tabKey).append('<img class="addEmoji" src="images/emojis/' + png + '" title="' + title + '">');
+                $(tabKey).append('<img class="addEmoji needsclick" src="images/emojis/' + png + '" title="' + title + '">');
             });
         }
         $('#slideKey').slidesjs({// Activate the keypad swipe
@@ -783,6 +787,11 @@ $(document).on('click', '#postToMapBtn', function () {
                         imgBase64: imageData, name: fileNameStr
                     }
                 }).done(function (o) {
+                    // [[0,"974","1417954115224_10001000","2014-12-07 12:08:35","2014-12-07 23:58:35"]
+                    // Get Array from storage, add new row and place back into storage
+                    //var curImageArray = JSON.parse(window.localStorage.getItem('profileArray'));
+                    //curImageArray.unshift(parentEmoji, postId, fileNameStr, timeDevice, timeDevice);
+                    //window.localStorage.getItem('profileArray', JSON.stringify(curImageArray));
                     console.log('Image Uploaded: saved');
                     $("#imageUploading").velocity({top: "-100%", easing: "easein"}, 500);
                     // Show #uploadNotifaction
@@ -790,6 +799,7 @@ $(document).on('click', '#postToMapBtn', function () {
                     // Add the image to Profile Page
                     profileShown = false;
                     $('#noVibes').remove();
+                    //insertImageArray(7); // Add first 8 posts
                 });
             }
             // Get the informtion to send to server
@@ -827,7 +837,6 @@ $(document).on('click', '#postToMapBtn', function () {
                     $.mobile.loading("hide");
                     postId = result;
                     setJsonLayers(); // Refresh Map
-                    addMarkerPulse(postLat, postLong);
                     console.log('Database call was : ' + result);
                     console.log('Post was inserted to database ' + result);
                     console.log('Variables are - Post ID: ' + result + ' ' + postLat + ' ' + postLong + ' - Parent: ' + parentEmoji);
@@ -908,5 +917,6 @@ $(document).on('click', '#viewUpload', function () { // click to view image
 });
 
 $(document).on('click', '#addProfilePost', function () { // Add More Posts to Page
+    //alert('Add More CLicked');
     fetchVibes();
 });

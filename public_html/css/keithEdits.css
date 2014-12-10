@@ -1,0 +1,186 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26-Nov-2014, 22:06:54
+    Author     : Keith
+
+
+#map {
+    overflow:hidden;
+}*/
+
+
+/* Place copy Panel here ..
+
+.menu-top-buttons a {
+    display: block;
+    padding-left: 1.2em;
+    border-bottom: 0px solid rgba(0,0,0,0.1);
+}
+
+.infoMenu {
+    display: none;
+    margin-left: 2em;
+    //margin-top: 1em;
+    opacity: 0;
+}
+
+.infoMenu a {
+    padding-right: 2em;
+    float: left;
+}
+
+
+.panel-btn, .infoMenuButtonImg
+{
+    height: auto;
+    margin: 0;
+    padding: 1em 3em;
+    width: 150px;
+    max-width: 150px;
+}
+
+.infoMenuButtonImg {
+    padding-left: 4em;
+}
+
+
+ <!-- Panel Tab -->
+        <div data-role="panel" id="menuPanel" class="menu-side">
+            <nav class="menu-top">
+                <div class="profile">
+                    <img src="images/vibesHeader.svg" class="mapLink"  alt="vibe">
+                </div>
+                <!-- <img src="images/vibesBorder.svg" alt="vibe" class="menuBorder"> -->
+            </nav>
+            <div id="panelBtns" class="menu-top-buttons">
+                <a href="#mapPage" class="mapLink" data-transition="slide"><img src="images/menu/mapBtn_2.svg" class="panel-btn" alt="" /></a> 
+                <a href="#" data-transition="slide" class="emoFilterBtn"><img src="images/menu/searchBtn.svg" class="panel-btn" alt="" /></a> 
+                <a href="#" data-transition="slide" class="emoPostBtn"><img src="images/menu/postBtn.svg" class="panel-btn" alt="" /></a> 
+                <a href="#profilePage" data-transition="slide"><img src="images/menu/profileBtn_2.svg" class="panel-btn" alt="" /></a> <br>
+                <a href="#" data-transition="slide" class="infoMenuButton"><img src="images/menu/pinsIcon.svg" alt="" class="panel-btn" /></a>
+                <div class="infoMenu" >
+                    <a href="#myPopup0" data-rel="popup" > <input type="image" src="images/emoji-1.svg" alt="Submit" width="54" height="48"></a>
+                    <a href="#myPopup1" data-rel="popup" > <input type="image" src="images/emoji-2.svg" alt="Submit" width="54" height="48"></a><br><br><br>
+                    <a href="#myPopup2" data-rel="popup" > <input type="image" src="images/emoji-3.svg" alt="Submit" width="54" height="48"></a>
+                    <a href="#myPopup3" data-rel="popup" > <input type="image" src="images/emoji-4.svg" alt="Submit" width="54" height="48"></a><br><br><br>
+                    <a href="#myPopup4" data-rel="popup" > <input type="image" src="images/emoji-5.svg" alt="Submit" width="54" height="48"></a>
+                    <a href="#myPopup5" data-rel="popup" > <input type="image" src="images/emoji-6.svg" alt="Submit" width="54" height="48"></a><br><br><br>
+                    <a href="#myPopup6" data-rel="popup" > <input type="image" src="images/emoji-7.svg" alt="Submit" width="54" height="48"></a>
+                    <a href="#myPopup7" data-rel="popup" > <input type="image" src="images/emoji-8.svg" alt="Submit" width="54" height="48"></a>
+
+                    <div data-role="popup" data-arrow="true" id="myPopup0">
+                        <p>Yellow represents the happy Vibe.<br>Feelings associated with yellow <br>include <span style="color: yellow">happiness,</span>hope and fun. </p>
+                    </div>
+                    <div data-role="popup" data-arrow="true" id="myPopup1">
+                        <p>Green represents the fearful Vibe. <br>Feelings associated with green <br>include <span style="color: #06B052">fear,</span>greed and jealousy. </p>
+                    </div>
+                    <div data-role="popup" data-arrow="true" id="myPopup2">
+                        <p>Blue represents the sad Vibe. <br>Feelings associated with blue <br>include <span style="color: #426EB5">sadness,</span>sensitivity and loyalty. </p>
+                    </div>
+                    <div data-role="popup" data-arrow="true" id="myPopup3">
+                        <p>Orange represents the relaxed Vibe. <br>Feelings associated with orange <br>include <span style="color: #F7961D">relaxation,</span>balance and expression.</p>
+                    </div>
+                    <div data-role="popup" id="myPopup4">
+                        <p>Purple represents the bored Vibe.<br>Feelings associated with purple <br>include <span style="color: #754D9E">boredom,</span>independence and frustration.</p>
+                    </div>
+                    <div data-role="popup" id="myPopup5">
+                        <p>Red represents the angry Vibe. <br>Feelings associated with red<br>include  <span style="color: #ED2A25">anger</span>, passion and aggression.</p>
+                    </div>
+                    <div data-role="popup" id="myPopup6">
+                        <p>Pink represents the love Vibe. <br>Feelings associated with pink <br>include <span style="color: #ED4798">love,</span>compassion and nurturing</p>
+                    </div>
+                    <div data-role="popup" id="myPopup7">
+                        <p>Grey represents the embarrassed Vibe.<br>Feelings associated with grey <br>include <span style="color: #F3BCD1">embarrassment,</span>anxiety and shyness.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+/* ------------------------------------------------------------------------------------------
+// ------------------------------  Slider Menu Theme  ---------------------------------------
+// ---------------------------------------------------------------------------------------/
+
+html, 
+body, 
+.container, 
+.content-wrap, 
+.content-wrap-noHead {
+    overflow: hidden;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+content-wrap {
+    min-height: 500px;
+}
+
+content-wrap-noHead {
+    height: 100%;
+    min-height: 568px;
+}
+
+
+
+
+// emotionPostPage Original
+        <div data-role="page" id="emotionPostPage" data-theme="a" >
+            <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                <a href="#menuPanel" data-rel="panel" class="ui-btn ui-icon-menu menu-button"></a>
+                <h1><img src="images/vibes.svg" alt=""/></h1>
+            </div>
+            <div role="main" class="ui-content content-wrap"> 
+                <canvas id="imageCanvas"></canvas>
+                <div id="insertButtons">
+                    <div id='emojiSentDiv' class="emojiRender">
+                    </div>
+                    <div id="upper" data-theme="a">
+                        <div id="panel"  data-theme="a">
+                            <div data-role="tabs" id="tabs">
+                                <div data-role="navbar">
+                                    <ul>
+                                        <li class="mytab"><a href="#tab0" data-ajax="false"><i class="fa fa-smile-o"></i></a></li>
+                                        <li class="mytab"><a href="#tab1" data-ajax="false"><i class="fa fa-paw"></i></a></li>
+                                        <li class="mytab"><a href="#tab2" data-ajax="false"><i class="fa fa-taxi"></i></a></li>
+                                        <li class="mytab"><a href="#tab3" data-ajax="false"><i class="fa fa-beer"></i></a></li>
+                                        <li class="mytab"><a href="#tab4" data-ajax="false"><i class="fa fa-futbol-o"></i></a></li>
+                                        <li class="mytab"><a href="#tab5" data-ajax="false"><i class="fa fa-star"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div id="tab0" class="tabEmoji"></div>
+                                <div id="tab1" class="tabEmoji"></div>
+                                <div id="tab2" class="tabEmoji"></div>
+                                <div id="tab3" class="tabEmoji"></div>
+                                <div id="tab4" class="tabEmoji"></div>
+                                <div id="tab5" class="tabEmoji"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bar"  data-theme="a"><a data-role='button' href="#" id="toggle" class="buttonStyles" >Describe</a></div>
+                    <div id="lower">
+                        <a data-role='button' href="javascript:void(0)" data-transition="slide" id="postToMapBtn" class="buttonStyles" >Vibe it</a>
+                        <img id="imageHolder" src="" alt=""/>
+                    </div>
+                </div>
+            </div><!-- /content-wrap -->
+        </div><!-- /Page -->
+
+
+
+
+WHEEL
+
+
+
+
+POPUP Wrap
+    bottom: 0.25em;
+    left: 0;
+
+*/
+
+

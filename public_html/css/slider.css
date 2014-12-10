@@ -70,7 +70,7 @@
 
 #slides a:link,
 #slides a:visited {
-    color: #9e9e9e;
+    color: #ED4798;
 }
 
 #slides a:hover,
@@ -90,6 +90,16 @@
     margin: 0em;
 }
 
+#goMap {
+    
+    
+    padding: 1px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: small;
+  
+}
 
 
 /* For smartphones */
