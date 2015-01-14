@@ -4,7 +4,7 @@ A location based, emotion mapping app for the iPhone allowing you to search for 
 
 by
 
-@calimcginley and @sonaharrsion 
+<a href="https://www.linkedin.com/pub/keith-mcginley/1b/aab/373" target="_blank">Keith McGinley</a> and @sonaharrsion 
 
 for MSc in Creative Digital Media at DIT, Dublin.
 
