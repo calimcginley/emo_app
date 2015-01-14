@@ -9,3 +9,6 @@ by
 for MSc in Creative Digital Media at DIT, Dublin.
 
 
+<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+<script type="IN/MemberProfile" data-id="https://www.linkedin.com/pub/keith-mcginley/1b/aab/373" data-format="inline"></script>
+
